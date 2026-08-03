@@ -1,0 +1,2662 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <title>Mathematik 12.1 · Interaktives Halbjahresskript: Exponentialmodelle und Differentialrechnung</title>
+  <style>
+    :root{
+      --bg:#0b1020;
+      --deep:#070b15;
+      --panel:#121a2e;
+      --panel2:#18223a;
+      --ink:#e8f0ff;
+      --muted:#a7b4ce;
+      --cyan:#00d5ff;
+      --violet:#7c3cff;
+      --good:#5eead4;
+      --warn:#facc15;
+      --bad:#fb7185;
+      --line:rgba(255,255,255,.14);
+      --shadow:0 24px 70px rgba(0,0,0,.35);
+      --radius:22px;
+      --paper:#f8fbff;
+      --paper2:#edf4ff;
+      --paperInk:#101828;
+      --focus:#a7f3ff;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth;scroll-padding-top:76px}
+    body{
+      margin:0;
+      min-width:280px;
+      color:var(--ink);
+      font-family:ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
+      line-height:1.6;
+      background:
+        radial-gradient(circle at 8% 0%,rgba(0,213,255,.16),transparent 35rem),
+        radial-gradient(circle at 90% 7%,rgba(124,60,255,.23),transparent 32rem),
+        linear-gradient(180deg,#080d1a 0%,var(--bg) 46%,var(--deep) 100%);
+    }
+    a{color:#8be9ff}
+    a:hover{color:#d0f8ff}
+    button,input,select,textarea{font:inherit}
+    button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,summary:focus-visible{
+      outline:3px solid var(--focus);
+      outline-offset:3px;
+    }
+    .skip{
+      position:fixed;
+      left:12px;
+      top:10px;
+      z-index:100;
+      transform:translateY(-170%);
+      background:#fff;
+      color:#071022;
+      padding:10px 14px;
+      border-radius:10px;
+      font-weight:900;
+    }
+    .skip:focus{transform:none}
+    .wrap{width:min(1200px,calc(100% - 32px));margin-inline:auto}
+    .hero{padding:42px 0 26px;position:relative;overflow:hidden}
+    .topbar{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:26px}
+    .brand{display:flex;align-items:center;gap:12px;font-weight:850;letter-spacing:.02em}
+    .brand-mark{
+      width:46px;
+      height:46px;
+      border-radius:14px;
+      display:grid;
+      place-items:center;
+      color:#04111e;
+      background:linear-gradient(135deg,var(--cyan),var(--violet));
+      font-weight:950;
+      box-shadow:0 0 38px rgba(0,213,255,.42);
+    }
+    .hero-grid{display:grid;grid-template-columns:1.18fr .82fr;gap:24px;align-items:stretch}
+    .glass,.panel,.dark-card{
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      background:linear-gradient(180deg,rgba(255,255,255,.085),rgba(255,255,255,.035));
+      box-shadow:var(--shadow);
+      backdrop-filter:blur(10px);
+    }
+    .hero-card{padding:27px}
+    h1{font-size:clamp(2.15rem,5vw,4.75rem);line-height:.98;margin:0;letter-spacing:-.055em}
+    h2{font-size:clamp(1.55rem,3vw,2.35rem);line-height:1.13;margin:0 0 12px;letter-spacing:-.03em}
+    h3{font-size:1.24rem;line-height:1.25;margin:0 0 8px}
+    h4{font-size:1.03rem;margin:0 0 6px}
+    p{margin:.5rem 0}
+    .lead{font-size:clamp(1.04rem,1.7vw,1.25rem);color:var(--muted);max-width:820px;margin-top:18px}
+    .pillbar,.tagrow,.controls,.button-row{display:flex;flex-wrap:wrap;gap:8px}
+    .pill{
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.055);
+      padding:8px 12px;
+      border-radius:999px;
+      color:var(--muted);
+      font-size:.9rem;
+    }
+    .metric-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:18px}
+    .metric{background:rgba(4,10,24,.58);border:1px solid var(--line);border-radius:18px;padding:14px}
+    .metric b{display:block;font-size:1.45rem;color:white}
+    .metric span{color:var(--muted);font-size:.86rem}
+    .guide{display:grid;gap:12px;align-content:start}
+    .guide h2{font-size:1.45rem}
+    .guide ol{margin:.2rem 0;padding-left:1.3rem;color:var(--muted)}
+    .guide li+li{margin-top:.5rem}
+    .progress-box{
+      margin-top:16px;
+      padding:13px 14px;
+      border:1px solid var(--line);
+      border-radius:16px;
+      background:rgba(5,12,27,.64);
+    }
+    .progress-row{display:flex;justify-content:space-between;gap:12px;color:var(--muted);font-size:.9rem}
+    progress{width:100%;height:11px;margin-top:8px;border:0;border-radius:999px;overflow:hidden;background:#071022}
+    progress::-webkit-progress-bar{background:#071022}
+    progress::-webkit-progress-value{background:linear-gradient(90deg,var(--cyan),var(--violet));border-radius:999px}
+    progress::-moz-progress-bar{background:linear-gradient(90deg,var(--cyan),var(--violet));border-radius:999px}
+    nav.quick{
+      position:sticky;
+      top:0;
+      z-index:40;
+      border-top:1px solid var(--line);
+      border-bottom:1px solid var(--line);
+      background:rgba(8,13,26,.82);
+      backdrop-filter:blur(14px);
+    }
+    nav.quick .wrap{display:flex;gap:8px;padding:10px 0;overflow:auto;align-items:center;scrollbar-width:thin}
+    .btn,button{
+      appearance:none;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
+      white-space:nowrap;
+      cursor:pointer;
+      text-decoration:none;
+      color:var(--ink);
+      background:rgba(255,255,255,.065);
+      border:1px solid var(--line);
+      border-radius:999px;
+      padding:10px 14px;
+      font-weight:770;
+      transition:.18s transform,.18s background,.18s border-color;
+    }
+    .btn:hover,button:hover{transform:translateY(-1px);border-color:rgba(0,213,255,.58);background:rgba(0,213,255,.12)}
+    .primary{border:0;color:#04111e;background:linear-gradient(135deg,var(--cyan),var(--violet))}
+    .small{padding:8px 11px;font-size:.9rem}
+    section{padding:40px 0}
+    .section-head{display:flex;justify-content:space-between;align-items:end;gap:18px;margin-bottom:18px}
+    .section-head p{color:var(--muted);max-width:780px}
+    input,select{
+      width:100%;
+      min-width:0;
+      color:var(--ink);
+      background:#071022;
+      border:1px solid var(--line);
+      border-radius:13px;
+      padding:11px 13px;
+    }
+    input[type="range"]{padding:8px 0;accent-color:var(--cyan);cursor:pointer}
+    input[type="checkbox"],input[type="radio"]{width:18px;height:18px;padding:0;accent-color:#00a8cc}
+    .search{width:min(390px,100%)}
+    .toc-shell{padding:20px}
+    .toc-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+    .toc-card{
+      border:1px solid var(--line);
+      border-radius:18px;
+      background:rgba(255,255,255,.055);
+      padding:14px;
+    }
+    .toc-card h3{color:white}
+    .toc-card p{color:var(--muted);font-size:.92rem}
+    .toc-links{display:grid;gap:6px;margin-top:10px}
+    .toc-links a{
+      display:flex;
+      gap:8px;
+      align-items:baseline;
+      color:#c8f7ff;
+      text-decoration:none;
+      border-radius:10px;
+      padding:6px 8px;
+      background:rgba(0,213,255,.06);
+    }
+    .toc-links a:hover{background:rgba(0,213,255,.14)}
+    .chapter-list{display:grid;gap:22px}
+    details.chapter{
+      overflow:hidden;
+      border:1px solid var(--line);
+      border-radius:26px;
+      background:linear-gradient(180deg,rgba(255,255,255,.08),rgba(255,255,255,.035));
+      box-shadow:var(--shadow);
+    }
+    details.chapter>summary{
+      list-style:none;
+      cursor:pointer;
+      display:grid;
+      grid-template-columns:auto 1fr auto;
+      gap:16px;
+      align-items:center;
+      padding:19px 22px;
+    }
+    details.chapter>summary::-webkit-details-marker{display:none}
+    details.chapter>summary::after{content:"Kapitel öffnen  +";font-size:.83rem;color:var(--muted);font-weight:850}
+    details.chapter[open]>summary::after{content:"Kapitel schließen  −"}
+    .chapter-no{
+      width:48px;
+      height:48px;
+      border-radius:15px;
+      display:grid;
+      place-items:center;
+      color:#04111e;
+      background:linear-gradient(135deg,var(--cyan),var(--violet));
+      font-weight:950;
+      box-shadow:0 0 28px rgba(0,213,255,.25);
+    }
+    .chapter-title b{display:block;color:white;font-size:1.25rem}
+    .chapter-title span{display:block;color:var(--muted);font-size:.92rem;margin-top:2px}
+    .chapter-body{padding:0 16px 16px;display:grid;gap:16px}
+    article.week{
+      position:relative;
+      overflow:hidden;
+      color:var(--paperInk);
+      background:linear-gradient(180deg,var(--paper),var(--paper2));
+      border:1px solid rgba(255,255,255,.75);
+      border-radius:22px;
+      box-shadow:0 18px 46px rgba(0,0,0,.25);
+      scroll-margin-top:88px;
+    }
+    article.week::before{
+      content:"";
+      position:absolute;
+      inset:0 0 auto;
+      height:7px;
+      background:linear-gradient(90deg,var(--cyan),var(--violet));
+    }
+    .week-head{
+      display:flex;
+      justify-content:space-between;
+      gap:14px;
+      align-items:start;
+      padding:22px 22px 15px;
+      border-bottom:1px solid #d8e3f2;
+      background:rgba(255,255,255,.5);
+    }
+    .week-kicker{color:#475569;font-size:.82rem;font-weight:850;letter-spacing:.04em;text-transform:uppercase}
+    .week-head h3{font-size:clamp(1.35rem,2.4vw,1.75rem);color:#0f172a;margin-top:3px}
+    .done-label{
+      display:flex;
+      align-items:center;
+      gap:8px;
+      white-space:nowrap;
+      color:#334155;
+      font-size:.88rem;
+      font-weight:850;
+      cursor:pointer;
+      background:#e8fbff;
+      border:1px solid #b9edf7;
+      border-radius:999px;
+      padding:8px 11px;
+    }
+    .week-content{padding:18px 22px 24px;display:grid;gap:15px}
+    .learning-grid,.two-col,.practice-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+    .block{
+      min-width:0;
+      padding:14px;
+      border:1px solid #d6e2f0;
+      border-radius:16px;
+      background:rgba(255,255,255,.78);
+      color:#26354a;
+    }
+    .block h4{color:#0f172a}
+    .block p:first-of-type{margin-top:.25rem}
+    .block ul,.block ol{padding-left:1.25rem;margin:.45rem 0}
+    .block li+li{margin-top:.34rem}
+    .problem{border-left:5px solid #00a8cc;background:#ecfaff}
+    .objectives{border-left:5px solid #7c3cff;background:#f3efff}
+    .memo{
+      border:1px solid #9ce8ef;
+      background:linear-gradient(135deg,#e9ffff,#f1efff);
+      color:#102a3a;
+      font-size:1.03rem;
+      font-weight:780;
+    }
+    .memo::before{content:"Merksatz · ";color:#006f86;font-weight:950}
+    .tagrow{margin-top:8px}
+    .tag{
+      border:1px solid #c5d5e6;
+      border-radius:999px;
+      background:#f8fbff;
+      color:#334155;
+      padding:4px 8px;
+      font-size:.78rem;
+      font-weight:760;
+    }
+    .worked{border-left:5px solid #0f9f8d;background:#edfffb}
+    .worked .answer{
+      margin-top:10px;
+      padding:10px 12px;
+      border-radius:12px;
+      background:#d9fff7;
+      color:#0b5149;
+      font-weight:800;
+    }
+    .formula{
+      display:inline-block;
+      max-width:100%;
+      overflow-x:auto;
+      vertical-align:middle;
+      white-space:nowrap;
+      color:inherit;
+      background:#eef8ff;
+      border:1px solid #cdeef8;
+      border-radius:.45em;
+      padding:.06em .3em;
+      font-family:"Cambria Math","STIX Two Math","Times New Roman",serif;
+      font-weight:700;
+    }
+    .formula math{font-family:"Cambria Math","STIX Two Math","Times New Roman",serif;font-size:1.08em}
+    .interactive-box{
+      color:#e6fbff;
+      background:linear-gradient(160deg,#0d1930,#141a35);
+      border:1px solid rgba(0,213,255,.32);
+      border-radius:18px;
+      padding:15px;
+    }
+    .interactive-box h4{color:white}
+    .interactive-box p{color:#c4d4ec}
+    .exercise-controls{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px;margin-top:10px}
+    .exercise-feedback,.check-feedback{
+      min-height:42px;
+      margin-top:10px;
+      border-radius:12px;
+      padding:9px 11px;
+      background:rgba(255,255,255,.06);
+      color:#c8d4e7;
+      font-weight:720;
+    }
+    .feedback-ok{color:#a7fff1;border:1px solid rgba(94,234,212,.45);background:rgba(94,234,212,.11)}
+    .feedback-no{color:#ffc1cc;border:1px solid rgba(251,113,133,.5);background:rgba(251,113,133,.1)}
+    .choice-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+    .choice-row button{white-space:normal;text-align:left;border-radius:13px}
+    .task-list{counter-reset:task;display:grid;gap:8px;padding:0!important}
+    .task-list li{
+      list-style:none;
+      position:relative;
+      padding:10px 10px 10px 43px;
+      border:1px solid #d8e3ef;
+      border-radius:12px;
+      background:white;
+    }
+    .task-list li::before{
+      counter-increment:task;
+      content:counter(task);
+      position:absolute;
+      left:10px;
+      top:10px;
+      width:24px;
+      height:24px;
+      display:grid;
+      place-items:center;
+      border-radius:8px;
+      color:white;
+      background:#334155;
+      font-size:.78rem;
+      font-weight:900;
+    }
+    .task-type{display:block;color:#64748b;font-size:.76rem;font-weight:900;text-transform:uppercase;letter-spacing:.04em}
+    .help-stack{display:grid;gap:8px}
+    details.help,details.solution{
+      overflow:hidden;
+      border:1px solid #d5e0ed;
+      border-radius:13px;
+      background:white;
+    }
+    details.help>summary,details.solution>summary{
+      cursor:pointer;
+      padding:10px 12px;
+      color:#172033;
+      font-weight:900;
+    }
+    details.help[open]>summary,details.solution[open]>summary{border-bottom:1px solid #e2e8f0}
+    details.help .inside,details.solution .inside{padding:11px 12px;color:#334155}
+    details.solution{border-color:#9edfd8;background:#f1fffc}
+    .mistakes{border-left:5px solid #d97706;background:#fff8df}
+    .summary-box{border-left:5px solid #00a8cc;background:#effbff}
+    .exit{border-left:5px solid #7c3cff;background:#f4f0ff}
+    .week-source{font-size:.85rem;color:#52647b;background:#f6f9fc}
+    .hidden{display:none!important}
+    .labs-card{padding:18px}
+    .tabs{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px}
+    .tab[aria-selected="true"]{border-color:transparent;color:#04111e;background:linear-gradient(135deg,var(--cyan),var(--violet))}
+    .tab-panel{display:none}
+    .tab-panel.active{display:block}
+    .form-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:14px 0}
+    label.field{display:grid;gap:6px;color:var(--muted);font-size:.92rem;font-weight:730}
+    output.inline-output{color:var(--ink);font-weight:900}
+    .result{
+      min-height:62px;
+      margin-top:13px;
+      padding:14px;
+      color:#e6fbff;
+      border:1px solid rgba(0,213,255,.35);
+      border-radius:16px;
+      background:rgba(0,213,255,.08);
+    }
+    .result.error{color:#ffe5ea;border-color:rgba(251,113,133,.6);background:rgba(251,113,133,.1)}
+    canvas{
+      display:block;
+      width:100%;
+      max-width:100%;
+      height:390px;
+      margin-top:14px;
+      border:1px solid var(--line);
+      border-radius:18px;
+      background:#071022;
+    }
+    .chart-note{font-size:.86rem;color:var(--muted)}
+    .quiz-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+    .quiz-card{padding:14px;border:1px solid var(--line);border-radius:18px;background:rgba(255,255,255,.06)}
+    .quiz-card h3{font-size:1.05rem}
+    .quiz-score{color:var(--good);font-weight:900}
+    .table-scroll{overflow-x:auto;border:1px solid var(--line);border-radius:18px}
+    table.compare{width:100%;min-width:760px;border-collapse:collapse;background:rgba(255,255,255,.05)}
+    .compare th,.compare td{padding:12px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+    .compare th{color:white;background:rgba(255,255,255,.08)}
+    .compare td{color:var(--muted)}
+    .glossary{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+    .term{padding:14px;border:1px solid var(--line);border-radius:18px;background:rgba(255,255,255,.06)}
+    .term b{display:block;color:white;margin-bottom:5px}
+    .term span{color:var(--muted);font-size:.94rem}
+    .source-list{columns:2;column-gap:30px;color:var(--muted)}
+    .source-list li{break-inside:avoid;margin:0 0 12px}
+    .source-list a{overflow-wrap:anywhere}
+    footer{padding:32px 0 50px;color:var(--muted)}
+    .kbd{border:1px solid var(--line);border-bottom-width:2px;border-radius:8px;padding:1px 6px;color:#dbeafe;background:#0b1325;font-size:.86em}
+    .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+    .print-only{display:none}
+    @media (max-width:980px){
+      .hero-grid{grid-template-columns:1fr}
+      .toc-grid,.glossary{grid-template-columns:repeat(2,minmax(0,1fr))}
+    }
+    @media (max-width:720px){
+      .wrap{width:min(100% - 20px,1200px)}
+      .topbar,.section-head,.week-head{align-items:stretch;flex-direction:column}
+      .hero{padding-top:28px}
+      .hero-card,.toc-shell{padding:16px}
+      .metric-grid,.toc-grid,.learning-grid,.two-col,.practice-grid,.form-grid,.quiz-grid,.glossary{grid-template-columns:1fr}
+      details.chapter>summary{grid-template-columns:auto 1fr;padding:15px}
+      details.chapter>summary::after{grid-column:1/-1}
+      .chapter-body{padding:0 9px 10px}
+      .week-content{padding:14px}
+      .week-head{padding:20px 14px 13px}
+      .done-label{align-self:start}
+      .exercise-controls{grid-template-columns:1fr}
+      canvas{height:350px}
+      .source-list{columns:1}
+    }
+    @media (prefers-reduced-motion:reduce){
+      html{scroll-behavior:auto}
+      *,*::before,*::after{transition:none!important}
+    }
+    @media print{
+      @page{size:A4;margin:14mm}
+      body{background:white!important;color:#111827;font-size:10.5pt}
+      .hero,nav.quick,.screen-only,.controls,.button-row,.tabs,.interactive-controls,footer{display:none!important}
+      .print-only{display:block!important}
+      section{padding:4mm 0}
+      .wrap{width:100%;margin:0}
+      .print-title{border-bottom:2px solid #111827;padding-bottom:5mm;margin-bottom:6mm}
+      .print-title h1{font-size:24pt;letter-spacing:-.03em}
+      .toc-shell,.dark-card,details.chapter{box-shadow:none;background:white;border:1px solid #9ca3af;color:#111827;backdrop-filter:none}
+      .toc-card{background:white;border-color:#cbd5e1}
+      .toc-card h3,.section-head h2{color:#111827}
+      .toc-card p,.section-head p{color:#374151}
+      details.chapter{break-before:page;overflow:visible}
+      details.chapter:first-child{break-before:auto}
+      details.chapter>summary{padding:4mm;background:#eef2ff}
+      details.chapter>summary::after{display:none}
+      .chapter-title b,.chapter-title span{color:#111827}
+      .chapter-body{display:block!important;padding:0}
+      article.week{box-shadow:none;border:0;border-radius:0;background:white;break-before:page;overflow:visible}
+      article.week:first-child{break-before:auto}
+      article.week::before{height:3px}
+      .week-head{padding:5mm 0 3mm;background:white}
+      .week-content{padding:2mm 0;display:block}
+      .block,.interactive-box{break-inside:avoid;margin:3mm 0;background:white!important;color:#111827!important;border:1px solid #cbd5e1}
+      .interactive-box p,.interactive-box h4{color:#111827}
+      .interactive-controls{display:none!important}
+      .tab-panel{display:block!important}
+      .exercise-feedback,.check-feedback{min-height:0;background:white;color:#111827;border:1px dashed #9ca3af}
+      details.help:not([open])>.inside,details.solution:not([open])>.inside{display:block!important}
+      details.help,details.solution{break-inside:avoid}
+      details.help>summary,details.solution>summary{border-bottom:1px solid #d1d5db}
+      canvas{height:85mm!important;break-inside:avoid;border:1px solid #4b5563}
+      .chart-note,.result{color:#111827;background:white;border-color:#9ca3af}
+      .quiz-card,.term{break-inside:avoid;background:white;border-color:#9ca3af}
+      .quiz-card h3,.term b{color:#111827}
+      .term span,.compare td,.source-list{color:#374151}
+      .compare th{color:#111827;background:#eef2f7}
+      a{color:#111827;text-decoration:none}
+      a[href^="http"]::after{content:"";display:none}
+    }
+  </style>
+</head>
+<body>
+  <a class="skip" href="#inhalt">Direkt zum Inhalt</a>
+
+  <header class="hero" id="top">
+    <div class="wrap">
+      <div class="topbar">
+        <div class="brand"><span class="brand-mark">MAT</span><span>Mathematik · Jahrgang 12 · Halbjahr 12.1</span></div>
+        <div class="button-row">
+          <button class="small" id="printButton" type="button">Druckansicht</button>
+          <a class="btn small" href="#quellen">Quellen</a>
+        </div>
+      </div>
+      <div class="hero-grid">
+        <div class="glass hero-card">
+          <h1>Von Wachstum<br>zu Optimierung</h1>
+          <p class="lead">Dein interaktives Halbjahresskript zu Exponentialmodellen und Differentialrechnung. Du lernst Schritt für Schritt, Messdaten zu deuten, Modelle aufzustellen, Exponentialgleichungen zu lösen, zusammengesetzte Funktionen abzuleiten und reale Probleme zu optimieren.</p>
+          <div class="pillbar" aria-label="Kurs-Eckdaten">
+            <span class="pill">Anlage C1 · Fachhochschulreife</span>
+            <span class="pill">Fachbereich Technik/Naturwissenschaften</span>
+            <span class="pill">Grundkurs Mathematik</span>
+            <span class="pill">14 Lernwochen · 7 Kapitel</span>
+            <span class="pill">vollständig offline</span>
+          </div>
+          <div class="metric-grid" aria-label="Umfang">
+            <div class="metric"><b>14</b><span>ausführliche Lernwochen</span></div>
+            <div class="metric"><b>4</b><span>Rechner und Simulationen</span></div>
+            <div class="metric"><b>2×14</b><span>interaktive Wochenchecks</span></div>
+          </div>
+          <div class="progress-box">
+            <div class="progress-row"><span>Dein Lernfortschritt</span><strong id="progressText">0 von 14 Lernwochen</strong></div>
+            <progress id="progress" max="14" value="0">0 von 14</progress>
+          </div>
+        </div>
+        <aside class="glass hero-card guide" aria-labelledby="guideTitle">
+          <h2 id="guideTitle">So benutzt du dieses Skript</h2>
+          <ol>
+            <li>Starte mit der Problemfrage und den Lernzielen einer Woche.</li>
+            <li>Lies das Grundwissen und rechne das Beispiel selbst nach.</li>
+            <li>Nutze die interaktive Übung. Bei Bedarf öffnest du Hilfe 1, 2 und 3 nacheinander.</li>
+            <li>Bearbeite die Aufgaben, bevor du die vollständige Musterlösung öffnest.</li>
+            <li>Schließe mit Selbstcheck, Zusammenfassung und Exit-Ticket ab.</li>
+          </ol>
+          <div class="block" style="background:rgba(0,213,255,.08);border-color:rgba(0,213,255,.25);color:#d9f9ff">
+            <b>Lern-Tipp:</b> Lösungen sind kein Ersatz für eigenes Denken. Nutze sie zum Vergleichen, Begründen und Verbessern.
+          </div>
+        </aside>
+      </div>
+    </div>
+  </header>
+
+  <div class="print-only print-title">
+    <h1>Mathematik 12.1: Von Wachstum zu Optimierung</h1>
+    <p>Interaktives Halbjahresskript · Anlage C1/FHR · Exponentialmodelle und Differentialrechnung</p>
+  </div>
+
+  <nav class="quick" aria-label="Schnellnavigation">
+    <div class="wrap">
+      <a class="btn" href="#inhalt">Inhalt</a>
+      <a class="btn" href="#kapitel">Kapitel</a>
+      <a class="btn" href="#labore">Labore</a>
+      <a class="btn" href="#abschlussquiz">Abschlussquiz</a>
+      <a class="btn" href="#werkzeuge">Übersicht</a>
+      <a class="btn" href="#glossar">Glossar</a>
+      <a class="btn" href="#quellen">Quellen</a>
+    </div>
+  </nav>
+
+  <main>
+    <section id="inhalt">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <h2>Inhaltsübersicht und Lernpfad</h2>
+            <p>Die sieben Stationen der Lernlandkarte sind jetzt sieben Kapitel. Jede Kapitelkarte enthält zwei kleinere Lernwochen mit direkten Sprungmarken.</p>
+          </div>
+          <div class="controls screen-only">
+            <label class="sr-only" for="search">Skript durchsuchen</label>
+            <input class="search" id="search" type="search" placeholder="Suchen, z. B. Halbwertszeit oder Kettenregel">
+            <button id="openAll" type="button">Alle Kapitel öffnen</button>
+            <button id="closeAll" type="button">Alle Kapitel schließen</button>
+          </div>
+        </div>
+        <div class="glass toc-shell" id="toc"></div>
+      </div>
+    </section>
+
+    <section id="kapitel">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <h2>Die sieben Kapitel</h2>
+            <p>Arbeite in der vorgesehenen Reihenfolge oder springe gezielt zu einem Thema. Dein Häkchen wird ausschließlich lokal in diesem Browser gespeichert.</p>
+          </div>
+        </div>
+        <div class="chapter-list" id="chapterList"></div>
+      </div>
+    </section>
+
+    <section id="labore">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <h2>Interaktive Rechner und Simulationen</h2>
+            <p>Alle vier Labore funktionieren offline. Jedes Koordinatensystem enthält Achsentitel, Einheiten, Skalenwerte und gut lesbare Tick-Marks.</p>
+          </div>
+        </div>
+        <div class="dark-card labs-card">
+          <div class="tabs screen-only" role="tablist" aria-label="Interaktives Labor auswählen">
+            <button class="tab" id="tabBtnExp" role="tab" aria-selected="true" aria-controls="tab-exp" data-tab="exp" type="button">Exponential-Labor</button>
+            <button class="tab" id="tabBtnFit" role="tab" aria-selected="false" aria-controls="tab-fit" data-tab="fit" type="button">Modellfinder</button>
+            <button class="tab" id="tabBtnDer" role="tab" aria-selected="false" aria-controls="tab-der" data-tab="der" type="button">Ableitungs-Labor</button>
+            <button class="tab" id="tabBtnOpt" role="tab" aria-selected="false" aria-controls="tab-opt" data-tab="opt" type="button">Optimierungs-Labor</button>
+          </div>
+
+          <section class="tab-panel active" id="tab-exp" role="tabpanel" aria-labelledby="tabBtnExp">
+            <h3>Exponential-Labor: Parameter sichtbar machen</h3>
+            <p>Untersuche das Modell <span class="formula" role="math" aria-label="N von t gleich A mal e hoch k mal t plus c"><math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>N</mi><mo>(</mo><mi>t</mi><mo>)</mo><mo>=</mo><mi>A</mi><mo>·</mo><msup><mi>e</mi><mrow><mi>k</mi><mo>·</mo><mi>t</mi></mrow></msup><mo>+</mo><mi>c</mi></mrow></math></span>. Beobachte Startwert, Wachstum oder Zerfall und Asymptote.</p>
+            <div class="form-grid interactive-controls">
+              <label class="field" for="expA">Skalierungswert A [Einheiten]<input id="expA" type="number" value="100" min="0.01" step="5"></label>
+              <label class="field" for="expK">Rate k [1/s]: <output class="inline-output" id="expKValue">−0,25</output><input id="expK" type="range" value="-0.25" min="-0.6" max="0.6" step="0.01"></label>
+              <label class="field" for="expC">Verschiebung c [Einheiten]<input id="expC" type="number" value="10" step="5"></label>
+              <label class="field" for="expTMax">Dargestellte Zeit [s]<input id="expTMax" type="number" value="12" min="1" max="30" step="1"></label>
+            </div>
+            <canvas id="expCanvas" role="img" aria-label="Koordinatensystem einer Exponentialfunktion mit Zeitachse in Sekunden und Bestandsachse in Einheiten"></canvas>
+            <p class="chart-note">Cyan: Funktionsgraph. Violett gestrichelt: Asymptote. Gelb: Startpunkt.</p>
+            <div class="result" id="expResult" aria-live="polite"></div>
+          </section>
+
+          <section class="tab-panel" id="tab-fit" role="tabpanel" aria-labelledby="tabBtnFit">
+            <h3>Modellfinder: zwei Messwerte auswerten</h3>
+            <p>Bestimme aus zwei positiven Messwerten das Modell <span class="formula" role="math" aria-label="N von t gleich A mal e hoch k mal t"><math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>N</mi><mo>(</mo><mi>t</mi><mo>)</mo><mo>=</mo><mi>A</mi><mo>·</mo><msup><mi>e</mi><mrow><mi>k</mi><mo>·</mo><mi>t</mi></mrow></msup></mrow></math></span>. Prüfe danach, ob exponentielles Verhalten sachlich plausibel ist.</p>
+            <div class="form-grid interactive-controls">
+              <label class="field" for="fitT0">Erste Zeit t₀ [s]<input id="fitT0" type="number" value="0" min="0" step="0.5"></label>
+              <label class="field" for="fitY0">Erster Messwert N₀ [Einheiten]<input id="fitY0" type="number" value="120" min="0.001" step="1"></label>
+              <label class="field" for="fitT1">Zweite Zeit t₁ [s]<input id="fitT1" type="number" value="5" min="0" step="0.5"></label>
+              <label class="field" for="fitY1">Zweiter Messwert N₁ [Einheiten]<input id="fitY1" type="number" value="60" min="0.001" step="1"></label>
+            </div>
+            <button class="primary interactive-controls" id="fitCalc" type="button">Modell bestimmen</button>
+            <canvas id="fitCanvas" role="img" aria-label="Koordinatensystem eines angepassten Exponentialmodells mit Zeitachse in Sekunden und Messwertachse in Einheiten"></canvas>
+            <p class="chart-note">Gelbe Punkte: Messwerte. Cyan: daraus bestimmtes Exponentialmodell.</p>
+            <div class="result" id="fitResult" aria-live="polite"></div>
+          </section>
+
+          <section class="tab-panel" id="tab-der" role="tabpanel" aria-labelledby="tabBtnDer">
+            <h3>Ableitungs-Labor: Produkt- und Kettenregel verbinden</h3>
+            <p>Untersuche <span class="formula" role="math" aria-label="f von x gleich m x plus n mal e hoch k x"><math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>f</mi><mo>(</mo><mi>x</mi><mo>)</mo><mo>=</mo><mo>(</mo><mi>m</mi><mi>x</mi><mo>+</mo><mi>n</mi><mo>)</mo><mo>·</mo><msup><mi>e</mi><mrow><mi>k</mi><mi>x</mi></mrow></msup></mrow></math></span> und die Tangente an einer veränderbaren Stelle.</p>
+            <div class="form-grid interactive-controls">
+              <label class="field" for="derM">Parameter m<input id="derM" type="number" value="2" step="0.25"></label>
+              <label class="field" for="derN">Parameter n<input id="derN" type="number" value="1" step="0.25"></label>
+              <label class="field" for="derK">Parameter k [1/Einheit]<input id="derK" type="number" value="-0.35" step="0.05"></label>
+              <label class="field" for="derX0">Tangentenstelle x₀ [Einheiten]: <output class="inline-output" id="derXValue">2,0</output><input id="derX0" type="range" value="2" min="0" max="10" step="0.1"></label>
+            </div>
+            <canvas id="derCanvas" role="img" aria-label="Koordinatensystem mit Funktionsgraph und Tangente; beide Achsen haben Einheiten, Skalenwerte und Tick-Marks"></canvas>
+            <p class="chart-note">Cyan: Funktion. Violett: Tangente. Gelb: Berührpunkt.</p>
+            <div class="result" id="derResult" aria-live="polite"></div>
+          </section>
+
+          <section class="tab-panel" id="tab-opt" role="tabpanel" aria-labelledby="tabBtnOpt">
+            <h3>Optimierungs-Labor: größtes Schachtelvolumen</h3>
+            <p>Aus einem rechteckigen Blech werden an den Ecken Quadrate der Seitenlänge x ausgeschnitten. Finde die Einschnittlänge mit maximalem Volumen.</p>
+            <div class="form-grid interactive-controls">
+              <label class="field" for="optL">Blechlänge L [cm]<input id="optL" type="number" value="30" min="2" step="1"></label>
+              <label class="field" for="optW">Blechbreite B [cm]<input id="optW" type="number" value="20" min="2" step="1"></label>
+              <label class="field" for="optX">Einschnitt x [cm]: <output class="inline-output" id="optXValue">3,0</output><input id="optX" type="range" value="3" min="0.1" max="9.9" step="0.1"></label>
+              <div class="field"><span>Zielfunktion</span><span class="formula" role="math" aria-label="V von x gleich x mal L minus zwei x mal B minus zwei x"><math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>V</mi><mo>(</mo><mi>x</mi><mo>)</mo><mo>=</mo><mi>x</mi><mo>·</mo><mo>(</mo><mi>L</mi><mo>−</mo><mn>2</mn><mi>x</mi><mo>)</mo><mo>·</mo><mo>(</mo><mi>B</mi><mo>−</mo><mn>2</mn><mi>x</mi><mo>)</mo></mrow></math></span></div>
+            </div>
+            <canvas id="optCanvas" role="img" aria-label="Koordinatensystem des Schachtelvolumens mit Einschnittachse in Zentimetern und Volumenachse in Kubikzentimetern"></canvas>
+            <p class="chart-note">Cyan: Volumenfunktion. Gelb: aktueller Wert. Türkis: Maximum.</p>
+            <div class="result" id="optResult" aria-live="polite"></div>
+          </section>
+        </div>
+      </div>
+    </section>
+
+    <section id="abschlussquiz">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <h2>Abschlussquiz: Kannst du den roten Faden?</h2>
+            <p>Acht Fragen verbinden alle Kapitel. Du erhältst sofort eine fachliche Begründung; es gibt keine Note.</p>
+          </div>
+          <div class="button-row screen-only">
+            <span class="quiz-score" id="quizScore" aria-live="polite">0 von 8 sicher gelöst</span>
+            <button id="quizReset" type="button">Quiz zurücksetzen</button>
+          </div>
+        </div>
+        <div class="quiz-grid" id="finalQuiz"></div>
+      </div>
+    </section>
+
+    <section id="werkzeuge">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <h2>Werkzeugübersicht: Was brauche ich wann?</h2>
+            <p>Diese Tabelle hilft dir, aus einem Aufgabensignal die passende mathematische Strategie abzuleiten.</p>
+          </div>
+        </div>
+        <div class="table-scroll">
+          <table class="compare">
+            <thead><tr><th>Aufgabensignal</th><th>Werkzeug</th><th>Kernidee</th><th>Unbedingt prüfen</th></tr></thead>
+            <tbody>
+              <tr><td>Wertetabelle oder Messreihe</td><td>Differenzen und Quotienten</td><td>Konstante Differenz spricht für linear; konstanter Quotient für exponentiell.</td><td>Gleiche Schrittweite, Einheiten und Messrauschen.</td></tr>
+              <tr><td>Konstante prozentuale Änderung</td><td>Exponentialmodell</td><td>Startwert mit einem konstanten Faktor potenzieren.</td><td>Faktor positiv, Definitionsbereich und Modellgrenzen.</td></tr>
+              <tr><td>Unbekannte Variable im Exponenten</td><td>Logarithmus</td><td>Exponentialterm isolieren und logarithmieren.</td><td>Logarithmusargument positiv; Zeit mit Einheit.</td></tr>
+              <tr><td>Zwei veränderliche Faktoren</td><td>Produktregel</td><td>Erster abgeleitet mal zweiter plus erster mal zweiter abgeleitet.</td><td>Beide Summanden vollständig.</td></tr>
+              <tr><td>Funktion steckt in Funktion</td><td>Kettenregel</td><td>Äußere Ableitung mal innere Ableitung.</td><td>Innere Ableitung nicht vergessen.</td></tr>
+              <tr><td>maximal, minimal, optimal</td><td>Extremwertverfahren</td><td>Zielfunktion untersuchen und Kandidaten vergleichen.</td><td>Definitionsbereich, Randwerte, Art des Extremums.</td></tr>
+              <tr><td>Punkte, Tangenten, Extrem- oder Wendebedingungen</td><td>Steckbrief</td><td>Textbedingungen in ein Gleichungssystem übersetzen.</td><td>Genügend unabhängige Bedingungen und Rückprobe.</td></tr>
+              <tr><td>Messwerte weichen vom Modell ab</td><td>Residuen und Modellkritik</td><td>Abweichungen berechnen, Muster suchen und Annahmen prüfen.</td><td>Interpolation oder Extrapolation; fachliche Plausibilität.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section id="glossar">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <h2>Glossar</h2>
+            <p>Zentrale Begriffe des Halbjahres kurz und in Schülersprache.</p>
+          </div>
+        </div>
+        <div class="glossary" id="glossary"></div>
+      </div>
+    </section>
+
+    <section id="quellen">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <h2>Gesamtquellenverzeichnis</h2>
+            <p>Die didaktische Jahresplanung und die vorhandene HTML-Lernlandkarte sind die Primärgrundlagen. Die Skript-App lädt selbst keine Online-Inhalte.</p>
+          </div>
+        </div>
+        <div class="dark-card" style="padding:18px">
+          <ol class="source-list">
+            <li><b>Primärquelle:</b> didaktische Jahresplanung <em>C1_NF_DJP_M_12.1.pdf</em>, Mathematik-Grundkurs, Kurshalbjahr 12.1, Anlage C1/FHR. Personen- und interne Verwaltungsangaben wurden anonymisiert.</li>
+            <li><b>Primärgrundlage:</b> vorhandene HTML-Lernlandkarte <em>Mathematik 12.1 – Exponentialmodelle und Differentialrechnung</em>, insbesondere Stationenfolge, Begriffe, Labore, Quizideen, Glossar und Gestaltung.</li>
+            <li>Berufsbildung NRW: Bildungspläne der Fachoberschule und Berufsfachschule, Anlage C, Fachbereich Technik/Naturwissenschaften. <a href="https://berufsbildung.nrw.de/bildungsgaenge-bildungsplaene/bildungsplaene-berufsfachschule-und-fachoberschule-anlage-c-7" target="_blank" rel="noopener">Übersichtsseite</a>.</li>
+            <li>Ministerium für Schule und Bildung NRW: <em>Lehrplan Mathematik für das Berufskolleg – Bildungsgang Fachoberschule</em>, Heft 40010. <a href="https://berufsbildung.nrw.de/system/files/media/document/file/mathe-fos_40010.pdf" target="_blank" rel="noopener">Lehrplan-PDF</a>.</li>
+            <li>Serlo Mathematik: <em>Exponentielles Wachstum und Logarithmen</em>. <a href="https://de.serlo.org/mathe/16128/exponentielles-wachstum-und-logarithmen" target="_blank" rel="noopener">Themenbereich</a>.</li>
+            <li>Serlo Mathematik: <em>Produktregel, Quotientenregel und Kettenregel</em>. <a href="https://de.serlo.org/mathe/1490/produktregel-quotientenregel-und-kettenregel" target="_blank" rel="noopener">Themenbereich</a>.</li>
+            <li>Serlo Mathematik: <em>Anwendungen der Differentialrechnung</em>, unter anderem Extremwert- und Steckbriefaufgaben. <a href="https://de.serlo.org/mathe/16144/anwendungen-der-differentialrechnung" target="_blank" rel="noopener">Themenbereich</a>.</li>
+            <li>LEIFIphysik: <em>Entladen eines Kondensators – Theorie</em>, Exponentialverlauf, Zeitkonstante und Halbwertszeit. <a href="https://www.leifiphysik.de/elektrizitaetslehre/kondensator-kapazitaet/ausblick/entladen-eines-kondensators-theorie" target="_blank" rel="noopener">Fachseite</a>.</li>
+            <li>LEIFIphysik: <em>Zerfallsgesetz, Zerfallskonstante und Halbwertszeit</em>. <a href="https://www.leifiphysik.de/kern-teilchenphysik/radioaktivitaet-fortfuehrung/grundwissen/zerfallsgesetz-zerfallskonstante-und-halbwertszeit" target="_blank" rel="noopener">Fachseite</a>.</li>
+          </ol>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <p><b>Denke daran:</b> Ein mathematisches Modell ist eine begründete Vereinfachung. Prüfe Ergebnis, Einheit, Definitionsbereich und Sachzusammenhang.</p>
+      <p>Bedien-Tipp: Nutze <span class="kbd">Strg</span> + <span class="kbd">F</span> oder die Skriptsuche. Fortschritt und Eingaben bleiben ausschließlich auf deinem Gerät.</p>
+    </div>
+  </footer>
+
+  <script>
+    "use strict";
+    const $ = (selector, root = document) => root.querySelector(selector);
+    const qsa = (selector, root = document) => [...root.querySelectorAll(selector)];
+    const clamp = (value, min, max) => Math.min(max, Math.max(min, value));
+    const escapeHTML = value => String(value).replace(/[&<>"']/g, char => ({
+      "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
+    })[char]);
+    const mi = value => `<mi>${escapeHTML(value)}</mi>`;
+    const mn = value => `<mn>${escapeHTML(value)}</mn>`;
+    const mo = value => `<mo>${escapeHTML(value)}</mo>`;
+    const mt = value => `<mtext>${escapeHTML(value)}</mtext>`;
+    const row = (...items) => `<mrow>${items.join("")}</mrow>`;
+    const frac = (top, bottom) => `<mfrac>${top}${bottom}</mfrac>`;
+    const sup = (base, exponent) => `<msup>${base}${exponent}</msup>`;
+    const sub = (base, index) => `<msub>${base}${index}</msub>`;
+    const unit = value => mt("\u00a0" + value);
+    function math(content, label){
+      return `<span class="formula" role="math" aria-label="${escapeHTML(label)}"><math xmlns="http://www.w3.org/1998/Math/MathML">${content}</math></span>`;
+    }
+
+    const sourceLabels = {
+      djp:"Didaktische Jahresplanung Mathematik 12.1",
+      nrw:"NRW-Lehrplan Mathematik, Fachoberschule",
+      exp:"Serlo: Exponentielles Wachstum und Logarithmen",
+      calc:"Serlo: Produkt- und Kettenregel sowie Anwendungen der Differentialrechnung",
+      leifi:"LEIFIphysik: exponentielle Vorgänge bei Kondensator und Zerfall"
+    };
+
+    const chapters = [
+      {
+        id:"kapitel-1",
+        number:1,
+        title:"Vom Problem zum Modell",
+        subtitle:"Messdaten strukturieren und den passenden Funktionstyp begründet auswählen.",
+        weeks:[
+          {
+            id:"woche-1",
+            week:"Lernwoche 1",
+            title:"Messdaten lesen und ordnen",
+            goals:[
+              "Ich kann unabhängige und abhängige Größen unterscheiden.",
+              "Ich kann Formelzeichen, Einheiten und Schrittweiten sauber festlegen.",
+              "Ich kann Differenzen und Quotienten einer Messreihe berechnen und deuten."
+            ],
+            problem:"Ein Sensor misst alle zwei Sekunden die Spannung eines Bauteils. Die Werte sinken, aber nicht jedes Mal um denselben Betrag. Wie kannst du aus der Tabelle erkennen, welches mathematische Muster dahintersteckt?",
+            ground:`
+              <p>Eine Messreihe ist mehr als eine Liste von Zahlen. Zuerst klärst du, <b>welche Größe du vorgibst</b> und <b>welche Größe davon abhängt</b>. Meist ist die Zeit <var>t</var> die unabhängige Variable; der Messwert <var>N</var> oder <var>U</var> ist abhängig.</p>
+              <p>Dann prüfst du die Schrittweite. Nur bei gleich großen Zeitabständen darfst du benachbarte Differenzen und Quotienten direkt vergleichen. Die Differenz ${math(row(mo("Δ"),mi("N"),mo("="),sub(mi("N"),mt("neu")),mo("−"),sub(mi("N"),mt("alt"))),"Delta N gleich neuer Messwert minus alter Messwert")} beschreibt eine <b>absolute</b> Änderung. Der Quotient ${math(row(mi("q"),mo("="),frac(sub(mi("N"),mt("neu")),sub(mi("N"),mt("alt")))),"q gleich neuer Messwert durch alten Messwert")} beschreibt eine <b>relative</b> Änderung.</p>
+              <p>Reale Messwerte enthalten Rauschen und Rundungsfehler. Du suchst deshalb nicht nach perfekter Gleichheit, sondern nach einem gut erkennbaren Muster und prüfst zusätzlich, ob der fachliche Vorgang dazu passt.</p>
+            `,
+            terms:["Messreihe","unabhängige Variable","abhängige Variable","Schrittweite","Differenz","Quotient","Messrauschen"],
+            memo:"Vergleiche Differenzen und Quotienten erst, wenn die Abstände der unabhängigen Variable gleich groß sind.",
+            example:{
+              situation:"Gegeben sind Messwerte einer Spannung: bei 0 s: 120 V, bei 2 s: 96 V, bei 4 s: 76,8 V und bei 6 s: 61,44 V.",
+              steps:[
+                "Die Zeit t ist unabhängig; die Spannung U(t) ist abhängig. Die Schrittweite beträgt jeweils 2 s.",
+                `Die Differenzen lauten −24 V, −19,2 V und −15,36 V. Sie sind nicht konstant.`,
+                `Die Quotienten lauten ${math(row(frac(mn("96"),mn("120")),mo("="),mn("0,8")),"96 durch 120 gleich 0 Komma 8")}, ${math(row(frac(mn("76,8"),mn("96")),mo("="),mn("0,8")),"76 Komma 8 durch 96 gleich 0 Komma 8")} und ${math(row(frac(mn("61,44"),mn("76,8")),mo("="),mn("0,8")),"61 Komma 44 durch 76 Komma 8 gleich 0 Komma 8")}.`,
+                "In jedem Zweistundenintervall bleiben 80 % des vorherigen Werts übrig."
+              ],
+              answer:"Die Messreihe passt zu exponentiellem Zerfall mit dem Faktor 0,8 pro 2 s.",
+              pitfall:"Teile nicht Messwerte mit unterschiedlichen Zeitabständen, ohne den Zeitbezug zu berücksichtigen."
+            },
+            lab:{tab:"fit",label:"Im Modellfinder zwei Messpunkte eingeben und das zugehörige Exponentialmodell untersuchen."},
+            exercise:{
+              type:"number",
+              prompt:"Die Folge 80; 64; 51,2; … besitzt einen konstanten Faktor. Welcher Wert folgt?",
+              answer:40.96,
+              tolerance:0.01,
+              unit:"",
+              hint:"Bestimme zuerst 64 ÷ 80 und multipliziere 51,2 mit diesem Faktor.",
+              success:"Richtig: Der Faktor ist 0,8. Daher folgt 51,2 · 0,8 = 40,96."
+            },
+            tasks:[
+              {type:"Verständnis",text:"Erkläre den Unterschied zwischen einer absoluten und einer relativen Änderung."},
+              {type:"Analyse",text:"Untersuche die Werte 40; 34; 28; 22; 16 bei gleicher Schrittweite. Welches Modell liegt nahe?"},
+              {type:"Anwendung",text:"Eine Temperatur wird bei 0 min, 5 min und 15 min gemessen. Erkläre, warum benachbarte Quotienten nicht direkt vergleichbar sind."},
+              {type:"Transfer",text:"Nenne einen technischen Vorgang, bei dem Messrauschen ein ideales Zahlenmuster stören kann."},
+              {type:"Reflexion",text:"Welche drei Prüfungen würdest du vor einer Modellentscheidung immer durchführen?"}
+            ],
+            helps:[
+              "Denkimpuls: Frage jeweils, ob du subtrahierst oder dividierst.",
+              `Strategie: linear prüfen mit ${math(row(mo("Δ"),mi("y"),mo("="),sub(mi("y"),mt("neu")),mo("−"),sub(mi("y"),mt("alt"))),"Delta y gleich neuer Wert minus alter Wert")}; exponentiell prüfen mit ${math(row(mi("q"),mo("="),frac(sub(mi("y"),mt("neu")),sub(mi("y"),mt("alt")))),"q gleich neuer Wert durch alten Wert")}.`,
+              "Zwischenschritt: Bei Aufgabe 2 sind alle Differenzen −6. Bei Aufgabe 3 sind die Zeitabstände 5 min und 10 min."
+            ],
+            solutions:[
+              "Absolute Änderung: neuer minus alter Wert; sie trägt die Einheit der Messgröße. Relative Änderung: neuer durch alten Wert oder prozentuale Änderung; sie beschreibt einen Anteil.",
+              "Die Differenzen sind stets −6. Ein lineares Modell liegt nahe.",
+              "Die Quotienten gehören zu verschieden langen Zeitintervallen. Zuerst müssen die Werte auf dieselbe Zeitspanne bezogen oder ein Modell angepasst werden.",
+              "Beispiele: Kondensatorspannung, Temperaturmessung, Strahlungszählrate oder optische Intensität. Sensorauflösung und Umwelteinflüsse erzeugen Abweichungen.",
+              "Größen und Einheiten klären; gleiche Schrittweiten prüfen; Differenzen und Quotienten zusammen mit dem fachlichen Mechanismus bewerten."
+            ],
+            errors:[
+              "Einen gekrümmten Graphen automatisch exponentiell nennen.",
+              "Einheiten weglassen und dadurch unpassende Größen vergleichen.",
+              "Rundungsabweichungen als Gegenbeweis statt als Messunsicherheit behandeln."
+            ],
+            check:{
+              question:"Welche Beobachtung spricht bei gleichen Zeitabständen am stärksten für ein Exponentialmodell?",
+              choices:["Ungefähr konstante Differenzen","Ungefähr konstante Quotienten","Nur positive Messwerte"],
+              correct:1,
+              explanation:"Ein konstanter Quotient bedeutet, dass in jedem Schritt mit demselben Faktor multipliziert wird."
+            },
+            summary:["Messgrößen, Formelzeichen und Einheiten zuerst festlegen.","Nur gleiche Schrittweiten direkt vergleichen.","Differenzen prüfen additive, Quotienten multiplikative Muster."],
+            exit:"Schreibe einen Satz, der erklärt, warum zwei Messwerte allein ein Exponentialgesetz noch nicht beweisen.",
+            sources:`${sourceLabels.djp}; ${sourceLabels.nrw}; ${sourceLabels.exp}.`
+          },
+          {
+            id:"woche-2",
+            week:"Lernwoche 2",
+            title:"Linear oder exponentiell? Modelle auswählen",
+            goals:[
+              "Ich kann additive und multiplikative Veränderung unterscheiden.",
+              "Ich kann aus Tabelle, Graph und Sachtext ein begründetes Modell wählen.",
+              "Ich kann erklären, warum eine Modellwahl immer auch eine Sachprüfung braucht."
+            ],
+            problem:"Zwei Maschinen verlieren an Leistung: Maschine A verliert pro Stunde 4 Einheiten, Maschine B verliert pro Stunde 8 %. Beide Kurven fallen. Warum brauchen sie trotzdem unterschiedliche Modelle?",
+            ground:`
+              <p>Ein lineares Modell beschreibt eine konstante <b>absolute</b> Änderung. Es hat die Form ${math(row(mi("f"),mo("("),mi("t"),mo(")"),mo("="),mi("m"),mo("·"),mi("t"),mo("+"),mi("b")),"f von t gleich m mal t plus b")}. Der Parameter <var>m</var> gibt die Änderung pro Zeiteinheit an.</p>
+              <p>Ein Exponentialmodell beschreibt eine konstante <b>relative</b> Änderung. Es hat zum Beispiel die Form ${math(row(mi("N"),mo("("),mi("t"),mo(")"),mo("="),sub(mi("N"),mn("0")),mo("·"),sup(mi("q"),mi("t"))),"N von t gleich N null mal q hoch t")}. Der Faktor <var>q</var> sagt, welcher Anteil nach einem Zeitschritt übrig ist.</p>
+              <p>Ein Modell ist gut begründet, wenn Zahlenmuster, Graph und Sachmechanismus zusammenpassen. „Pro Stunde 4 Einheiten“ ist additiv. „Pro Stunde 8 Prozent“ ist multiplikativ. Bei begrenzten Ressourcen kann ein Exponentialmodell langfristig trotzdem unpassend werden.</p>
+            `,
+            terms:["lineares Modell","Exponentialmodell","additiv","multiplikativ","Steigung","Faktor","Modellannahme"],
+            memo:"Gleicher Betrag pro Schritt bedeutet linear; gleicher Prozentsatz oder Faktor pro Schritt bedeutet exponentiell.",
+            example:{
+              situation:"Ein Bestand entwickelt sich in gleichen Zeitabständen so: 50; 60; 72; 86,4.",
+              steps:[
+                "Differenzen: 10; 12; 14,4. Sie sind nicht konstant.",
+                `Quotienten: ${math(row(frac(mn("60"),mn("50")),mo("="),mn("1,2")),"60 durch 50 gleich 1 Komma 2")}, ${math(row(frac(mn("72"),mn("60")),mo("="),mn("1,2")),"72 durch 60 gleich 1 Komma 2")} und ${math(row(frac(mn("86,4"),mn("72")),mo("="),mn("1,2")),"86 Komma 4 durch 72 gleich 1 Komma 2")}.`,
+                "Der Bestand wächst in jedem Schritt um 20 %.",
+                `Passendes Modell: ${math(row(mi("N"),mo("("),mi("t"),mo(")"),mo("="),mn("50"),mo("·"),sup(mn("1,2"),mi("t"))),"N von t gleich 50 mal 1 Komma 2 hoch t")}.`
+              ],
+              answer:"Ein Exponentialmodell mit Startwert 50 und Wachstumsfaktor 1,2 beschreibt die Tabelle.",
+              pitfall:"Eine zunehmende Differenz allein beweist kein Exponentialmodell. Prüfe den Quotienten."
+            },
+            lab:{tab:"exp",label:"Im Exponential-Labor die Rate k von negativ über null nach positiv bewegen und den Modellwechsel beobachten."},
+            exercise:{
+              type:"number",
+              prompt:"Eine exponentielle Folge lautet 50; 60; 72; 86,4; … Welcher Wert folgt?",
+              answer:103.68,
+              tolerance:0.01,
+              unit:"",
+              hint:"Der konstante Faktor beträgt 1,2.",
+              success:"Richtig: 86,4 · 1,2 = 103,68."
+            },
+            tasks:[
+              {type:"Verständnis",text:"Ordne zu: „plus 12 Stück pro Stunde“ und „plus 12 % pro Stunde“."},
+              {type:"Analyse",text:"Entscheide für 200; 180; 160; 140 und für 200; 180; 162; 145,8 jeweils zwischen linear und exponentiell."},
+              {type:"Anwendung",text:"Formuliere je einen passenden Funktionsterm für Startwert 300 mit Abnahme um 15 Einheiten beziehungsweise 15 % pro Tag."},
+              {type:"Transfer",text:"Erkläre, warum unbegrenztes exponentielles Wachstum einer realen Population langfristig selten realistisch ist."},
+              {type:"Reflexion",text:"Welche zusätzliche Information aus dem Sachkontext kann eine rein numerische Modellwahl bestätigen oder widerlegen?"}
+            ],
+            helps:[
+              "Denkimpuls: Übersetze „Einheiten“ als Subtraktion und „Prozent“ als Multiplikation.",
+              `Strategie: linear ${math(row(mi("N"),mo("("),mi("t"),mo(")"),mo("="),sub(mi("N"),mn("0")),mo("+"),mi("m"),mi("t")),"N von t gleich N null plus m t")}; exponentiell ${math(row(mi("N"),mo("("),mi("t"),mo(")"),mo("="),sub(mi("N"),mn("0")),mo("·"),sup(mi("q"),mi("t"))),"N von t gleich N null mal q hoch t")}.`,
+              "Zwischenschritt: Für 15 % Abnahme bleiben 85 %, also ist q = 0,85."
+            ],
+            solutions:[
+              "Plus 12 Stück ist additiv und linear; plus 12 % ist multiplikativ und exponentiell.",
+              "Erste Folge: Differenz −20, also linear. Zweite Folge: Faktor 0,9, also exponentiell.",
+              `Linear: ${math(row(mi("L"),mo("("),mi("t"),mo(")"),mo("="),mn("300"),mo("−"),mn("15"),mi("t")),"L von t gleich 300 minus 15 t")}. Exponentiell: ${math(row(mi("E"),mo("("),mi("t"),mo(")"),mo("="),mn("300"),mo("·"),sup(mn("0,85"),mi("t"))),"E von t gleich 300 mal 0 Komma 85 hoch t")}.`,
+              "Ressourcen, Raum und Nahrung sind begrenzt. Mit wachsender Population verändern sich die Bedingungen; der konstante Faktor bleibt nicht erhalten.",
+              "Wichtig sind etwa der physikalische Mechanismus, Ressourcenbegrenzung, Sättigungswerte, Messbereich und bekannte Randbedingungen."
+            ],
+            errors:[
+              "15 % Abnahme als Faktor −0,15 verwenden statt 0,85.",
+              "Lineare und exponentielle Terme nur am Aussehen des Graphen unterscheiden.",
+              "Ein Modell außerhalb des beobachteten Bereichs ungeprüft fortschreiben."
+            ],
+            check:{
+              question:"Welcher Term beschreibt 8 % Abnahme pro Zeiteinheit bei Startwert 500?",
+              choices:["500 − 0,08t","500 · 0,92ᵗ","500 · (−0,08)ᵗ"],
+              correct:1,
+              explanation:"Nach jedem Schritt bleiben 92 % des vorherigen Werts; der Faktor ist 0,92."
+            },
+            summary:["Linear bedeutet konstante Differenz.","Exponentiell bedeutet konstanter Quotient.","Ein gutes Modell passt zu Daten und Sachmechanismus."],
+            exit:"Erfinde eine kurze Sachsituation, in der lineare und exponentielle Abnahme anfangs ähnlich aussehen könnten.",
+            sources:`${sourceLabels.djp}; ${sourceLabels.nrw}; ${sourceLabels.exp}.`
+          }
+        ]
+      },
+      {
+        id:"kapitel-2",
+        number:2,
+        title:"Exponentialfunktionen verstehen",
+        subtitle:"Grundformen, Parameter, Verlauf, Definitionsbereich und Asymptote erklären.",
+        weeks:[
+          {
+            id:"woche-3",
+            week:"Lernwoche 3",
+            title:"Grundformen und Parameter",
+            goals:[
+              "Ich kann Startwert, Faktor, Rate und Verschiebung aus einem Funktionsterm ablesen.",
+              "Ich kann zwischen Faktorform und e-Form wechseln.",
+              "Ich kann die Wirkung einzelner Parameter sprachlich beschreiben."
+            ],
+            problem:"Zwei Terme sehen verschieden aus: 100 · 0,8ᵗ und 100 · e⁻⁰·²²³ᵗ. Können beide denselben Zerfall beschreiben?",
+            ground:`
+              <p>Die Faktorform ${math(row(mi("N"),mo("("),mi("t"),mo(")"),mo("="),sub(mi("N"),mn("0")),mo("·"),sup(mi("q"),mi("t"))),"N von t gleich N null mal q hoch t")} arbeitet mit dem Faktor <var>q</var> pro Zeiteinheit. Für <var>q</var> &gt; 1 wächst der Bestand; für 0 &lt; <var>q</var> &lt; 1 fällt er.</p>
+              <p>Die e-Form ${math(row(mi("N"),mo("("),mi("t"),mo(")"),mo("="),sub(mi("N"),mn("0")),mo("·"),sup(mi("e"),row(mi("k"),mi("t")))),"N von t gleich N null mal e hoch k t")} verwendet die kontinuierliche Rate <var>k</var>. Beide Formen sind über ${math(row(mi("q"),mo("="),sup(mi("e"),mi("k"))),"q gleich e hoch k")} und ${math(row(mi("k"),mo("="),mi("ln"),mo("("),mi("q"),mo(")")),"k gleich natürlicher Logarithmus von q")} verbunden.</p>
+              <p>Bei ${math(row(mi("f"),mo("("),mi("t"),mo(")"),mo("="),mi("A"),mo("·"),sup(mi("e"),row(mi("k"),mi("t"))),mo("+"),mi("c")),"f von t gleich A mal e hoch k t plus c")} ist der Startwert <var>f</var>(0) = <var>A</var> + <var>c</var>. Die Gerade <var>y</var> = <var>c</var> ist bei nicht verschwindender Rate eine horizontale Asymptote.</p>
+            `,
+            terms:["Faktorform","e-Form","Startwert","Wachstumsfaktor","Rate","Verschiebung","Asymptote"],
+            memo:"In der verschobenen Form ist A nicht automatisch der Startwert: Es gilt f(0) = A + c.",
+            example:{
+              situation:`Untersuche ${math(row(mi("f"),mo("("),mi("t"),mo(")"),mo("="),mn("80"),mo("·"),sup(mn("0,75"),mi("t")),mo("+"),mn("10")),"f von t gleich 80 mal 0 Komma 75 hoch t plus 10")}.`,
+              steps:[
+                "A = 80 skaliert den Abstand zur Asymptote.",
+                "q = 0,75 liegt zwischen 0 und 1: Der Exponentialanteil fällt.",
+                "c = 10 verschiebt den Graphen nach oben; y = 10 ist die Asymptote.",
+                `Startwert: ${math(row(mi("f"),mo("("),mn("0"),mo(")"),mo("="),mn("80"),mo("·"),mn("1"),mo("+"),mn("10"),mo("="),mn("90")),"f von null gleich 90")}.`
+              ],
+              answer:"Der Graph startet bei 90, fällt monoton und nähert sich von oben dem Wert 10.",
+              pitfall:"Den Parameter A = 80 nicht mit dem tatsächlichen Startwert 90 verwechseln."
+            },
+            lab:{tab:"exp",label:"Im Exponential-Labor A, k und c einzeln verändern. Vor jeder Änderung eine Vermutung notieren."},
+            exercise:{
+              type:"number",
+              prompt:"Berechne f(4) für f(t) = 80 · 0,75ᵗ + 10.",
+              answer:35.3125,
+              tolerance:0.02,
+              unit:"",
+              hint:"Setze t = 4 ein. Berechne zuerst 0,75⁴.",
+              success:"Richtig: 80 · 0,75⁴ + 10 = 35,3125."
+            },
+            tasks:[
+              {type:"Verständnis",text:"Beschreibe die Wirkung von A, k und c in A · eᵏᵗ + c."},
+              {type:"Rechnung",text:"Wandle den Faktor q = 1,05 in die Rate k = ln(q) um."},
+              {type:"Transfer",text:"Übertrage die Parameterdeutung: Bestimme Startwert und Asymptote von g(t) = −30 · e⁻⁰·⁴ᵗ + 50."},
+              {type:"Anwendung",text:"Ein Sensor nähert sich dem Endwert 20 °C und startet bei 80 °C. Formuliere einen möglichen Term mit k = −0,3 min⁻¹."},
+              {type:"Reflexion",text:"Warum muss das Produkt k · t einheitenlos sein?"}
+            ],
+            helps:[
+              "Denkimpuls: Setze für den Startwert t = 0 und nutze e⁰ = 1.",
+              `Strategie: ${math(row(mi("q"),mo("="),sup(mi("e"),mi("k"))),"q gleich e hoch k")} und ${math(row(mi("k"),mo("="),mi("ln"),mo("("),mi("q"),mo(")")),"k gleich natürlicher Logarithmus von q")}.`,
+              "Zwischenschritt: Bei Aufgabe 4 beträgt der anfängliche Abstand zum Endwert 60 °C."
+            ],
+            solutions:[
+              "A bestimmt Größe und Vorzeichen des Abstands zur Asymptote, k Wachstum oder Zerfall und Geschwindigkeit, c die vertikale Verschiebung beziehungsweise den Grenzwert.",
+              `k = ln(1,05) ≈ 0,04879 pro Zeiteinheit.`,
+              "g(0) = −30 + 50 = 20. Die Asymptote ist y = 50. Wegen des negativen A steigt der Graph von unten auf 50 zu.",
+              `Ein mögliches Modell ist ${math(row(mi("T"),mo("("),mi("t"),mo(")"),mo("="),mn("60"),mo("·"),sup(mi("e"),row(mo("−"),mn("0,3"),mi("t"))),mo("+"),mn("20")),"T von t gleich 60 mal e hoch minus 0 Komma 3 t plus 20")}.`,
+              "Der Exponent einer Potenz darf keine physikalische Einheit tragen. Deshalb hat k die Kehrwert-Einheit von t."
+            ],
+            errors:[
+              "A statt A + c als Startwert nennen.",
+              "Bei negativem A Wachstum und Zerfall nur am Vorzeichen von k ablesen, ohne die Lage zur Asymptote zu betrachten.",
+              "Rate k und Prozentänderung gleichsetzen; die exakte Prozentänderung folgt aus eᵏ − 1."
+            ],
+            check:{
+              question:"Was ist bei f(t) = 12 · e⁻⁰·⁵ᵗ + 4 die horizontale Asymptote?",
+              choices:["y = 0","y = 4","y = 16"],
+              correct:1,
+              explanation:"Der Exponentialanteil nähert sich null; übrig bleibt die Verschiebung c = 4."
+            },
+            summary:["Faktorform und e-Form beschreiben denselben Funktionstyp.","q und k sind durch q = eᵏ verbunden.","Bei Verschiebung gilt Startwert A + c und Asymptote y = c."],
+            exit:"Erkläre mit eigenen Worten, weshalb k < 0 nicht in jeder verschobenen Funktion automatisch bedeutet, dass f insgesamt fällt.",
+            sources:`${sourceLabels.djp}; ${sourceLabels.nrw}; ${sourceLabels.exp}.`
+          },
+          {
+            id:"woche-4",
+            week:"Lernwoche 4",
+            title:"Eigenschaften und Graphen beschreiben",
+            goals:[
+              "Ich kann Definitionsbereich, Wertebereich, Achsenabschnitt, Monotonie und Grenzverhalten angeben.",
+              "Ich kann mathematischen und sachlich sinnvollen Definitionsbereich unterscheiden.",
+              "Ich kann einen Exponentialgraphen fachsprachlich vollständig beschreiben."
+            ],
+            problem:"Ein mathematisches Modell ist für alle reellen Zeiten definiert. Eine Messung beginnt aber bei t = 0 s und endet nach 20 s. Welcher Definitionsbereich ist für die Aufgabe sinnvoll?",
+            ground:`
+              <p>Die reine Exponentialfunktion mit positiver Basis ist für alle reellen <var>x</var> definiert. In Anwendungen ist der sinnvolle Bereich oft kleiner: negative Zeiten, negative Stückzahlen oder Werte nach dem Ende eines Versuchs können ausgeschlossen sein.</p>
+              <p>Eine vollständige Beschreibung nennt: <b>Definitionsbereich</b>, <b>Wertebereich</b>, <b>y-Achsenabschnitt</b>, <b>Nullstellen</b> falls vorhanden, <b>Monotonie</b>, <b>Grenzverhalten</b> und <b>Asymptote</b>. Bei einem Sachmodell kommen Einheiten und Modellgrenzen hinzu.</p>
+              <p>Für A &gt; 0 entscheidet das Vorzeichen von k: k &gt; 0 bedeutet steigend, k &lt; 0 fallend. Bei A &lt; 0 kehrt sich dieses Verhalten um, weil der Graph an der Asymptote gespiegelt ist.</p>
+            `,
+            terms:["Definitionsbereich","Wertebereich","Monotonie","Grenzwert","y-Achsenabschnitt","Nullstelle","Sachbereich"],
+            memo:"Trenne immer den mathematischen Definitionsbereich vom Bereich, in dem das Modell die reale Situation sinnvoll beschreibt.",
+            example:{
+              situation:`Beschreibe ${math(row(mi("g"),mo("("),mi("x"),mo(")"),mo("="),mn("5"),mo("·"),sup(mi("e"),row(mn("0,3"),mi("x"))),mo("−"),mn("2")),"g von x gleich 5 mal e hoch 0 Komma 3 x minus 2")}.`,
+              steps:[
+                "Mathematischer Definitionsbereich: alle reellen Zahlen.",
+                "g(0) = 5 − 2 = 3; der Graph schneidet die y-Achse bei 3.",
+                "A > 0 und k > 0: Der Graph ist streng steigend.",
+                "Für x → −∞ nähert sich g(x) dem Wert −2; Asymptote y = −2.",
+                "Der Wertebereich lautet (−2; ∞)."
+              ],
+              answer:`Die Nullstelle folgt aus 5 · e⁰·³ˣ = 2, also ${math(row(mi("x"),mo("="),frac(row(mi("ln"),mo("("),frac(mn("2"),mn("5")),mo(")")),mn("0,3")),mo("≈"),mo("−"),mn("3,054")),"x gleich ln von zwei Fünftel durch 0 Komma 3 ungefähr minus 3 Komma 054")}.`,
+              pitfall:"Die Asymptote ist keine verbotene Linie; der Graph kann sie bei anderen Funktionstypen schneiden. Hier wird sie wegen des festen Vorzeichens des Exponentialanteils nicht erreicht."
+            },
+            lab:{tab:"exp",label:"Im Exponential-Labor c verschieben und die Veränderungen von Startwert, Wertebereich und Asymptote erklären."},
+            exercise:{
+              type:"number",
+              prompt:"Welchen y-Achsenabschnitt hat g(x) = 5 · e⁰·³ˣ − 2?",
+              answer:3,
+              tolerance:0.001,
+              unit:"",
+              hint:"Setze x = 0 und nutze e⁰ = 1.",
+              success:"Richtig: g(0) = 5 · 1 − 2 = 3."
+            },
+            tasks:[
+              {type:"Verständnis",text:"Nenne sieben Bestandteile einer vollständigen Funktionsbeschreibung."},
+              {type:"Analyse",text:"Beschreibe h(x) = −4 · e⁻ˣ + 6 bezüglich Startwert, Asymptote und Monotonie."},
+              {type:"Transfer",text:"Übertrage die Beschreibung auf eine Gleichung und bestimme die Nullstelle von h(x) = −4 · e⁻ˣ + 6, sofern vorhanden."},
+              {type:"Anwendung",text:"Ein Zerfallsmodell gilt ab Versuchsbeginn für 30 min. Gib mathematischen und sachlichen Definitionsbereich an."},
+              {type:"Reflexion",text:"Erkläre, wie ein negativer Vorfaktor die Lage eines Exponentialgraphen zur Asymptote verändert."}
+            ],
+            helps:[
+              "Denkimpuls: Für Startwert x = 0; für Grenzverhalten den Exponentialterm betrachten.",
+              "Strategie: Bei h ist A negativ und k negativ. Bestimme erst, wie e⁻ˣ verläuft, und spiegele dann.",
+              "Zwischenschritt: Für die Nullstelle gilt e⁻ˣ = 1,5."
+            ],
+            solutions:[
+              "Definitionsbereich, Wertebereich, y-Achsenabschnitt, Nullstellen, Monotonie, Grenzverhalten und Asymptote; im Kontext zusätzlich Einheiten und Sachbereich.",
+              "h(0) = 2. Asymptote y = 6. Weil e⁻ˣ fällt, −4 · e⁻ˣ steigt; h ist streng steigend und nähert sich 6 von unten.",
+              `−4 · e⁻ˣ + 6 = 0 führt zu e⁻ˣ = 1,5 und damit x = −ln(1,5) ≈ −0,405.`,
+              "Mathematisch D = ℝ; sachlich D = [0 min; 30 min].",
+              "Ein negativer Vorfaktor spiegelt den Exponentialanteil an der Asymptote. Der Graph liegt dann auf der anderen Seite der Geraden y = c."
+            ],
+            errors:[
+              "Den Definitionsbereich einer Anwendung automatisch mit ℝ angeben.",
+              "Wertebereich und Definitionsbereich vertauschen.",
+              "Monotonie nur aus k bestimmen und das Vorzeichen von A ignorieren."
+            ],
+            check:{
+              question:"Wie verhält sich h(x) = −4 · e⁻ˣ + 6 für x → ∞?",
+              choices:["h(x) → −∞","h(x) → 0","h(x) → 6 von unten"],
+              correct:2,
+              explanation:"e⁻ˣ geht gegen null. Der negative Exponentialanteil verschwindet, daher nähert sich h dem Wert 6 von unten."
+            },
+            summary:["Eigenschaften systematisch statt nur nach Graphform beschreiben.","A und k gemeinsam bestimmen die Monotonie.","Sachbereiche begrenzen mathematisch mögliche Werte."],
+            exit:"Formuliere eine vollständige Zwei-Satz-Beschreibung für f(t) = 20 · e⁻⁰·²ᵗ bei t ≥ 0.",
+            sources:`${sourceLabels.djp}; ${sourceLabels.nrw}; ${sourceLabels.exp}.`
+          }
+        ]
+      },
+      {
+        id:"kapitel-3",
+        number:3,
+        title:"Wachstum und Zerfall modellieren",
+        subtitle:"Prozentraten, Halbwertszeiten, Verdopplungszeiten und technische Anwendungen nutzen.",
+        weeks:[
+          {
+            id:"woche-5",
+            week:"Lernwoche 5",
+            title:"Prozentfaktor und Modellgleichung",
+            goals:[
+              "Ich kann Prozentangaben sicher in Wachstums- oder Zerfallsfaktoren umwandeln.",
+              "Ich kann aus Startwert und Rate eine Modellgleichung aufstellen.",
+              "Ich kann Ergebnisse mit Einheit und Antwortsatz deuten."
+            ],
+            problem:"Eine Maschine verliert jährlich 12 % ihres Werts. Warum darfst du nicht in jedem Jahr denselben Eurobetrag abziehen?",
+            ground:`
+              <p>Bei einer Zunahme um <var>p</var> Prozent lautet der Faktor ${math(row(mi("q"),mo("="),mn("1"),mo("+"),frac(mi("p"),mn("100"))),"q gleich eins plus p durch hundert")}. Bei einer Abnahme lautet er ${math(row(mi("q"),mo("="),mn("1"),mo("−"),frac(mi("p"),mn("100"))),"q gleich eins minus p durch hundert")}.</p>
+              <p>Das Modell ${math(row(mi("N"),mo("("),mi("t"),mo(")"),mo("="),sub(mi("N"),mn("0")),mo("·"),sup(mi("q"),mi("t"))),"N von t gleich N null mal q hoch t")} verwendet den jeweils aktuellen Bestand als neue Bezugsgröße. Deshalb ändern sich die absoluten Zu- oder Abnahmen von Schritt zu Schritt.</p>
+              <p>Beim Modellieren gehören Term und Bedeutung zusammen: Was bedeutet t = 0? Welche Einheit hat t? Gilt die Rate pro Stunde, pro Tag oder pro Jahr? Runde erst am Ende und schreibe einen Antwortsatz.</p>
+            `,
+            terms:["Prozentrate","Wachstumsfaktor","Zerfallsfaktor","Startwert","Bezugsgröße","Modellgleichung"],
+            memo:"Bei p % Abnahme bleibt der Faktor 1 − p/100; der Faktor ist positiv und beschreibt den verbleibenden Anteil.",
+            example:{
+              situation:"Eine Maschine hat einen Anfangswert von 24 000 € und verliert jährlich 12 %.",
+              steps:[
+                "Startwert N₀ = 24 000 €.",
+                "Verbleibender Anteil: 100 % − 12 % = 88 %, also q = 0,88.",
+                `Modell: ${math(row(mi("W"),mo("("),mi("t"),mo(")"),mo("="),mn("24000"),mo("·"),sup(mn("0,88"),mi("t"))),"W von t gleich 24000 mal 0 Komma 88 hoch t")}, t in Jahren.`,
+                `Nach drei Jahren: ${math(row(mi("W"),mo("("),mn("3"),mo(")"),mo("="),mn("24000"),mo("·"),sup(mn("0,88"),mn("3")),mo("="),mn("16355,328"),unit("€")),"W von drei gleich 16355 Komma 328 Euro")}.`
+              ],
+              answer:"Nach drei Jahren beträgt der Modellwert rund 16 355,33 €.",
+              pitfall:"12 % Verlust bedeutet nicht, jedes Jahr 2 880 € abzuziehen; 12 % beziehen sich jeweils auf den aktuellen Wert."
+            },
+            lab:{tab:"exp",label:"Im Exponential-Labor A = 24 000, c = 0 und k = ln(0,88) einstellen. Den Wert nach drei Jahren am Modell prüfen."},
+            exercise:{
+              type:"number",
+              prompt:"Wie hoch ist der Modellwert nach 3 Jahren bei 24 000 € Startwert und Faktor 0,88? Runde auf Cent.",
+              answer:16355.33,
+              tolerance:0.02,
+              unit:"€",
+              hint:"Berechne 24 000 · 0,88³.",
+              success:"Richtig: Der Wert beträgt gerundet 16 355,33 €."
+            },
+            tasks:[
+              {type:"Verständnis",text:"Erkläre, warum 7 % Wachstum dem Faktor 1,07 entsprechen."},
+              {type:"Rechnung",text:"Bestimme den Faktor für 3,5 % Abnahme pro Monat."},
+              {type:"Anwendung",text:"Eine Probe startet mit 480 mg und verliert pro Stunde 9 %. Stelle das Modell auf und berechne den Bestand nach 6 h."},
+              {type:"Transfer",text:"Ein Bestand steigt in fünf Schritten von 200 auf 300. Bestimme den konstanten Faktor pro Schritt."},
+              {type:"Reflexion",text:"Welche Annahme steckt hinter einer über Jahre konstanten prozentualen Wertminderung?"}
+            ],
+            helps:[
+              "Denkimpuls: Prozent zuerst als verbleibenden Anteil formulieren.",
+              `Strategie: ${math(row(mi("q"),mo("="),sup(row(frac(sub(mi("N"),mt("Ende")),sub(mi("N"),mt("Start")))),frac(mn("1"),mi("n")))),"q gleich n-te Wurzel aus Endwert durch Startwert")} für n gleiche Schritte.`,
+              "Zwischenschritt: Bei 9 % Abnahme ist q = 0,91; bei Aufgabe 4 gilt q⁵ = 1,5."
+            ],
+            solutions:[
+              "100 % + 7 % = 107 % = 1,07. Der neue Wert ist 1,07-mal so groß wie der alte.",
+              "q = 1 − 0,035 = 0,965.",
+              `Modell: ${math(row(mi("M"),mo("("),mi("t"),mo(")"),mo("="),mn("480"),mo("·"),sup(mn("0,91"),mi("t"))),"M von t gleich 480 mal 0 Komma 91 hoch t")}. Nach 6 h: M(6) ≈ 272,58 mg.`,
+              `q = (300/200)^(1/5) = 1,5^(1/5) ≈ 1,08447. Das entspricht rund 8,45 % Wachstum pro Schritt.`,
+              "Es wird angenommen, dass in jedem Jahr derselbe relative Mechanismus wirkt und sich Randbedingungen nicht ändern."
+            ],
+            errors:[
+              "p % als Faktor p/100 statt 1 ± p/100 verwenden.",
+              "Prozentrate und Faktor mit einer Einheit versehen; der Faktor selbst ist einheitenlos.",
+              "Zwischenergebnisse zu früh runden und dadurch merkliche Abweichungen erzeugen."
+            ],
+            check:{
+              question:"Welcher Faktor gehört zu 3,5 % Abnahme?",
+              choices:["0,035","0,965","1,035"],
+              correct:1,
+              explanation:"Nach der Abnahme bleiben 96,5 % = 0,965 des vorherigen Werts."
+            },
+            summary:["Prozentangaben zuerst in Faktoren übersetzen.","Der Faktor wirkt immer auf den aktuellen Bestand.","Term, Zeiteinheit und Antwortsatz gehören zusammen."],
+            exit:"Erkläre einer anderen Person in höchstens zwei Sätzen den Unterschied zwischen Rate 0,04 und Faktor 1,04.",
+            sources:`${sourceLabels.djp}; ${sourceLabels.nrw}; ${sourceLabels.exp}.`
+          },
+          {
+            id:"woche-6",
+            week:"Lernwoche 6",
+            title:"Halbwertszeit, Verdopplungszeit und Anwendungen",
+            goals:[
+              "Ich kann Halbwerts- und Verdopplungszeit aus einem Modell bestimmen.",
+              "Ich kann aus einer charakteristischen Zeit ein Exponentialmodell aufstellen.",
+              "Ich kann technische und physikalische Modelle fachlich einordnen."
+            ],
+            problem:"Eine Abschirmung halbiert eine Intensität pro Schicht, ein Kondensator verliert in einer bestimmten Zeit die Hälfte seiner Spannung. Was ist an diesen Vorgängen mathematisch gleich?",
+            ground:`
+              <p>Die Halbwertszeit ${math(sub(mi("T"),frac(mn("1"),mn("2"))),"T ein Halb")} ist die Zeit, nach der ein zerfallender Exponentialanteil halb so groß ist. In der e-Form mit k &lt; 0 gilt ${math(row(sub(mi("T"),frac(mn("1"),mn("2"))),mo("="),frac(row(mi("ln"),mo("("),mn("2"),mo(")")),row(mo("|"),mi("k"),mo("|")))),"T ein Halb gleich natürlicher Logarithmus von zwei durch Betrag von k")}.</p>
+              <p>Für Wachstum mit k &gt; 0 ist die Verdopplungszeit ${math(row(sub(mi("T"),mn("2")),mo("="),frac(row(mi("ln"),mo("("),mn("2"),mo(")")),mi("k"))),"T zwei gleich natürlicher Logarithmus von zwei durch k")}. Mit einer gegebenen Halbwertszeit kannst du direkt ${math(row(mi("N"),mo("("),mi("t"),mo(")"),mo("="),sub(mi("N"),mn("0")),mo("·"),sup(mn("0,5"),frac(mi("t"),sub(mi("T"),frac(mn("1"),mn("2")))))),"N von t gleich N null mal 0 Komma 5 hoch t durch Halbwertszeit")} verwenden.</p>
+              <p>Typische Anwendungen sind radioaktiver Zerfall, Entladung eines Kondensators und exponentielle Abschwächung. Das mathematische Muster ist ähnlich, doch Formelzeichen, Einheiten und fachliche Bedeutung unterscheiden sich.</p>
+            `,
+            terms:["Halbwertszeit","Verdopplungszeit","Zerfallskonstante","Zeitkonstante","Abschirmung","Kondensator"],
+            memo:"Nach n Halbwertszeiten ist der Exponentialanteil auf den Anteil (1/2)ⁿ gesunken.",
+            example:{
+              situation:"Eine Probe enthält anfangs 160 mg eines Stoffes. Die Halbwertszeit beträgt 8 h. Wie viel ist nach 20 h vorhanden?",
+              steps:[
+                `Modell: ${math(row(mi("M"),mo("("),mi("t"),mo(")"),mo("="),mn("160"),mo("·"),sup(mn("0,5"),frac(mi("t"),mn("8")))),"M von t gleich 160 mal 0 Komma 5 hoch t durch 8")}.`,
+                "20 h entsprechen 20/8 = 2,5 Halbwertszeiten.",
+                `Einsetzen: ${math(row(mi("M"),mo("("),mn("20"),mo(")"),mo("="),mn("160"),mo("·"),sup(mn("0,5"),mn("2,5")),mo("≈"),mn("28,284"),unit("mg")),"M von 20 ungefähr 28 Komma 284 Milligramm")}.`,
+                "Die Einheit des Ergebnisses bleibt Milligramm."
+              ],
+              answer:"Nach 20 h sind nach dem Modell noch rund 28,3 mg vorhanden.",
+              pitfall:"20 h sind nicht drei volle Halbwertszeiten. Auch nicht ganzzahlige Vielfache dürfen im Exponenten stehen."
+            },
+            lab:{tab:"exp",label:"Im Exponential-Labor c = 0 und k = −ln(2)/8 einstellen. Prüfen, ob sich der Wert nach jeweils 8 s halbiert."},
+            exercise:{
+              type:"number",
+              prompt:"Eine Probe startet mit 160 mg und hat 8 h Halbwertszeit. Wie viel bleibt nach 24 h?",
+              answer:20,
+              tolerance:0.01,
+              unit:"mg",
+              hint:"24 h entsprechen genau drei Halbwertszeiten.",
+              success:"Richtig: 160 · (1/2)³ = 20 mg."
+            },
+            tasks:[
+              {type:"Verständnis",text:"Erkläre den Unterschied zwischen Halbwertszeit und Zeitkonstante."},
+              {type:"Rechnung",text:"Bestimme k für eine Halbwertszeit von 5 min."},
+              {type:"Anwendung",text:"Eine Größe wächst mit k = 0,12 h⁻¹. Bestimme die Verdopplungszeit."},
+              {type:"Transfer",text:"Bei einem RC-Kreis gilt die Zeitkonstante τ = R · C. Gib die Halbwertszeit in Abhängigkeit von R und C an."},
+              {type:"Reflexion",text:"Warum kann die gemessene Zählrate bei radioaktivem Zerfall schwanken, obwohl das Modell glatt verläuft?"}
+            ],
+            helps:[
+              "Denkimpuls: Halbierung bedeutet Faktor 0,5; Verdopplung Faktor 2.",
+              `Formeln: ${math(row(mi("k"),mo("="),mo("−"),frac(row(mi("ln"),mo("("),mn("2"),mo(")")),sub(mi("T"),frac(mn("1"),mn("2"))))),"k gleich minus natürlicher Logarithmus von zwei durch Halbwertszeit")} und ${math(row(sub(mi("T"),mn("2")),mo("="),frac(row(mi("ln"),mo("("),mn("2"),mo(")")),mi("k"))),"Verdopplungszeit gleich ln zwei durch k")}.`,
+              "Zwischenschritt: Für den RC-Kreis ist k = −1/(R · C)."
+            ],
+            solutions:[
+              "Die Halbwertszeit ist die Zeit bis zum Faktor 0,5. Die Zeitkonstante τ ist in e-Modellen die Kehrwertgröße 1/|k|; nach τ bleibt der Anteil 1/e ≈ 36,8 %.",
+              "k = −ln(2)/5 ≈ −0,13863 min⁻¹.",
+              "T₂ = ln(2)/0,12 ≈ 5,776 h.",
+              "Mit |k| = 1/(R · C) gilt T₁⁄₂ = ln(2) · R · C.",
+              "Einzelne Zerfallsereignisse sind zufällig. Das Exponentialgesetz beschreibt den Erwartungswert vieler Ereignisse, nicht eine vollkommen glatte Einzelmessung."
+            ],
+            errors:[
+              "Halbwertszeit mit 1/|k| gleichsetzen; der Faktor ln(2) fehlt dann.",
+              "Bei Zerfall k positiv einsetzen.",
+              "Die Einheiten von R, C und Zeit nicht konsistent umrechnen."
+            ],
+            check:{
+              question:"Welcher Anteil bleibt nach vier Halbwertszeiten?",
+              choices:["1/4","1/8","1/16"],
+              correct:2,
+              explanation:"Jede Halbwertszeit halbiert erneut: (1/2)⁴ = 1/16."
+            },
+            summary:["Charakteristische Zeiten lassen sich direkt in Modelle übersetzen.","Halbwertszeit und Verdopplungszeit folgen aus ln(2) und k.","Gleiches mathematisches Muster kann verschiedene fachliche Bedeutungen haben."],
+            exit:"Notiere eine fachlich korrekte Aussage dazu, was nach einer Zeitkonstante τ bei einem Zerfall übrig ist.",
+            sources:`${sourceLabels.djp}; ${sourceLabels.nrw}; ${sourceLabels.exp}; ${sourceLabels.leifi}.`
+          }
+        ]
+      },
+      {
+        id:"kapitel-4",
+        number:4,
+        title:"Logarithmen und Exponentialgleichungen",
+        subtitle:"Unbekannte Exponenten und Zeiten mithilfe von Logarithmen sicher bestimmen.",
+        weeks:[
+          {
+            id:"woche-7",
+            week:"Lernwoche 7",
+            title:"Potenz- und Logarithmusgesetze",
+            goals:[
+              "Ich verstehe den Logarithmus als Frage nach dem Exponenten.",
+              "Ich kann Produkt-, Quotienten- und Potenzgesetz des Logarithmus anwenden.",
+              "Ich kann Definitionsbedingungen vor dem Umformen prüfen."
+            ],
+            problem:"Wie findest du den Exponenten x in 2ˣ = 10, obwohl keine ganze Potenz von 2 genau 10 ergibt?",
+            ground:`
+              <p>Der Logarithmus beantwortet die Frage: „Welcher Exponent erzeugt diesen Wert?“ Es gilt ${math(row(sup(mi("b"),mi("x")),mo("="),mi("a"),mo("⇔"),sub(mi("log"),mi("b")),mo("("),mi("a"),mo(")"),mo("="),mi("x")),"b hoch x gleich a genau dann wenn Logarithmus zur Basis b von a gleich x")}. Für die e-Funktion nutzt du den natürlichen Logarithmus ln.</p>
+              <p>Wichtige Gesetze für positive a und b sind: ${math(row(mi("ln"),mo("("),mi("a"),mi("b"),mo(")"),mo("="),mi("ln"),mo("("),mi("a"),mo(")"),mo("+"),mi("ln"),mo("("),mi("b"),mo(")")),"ln von a mal b gleich ln a plus ln b")}, ${math(row(mi("ln"),mo("("),frac(mi("a"),mi("b")),mo(")"),mo("="),mi("ln"),mo("("),mi("a"),mo(")"),mo("−"),mi("ln"),mo("("),mi("b"),mo(")")),"ln von a durch b gleich ln a minus ln b")} und ${math(row(mi("ln"),mo("("),sup(mi("a"),mi("r")),mo(")"),mo("="),mi("r"),mo("·"),mi("ln"),mo("("),mi("a"),mo(")")),"ln von a hoch r gleich r mal ln a")}.</p>
+              <p>Im Reellen muss jedes Logarithmusargument positiv sein. Ein Logarithmus zerlegt keine Summe: ln(a + b) ist im Allgemeinen weder ln(a) + ln(b) noch etwas ähnlich Einfaches.</p>
+            `,
+            terms:["Logarithmus","natürlicher Logarithmus","Basis","Argument","Umkehrfunktion","Logarithmusgesetz","Definitionsbedingung"],
+            memo:"Logarithmen machen aus Produkten Summen und holen Exponenten als Faktoren nach vorn – Summen im Argument dürfen sie nicht zerlegen.",
+            example:{
+              situation:"Vereinfache ln(12) − ln(3) + 2 · ln(5).",
+              steps:[
+                `Quotientengesetz: ${math(row(mi("ln"),mo("("),mn("12"),mo(")"),mo("−"),mi("ln"),mo("("),mn("3"),mo(")"),mo("="),mi("ln"),mo("("),mn("4"),mo(")")),"ln 12 minus ln 3 gleich ln 4")}.`,
+                `Potenzgesetz rückwärts: ${math(row(mn("2"),mo("·"),mi("ln"),mo("("),mn("5"),mo(")"),mo("="),mi("ln"),mo("("),sup(mn("5"),mn("2")),mo(")"),mo("="),mi("ln"),mo("("),mn("25"),mo(")")),"zwei mal ln fünf gleich ln 25")}.`,
+                `Produktgesetz rückwärts: ${math(row(mi("ln"),mo("("),mn("4"),mo(")"),mo("+"),mi("ln"),mo("("),mn("25"),mo(")"),mo("="),mi("ln"),mo("("),mn("100"),mo(")")),"ln vier plus ln 25 gleich ln 100")}.`
+              ],
+              answer:"Der Ausdruck ist ln(100).",
+              pitfall:"Das Potenzgesetz bezieht sich auf einen Exponenten im Argument oder einen Faktor vor dem Logarithmus, nicht auf eine Summe."
+            },
+            lab:{tab:"fit",label:"Im Modellfinder beobachten, dass die Rate k mit ln(N₁/N₀) berechnet wird. Den Rechenweg im Ergebnis nachvollziehen."},
+            exercise:{
+              type:"choice",
+              prompt:"Welche Umformung ist korrekt?",
+              choices:["ln(a + b) = ln(a) + ln(b)","ln(a/b) = ln(a) − ln(b)","ln(a²) = ln(a)²"],
+              correct:1,
+              success:"Richtig: Der Logarithmus eines Quotienten wird zur Differenz der Logarithmen.",
+              hint:"Denke an Produkt, Quotient und Potenz – nicht an Summen."
+            },
+            tasks:[
+              {type:"Verständnis",text:"Erkläre ln(e³) ohne Taschenrechner."},
+              {type:"Rechnung",text:"Fasse ln(18) − ln(2) zusammen."},
+              {type:"Transfer",text:"Übertrage das Potenzgesetz rückwärts und schreibe 3 · ln(4) als einen Logarithmus."},
+              {type:"Anwendung",text:"Bestimme x aus eˣ = 7."},
+              {type:"Reflexion",text:"Begründe mit einem Zahlenbeispiel, warum ln(a + b) ≠ ln(a) + ln(b)."}
+            ],
+            helps:[
+              "Denkimpuls: ln und e-Potenz sind Umkehrungen.",
+              "Strategie: Differenz → Quotient; Faktor vor ln → Exponent im Argument.",
+              "Zwischenschritt: Für Aufgabe 5 kannst du a = b = 1 einsetzen."
+            ],
+            solutions:[
+              "ln(e³) = 3, weil ln(eˣ) = x.",
+              "ln(18) − ln(2) = ln(18/2) = ln(9).",
+              "3 · ln(4) = ln(4³) = ln(64).",
+              "x = ln(7) ≈ 1,946.",
+              "Für a = b = 1 gilt ln(1 + 1) = ln(2), aber ln(1) + ln(1) = 0. Die Ausdrücke sind also verschieden."
+            ],
+            errors:[
+              "ln über eine Summe verteilen.",
+              "Beim Quotientengesetz das Minuszeichen verlieren.",
+              "Nicht prüfen, ob das Logarithmusargument positiv ist."
+            ],
+            check:{
+              question:"Was ist ln(e⁻²)?",
+              choices:["−2","2","e⁻²"],
+              correct:0,
+              explanation:"ln und e-Potenz heben einander auf; der Exponent −2 bleibt."
+            },
+            summary:["Der Logarithmus ist die Umkehrung der Exponentialfunktion.","Produkt, Quotient und Potenz besitzen eigene Logarithmusgesetze.","Logarithmusargumente müssen positiv sein."],
+            exit:"Formuliere die Bedeutung von log₂(32) = 5 als Frage und Antwort in Alltagssprache.",
+            sources:`${sourceLabels.djp}; ${sourceLabels.nrw}; ${sourceLabels.exp}.`
+          },
+          {
+            id:"woche-8",
+            week:"Lernwoche 8",
+            title:"Exponentialgleichungen systematisch lösen",
+            goals:[
+              "Ich kann einen Exponentialterm isolieren und logarithmieren.",
+              "Ich kann nach einer unbekannten Zeit oder einem Exponenten auflösen.",
+              "Ich kann Lösung, Einheit, Definitionsbereich und Plausibilität prüfen."
+            ],
+            problem:"Nach welcher Zeit ist ein Bestand von 500 Einheiten auf 150 Einheiten gesunken? Die gesuchte Zeit steht im Exponenten – normales Wurzelziehen reicht nicht.",
+            ground:`
+              <p>Die Standardstrategie lautet: <b>Exponentialterm isolieren → durch den Vorfaktor teilen → logarithmieren → Exponenten nach vorn holen → Variable freistellen → Probe und Einheit prüfen.</b></p>
+              <p>Aus ${math(row(mi("N"),mo("="),sub(mi("N"),mn("0")),mo("·"),sup(mi("e"),row(mi("k"),mi("t")))),"N gleich N null mal e hoch k t")} folgt nach Division ${math(row(frac(mi("N"),sub(mi("N"),mn("0"))),mo("="),sup(mi("e"),row(mi("k"),mi("t")))),"N durch N null gleich e hoch k t")}. Logarithmieren liefert ${math(row(mi("ln"),mo("("),frac(mi("N"),sub(mi("N"),mn("0"))),mo(")"),mo("="),mi("k"),mi("t")),"ln von N durch N null gleich k t")} und damit ${math(row(mi("t"),mo("="),frac(row(mi("ln"),mo("("),frac(mi("N"),sub(mi("N"),mn("0"))),mo(")")),mi("k"))),"t gleich ln von N durch N null geteilt durch k")}.</p>
+              <p>Bei der Faktorform nutzt du entsprechend t = ln(N/N₀) / ln(q). Ein Ergebnis für Zeit muss zur Zeiteinheit der Rate passen und im Sachbereich liegen.</p>
+            `,
+            terms:["Exponentialgleichung","isolieren","logarithmieren","Probe","Sachbereich","Plausibilität"],
+            memo:"Logarithmiere erst, wenn der Exponentialterm isoliert ist; prüfe danach Argument, Vorzeichen und Einheit.",
+            example:{
+              situation:`Löse ${math(row(mn("500"),mo("·"),sup(mi("e"),row(mo("−"),mn("0,18"),mi("t"))),mo("="),mn("150")),"500 mal e hoch minus 0 Komma 18 t gleich 150")}.`,
+              steps:[
+                `Durch 500 teilen: ${math(row(sup(mi("e"),row(mo("−"),mn("0,18"),mi("t"))),mo("="),mn("0,3")),"e hoch minus 0 Komma 18 t gleich 0 Komma 3")}.`,
+                `Logarithmieren: ${math(row(mo("−"),mn("0,18"),mi("t"),mo("="),mi("ln"),mo("("),mn("0,3"),mo(")")),"minus 0 Komma 18 t gleich ln von 0 Komma 3")}.`,
+                `Auflösen: ${math(row(mi("t"),mo("="),frac(row(mi("ln"),mo("("),mn("0,3"),mo(")")),row(mo("−"),mn("0,18"))),mo("≈"),mn("6,689")),"t gleich ln 0 Komma 3 durch minus 0 Komma 18 ungefähr 6 Komma 689")}.`,
+                "Probe: 500 · e⁻⁰·¹⁸·⁶·⁶⁸⁹ ≈ 150."
+              ],
+              answer:"Der Bestand erreicht 150 Einheiten nach etwa 6,69 Zeiteinheiten.",
+              pitfall:"ln(500 · e⁻⁰·¹⁸ᵗ) nicht unnötig zerlegen. Durch 500 zu teilen macht die Gleichung übersichtlicher."
+            },
+            lab:{tab:"fit",label:"Im Modellfinder Start- und Endwert eingeben. Die ausgegebene Rate und charakteristische Zeit mit dem eigenen Rechenweg vergleichen."},
+            exercise:{
+              type:"number",
+              prompt:"Nach wie vielen Schritten wächst 300 · 1,08ᵗ auf 500? Runde auf zwei Dezimalstellen.",
+              answer:6.64,
+              tolerance:0.02,
+              unit:"Schritte",
+              hint:"Teile durch 300 und nutze t = ln(500/300) ÷ ln(1,08).",
+              success:"Richtig: t ≈ 6,64 Schritte."
+            },
+            tasks:[
+              {type:"Verständnis",text:"Warum ist das Logarithmieren bei 3ᵗ = 20 sinnvoll?"},
+              {type:"Rechnung",text:"Löse 200 · e⁰·⁰⁵ᵗ = 400."},
+              {type:"Transfer",text:"Übertrage die Strategie auf die Faktorform und löse 90 · 0,7ᵗ = 30."},
+              {type:"Anwendung",text:"Eine Spannung U(t) = 12 · e⁻ᵗ⁄⁴ V fällt auf 3 V. Bestimme die Zeit."},
+              {type:"Reflexion",text:"Erkläre, warum eine negative Zeitlösung in einer Aufgabe mit Versuchsbeginn t = 0 zwar mathematisch, aber sachlich unzulässig sein kann."}
+            ],
+            helps:[
+              "Denkimpuls: Die Variable steht im Exponenten; der Logarithmus holt sie als Faktor nach vorn.",
+              `Formel: ${math(row(mi("t"),mo("="),frac(row(mi("ln"),mo("("),frac(mi("N"),sub(mi("N"),mn("0"))),mo(")")),mi("k"))),"t gleich ln von N durch N null geteilt durch k")} beziehungsweise Division durch ln(q).`,
+              "Zwischenschritt: Aufgabe 4 führt zu e⁻ᵗ⁄⁴ = 0,25."
+            ],
+            solutions:[
+              "Der Logarithmus ist die Umkehrfunktion der Exponentialfunktion und macht aus dem Exponenten t einen Faktor.",
+              "e⁰·⁰⁵ᵗ = 2, also t = ln(2)/0,05 ≈ 13,863.",
+              "0,7ᵗ = 1/3, also t = ln(1/3)/ln(0,7) ≈ 3,080.",
+              "e⁻ᵗ⁄⁴ = 0,25. Damit −t/4 = ln(0,25) und t = −4 ln(0,25) ≈ 5,545 s.",
+              "Das Modell kann rechnerisch auch Zeiten vor dem gewählten Nullpunkt beschreiben. Die reale Messung oder der Prozess beginnt aber erst bei t = 0, daher liegt die Lösung außerhalb des Sachbereichs."
+            ],
+            errors:[
+              "Den Vorfaktor vor dem Logarithmieren nicht isolieren.",
+              "Durch k teilen, aber dessen Vorzeichen verlieren.",
+              "Ein Taschenrechnerergebnis ohne Probe, Einheit oder Antwortsatz übernehmen."
+            ],
+            check:{
+              question:"Welche Gleichung entsteht aus 80 · e⁻⁰·²ᵗ = 20 nach Division durch 80?",
+              choices:["e⁻⁰·²ᵗ = 4","e⁻⁰·²ᵗ = 0,25","−0,2t = 20"],
+              correct:1,
+              explanation:"20/80 = 0,25. Erst danach wird logarithmiert."
+            },
+            summary:["Exponentialterm zuerst isolieren.","Logarithmus holt die Variable aus dem Exponenten.","Lösung mit Probe, Einheit und Sachbereich prüfen."],
+            exit:"Notiere den vollständigen Lösungsplan für A · qᵗ = B in sechs kurzen Verben.",
+            sources:`${sourceLabels.djp}; ${sourceLabels.nrw}; ${sourceLabels.exp}.`
+          }
+        ]
+      },
+      {
+        id:"kapitel-5",
+        number:5,
+        title:"Produkt- und Kettenregel",
+        subtitle:"Zusammengesetzte und verkettete Funktionen sicher ableiten und deuten.",
+        weeks:[
+          {
+            id:"woche-9",
+            week:"Lernwoche 9",
+            title:"Produktregel verstehen und anwenden",
+            goals:[
+              "Ich erkenne Produkte aus zwei veränderlichen Funktionen.",
+              "Ich kann die Produktregel vollständig und strukturiert anwenden.",
+              "Ich kann meine Ableitung durch Ausmultiplizieren oder Einsetzen prüfen."
+            ],
+            problem:"Warum ist die Ableitung von x² · eˣ nicht einfach 2x · eˣ? Beide Faktoren verändern sich gleichzeitig.",
+            ground:`
+              <p>Für ein Produkt f(x) = u(x) · v(x) gilt ${math(row(mi("f"),mo("′"),mo("("),mi("x"),mo(")"),mo("="),mi("u"),mo("′"),mo("("),mi("x"),mo(")"),mo("·"),mi("v"),mo("("),mi("x"),mo(")"),mo("+"),mi("u"),mo("("),mi("x"),mo(")"),mo("·"),mi("v"),mo("′"),mo("("),mi("x"),mo(")")),"f Strich gleich u Strich mal v plus u mal v Strich")}.</p>
+              <p>Die Regel enthält zwei Summanden, weil sich im Produkt beide Faktoren ändern. Eine sichere Schreibweise ist eine kleine Tabelle mit u, u′, v und v′. Setze erst in die Regel ein und vereinfache danach.</p>
+              <p>Manchmal kannst du einen polynomischen Ausdruck zuerst ausmultiplizieren und anschließend ableiten. Das ist eine gute Kontrolle, funktioniert bei Produkten mit e-Funktionen aber meist nicht als Vereinfachung.</p>
+            `,
+            terms:["Produktfunktion","Produktregel","Faktor","Ableitung","Summand","Kontrollrechnung"],
+            memo:"Produkt ableiten heißt nicht Ableitungen multiplizieren: Es entstehen immer u′v + uv′.",
+            example:{
+              situation:`Leite ${math(row(mi("f"),mo("("),mi("x"),mo(")"),mo("="),mo("("),sup(mi("x"),mn("2")),mo("+"),mn("1"),mo(")"),mo("·"),mo("("),mn("3"),mi("x"),mo("−"),mn("2"),mo(")")),"f von x gleich x Quadrat plus eins mal drei x minus zwei")} ab.`,
+              steps:[
+                "u(x) = x² + 1, also u′(x) = 2x.",
+                "v(x) = 3x − 2, also v′(x) = 3.",
+                `Produktregel: ${math(row(mi("f"),mo("′"),mo("="),mn("2"),mi("x"),mo("·"),mo("("),mn("3"),mi("x"),mo("−"),mn("2"),mo(")"),mo("+"),mo("("),sup(mi("x"),mn("2")),mo("+"),mn("1"),mo(")"),mo("·"),mn("3")),"f Strich gleich zwei x mal drei x minus zwei plus x Quadrat plus eins mal drei")}.`,
+                "Vereinfachen: f′(x) = 9x² − 4x + 3."
+              ],
+              answer:"Die vollständige Ableitung lautet f′(x) = 9x² − 4x + 3.",
+              pitfall:"Der zweite Summand u · v′ darf nicht fehlen."
+            },
+            lab:{tab:"der",label:"Im Ableitungs-Labor m, n und k verändern und beobachten, wie Funktionswert und Tangentensteigung zusammenhängen."},
+            exercise:{
+              type:"number",
+              prompt:"Berechne f′(2) für f(x) = (x² + 1)(3x − 2).",
+              answer:31,
+              tolerance:0.01,
+              unit:"",
+              hint:"Nutze die vereinfachte Ableitung 9x² − 4x + 3.",
+              success:"Richtig: f′(2) = 9 · 4 − 8 + 3 = 31."
+            },
+            tasks:[
+              {type:"Verständnis",text:"Erkläre mit Worten, warum die Produktregel zwei Summanden enthält."},
+              {type:"Rechnung",text:"Leite f(x) = x³ · (2x + 5) ab."},
+              {type:"Transfer",text:"Übertrage die Produktregel auf einen Exponentialfaktor und leite g(x) = (x − 1) · eˣ ab."},
+              {type:"Anwendung",text:"Eine Leistung wird durch P(t) = t · e⁻⁰·²ᵗ beschrieben. Bilde P′(t), zunächst ohne nach dem Maximum zu suchen."},
+              {type:"Reflexion",text:"Prüfe Aufgabe 2 durch vorheriges Ausmultiplizieren und erkläre, wozu diese Kontrolle nützt."}
+            ],
+            helps:[
+              "Denkimpuls: Markiere die beiden veränderlichen Faktoren u und v.",
+              `Formel: ${math(row(mo("("),mi("u"),mi("v"),mo(")"),mo("′"),mo("="),mi("u"),mo("′"),mi("v"),mo("+"),mi("u"),mi("v"),mo("′")),"u mal v abgeleitet gleich u Strich v plus u v Strich")}.`,
+              "Zwischenschritt: Für P gilt u = t, u′ = 1, v = e⁻⁰·²ᵗ und v′ = −0,2e⁻⁰·²ᵗ."
+            ],
+            solutions:[
+              "Während x sich ändert, ändern sich u und v. Der erste Summand erfasst die Änderung von u bei festgehaltenem v, der zweite die Änderung von v bei festgehaltenem u.",
+              "f′(x) = 3x²(2x + 5) + 2x³ = 8x³ + 15x².",
+              "g′(x) = 1 · eˣ + (x − 1)eˣ = x · eˣ.",
+              "P′(t) = e⁻⁰·²ᵗ − 0,2t · e⁻⁰·²ᵗ = e⁻⁰·²ᵗ(1 − 0,2t).",
+              "f(x) = 2x⁴ + 5x³. Ableiten ergibt 8x³ + 15x² und bestätigt Aufgabe 2."
+            ],
+            errors:[
+              "u′ · v′ als Produktableitung verwenden.",
+              "Einen der beiden Summanden vergessen.",
+              "Zu früh ausmultiplizieren und dabei Vorzeichenfehler erzeugen."
+            ],
+            check:{
+              question:"Welche Ableitung gehört zu f(x) = x · sin(x)?",
+              choices:["1 · cos(x)","sin(x) + x · cos(x)","x · cos(x)"],
+              correct:1,
+              explanation:"Mit u = x und v = sin(x) folgt u′v + uv′ = sin(x) + x cos(x)."
+            },
+            summary:["Produkte aus zwei veränderlichen Faktoren erkennen.","u, u′, v und v′ sauber notieren.","Erst Regel einsetzen, dann vereinfachen und kontrollieren."],
+            exit:"Schreibe die Produktregel aus dem Gedächtnis auf und markiere, welcher Faktor in jedem Summanden abgeleitet wird.",
+            sources:`${sourceLabels.djp}; ${sourceLabels.nrw}; ${sourceLabels.calc}.`
+          },
+          {
+            id:"woche-10",
+            week:"Lernwoche 10",
+            title:"Kettenregel und e-Funktion",
+            goals:[
+              "Ich erkenne äußere und innere Funktion einer Verkettung.",
+              "Ich kann die Kettenregel bei Potenzen und e-Funktionen anwenden.",
+              "Ich kann Produkt- und Kettenregel in derselben Aufgabe verbinden."
+            ],
+            problem:"Warum ist die Ableitung von e⁻⁰·⁴ˣ nicht nur e⁻⁰·⁴ˣ? Im Exponenten steckt eine zweite Funktion.",
+            ground:`
+              <p>Eine Verkettung hat die Form f(x) = h(g(x)): Die innere Funktion g liefert den Eingang für die äußere Funktion h. Die Kettenregel lautet ${math(row(mi("f"),mo("′"),mo("("),mi("x"),mo(")"),mo("="),mi("h"),mo("′"),mo("("),mi("g"),mo("("),mi("x"),mo(")"),mo(")"),mo("·"),mi("g"),mo("′"),mo("("),mi("x"),mo(")")),"f Strich gleich h Strich von g von x mal g Strich von x")}.</p>
+              <p>Für die e-Funktion besonders wichtig: ${math(row(mo("("),sup(mi("e"),row(mi("g"),mo("("),mi("x"),mo(")"))),mo(")"),mo("′"),mo("="),mi("g"),mo("′"),mo("("),mi("x"),mo(")"),mo("·"),sup(mi("e"),row(mi("g"),mo("("),mi("x"),mo(")")))),"e hoch g von x abgeleitet gleich g Strich von x mal e hoch g von x")}.</p>
+              <p>Bei (mx + n) · eᵏˣ brauchst du außen die Produktregel und innerhalb des Exponentialfaktors die Kettenregel. Eine Faktorform der Ableitung macht Nullstellen und Vorzeichen oft leichter sichtbar.</p>
+            `,
+            terms:["Verkettung","äußere Funktion","innere Funktion","innere Ableitung","Kettenregel","e-Funktion"],
+            memo:"Bei einer Verkettung: äußere Ableitung an der inneren Stelle mal innere Ableitung.",
+            example:{
+              situation:`Leite ${math(row(mi("f"),mo("("),mi("t"),mo(")"),mo("="),mn("7"),mo("·"),sup(mi("e"),row(mo("−"),mn("0,4"),mi("t"))),mo("+"),mn("2")),"f von t gleich sieben mal e hoch minus 0 Komma 4 t plus zwei")} ab.`,
+              steps:[
+                "Äußere Funktion: eᵘ; ihre Ableitung ist eᵘ.",
+                "Innere Funktion: u(t) = −0,4t; innere Ableitung u′(t) = −0,4.",
+                "Der konstante Faktor 7 bleibt erhalten; die Konstante 2 fällt weg.",
+                `Damit ${math(row(mi("f"),mo("′"),mo("("),mi("t"),mo(")"),mo("="),mo("−"),mn("2,8"),mo("·"),sup(mi("e"),row(mo("−"),mn("0,4"),mi("t")))),"f Strich von t gleich minus 2 Komma 8 mal e hoch minus 0 Komma 4 t")}.`
+              ],
+              answer:"Die Ableitung ist überall negativ; f fällt und nähert sich dem Endwert 2.",
+              pitfall:"Die innere Ableitung −0,4 muss mitmultipliziert werden."
+            },
+            lab:{tab:"der",label:"Im Ableitungs-Labor k verändern. Beobachten, wie Vorzeichen und Betrag von k die Tangentensteigung beeinflussen."},
+            exercise:{
+              type:"number",
+              prompt:"Berechne f′(2) für f(t) = 7 · e⁻⁰·⁴ᵗ + 2. Runde auf drei Dezimalstellen.",
+              answer:-1.258,
+              tolerance:0.003,
+              unit:"",
+              hint:"Nutze f′(t) = −2,8 · e⁻⁰·⁴ᵗ.",
+              success:"Richtig: f′(2) = −2,8 · e⁻⁰·⁸ ≈ −1,258."
+            },
+            tasks:[
+              {type:"Verständnis",text:"Benenne äußere und innere Funktion von (3x − 1)⁵."},
+              {type:"Rechnung",text:"Leite f(x) = (3x − 1)⁵ ab."},
+              {type:"Transfer",text:"Übertrage die Kettenregel auf einen quadratischen Exponenten und leite g(x) = eˣ² ab."},
+              {type:"Anwendung",text:"Leite h(t) = t · e⁻⁰·³ᵗ ab und klammere den Exponentialfaktor aus."},
+              {type:"Reflexion",text:"Erkläre, warum eᵍ⁽ˣ⁾ nie null ist und wie das beim Lösen von h′(t) = 0 hilft."}
+            ],
+            helps:[
+              "Denkimpuls: Ersetze den inneren Ausdruck zunächst durch u.",
+              `Formel: ${math(row(mo("("),mi("h"),mo("∘"),mi("g"),mo(")"),mo("′"),mo("="),mo("("),mi("h"),mo("′"),mo("∘"),mi("g"),mo(")"),mo("·"),mi("g"),mo("′")),"h verkettet mit g abgeleitet gleich h Strich verkettet mit g mal g Strich")}.`,
+              "Zwischenschritt: Für h gilt Produktregel mit v′(t) = −0,3e⁻⁰·³ᵗ."
+            ],
+            solutions:[
+              "Innere Funktion g(x) = 3x − 1; äußere Funktion h(u) = u⁵.",
+              "f′(x) = 5(3x − 1)⁴ · 3 = 15(3x − 1)⁴.",
+              "g′(x) = 2x · eˣ².",
+              "h′(t) = e⁻⁰·³ᵗ − 0,3t e⁻⁰·³ᵗ = e⁻⁰·³ᵗ(1 − 0,3t).",
+              "eᵍ⁽ˣ⁾ ist immer positiv. Ein Produkt eᵍ⁽ˣ⁾ · Klammer ist daher genau dann null, wenn die Klammer null ist."
+            ],
+            errors:[
+              "Die innere Ableitung vergessen.",
+              "Bei eᵍ⁽ˣ⁾ den Exponentialterm selbst verändern oder den Exponenten einfach nach vorn schreiben.",
+              "Produkt- und Kettenregel gegeneinander ausspielen, obwohl beide benötigt werden."
+            ],
+            check:{
+              question:"Was ist die Ableitung von e³ˣ?",
+              choices:["e³ˣ","3e³ˣ","x · e³ˣ"],
+              correct:1,
+              explanation:"Die innere Funktion 3x hat die Ableitung 3; sie wird mit e³ˣ multipliziert."
+            },
+            summary:["Verkettung in äußere und innere Funktion zerlegen.","Innere Ableitung immer mitnehmen.","Produkt- und Kettenregel können gleichzeitig auftreten."],
+            exit:"Erkläre die Kettenregel ohne Formel mit den Wörtern außen, innen und multiplizieren.",
+            sources:`${sourceLabels.djp}; ${sourceLabels.nrw}; ${sourceLabels.calc}; ${sourceLabels.leifi}.`
+          }
+        ]
+      },
+      {
+        id:"kapitel-6",
+        number:6,
+        title:"Extremwertaufgaben",
+        subtitle:"Optimale Lösungen berechnen, Randwerte prüfen und im Sachzusammenhang bewerten.",
+        weeks:[
+          {
+            id:"woche-11",
+            week:"Lernwoche 11",
+            title:"Extremstellen finden und prüfen",
+            goals:[
+              "Ich kann notwendige und hinreichende Kriterien unterscheiden.",
+              "Ich kann stationäre Stellen berechnen und als Maximum, Minimum oder Sattelstelle einordnen.",
+              "Ich kann lokale und globale Extremwerte auseinanderhalten."
+            ],
+            problem:"f′(x) = 0 liefert eine waagerechte Tangente. Warum ist damit noch nicht bewiesen, dass dort ein Hoch- oder Tiefpunkt liegt?",
+            ground:`
+              <p>Für einen inneren Extrempunkt einer differenzierbaren Funktion ist ${math(row(mi("f"),mo("′"),mo("("),sub(mi("x"),mi("E")),mo(")"),mo("="),mn("0")),"f Strich von x E gleich null")} notwendig. Die Gleichung liefert aber nur <b>Kandidaten</b>.</p>
+              <p>Zur Prüfung kannst du den Vorzeichenwechsel von f′ verwenden: + nach − bedeutet Hochpunkt, − nach + Tiefpunkt. Alternativ gilt bei f′(xE) = 0: f″(xE) &lt; 0 spricht für ein lokales Maximum, f″(xE) &gt; 0 für ein lokales Minimum. Bei f″(xE) = 0 ist keine Entscheidung getroffen.</p>
+              <p>Für ein globales Extremum auf einem abgeschlossenen Intervall musst du zusätzlich die Randwerte vergleichen. In Sachaufgaben ist der sinnvolle Definitionsbereich Teil der Lösung.</p>
+            `,
+            terms:["stationäre Stelle","notwendiges Kriterium","hinreichendes Kriterium","Vorzeichenwechsel","lokales Extremum","globales Extremum","Randwert"],
+            memo:"f′(x) = 0 findet Kandidaten; erst Vorzeichenwechsel, zweite Ableitung und Randvergleich entscheiden.",
+            example:{
+              situation:`Untersuche ${math(row(mi("f"),mo("("),mi("x"),mo(")"),mo("="),mo("−"),mn("2"),sup(mi("x"),mn("2")),mo("+"),mn("8"),mi("x"),mo("+"),mn("3")),"f von x gleich minus zwei x Quadrat plus acht x plus drei")} auf Extrempunkte.`,
+              steps:[
+                "f′(x) = −4x + 8. Notwendige Bedingung: −4x + 8 = 0, also x = 2.",
+                "f″(x) = −4. Damit ist f″(2) < 0.",
+                "Es liegt ein lokales Maximum vor.",
+                "Funktionswert: f(2) = −8 + 16 + 3 = 11."
+              ],
+              answer:"Der Hochpunkt liegt bei H(2 | 11).",
+              pitfall:"Nicht bei x = 2 stoppen; der y-Wert und die Art des Extremums gehören zur Antwort."
+            },
+            lab:{tab:"der",label:"Im Ableitungs-Labor eine Stelle mit möglichst waagerechter Tangente einstellen und mit dem Vorzeichen der Steigung links und rechts vergleichen."},
+            exercise:{
+              type:"choice",
+              prompt:"f′ wechselt an x = 3 von negativ zu positiv. Was liegt vor?",
+              choices:["lokales Maximum","lokales Minimum","keine Aussage möglich"],
+              correct:1,
+              success:"Richtig: Die Funktion fällt vor x = 3 und steigt danach – ein lokales Minimum.",
+              hint:"Lies negativ als fallend und positiv als steigend."
+            },
+            tasks:[
+              {type:"Verständnis",text:"Erkläre notwendiges und hinreichendes Kriterium in eigenen Worten."},
+              {type:"Rechnung",text:"Bestimme die Extrempunkte von f(x) = x³ − 3x² + 2."},
+              {type:"Reflexion",text:"Untersuche f(x) = x⁴ an x = 0. Warum versagt dort das einfache Kriterium mit f″?"},
+              {type:"Anwendung",text:"Bestimme das globale Maximum von g(x) = −x² + 4x auf [0; 5]."},
+              {type:"Transfer",text:"Konstruiere eine Funktion mit f′(0) = 0, aber ohne Extrempunkt bei x = 0."}
+            ],
+            helps:[
+              "Denkimpuls: Löse zuerst f′ = 0 und prüfe jede gefundene Stelle.",
+              "Strategie: f′(x) = 3x(x − 2) bei Aufgabe 2; vergleiche für Aufgabe 4 inneren Kandidaten und beide Ränder.",
+              "Zwischenschritt: Bei x⁴ sind f′(0) = 0 und f″(0) = 0; betrachte Vorzeichen von f′ oder Funktionswerte."
+            ],
+            solutions:[
+              "Notwendig heißt: Ohne f′ = 0 kann ein glatter innerer Extrempunkt nicht vorliegen. Hinreichend heißt: Eine zusätzliche Prüfung beweist die Art des Punktes.",
+              "f′ = 3x² − 6x = 3x(x − 2). Kandidaten 0 und 2. f″ = 6x − 6: bei 0 negativ → H(0 | 2); bei 2 positiv → T(2 | −2).",
+              "f′(0) = 0 und f″(0) = 0 liefern keine Entscheidung. Da x⁴ ≥ 0 und f(0) = 0, liegt dennoch ein globales Minimum vor.",
+              "g′ = −2x + 4, Kandidat x = 2 mit g(2) = 4. Ränder: g(0) = 0, g(5) = −5. Globales Maximum: 4 bei x = 2.",
+              "Beispiel f(x) = x³. Dann f′(0) = 0, aber die Funktion steigt auf beiden Seiten weiter; bei 0 liegt ein Sattelpunkt."
+            ],
+            errors:[
+              "f′ = 0 als vollständigen Extremwertnachweis behandeln.",
+              "Nur x-Koordinate nennen und f(x) nicht berechnen.",
+              "Bei globalen Extrema Randwerte vergessen."
+            ],
+            check:{
+              question:"Was folgt aus f′(2) = 0 und f″(2) < 0?",
+              choices:["lokales Maximum bei x = 2","lokales Minimum bei x = 2","Nullstelle von f bei x = 2"],
+              correct:0,
+              explanation:"Eine negative zweite Ableitung bedeutet dort lokale Rechtskrümmung; die stationäre Stelle ist ein Hochpunkt."
+            },
+            summary:["Stationäre Stellen sind Kandidaten.","Art des Extremums durch Vorzeichen oder zweite Ableitung prüfen.","Globale Extrema verlangen zusätzlich Randwerte."],
+            exit:"Formuliere einen vollständigen Prüfsatz für einen mit f′ = 0 gefundenen Kandidaten.",
+            sources:`${sourceLabels.djp}; ${sourceLabels.nrw}; ${sourceLabels.calc}.`
+          },
+          {
+            id:"woche-12",
+            week:"Lernwoche 12",
+            title:"Sachprobleme optimieren",
+            goals:[
+              "Ich kann aus einer Sachsituation Zielgröße, Variable und Nebenbedingungen bestimmen.",
+              "Ich kann eine Zielfunktion samt sinnvollem Definitionsbereich aufstellen.",
+              "Ich kann das mathematische Optimum mit Einheit und Sachbezug bewerten."
+            ],
+            problem:"Aus einem Blech soll eine offene Schachtel mit möglichst großem Volumen entstehen. Welche Einschnittlänge ist optimal – und welche Werte sind überhaupt möglich?",
+            ground:`
+              <p>Eine Extremwertaufgabe beginnt nicht mit dem Ableiten, sondern mit dem <b>Modellieren</b>: Skizze, Variable, Zielgröße, Nebenbedingungen und Definitionsbereich. Erst danach entsteht eine Zielfunktion mit nur einer Variablen.</p>
+              <p>Der Standardweg lautet: Zielgröße festlegen → Nebenbedingungen einsetzen → Definitionsbereich bestimmen → ableiten → Kandidaten berechnen → Art und Randwerte prüfen → Ergebnis deuten.</p>
+              <p>Bei der offenen Schachtel aus einem L × B großen Rechteck gilt ${math(row(mi("V"),mo("("),mi("x"),mo(")"),mo("="),mi("x"),mo("·"),mo("("),mi("L"),mo("−"),mn("2"),mi("x"),mo(")"),mo("·"),mo("("),mi("B"),mo("−"),mn("2"),mi("x"),mo(")")),"V von x gleich x mal L minus zwei x mal B minus zwei x")}. Sinnvoll ist 0 &lt; x &lt; min(L,B)/2.</p>
+            `,
+            terms:["Zielgröße","Zielfunktion","Nebenbedingung","Definitionsbereich","Kandidat","Randwert","Plausibilität"],
+            memo:"Bei Sachoptimierung entscheidet der Definitionsbereich mit: Ein rechnerischer Extremwert außerhalb des Sachbereichs ist keine Lösung.",
+            example:{
+              situation:"Ein Blech ist 30 cm lang und 20 cm breit. An jeder Ecke wird ein Quadrat der Seitenlänge x entfernt.",
+              steps:[
+                `Zielfunktion: ${math(row(mi("V"),mo("("),mi("x"),mo(")"),mo("="),mi("x"),mo("·"),mo("("),mn("30"),mo("−"),mn("2"),mi("x"),mo(")"),mo("·"),mo("("),mn("20"),mo("−"),mn("2"),mi("x"),mo(")")),"V von x gleich x mal 30 minus zwei x mal 20 minus zwei x")}.`,
+                "Sachbereich: 0 cm < x < 10 cm.",
+                "Ausmultipliziert: V(x) = 600x − 100x² + 4x³; V′(x) = 600 − 200x + 12x².",
+                "V′(x) = 0 liefert x ≈ 3,924 cm und x ≈ 12,743 cm. Nur der erste Wert liegt im Sachbereich.",
+                "Randwerte nähern sich 0 cm³; der innere Kandidat ist das Maximum."
+              ],
+              answer:"Optimal sind x ≈ 3,924 cm und Vmax ≈ 1056,31 cm³.",
+              pitfall:"Die zweite algebraische Lösung x ≈ 12,743 cm ist für ein 20 cm breites Blech unmöglich."
+            },
+            lab:{tab:"opt",label:"Im Optimierungs-Labor Blechmaße und Einschnitt verändern. Vor dem Ablesen eine Vermutung zum Maximum formulieren."},
+            exercise:{
+              type:"number",
+              prompt:"Welches Volumen besitzt die 30 cm × 20 cm-Schachtel bei x = 3 cm?",
+              answer:1008,
+              tolerance:0.01,
+              unit:"cm³",
+              hint:"Berechne 3 · (30 − 6) · (20 − 6).",
+              success:"Richtig: 3 · 24 · 14 = 1008 cm³."
+            },
+            tasks:[
+              {type:"Verständnis",text:"Warum muss bei der Schachtel x < 10 cm gelten?"},
+              {type:"Transfer",text:"Übertrage das Schachtelmodell: Stelle V(x) für ein Blech 40 cm × 24 cm auf und gib den Sachbereich an."},
+              {type:"Rechnung",text:"Bestimme für Aufgabe 2 die stationären Stellen und wähle den sinnvollen Kandidaten."},
+              {type:"Anwendung",text:"Vergleiche das optimale Volumen mit dem Volumen bei x = 4 cm."},
+              {type:"Reflexion",text:"Nenne zwei reale Gründe, warum das mathematisch optimale Maß in der Fertigung angepasst werden könnte."}
+            ],
+            helps:[
+              "Denkimpuls: Nach dem Ausschneiden müssen Länge und Breite der Grundfläche positiv bleiben.",
+              `Strategie: ${math(row(mi("V"),mo("="),mi("x"),mo("("),mn("40"),mo("−"),mn("2"),mi("x"),mo(")"),mo("("),mn("24"),mo("−"),mn("2"),mi("x"),mo(")")),"V gleich x mal 40 minus 2x mal 24 minus 2x")}; danach ausmultiplizieren und ableiten.`,
+              "Zwischenschritt: V(x) = 960x − 128x² + 4x³ und V′(x) = 960 − 256x + 12x²."
+            ],
+            solutions:[
+              "Die kleinere Blechseite ist 20 cm. Nach beidseitigem Einschnitt bleibt 20 − 2x > 0, also x < 10 cm.",
+              "V(x) = x(40 − 2x)(24 − 2x), Sachbereich 0 < x < 12 cm.",
+              "V′ = 12x² − 256x + 960. Die Lösungen sind x ≈ 4,855 cm und x ≈ 16,479 cm. Nur x ≈ 4,855 cm ist sachlich zulässig und liefert das Maximum.",
+              "Optimal: V(4,855) ≈ 2101,46 cm³. Bei x = 4 cm: V(4) = 4 · 32 · 16 = 2048 cm³. Das Optimum liefert rund 53,46 cm³ mehr.",
+              "Materialdicke, Biegeradius, Werkzeugbreite, Stabilität, Standardmaße oder Fertigungstoleranzen können eine Anpassung verlangen."
+            ],
+            errors:[
+              "Ohne Skizze und Sachbereich sofort ableiten.",
+              "Alle Lösungen von V′ = 0 als real möglich übernehmen.",
+              "Nur x angeben, aber maximales Volumen und Einheit weglassen."
+            ],
+            check:{
+              question:"Was gehört zwingend vor das Ableiten einer Sachoptimierung?",
+              choices:["Nur ein Taschenrechnerwert","Zielfunktion und sinnvoller Definitionsbereich","Die zweite Ableitung ohne Funktion"],
+              correct:1,
+              explanation:"Ohne Zielfunktion und Sachbereich ist nicht klar, was optimiert wird und welche Werte zulässig sind."
+            },
+            summary:["Sachproblem zuerst modellieren.","Kandidaten und Randwerte im Sachbereich vergleichen.","Optimum mit Einheit und realer Bedeutung bewerten."],
+            exit:"Formuliere einen Antwortsatz zum Schachtelbeispiel, der sowohl Einschnittlänge als auch maximales Volumen nennt.",
+            sources:`${sourceLabels.djp}; ${sourceLabels.nrw}; ${sourceLabels.calc}.`
+          }
+        ]
+      },
+      {
+        id:"kapitel-7",
+        number:7,
+        title:"Steckbrief und Modellkritik",
+        subtitle:"Bedingungen in Gleichungen übersetzen, Modelle prüfen und Grenzen begründet benennen.",
+        weeks:[
+          {
+            id:"woche-13",
+            week:"Lernwoche 13",
+            title:"Steckbriefaufgaben lösen",
+            goals:[
+              "Ich kann Punkt-, Steigungs-, Extrem- und Wendebedingungen in Gleichungen übersetzen.",
+              "Ich kann die passende Zahl unbekannter Parameter und Bedingungen bestimmen.",
+              "Ich kann ein Gleichungssystem lösen und alle Bedingungen rückprüfen."
+            ],
+            problem:"Eine Parabel geht durch zwei Punkte und hat an einer Stelle eine waagerechte Tangente. Wie werden diese sprachlichen Angaben zu Gleichungen für a, b und c?",
+            ground:`
+              <p>Bei einer Steckbriefaufgabe ist die Funktion nicht vollständig bekannt. Du setzt eine passende Form mit Parametern an, bildest nötige Ableitungen und übersetzt jede Textinformation.</p>
+              <p>Ein Punkt P(xP | yP) liefert ${math(row(mi("f"),mo("("),sub(mi("x"),mi("P")),mo(")"),mo("="),sub(mi("y"),mi("P"))),"f von x P gleich y P")}. Eine gegebene Steigung m liefert ${math(row(mi("f"),mo("′"),mo("("),sub(mi("x"),mi("T")),mo(")"),mo("="),mi("m")),"f Strich von x T gleich m")}. Ein Extrempunkt fordert zusätzlich f′(xE) = 0; ein Wendepunkt benötigt f″(xW) = 0 plus Krümmungswechsel.</p>
+              <p>Für drei unbekannte Koeffizienten brauchst du im Allgemeinen drei unabhängige Bedingungen. Nach dem Lösen setzt du die Koeffizienten in alle ursprünglichen Bedingungen ein.</p>
+            `,
+            terms:["Steckbrief","Parameteransatz","Punktbedingung","Steigungsbedingung","Extrembedingung","Gleichungssystem","Rückprobe"],
+            memo:"Jede unabhängige Information liefert eine Gleichung; so viele unbekannte Parameter wie unabhängige Gleichungen werden benötigt.",
+            example:{
+              situation:"Gesucht ist eine quadratische Funktion f(x) = ax² + bx + c mit f(0) = 1, f(2) = 5 und waagerechter Tangente bei x = 2.",
+              steps:[
+                "f(0) = 1 liefert c = 1.",
+                "f(2) = 5 liefert 4a + 2b + c = 5, also 4a + 2b = 4.",
+                "f′(x) = 2ax + b. Aus f′(2) = 0 folgt 4a + b = 0.",
+                "Subtraktion der Gleichungen liefert b = 4; dann a = −1."
+              ],
+              answer:`Die Funktion lautet ${math(row(mi("f"),mo("("),mi("x"),mo(")"),mo("="),mo("−"),sup(mi("x"),mn("2")),mo("+"),mn("4"),mi("x"),mo("+"),mn("1")),"f von x gleich minus x Quadrat plus vier x plus eins")}. Die Rückprobe erfüllt alle drei Bedingungen.`,
+              pitfall:"„Waagerechte Tangente bei x = 2“ bedeutet f′(2) = 0, nicht f(2) = 0."
+            },
+            lab:{tab:"der",label:"Im Ableitungs-Labor eine Tangentenstelle untersuchen und die Informationen Punktwert plus Steigung als zwei Steckbriefbedingungen lesen."},
+            exercise:{
+              type:"number",
+              prompt:"Für f(x) = ax² + bx + c gelten f(0)=2, f(1)=5 und f′(1)=4. Wie groß ist a+b+c?",
+              answer:5,
+              tolerance:0.001,
+              unit:"",
+              hint:"a+b+c ist direkt f(1). Du musst das Gleichungssystem nicht vollständig lösen.",
+              success:"Richtig: Wegen f(1) = a + b + c = 5 ist die Summe 5."
+            },
+            tasks:[
+              {type:"Verständnis",text:"Übersetze: Der Graph geht durch P(3 | −2), hat bei x = 1 die Steigung 4 und besitzt bei x = 5 einen Extrempunkt."},
+              {type:"Rechnung",text:"Bestimme f(x) = ax² + bx + c mit f(0)=0, f(1)=2 und f′(1)=0."},
+              {type:"Transfer",text:"Übertrage die Parameterzählung: Wie viele unabhängige Bedingungen brauchst du im Allgemeinen für ein Polynom dritten Grades? Begründe."},
+              {type:"Anwendung",text:"Formuliere die Bedingungen für eine kubische Übergangsfunktion, die durch A(0|0) und B(4|2) geht und an beiden Punkten waagerechte Tangenten besitzt."},
+              {type:"Reflexion",text:"Warum ist die Rückprobe bei einem gelösten Gleichungssystem didaktisch und fachlich wichtig?"}
+            ],
+            helps:[
+              "Denkimpuls: Punkt → f einsetzen; Steigung → f′ einsetzen; Extremstelle → f′ = 0.",
+              "Strategie: Ein Polynom n-ten Grades besitzt n + 1 Koeffizienten.",
+              "Zwischenschritt: Für Aufgabe 2 gilt c = 0, a + b = 2 und 2a + b = 0."
+            ],
+            solutions:[
+              "f(3) = −2; f′(1) = 4; f′(5) = 0. Für einen nachgewiesenen Extrempunkt wäre zusätzlich eine Artprüfung nötig.",
+              "Aus den Gleichungen folgt a = −2, b = 4, c = 0. Also f(x) = −2x² + 4x.",
+              "Ein allgemeines Polynom dritten Grades ax³ + bx² + cx + d hat vier unbekannte Koeffizienten; deshalb sind vier unabhängige Bedingungen nötig.",
+              "f(0)=0, f(4)=2, f′(0)=0 und f′(4)=0.",
+              "Die Rückprobe entdeckt Rechen- und Übersetzungsfehler und zeigt, ob wirklich alle ursprünglichen Informationen erfüllt sind."
+            ],
+            errors:[
+              "Punkt- und Nullstellenbedingung verwechseln.",
+              "Bei einer Tangente den Funktionswert statt der Ableitung einsetzen.",
+              "Zu wenige oder voneinander abhängige Bedingungen verwenden."
+            ],
+            check:{
+              question:"Welche Gleichung beschreibt einen Hoch- oder Tiefpunkt bei x = 4 als notwendige Bedingung?",
+              choices:["f(4) = 0","f′(4) = 0","f″(4) = 0"],
+              correct:1,
+              explanation:"Eine waagerechte Tangente am inneren Extrempunkt bedeutet f′(4) = 0. Die Art muss anschließend geprüft werden."
+            },
+            summary:["Textinformationen systematisch in Gleichungen übersetzen.","Anzahl der Bedingungen an Zahl der Parameter anpassen.","Jede Bedingung am Ende rückprüfen."],
+            exit:"Schreibe je eine Punkt-, Steigungs- und Extrembedingung für frei gewählte Zahlen auf.",
+            sources:`${sourceLabels.djp}; ${sourceLabels.nrw}; ${sourceLabels.calc}.`
+          },
+          {
+            id:"woche-14",
+            week:"Lernwoche 14",
+            title:"Modelle beurteilen, Residuen und numerische Werkzeuge",
+            goals:[
+              "Ich kann Abweichungen zwischen Messwert und Modell berechnen und deuten.",
+              "Ich kann Interpolation und Extrapolation unterscheiden.",
+              "Ich kann Regression und Newton-Verfahren als Werkzeuge einordnen, ohne Modellkritik zu überspringen."
+            ],
+            problem:"Ein Exponentialmodell passt im Messbereich gut. Darf es deshalb auch zehn Jahre in die Zukunft fortgeschrieben werden?",
+            ground:`
+              <p>Ein Modell ist nicht einfach „richtig“ oder „falsch“. Du beurteilst <b>Passung</b>, <b>Annahmen</b>, <b>Gültigkeitsbereich</b>, <b>Einheiten</b> und <b>fachliche Plausibilität</b>. Das Residuum ist Messwert minus Modellwert. Ein Muster in den Residuen kann auf einen ungeeigneten Funktionstyp hindeuten.</p>
+              <p><b>Interpolation</b> schätzt innerhalb des beobachteten Datenbereichs; <b>Extrapolation</b> sagt außerhalb voraus und ist meist unsicherer. Ein kleiner Fehler im Modellparameter kann sich bei exponentieller Fortsetzung stark vergrößern.</p>
+              <p>Eine Regression bestimmt Parameter, die insgesamt gut zu Daten passen. Das Newton-Verfahren nähert eine Nullstelle mit Tangenten an: ${math(row(sub(mi("x"),row(mi("n"),mo("+"),mn("1"))),mo("="),sub(mi("x"),mi("n")),mo("−"),frac(row(mi("f"),mo("("),sub(mi("x"),mi("n")),mo(")")),row(mi("f"),mo("′"),mo("("),sub(mi("x"),mi("n")),mo(")")))),"x n plus eins gleich x n minus f von x n durch f Strich von x n")}. Beide Werkzeuge liefern Zahlen, aber keine automatische Sachbegründung.</p>
+            `,
+            terms:["Residuum","relative Abweichung","Interpolation","Extrapolation","Regression","Newton-Verfahren","Modellgrenze"],
+            memo:"Ein gutes Rechenergebnis ist noch kein gutes Modell: Prüfe Datenbereich, Residuen, Annahmen und Sachlogik.",
+            example:{
+              situation:"Ein Modell sagt für einen Zeitpunkt 78 Einheiten voraus; gemessen werden 82 Einheiten.",
+              steps:[
+                "Residuum = Messwert − Modellwert = 82 − 78 = 4 Einheiten.",
+                `Relative Abweichung bezogen auf den Messwert: ${math(row(frac(mn("4"),mn("82")),mo("·"),mn("100"),mo("%"),mo("≈"),mn("4,88"),mo("%")),"vier durch 82 mal hundert Prozent ungefähr 4 Komma 88 Prozent")}.`,
+                "Das Vorzeichen ist positiv: Der Messwert liegt über der Modellprognose.",
+                "Ein einzelnes Residuum bewertet noch nicht das ganze Modell; mehrere Residuen und ihre Verteilung sind nötig."
+              ],
+              answer:"Die Prognose liegt 4 Einheiten beziehungsweise rund 4,88 % unter dem Messwert.",
+              pitfall:"Relative Abweichung immer mit klar benannter Bezugsgröße angeben."
+            },
+            lab:{tab:"fit",label:"Im Modellfinder zwei Punkte passend machen und dann kritisch notieren, warum zwei Punkte allein die Modellart nicht beweisen."},
+            exercise:{
+              type:"number",
+              prompt:"Messwert 52, Modellwert 50: Wie groß ist die absolute relative Abweichung bezogen auf den Messwert in Prozent? Runde auf zwei Dezimalstellen.",
+              answer:3.85,
+              tolerance:0.02,
+              unit:"%",
+              hint:"Berechne |52 − 50| ÷ 52 · 100 %.",
+              success:"Richtig: 2/52 · 100 % ≈ 3,85 %."
+            },
+            tasks:[
+              {type:"Verständnis",text:"Erkläre Interpolation und Extrapolation mit einem eigenen Beispiel."},
+              {type:"Reflexion",text:"Die Residuen einer Anpassung sind nacheinander +5, +3, 0, −3, −5. Was könnte dieses Muster bedeuten?"},
+              {type:"Rechnung",text:"Messwert 120, Modellwert 114: Berechne Residuum und relative Abweichung bezogen auf den Messwert."},
+              {type:"Anwendung",text:"Nenne vier fachliche Fragen, bevor du ein Wachstumsmodell weit in die Zukunft fortschreibst."},
+              {type:"Transfer",text:"Erkläre, warum Regression oder Newton-Verfahren mathematische Urteilsfähigkeit nicht ersetzen."}
+            ],
+            helps:[
+              "Denkimpuls: Innerhalb des Messbereichs ist weniger gewagt als außerhalb.",
+              "Strategie: Suche bei Residuen nicht nur ihre Größe, sondern ein systematisches Vorzeichen- oder Kurvenmuster.",
+              "Zwischenschritt: Aufgabe 3: Residuum = 120 − 114 = 6; relative Abweichung = 6/120."
+            ],
+            solutions:[
+              "Interpolation: Schätzung zwischen bekannten Messzeitpunkten, zum Beispiel Temperatur bei 5 min aus Daten von 0 bis 10 min. Extrapolation: Vorhersage außerhalb, zum Beispiel bei 30 min.",
+              "Der systematische Wechsel von positiv zu negativ zeigt, dass das Modell die Krümmung oder Lage der Daten möglicherweise verfehlt. Zufällige Residuen wären eher ohne klares Muster verteilt.",
+              "Residuum = +6 Einheiten. Relative Abweichung = 6/120 · 100 % = 5 %.",
+              "Bleibt der Mechanismus gleich? Gibt es Ressourcen- oder Sättigungsgrenzen? Liegt die Prognose weit außerhalb der Daten? Wie empfindlich ist das Ergebnis gegenüber Parameterfehlern?",
+              "Die Verfahren optimieren oder nähern nach mathematischen Regeln. Sie entscheiden nicht, ob Datenqualität, Modellart, Einheiten und Sachannahmen passend sind."
+            ],
+            errors:[
+              "Eine gute Anpassung im Messbereich als Garantie für ferne Zukunftsprognosen behandeln.",
+              "Residuen nur betragsmäßig betrachten und systematische Muster übersehen.",
+              "Softwareausgaben ohne Parameterdeutung, Genauigkeit oder Sachprüfung übernehmen."
+            ],
+            check:{
+              question:"Welche Aussage ist fachlich am besten?",
+              choices:["Regression beweist den wahren Naturzusammenhang.","Extrapolation ist meist sicherer als Interpolation.","Ein Modell muss trotz guter Anpassung auf Annahmen und Gültigkeitsbereich geprüft werden."],
+              correct:2,
+              explanation:"Gute numerische Passung ist wichtig, ersetzt aber keine Prüfung des Mechanismus und des Gültigkeitsbereichs."
+            },
+            summary:["Residuen zeigen Abweichungen und mögliche Muster.","Extrapolation ist besonders kritisch.","Numerische Werkzeuge unterstützen, aber begründen kein Modell automatisch."],
+            exit:"Nenne die drei wichtigsten Fragen, mit denen du künftig jedes mathematische Sachmodell beurteilst.",
+            sources:`${sourceLabels.djp}; ${sourceLabels.nrw}; ${sourceLabels.exp}; ${sourceLabels.calc}; ${sourceLabels.leifi}.`
+          }
+        ]
+      }
+    ];
+
+    const finalQuizData = [
+      {
+        question:"Woran erkennst du in einer Tabelle bei gleichen Zeitabständen exponentielles Verhalten?",
+        choices:["Konstante Differenzen","Annähernd konstante Quotienten","Nur positive Werte"],
+        correct:1,
+        explanation:"Ein konstanter Quotient entspricht demselben Multiplikationsfaktor pro Schritt."
+      },
+      {
+        question:"Welcher Faktor gehört zu 18 % Abnahme?",
+        choices:["0,18","0,82","1,18"],
+        correct:1,
+        explanation:"Nach der Abnahme bleiben 82 % = 0,82 des vorherigen Werts."
+      },
+      {
+        question:"Was ist bei A · eᵏᵗ + c der Startwert?",
+        choices:["A","c","A + c"],
+        correct:2,
+        explanation:"Bei t = 0 ist e⁰ = 1, also f(0) = A + c."
+      },
+      {
+        question:"Welches Werkzeug löst eine Gleichung mit der Variablen im Exponenten?",
+        choices:["Logarithmus","Produktregel","Zweite Ableitung"],
+        correct:0,
+        explanation:"Der Logarithmus ist die Umkehrfunktion der Exponentialfunktion."
+      },
+      {
+        question:"Welche Aussage zur Produktregel stimmt?",
+        choices:["(uv)′ = u′v′","(uv)′ = u′v + uv′","(uv)′ = u + v"],
+        correct:1,
+        explanation:"Beide veränderlichen Faktoren tragen jeweils einen Summanden zur Änderung bei."
+      },
+      {
+        question:"Was wird bei der Ableitung von eᵍ⁽ˣ⁾ häufig vergessen?",
+        choices:["Die innere Ableitung g′(x)","Der Logarithmus","Der Definitionsbereich ℝ"],
+        correct:0,
+        explanation:"Nach der Kettenregel wird eᵍ⁽ˣ⁾ mit g′(x) multipliziert."
+      },
+      {
+        question:"Warum reicht f′(x) = 0 bei einer Extremwertaufgabe nicht aus?",
+        choices:["Weil man nicht ableiten darf","Weil Art, Sachbereich und Randwerte noch geprüft werden müssen","Weil ein Extremwert keine Einheit hat"],
+        correct:1,
+        explanation:"Stationäre Stellen sind nur Kandidaten; erst weitere Prüfungen liefern die vollständige Lösung."
+      },
+      {
+        question:"Was ist bei einer weitreichenden Extrapolation besonders wichtig?",
+        choices:["Nur viele Nachkommastellen","Annahmen, Datenbereich und Modellgrenzen","Die Farbe des Graphen"],
+        correct:1,
+        explanation:"Außerhalb des Messbereichs können kleine Parameterfehler und veränderte Bedingungen große Folgen haben."
+      }
+    ];
+
+    const glossaryData = [
+      ["Asymptote","Gerade, der sich ein Graph immer weiter annähert."],
+      ["Definitionsbereich","Alle Werte, die für die unabhängige Variable zulässig sind."],
+      ["e-Funktion","Exponentialfunktion mit Basis e; ihre Ableitung ist wieder die e-Funktion."],
+      ["Exponentialfunktion","Funktion, bei der die Variable im Exponenten steht."],
+      ["Exponentieller Zerfall","Abnahme um denselben Anteil in gleichen Zeitabschnitten."],
+      ["Extrempunkt","Lokaler oder globaler Hoch- beziehungsweise Tiefpunkt."],
+      ["Faktor","Zahl, mit der ein Wert in jedem Schritt multipliziert wird."],
+      ["Halbwertszeit","Zeitspanne, nach der ein Exponentialanteil auf die Hälfte gesunken ist."],
+      ["Interpolation","Schätzung innerhalb des beobachteten Datenbereichs."],
+      ["Kettenregel","Ableitungsregel für Verkettungen: äußere mal innere Ableitung."],
+      ["Logarithmus","Umkehrung des Potenzierens; beantwortet die Frage nach dem Exponenten."],
+      ["Modell","Begründete, vereinfachte mathematische Beschreibung einer realen Situation."],
+      ["Modellgrenze","Bedingung oder Bereich, außerhalb dessen ein Modell unzuverlässig wird."],
+      ["Newton-Verfahren","Numerisches Tangentenverfahren zur Annäherung einer Nullstelle."],
+      ["Produktregel","Ableitungsregel für ein Produkt zweier veränderlicher Funktionen."],
+      ["Regression","Verfahren zur Anpassung von Modellparametern an Messdaten."],
+      ["Residuum","Messwert minus zugehöriger Modellwert."],
+      ["Sachbereich","Teil des mathematischen Definitionsbereichs, der real sinnvoll ist."],
+      ["Stationäre Stelle","Stelle mit Ableitung null; möglicher Extrem- oder Sattelpunkt."],
+      ["Steckbriefaufgabe","Bestimmung einer Funktion aus Punkt- und Ableitungsbedingungen."],
+      ["Verdopplungszeit","Zeitspanne, nach der ein wachsender Exponentialanteil doppelt so groß ist."],
+      ["Wachstumsrate","Relative Änderung pro Zeiteinheit in der e-Form."],
+      ["Zielfunktion","Funktion, deren Wert bei einer Optimierung maximal oder minimal werden soll."]
+    ];
+
+    function renderExercise(week){
+      const exercise = week.exercise;
+      if(exercise.type === "number"){
+        return `
+          <div class="interactive-box">
+            <h4>Interaktive Übung</h4>
+            <p>${exercise.prompt}</p>
+            <div class="exercise-controls interactive-controls">
+              <label class="sr-only" for="exercise-${week.id}">Deine numerische Antwort</label>
+              <input id="exercise-${week.id}" inputmode="decimal" type="text" placeholder="Deine Antwort${exercise.unit ? " in " + exercise.unit : ""}">
+              <button type="button" data-number-check="${week.id}" data-answer="${exercise.answer}" data-tolerance="${exercise.tolerance}">Prüfen</button>
+            </div>
+            <div class="exercise-feedback" id="exercise-feedback-${week.id}" aria-live="polite">Rechne zuerst selbst. Falls du festhängst: ${exercise.hint}</div>
+          </div>`;
+      }
+      return `
+        <div class="interactive-box">
+          <h4>Interaktive Übung</h4>
+          <p>${exercise.prompt}</p>
+          <div class="choice-row interactive-controls" role="group" aria-label="Antwortmöglichkeiten">
+            ${exercise.choices.map((choice,index) => `<button type="button" data-exercise-choice="${week.id}" data-index="${index}">${choice}</button>`).join("")}
+          </div>
+          <div class="exercise-feedback" id="exercise-feedback-${week.id}" aria-live="polite">Wähle eine Antwort. Tipp: ${exercise.hint}</div>
+        </div>`;
+    }
+
+    function renderWeek(week){
+      return `
+        <article class="week" id="${week.id}" data-search="${escapeHTML((week.title+" "+week.terms.join(" ")).toLocaleLowerCase("de"))}">
+          <header class="week-head">
+            <div>
+              <div class="week-kicker">${week.week}</div>
+              <h3>${week.title}</h3>
+            </div>
+            <label class="done-label"><input type="checkbox" class="week-done" data-id="${week.id}"> als gelernt markieren</label>
+          </header>
+          <div class="week-content">
+            <div class="learning-grid">
+              <section class="block objectives">
+                <h4>Deine Lernziele</h4>
+                <ul>${week.goals.map(goal => `<li>${goal}</li>`).join("")}</ul>
+              </section>
+              <section class="block problem">
+                <h4>Einstiegssituation und Problemfrage</h4>
+                <p>${week.problem}</p>
+              </section>
+            </div>
+
+            <section class="block">
+              <h4>Grundwissen verständlich erklärt</h4>
+              ${week.ground}
+              <div class="tagrow" aria-label="Zentrale Begriffe">${week.terms.map(term => `<span class="tag">${term}</span>`).join("")}</div>
+            </section>
+
+            <aside class="block memo">${week.memo}</aside>
+
+            <section class="block worked">
+              <h4>Beispiel mit vollständigem Rechenweg</h4>
+              <p><b>Aufgabe:</b> ${week.example.situation}</p>
+              <ol>${week.example.steps.map(step => `<li>${step}</li>`).join("")}</ol>
+              <div class="answer"><b>Antwort:</b> ${week.example.answer}</div>
+              <p><b>Typische Stolperfalle im Beispiel:</b> ${week.example.pitfall}</p>
+            </section>
+
+            <div class="two-col">
+              ${renderExercise(week)}
+              <section class="interactive-box">
+                <h4>Passendes Labor</h4>
+                <p>${week.lab.label}</p>
+                <button class="primary interactive-controls" type="button" data-open-lab="${week.lab.tab}">Labor öffnen</button>
+                <div class="exercise-feedback">Formuliere vor dem Verändern eines Parameters eine Vermutung und vergleiche sie mit dem Graphen.</div>
+              </section>
+            </div>
+
+            <section class="block">
+              <h4>Übungsaufgaben</h4>
+              <ol class="task-list">
+                ${week.tasks.map(task => `<li><span class="task-type">${task.type}</span>${task.text}</li>`).join("")}
+              </ol>
+            </section>
+
+            <section class="block">
+              <h4>Gestuftes Hilfesystem und Musterlösung</h4>
+              <p>Öffne nur so viel Hilfe, wie du wirklich brauchst.</p>
+              <div class="help-stack">
+                ${week.helps.map((help,index) => `
+                  <details class="help">
+                    <summary>Hilfe ${index+1}: ${index===0 ? "Denkimpuls" : index===1 ? "Formel oder Strategie" : "Zwischenschritt"}</summary>
+                    <div class="inside">${help}</div>
+                  </details>`).join("")}
+                <details class="solution">
+                  <summary>Lösung anzeigen: vollständige Musterlösungen</summary>
+                  <div class="inside">
+                    <ol>${week.solutions.map(solution => `<li>${solution}</li>`).join("")}</ol>
+                  </div>
+                </details>
+              </div>
+            </section>
+
+            <div class="practice-grid">
+              <section class="block mistakes">
+                <h4>Typische Fehler und ihre Vermeidung</h4>
+                <ul>${week.errors.map(error => `<li>${error}</li>`).join("")}</ul>
+              </section>
+              <section class="interactive-box">
+                <h4>Mini-Selbstcheck</h4>
+                <p>${week.check.question}</p>
+                <div class="choice-row interactive-controls" role="group" aria-label="Selbstcheck-Antworten">
+                  ${week.check.choices.map((choice,index) => `<button type="button" data-selfcheck="${week.id}" data-index="${index}">${choice}</button>`).join("")}
+                </div>
+                <div class="check-feedback" id="check-feedback-${week.id}" aria-live="polite">Wähle die fachlich beste Antwort.</div>
+              </section>
+            </div>
+
+            <div class="learning-grid">
+              <section class="block summary-box">
+                <h4>Kurz zusammengefasst</h4>
+                <ul>${week.summary.map(item => `<li>${item}</li>`).join("")}</ul>
+              </section>
+              <section class="block exit">
+                <h4>Exit-Ticket</h4>
+                <p>${week.exit}</p>
+              </section>
+            </div>
+
+            <aside class="block week-source">
+              <b>Quellenhinweis für diese Lernwoche:</b> ${week.sources}
+            </aside>
+          </div>
+        </article>`;
+    }
+
+    function renderBook(){
+      $("#toc").innerHTML = `<div class="toc-grid">${chapters.map(chapter => `
+        <section class="toc-card">
+          <h3>${chapter.number}. ${chapter.title}</h3>
+          <p>${chapter.subtitle}</p>
+          <div class="toc-links">
+            ${chapter.weeks.map(week => `<a href="#${week.id}" data-jump-week="${week.id}"><b>${week.week}:</b> <span>${week.title}</span></a>`).join("")}
+          </div>
+        </section>`).join("")}</div>`;
+
+      $("#chapterList").innerHTML = chapters.map((chapter,index) => `
+        <details class="chapter" id="${chapter.id}" ${index===0 ? "open" : ""}>
+          <summary>
+            <span class="chapter-no">${chapter.number}</span>
+            <span class="chapter-title"><b>${chapter.title}</b><span>${chapter.subtitle}</span></span>
+          </summary>
+          <div class="chapter-body">${chapter.weeks.map(renderWeek).join("")}</div>
+        </details>`).join("");
+
+      $("#finalQuiz").innerHTML = finalQuizData.map((item,index) => `
+        <article class="quiz-card" data-final-quiz="${index}">
+          <h3>${index+1} · ${item.question}</h3>
+          <div class="choice-row interactive-controls">
+            ${item.choices.map((choice,choiceIndex) => `<button type="button" data-final-choice="${index}" data-index="${choiceIndex}">${choice}</button>`).join("")}
+          </div>
+          <div class="check-feedback" aria-live="polite">Wähle eine Antwort.</div>
+        </article>`).join("");
+
+      $("#glossary").innerHTML = glossaryData.map(([term,definition]) => `<div class="term"><b>${term}</b><span>${definition}</span></div>`).join("");
+    }
+
+    function parseLocalizedNumber(value){
+      const normalized = String(value).trim().replace(/\s/g,"").replace(",",".");
+      return Number.parseFloat(normalized);
+    }
+
+    function safeStorageGet(key){
+      try{return localStorage.getItem(key)}catch(error){return null}
+    }
+    function safeStorageSet(key,value){
+      try{localStorage.setItem(key,value)}catch(error){/* Fortschritt bleibt dann nur während dieser Sitzung erhalten. */}
+    }
+
+    function updateProgress(){
+      const total = qsa(".week-done").length;
+      const done = qsa(".week-done:checked").length;
+      $("#progress").max = total;
+      $("#progress").value = done;
+      $("#progress").textContent = `${done} von ${total}`;
+      $("#progressText").textContent = `${done} von ${total} Lernwochen`;
+    }
+
+    function initProgress(){
+      qsa(".week-done").forEach(box => {
+        const key = "mat12-1-script-" + box.dataset.id;
+        box.checked = safeStorageGet(key) === "1";
+        box.addEventListener("click", event => event.stopPropagation());
+        box.addEventListener("change", () => {
+          safeStorageSet(key,box.checked ? "1" : "0");
+          updateProgress();
+        });
+      });
+      updateProgress();
+    }
+
+    function setFeedback(element,ok,text){
+      element.classList.remove("feedback-ok","feedback-no");
+      element.classList.add(ok ? "feedback-ok" : "feedback-no");
+      element.textContent = text;
+    }
+
+    function initExercises(){
+      qsa("[data-number-check]").forEach(button => {
+        button.addEventListener("click", () => {
+          const id = button.dataset.numberCheck;
+          const input = $("#exercise-" + id);
+          const feedback = $("#exercise-feedback-" + id);
+          const value = parseLocalizedNumber(input.value);
+          const expected = Number(button.dataset.answer);
+          const tolerance = Number(button.dataset.tolerance);
+          const week = chapters.flatMap(chapter => chapter.weeks).find(item => item.id === id);
+          if(!Number.isFinite(value)){
+            setFeedback(feedback,false,"Bitte gib eine gültige Zahl ein. " + week.exercise.hint);
+            return;
+          }
+          const ok = Math.abs(value-expected) <= tolerance;
+          setFeedback(feedback,ok,ok ? week.exercise.success : `Noch nicht. Deine Abweichung beträgt ${Math.abs(value-expected).toLocaleString("de-DE",{maximumFractionDigits:4})}. ${week.exercise.hint}`);
+        });
+      });
+
+      qsa("[data-exercise-choice]").forEach(button => {
+        button.addEventListener("click", () => {
+          const id = button.dataset.exerciseChoice;
+          const week = chapters.flatMap(chapter => chapter.weeks).find(item => item.id === id);
+          const ok = Number(button.dataset.index) === week.exercise.correct;
+          const feedback = $("#exercise-feedback-" + id);
+          qsa(`[data-exercise-choice="${id}"]`).forEach(choice => choice.setAttribute("aria-pressed",String(choice===button)));
+          setFeedback(feedback,ok,ok ? week.exercise.success : "Noch nicht. " + week.exercise.hint);
+        });
+      });
+
+      qsa("[data-selfcheck]").forEach(button => {
+        button.addEventListener("click", () => {
+          const id = button.dataset.selfcheck;
+          const week = chapters.flatMap(chapter => chapter.weeks).find(item => item.id === id);
+          const ok = Number(button.dataset.index) === week.check.correct;
+          const feedback = $("#check-feedback-" + id);
+          qsa(`[data-selfcheck="${id}"]`).forEach(choice => choice.setAttribute("aria-pressed",String(choice===button)));
+          setFeedback(feedback,ok,(ok ? "Richtig. " : "Noch nicht. ") + week.check.explanation);
+        });
+      });
+    }
+
+    const tabDrawers = {};
+    function activateTab(tabName,moveFocus=false){
+      qsa(".tab").forEach(button => {
+        const active = button.dataset.tab === tabName;
+        button.setAttribute("aria-selected",String(active));
+        if(active && moveFocus) button.focus();
+      });
+      qsa(".tab-panel").forEach(panel => panel.classList.toggle("active",panel.id === "tab-" + tabName));
+      requestAnimationFrame(() => {
+        if(tabDrawers[tabName]) tabDrawers[tabName]();
+      });
+    }
+
+    function initTabsAndLabLinks(){
+      const tabs = qsa(".tab");
+      tabs.forEach((button,index) => {
+        button.addEventListener("click",() => activateTab(button.dataset.tab));
+        button.addEventListener("keydown",event => {
+          if(!["ArrowLeft","ArrowRight","Home","End"].includes(event.key)) return;
+          event.preventDefault();
+          let next = index;
+          if(event.key === "ArrowLeft") next = (index-1+tabs.length)%tabs.length;
+          if(event.key === "ArrowRight") next = (index+1)%tabs.length;
+          if(event.key === "Home") next = 0;
+          if(event.key === "End") next = tabs.length-1;
+          activateTab(tabs[next].dataset.tab,true);
+        });
+      });
+      qsa("[data-open-lab]").forEach(button => {
+        button.addEventListener("click",() => {
+          activateTab(button.dataset.openLab);
+          $("#labore").scrollIntoView({behavior:"smooth",block:"start"});
+        });
+      });
+    }
+
+    function initNavigation(){
+      $("#openAll").addEventListener("click",() => qsa("details.chapter:not(.hidden)").forEach(item => item.open=true));
+      $("#closeAll").addEventListener("click",() => qsa("details.chapter").forEach(item => item.open=false));
+      qsa("[data-jump-week]").forEach(link => {
+        link.addEventListener("click",() => {
+          const week = $("#" + link.dataset.jumpWeek);
+          const chapter = week.closest("details.chapter");
+          chapter.open = true;
+        });
+      });
+      $("#search").addEventListener("input",event => {
+        const query = event.target.value.trim().toLocaleLowerCase("de");
+        qsa("details.chapter").forEach(chapter => {
+          let hits = 0;
+          qsa("article.week",chapter).forEach(week => {
+            const hit = !query || week.textContent.toLocaleLowerCase("de").includes(query);
+            week.classList.toggle("hidden",!hit);
+            if(hit) hits++;
+          });
+          chapter.classList.toggle("hidden",hits===0);
+          if(query && hits>0) chapter.open=true;
+        });
+      });
+      $("#printButton").addEventListener("click",() => window.print());
+    }
+
+    const solvedFinalQuiz = new Set();
+    function updateFinalScore(){
+      $("#quizScore").textContent = `${solvedFinalQuiz.size} von ${finalQuizData.length} sicher gelöst`;
+    }
+    function initFinalQuiz(){
+      qsa("[data-final-choice]").forEach(button => {
+        button.addEventListener("click",() => {
+          const index = Number(button.dataset.finalChoice);
+          const ok = Number(button.dataset.index) === finalQuizData[index].correct;
+          const card = button.closest(".quiz-card");
+          const feedback = $(".check-feedback",card);
+          qsa("[data-final-choice]",card).forEach(choice => choice.setAttribute("aria-pressed",String(choice===button)));
+          setFeedback(feedback,ok,(ok ? "Richtig. " : "Noch nicht. ") + finalQuizData[index].explanation);
+          if(ok) solvedFinalQuiz.add(index); else solvedFinalQuiz.delete(index);
+          updateFinalScore();
+        });
+      });
+      $("#quizReset").addEventListener("click",() => {
+        solvedFinalQuiz.clear();
+        qsa("[data-final-quiz]").forEach(card => {
+          const feedback = $(".check-feedback",card);
+          feedback.className = "check-feedback";
+          feedback.textContent = "Wähle eine Antwort.";
+          qsa("[data-final-choice]",card).forEach(choice => choice.setAttribute("aria-pressed","false"));
+        });
+        updateFinalScore();
+      });
+      updateFinalScore();
+    }
+
+    let printOpenStates = [];
+    window.addEventListener("beforeprint",() => {
+      printOpenStates = qsa("details").map(item => item.open);
+      qsa("details").forEach(item => item.open=true);
+      qsa(".tab-panel").forEach(panel => panel.classList.add("active"));
+      drawExp();
+      drawFit();
+      drawDerivative();
+      drawOptimization();
+    });
+    window.addEventListener("afterprint",() => {
+      qsa("details").forEach((item,index) => item.open=Boolean(printOpenStates[index]));
+      const active = $('.tab[aria-selected="true"]');
+      activateTab(active ? active.dataset.tab : "exp");
+    });
+
+    renderBook();
+    initProgress();
+    initExercises();
+    initTabsAndLabLinks();
+    initNavigation();
+    initFinalQuiz();
+
+    function readNumber(selector){
+      const element = $(selector);
+      return parseLocalizedNumber(element.value);
+    }
+
+    function fmt(value,digits=3){
+      if(!Number.isFinite(value)) return "—";
+      const abs = Math.abs(value);
+      if(abs!==0 && (abs>=1000000 || abs<0.0001)){
+        return value.toExponential(2).replace(".",",");
+      }
+      return value.toLocaleString("de-DE",{maximumFractionDigits:digits,useGrouping:false});
+    }
+
+    function setupCanvas(canvas,cssHeight=390){
+      const rect = canvas.getBoundingClientRect();
+      const width = Math.max(300,Math.round(rect.width||900));
+      const height = window.innerWidth<=720 ? 350 : cssHeight;
+      const dpr = Math.min(window.devicePixelRatio||1,2);
+      const targetW = Math.round(width*dpr);
+      const targetH = Math.round(height*dpr);
+      if(canvas.width!==targetW || canvas.height!==targetH){
+        canvas.width=targetW;
+        canvas.height=targetH;
+      }
+      canvas.style.height=height+"px";
+      const ctx=canvas.getContext("2d");
+      ctx.setTransform(dpr,0,0,dpr,0,0);
+      return {ctx,width,height};
+    }
+
+    function tickLabel(value){
+      const abs=Math.abs(value);
+      if(abs>=100000 || (abs>0 && abs<0.01)) return value.toExponential(1).replace(".",",");
+      if(abs>=1000) return fmt(value,0);
+      if(abs>=10) return fmt(value,1);
+      return fmt(value,2);
+    }
+
+    function drawAxes(ctx,width,height,config){
+      const margin={left:width<430?61:78,right:24,top:28,bottom:width<430?74:66};
+      const plotW=width-margin.left-margin.right;
+      const plotH=height-margin.top-margin.bottom;
+      const {xMin,xMax,yMin,yMax}=config;
+      const xToPx=x=>margin.left+(x-xMin)/(xMax-xMin)*plotW;
+      const yToPx=y=>margin.top+(yMax-y)/(yMax-yMin)*plotH;
+
+      ctx.clearRect(0,0,width,height);
+      ctx.fillStyle="#071022";
+      ctx.fillRect(0,0,width,height);
+      ctx.font=`${width<430?11:13}px system-ui`;
+
+      const xTicks=config.xTicks||5;
+      for(let i=0;i<=xTicks;i++){
+        const value=xMin+(xMax-xMin)*i/xTicks;
+        const px=xToPx(value);
+        ctx.strokeStyle="rgba(255,255,255,.13)";
+        ctx.lineWidth=1;
+        ctx.beginPath();
+        ctx.moveTo(px,margin.top);
+        ctx.lineTo(px,margin.top+plotH);
+        ctx.stroke();
+        ctx.strokeStyle="rgba(255,255,255,.68)";
+        ctx.lineWidth=1.7;
+        ctx.beginPath();
+        ctx.moveTo(px,margin.top+plotH);
+        ctx.lineTo(px,margin.top+plotH+8);
+        ctx.stroke();
+        ctx.fillStyle="#c2cde0";
+        ctx.textAlign="center";
+        ctx.textBaseline="top";
+        ctx.fillText(tickLabel(value),px,margin.top+plotH+11);
+      }
+
+      const yTicks=config.yTicks||5;
+      for(let i=0;i<=yTicks;i++){
+        const value=yMin+(yMax-yMin)*i/yTicks;
+        const py=yToPx(value);
+        ctx.strokeStyle="rgba(255,255,255,.13)";
+        ctx.lineWidth=1;
+        ctx.beginPath();
+        ctx.moveTo(margin.left,py);
+        ctx.lineTo(margin.left+plotW,py);
+        ctx.stroke();
+        ctx.strokeStyle="rgba(255,255,255,.68)";
+        ctx.lineWidth=1.7;
+        ctx.beginPath();
+        ctx.moveTo(margin.left-8,py);
+        ctx.lineTo(margin.left,py);
+        ctx.stroke();
+        ctx.fillStyle="#c2cde0";
+        ctx.textAlign="right";
+        ctx.textBaseline="middle";
+        ctx.fillText(tickLabel(value),margin.left-11,py);
+      }
+
+      ctx.strokeStyle="rgba(255,255,255,.75)";
+      ctx.lineWidth=2;
+      ctx.strokeRect(margin.left,margin.top,plotW,plotH);
+
+      ctx.fillStyle="#f1f7ff";
+      ctx.font=`700 ${width<430?12:14}px system-ui`;
+      ctx.textAlign="center";
+      ctx.textBaseline="bottom";
+      ctx.fillText(config.xLabel,margin.left+plotW/2,height-7);
+      ctx.save();
+      ctx.translate(width<430?14:18,margin.top+plotH/2);
+      ctx.rotate(-Math.PI/2);
+      ctx.fillText(config.yLabel,0,0);
+      ctx.restore();
+      return {xToPx,yToPx,margin,plotW,plotH};
+    }
+
+    function normalizedRange(values,includeZero=false){
+      const finite=values.filter(Number.isFinite);
+      let min=Math.min(...finite);
+      let max=Math.max(...finite);
+      if(includeZero){min=Math.min(min,0);max=Math.max(max,0)}
+      if(!Number.isFinite(min)||!Number.isFinite(max)) return {min:-1,max:1};
+      if(Math.abs(max-min)<1e-10){
+        const pad=Math.max(1,Math.abs(max)*.2);
+        return {min:min-pad,max:max+pad};
+      }
+      const pad=(max-min)*.12;
+      return {min:min-pad,max:max+pad};
+    }
+
+    function plotLine(ctx,axes,points,color,width=3,dashed=false){
+      ctx.save();
+      ctx.strokeStyle=color;
+      ctx.lineWidth=width;
+      ctx.setLineDash(dashed?[8,7]:[]);
+      ctx.beginPath();
+      let started=false;
+      points.forEach(point=>{
+        if(!Number.isFinite(point.x)||!Number.isFinite(point.y)) return;
+        const px=axes.xToPx(point.x);
+        const py=axes.yToPx(point.y);
+        if(!started){ctx.moveTo(px,py);started=true}else{ctx.lineTo(px,py)}
+      });
+      ctx.stroke();
+      ctx.restore();
+    }
+
+    function drawPoint(ctx,axes,x,y,color,radius=6){
+      ctx.beginPath();
+      ctx.arc(axes.xToPx(x),axes.yToPx(y),radius,0,Math.PI*2);
+      ctx.fillStyle=color;
+      ctx.fill();
+      ctx.strokeStyle="#071022";
+      ctx.lineWidth=2;
+      ctx.stroke();
+    }
+
+    function setResult(element,html,isError=false){
+      element.classList.toggle("error",isError);
+      element.innerHTML=html;
+    }
+
+    function drawExp(){
+      const A=readNumber("#expA");
+      const k=readNumber("#expK");
+      const c=readNumber("#expC");
+      const tMax=readNumber("#expTMax");
+      $("#expKValue").textContent=fmt(k,2);
+      const result=$("#expResult");
+      if(!(A>0)||!Number.isFinite(k)||!Number.isFinite(c)||!(tMax>0)){
+        setResult(result,"<b>Eingabe prüfen:</b> A und die dargestellte Zeit müssen positiv sein; alle Werte müssen Zahlen sein.",true);
+        return;
+      }
+      const samples=Array.from({length:241},(_,i)=>{
+        const t=tMax*i/240;
+        return {x:t,y:A*Math.exp(k*t)+c};
+      });
+      if(samples.some(point=>!Number.isFinite(point.y)||Math.abs(point.y)>1e100)){
+        setResult(result,"<b>Wertebereich zu groß:</b> Verkleinere k oder die dargestellte Zeit.",true);
+        return;
+      }
+      const range=normalizedRange([...samples.map(point=>point.y),c],true);
+      const {ctx,width,height}=setupCanvas($("#expCanvas"));
+      const axes=drawAxes(ctx,width,height,{
+        xMin:0,xMax:tMax,yMin:range.min,yMax:range.max,
+        xLabel:"Zeit t [s]",yLabel:"Bestand N(t) [Einheiten]",xTicks:6,yTicks:5
+      });
+      plotLine(ctx,axes,[{x:0,y:c},{x:tMax,y:c}],"#9b6dff",2,true);
+      plotLine(ctx,axes,samples,"#00d5ff",3.5);
+      drawPoint(ctx,axes,0,A+c,"#facc15",6);
+
+      const tProbe=tMax/2;
+      const nProbe=A*Math.exp(k*tProbe)+c;
+      let kind="konstanter Exponentialanteil";
+      let characteristic="Bei k = 0 verändert sich der Exponentialanteil nicht.";
+      if(k>1e-12){
+        kind="exponentielles Wachstum";
+        characteristic=`Verdopplungszeit des Exponentialanteils: ${fmt(Math.log(2)/k,3)} s.`;
+      }else if(k<-1e-12){
+        kind="exponentieller Zerfall";
+        characteristic=`Halbwertszeit des Exponentialanteils: ${fmt(Math.log(2)/Math.abs(k),3)} s.`;
+      }
+      const model=math(row(
+        mi("N"),mo("("),mi("t"),mo(")"),mo("="),mn(fmt(A,3)),mo("·"),
+        sup(mi("e"),row(mn(fmt(k,3)),mo("·"),mi("t"))),
+        c>=0?mo("+"):mo("−"),mn(fmt(Math.abs(c),3))
+      ),"eingestelltes Exponentialmodell");
+      const probe=math(row(mi("N"),mo("("),mn(fmt(tProbe,2)),mo(")"),mo("="),mn(fmt(nProbe,3)),unit("Einheiten")),"Funktionswert in der Mitte des Zeitintervalls");
+      const asymptote=Math.abs(k)>1e-12?`Die horizontale Asymptote liegt bei ${fmt(c,3)} Einheiten.`:`Der Graph ist konstant bei ${fmt(A+c,3)} Einheiten.`;
+      setResult(result,`<b>Deutung:</b> ${model} beschreibt <b>${kind}</b>. Startwert: ${fmt(A+c,3)} Einheiten. ${asymptote}<br><b>Probe:</b> ${probe}. ${characteristic}`);
+    }
+
+    function drawFit(){
+      const t0=readNumber("#fitT0");
+      const y0=readNumber("#fitY0");
+      const t1=readNumber("#fitT1");
+      const y1=readNumber("#fitY1");
+      const result=$("#fitResult");
+      if(!Number.isFinite(t0)||!Number.isFinite(t1)||t0<0||!(t1>t0)||!(y0>0)||!(y1>0)){
+        setResult(result,"<b>Eingabe prüfen:</b> Zeiten dürfen nicht negativ sein, t₁ muss nach t₀ liegen und beide Messwerte müssen positiv sein.",true);
+        return;
+      }
+      const k=Math.log(y1/y0)/(t1-t0);
+      const A=y0*Math.exp(-k*t0);
+      const factor=Math.exp(k);
+      const percent=(factor-1)*100;
+      const xMax=Math.max(1,t1*1.2);
+      const samples=Array.from({length:241},(_,i)=>{
+        const t=xMax*i/240;
+        return {x:t,y:A*Math.exp(k*t)};
+      });
+      const range=normalizedRange([...samples.map(point=>point.y),y0,y1],true);
+      const {ctx,width,height}=setupCanvas($("#fitCanvas"));
+      const axes=drawAxes(ctx,width,height,{
+        xMin:0,xMax:xMax,yMin:range.min,yMax:range.max,
+        xLabel:"Zeit t [s]",yLabel:"Messwert N(t) [Einheiten]",xTicks:6,yTicks:5
+      });
+      plotLine(ctx,axes,samples,"#00d5ff",3.5);
+      drawPoint(ctx,axes,t0,y0,"#facc15",7);
+      drawPoint(ctx,axes,t1,y1,"#facc15",7);
+      const model=math(row(
+        mi("N"),mo("("),mi("t"),mo(")"),mo("="),mn(fmt(A,4)),mo("·"),
+        sup(mi("e"),row(mn(fmt(k,5)),mo("·"),mi("t")))
+      ),"angepasstes Exponentialmodell");
+      let characteristic="Der Bestand bleibt konstant.";
+      if(k>1e-12) characteristic=`Verdopplungszeit: ${fmt(Math.log(2)/k,3)} s.`;
+      if(k<-1e-12) characteristic=`Halbwertszeit: ${fmt(Math.log(2)/Math.abs(k),3)} s.`;
+      setResult(result,`<b>Modell:</b> ${model}<br><b>Änderung pro Sekunde:</b> Faktor ${fmt(factor,5)}, also ${percent>=0?"+":""}${fmt(percent,3)} %. <b>${characteristic}</b><br><small>Zwei Punkte bestimmen rechnerisch ein Modell, beweisen aber keinen exponentiellen Mechanismus.</small>`);
+    }
+
+    function drawDerivative(){
+      const m=readNumber("#derM");
+      const n=readNumber("#derN");
+      const k=readNumber("#derK");
+      const x0=readNumber("#derX0");
+      $("#derXValue").textContent=fmt(x0,1);
+      const result=$("#derResult");
+      if([m,n,k,x0].some(value=>!Number.isFinite(value))){
+        setResult(result,"<b>Eingabe prüfen:</b> Bitte verwende nur gültige Zahlen.",true);
+        return;
+      }
+      const f=x=>(m*x+n)*Math.exp(k*x);
+      const fp=x=>(m+k*(m*x+n))*Math.exp(k*x);
+      const f0=f(x0);
+      const slope=fp(x0);
+      const xMax=10;
+      const functionPoints=Array.from({length:301},(_,i)=>{
+        const x=xMax*i/300;
+        return {x,y:f(x)};
+      });
+      const tangentPoints=[{x:0,y:f0+slope*(0-x0)},{x:xMax,y:f0+slope*(xMax-x0)}];
+      if([...functionPoints,...tangentPoints].some(point=>!Number.isFinite(point.y)||Math.abs(point.y)>1e100)){
+        setResult(result,"<b>Wertebereich zu groß:</b> Verkleinere die Parameter.",true);
+        return;
+      }
+      const range=normalizedRange([...functionPoints.map(point=>point.y),...tangentPoints.map(point=>point.y)],true);
+      const {ctx,width,height}=setupCanvas($("#derCanvas"));
+      const axes=drawAxes(ctx,width,height,{
+        xMin:0,xMax:xMax,yMin:range.min,yMax:range.max,
+        xLabel:"Variable x [Einheiten]",yLabel:"Funktionswert f(x) [Einheiten]",xTicks:5,yTicks:5
+      });
+      plotLine(ctx,axes,functionPoints,"#00d5ff",3.5);
+      plotLine(ctx,axes,tangentPoints,"#9b6dff",3);
+      drawPoint(ctx,axes,x0,f0,"#facc15",7);
+      ctx.font="700 13px system-ui";
+      ctx.fillStyle="#00d5ff";
+      ctx.textAlign="left";
+      ctx.fillText("f(x)",axes.margin.left+10,axes.margin.top+18);
+      ctx.fillStyle="#c0a7ff";
+      ctx.fillText("Tangente",axes.margin.left+10,axes.margin.top+39);
+      const derivative=math(row(
+        mi("f"),mo("′"),mo("("),mi("x"),mo(")"),mo("="),mo("["),
+        mn(fmt(m,3)),k>=0?mo("+"):mo("−"),mn(fmt(Math.abs(k),3)),mo("·"),mo("("),mn(fmt(m,3)),mi("x"),
+        n>=0?mo("+"):mo("−"),mn(fmt(Math.abs(n),3)),mo(")"),mo("]"),mo("·"),
+        sup(mi("e"),row(mn(fmt(k,3)),mi("x")))
+      ),"Ableitung der Produktfunktion");
+      const point=math(row(mi("f"),mo("("),mn(fmt(x0,2)),mo(")"),mo("="),mn(fmt(f0,4))),"Funktionswert an der Tangentenstelle");
+      const slopeMath=math(row(mi("f"),mo("′"),mo("("),mn(fmt(x0,2)),mo(")"),mo("="),mn(fmt(slope,4))),"Steigung an der Tangentenstelle");
+      const direction=slope>0?"Die Tangente steigt.":slope<0?"Die Tangente fällt.":"Die Tangente ist waagerecht; die Stelle ist ein Extremwert-Kandidat.";
+      setResult(result,`<b>Ableitung:</b> ${derivative}<br><b>Berührpunkt und Steigung:</b> ${point}, ${slopeMath}. ${direction}`);
+    }
+
+    function drawOptimization(){
+      const L=readNumber("#optL");
+      const W=readNumber("#optW");
+      const slider=$("#optX");
+      const result=$("#optResult");
+      if(!(L>0)||!(W>0)){
+        setResult(result,"<b>Eingabe prüfen:</b> Länge und Breite müssen positiv sein.",true);
+        return;
+      }
+      const domainMax=Math.min(L,W)/2;
+      slider.max=Math.max(0.11,domainMax-0.05).toFixed(2);
+      let x=clamp(readNumber("#optX"),0.05,domainMax-0.05);
+      slider.value=x;
+      $("#optXValue").textContent=fmt(x,2);
+      const volume=value=>value*(L-2*value)*(W-2*value);
+      const rootTerm=Math.sqrt(L*L-L*W+W*W);
+      const xOpt=(L+W-rootTerm)/6;
+      const vOpt=volume(xOpt);
+      const currentV=volume(x);
+      const samples=Array.from({length:301},(_,i)=>{
+        const value=domainMax*i/300;
+        return {x:value,y:Math.max(0,volume(value))};
+      });
+      const range=normalizedRange([...samples.map(point=>point.y),vOpt],true);
+      const {ctx,width,height}=setupCanvas($("#optCanvas"));
+      const axes=drawAxes(ctx,width,height,{
+        xMin:0,xMax:domainMax,yMin:0,yMax:range.max,
+        xLabel:"Einschnitt x [cm]",yLabel:"Volumen V(x) [cm³]",xTicks:5,yTicks:5
+      });
+      plotLine(ctx,axes,samples,"#00d5ff",3.5);
+      drawPoint(ctx,axes,x,currentV,"#facc15",7);
+      drawPoint(ctx,axes,xOpt,vOpt,"#5eead4",8);
+      const current=math(row(mi("V"),mo("("),mn(fmt(x,2)),mo(")"),mo("="),mn(fmt(currentV,2)),unit("cm³")),"aktuelles Schachtelvolumen");
+      const optimum=math(row(sub(mi("x"),mt("opt")),mo("="),mn(fmt(xOpt,3)),unit("cm")),"optimale Einschnittlänge");
+      const maxVolume=math(row(sub(mi("V"),mt("max")),mo("="),mn(fmt(vOpt,2)),unit("cm³")),"maximales Volumen");
+      setResult(result,`<b>Aktuelle Schachtel:</b> ${current}; Innenmaße ${fmt(L-2*x,2)} cm × ${fmt(W-2*x,2)} cm × ${fmt(x,2)} cm.<br><b>Optimum:</b> ${optimum}, ${maxVolume}. Sachbereich: 0 cm &lt; x &lt; ${fmt(domainMax,2)} cm.`);
+    }
+
+    ["#expA","#expK","#expC","#expTMax"].forEach(selector=>$(selector).addEventListener("input",drawExp));
+    ["#fitT0","#fitY0","#fitT1","#fitY1"].forEach(selector=>$(selector).addEventListener("input",drawFit));
+    ["#derM","#derN","#derK","#derX0"].forEach(selector=>$(selector).addEventListener("input",drawDerivative));
+    ["#optL","#optW","#optX"].forEach(selector=>$(selector).addEventListener("input",drawOptimization));
+    $("#fitCalc").addEventListener("click",drawFit);
+    tabDrawers.exp=drawExp;
+    tabDrawers.fit=drawFit;
+    tabDrawers.der=drawDerivative;
+    tabDrawers.opt=drawOptimization;
+
+    let resizeTimer=null;
+    window.addEventListener("resize",()=>{
+      clearTimeout(resizeTimer);
+      resizeTimer=setTimeout(()=>{
+        const active=$('.tab[aria-selected="true"]');
+        if(active&&tabDrawers[active.dataset.tab]) tabDrawers[active.dataset.tab]();
+      },120);
+    });
+
+    drawExp();
+    drawFit();
+    drawDerivative();
+    drawOptimization();
+  </script>
+</body>
+</html>

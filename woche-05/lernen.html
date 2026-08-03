@@ -1,0 +1,537 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; script-src-attr 'none'; style-src 'unsafe-inline'; img-src data:; font-src 'none'; connect-src 'none'; media-src 'none'; object-src 'none'; frame-src 'none'; child-src 'none'; worker-src 'none'; manifest-src 'none'; base-uri 'none'; form-action 'none'">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>12NF · Mathematik · Woche 5 · Prozentfaktor und Modellgleichung</title>
+<style>
+:root{--ink:#172033;--muted:#526079;--paper:#fff;--soft:#eef5f8;--soft2:#f8fafc;--accent:#0b6b8a;--accent2:#8b4a1f;--line:#bcc9d4;--good:#e8f6ee;--warn:#fff5d9;--teacher:#f3effb;--solution:#eef8f3;--radius:14px;--danger:#9e2f2f}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:#e9eef3;color:var(--ink);font-family:Arial,Helvetica,sans-serif;line-height:1.48;font-size:16px}button,input,select{font:inherit}button{touch-action:manipulation;min-height:44px}
+.appbar{position:sticky;top:0;z-index:20;background:#162434;color:#fff;border-bottom:4px solid var(--accent);box-shadow:0 2px 12px #0003}.appbar .inner{max-width:1180px;margin:auto;padding:.7rem 1rem;display:flex;align-items:center;gap:.6rem;flex-wrap:wrap}.brand{font-weight:800;margin-right:auto}.viewbtn,.printbtn{border:1px solid #ffffff66;background:#ffffff12;color:#fff;border-radius:999px;padding:.48rem .75rem;cursor:pointer}.viewbtn.active{background:#fff;color:#162434}.print-mode{font-size:.84rem;color:#dce8ee;min-width:160px}
+main{max-width:1180px;margin:1.3rem auto 3rem;background:var(--paper);box-shadow:0 12px 35px #1f293733;border-radius:18px;overflow:hidden}.hero{padding:2rem 2.2rem;background:linear-gradient(135deg,#0b6b8a,#193a53);color:#fff}.hero h1{margin:.15rem 0 .55rem;font-size:clamp(1.8rem,4vw,3rem);line-height:1.08}.hero p{max-width:940px;margin:.4rem 0}.kicker{font-size:.82rem;text-transform:uppercase;letter-spacing:.08em;font-weight:800;color:#c7e7f1}.meta{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:.7rem;margin-top:1.2rem}.meta div{background:#ffffff18;border:1px solid #ffffff33;border-radius:12px;padding:.65rem}.meta b{display:block;font-size:.78rem;text-transform:uppercase;letter-spacing:.04em;color:#d9edf4}
+section{padding:1.6rem 2.2rem;border-bottom:1px solid #dde5ec}h2{font-size:1.55rem;margin:.1rem 0 1rem;color:#183b52}h3{font-size:1.18rem;margin:1rem 0 .55rem}h4{margin:.8rem 0 .35rem}p{margin:.45rem 0}ul,ol{margin:.45rem 0 .8rem;padding-left:1.3rem}li{margin:.22rem 0}.grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem}.grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1rem}
+.card{border:1px solid var(--line);border-radius:var(--radius);padding:1rem;background:#fff;break-inside:avoid;page-break-inside:avoid}.card.soft{background:var(--soft2)}.card.problem{border-left:7px solid var(--accent);background:#f4fbfd}.card.teacher{background:var(--teacher);border-color:#cabde5}.card.solution{background:var(--solution);border-color:#a9d4bd}.note{padding:.75rem .9rem;border-radius:10px;background:var(--warn);border-left:5px solid #d69a00}.good{padding:.75rem .9rem;border-radius:10px;background:var(--good);border-left:5px solid #2f8b56}.tag{display:inline-block;padding:.17rem .5rem;border-radius:999px;background:#e3eef3;color:#173e52;font-size:.78rem;font-weight:700;margin:.1rem .12rem .1rem 0}.small{font-size:.9rem;color:var(--muted)}
+table{width:100%;border-collapse:collapse;margin:.7rem 0 1rem;page-break-inside:auto}th,td{border:1px solid #aebbc7;padding:.5rem .58rem;vertical-align:top}th{background:#e7f0f4;text-align:left}tr{break-inside:avoid;page-break-inside:avoid}.timeline th:nth-child(1){width:7%}.timeline th:nth-child(2){width:12%}.timeline th:nth-child(5){width:9%}.timeline th:nth-child(6){width:11%}
+.material{border:2px solid #29475d;border-radius:12px;padding:1rem;background:#fff;break-inside:avoid;page-break-inside:avoid}.protocol-head{display:grid;grid-template-columns:155px 1fr;gap:.25rem .8rem;border-bottom:1px solid #bfcad3;padding-bottom:.55rem;margin-bottom:.7rem;font-size:.94rem}.protocol-head b{color:#34495e}.protocol-mark{display:inline-block;border:2px solid var(--accent);color:var(--accent);font-weight:900;letter-spacing:.06em;padding:.18rem .48rem;margin:.2rem 0 .6rem}.task-with-hints{border-left:5px solid var(--accent2);padding:.72rem .9rem;margin:.85rem 0;background:#fffaf6;break-inside:avoid-page;page-break-inside:auto}.task-with-hints h3{margin:.05rem 0 .45rem}.afb{font-size:.76rem;font-weight:700;background:#efe8df;color:#6d3b19;border-radius:999px;padding:.15rem .42rem;white-space:nowrap}.answerline{border-bottom:1px solid #5f6b76;height:1.25rem;margin:.24rem 0}.answerbox{border:1px dashed #73808c;min-height:3.7rem;margin:.4rem 0;background:#fff}.answerbox.tall{min-height:6.5rem}.answerbox.medium{min-height:8rem}.answerbox.xlarge{min-height:12rem}.compact-table td,.compact-table th{padding:.34rem .4rem}.inline-hints{margin:.55rem 0 .2rem;padding:.25rem .55rem .4rem;border-left:3px solid #d69a00;background:#fffdf5;border-radius:0 10px 10px 0}.inline-hints details{margin:.35rem 0;background:#fff9e8;border:1px solid #d2b977;border-radius:10px;break-inside:avoid;page-break-inside:avoid}.inline-hints summary{cursor:pointer;font-weight:700;padding:.62rem .75rem;color:#5f4512}.inline-hints details>div{padding:0 .75rem .72rem}.sim-task-note{margin:.45rem 0 .2rem;padding:.6rem .75rem;border-left:4px solid var(--accent);background:#eef8fb;border-radius:8px;color:#16465d;break-inside:avoid}.sim-task-note b{color:#0b536d}.sim-link,.sim-button{border:1px solid var(--accent);background:var(--accent);color:#fff;border-radius:999px;padding:.5rem .8rem;cursor:pointer;font-weight:700;margin:.45rem .2rem .05rem 0}.sim-button.secondary{background:#fff;color:var(--accent)}.board{background:#1c2c2b;color:#f5fff9;border:9px solid #8b6a45;border-radius:8px;padding:1rem 1.2rem;box-shadow:inset 0 0 0 2px #5d4530;break-inside:avoid}.board h3{color:#fff;margin-top:0}.formula{font-family:"Cambria Math","Times New Roman",serif;font-weight:700;white-space:nowrap}.pagebreak{break-before:page;page-break-before:always}.student-pagebreak{break-before:auto}.source-list li{margin:.45rem 0}.worksheet-header{display:flex;justify-content:space-between;gap:1rem;border-bottom:2px solid #29475d;padding-bottom:.55rem;margin-bottom:.8rem}.product-sheet{border:2px solid #29475d;border-radius:12px;padding:.85rem;background:#fff}.product-sheet h3{margin-top:0}.criterion-list{display:grid;grid-template-columns:1fr 1fr;gap:.25rem .9rem}.decision-grid{display:grid;grid-template-columns:1fr 1fr;gap:.7rem}.decision-box{border:1px solid #8b99a6;border-radius:10px;padding:.65rem;min-height:5.4rem;background:#fff}.page-note{font-size:.83rem;color:var(--muted)}
+.simulation-only{display:none}[data-view="all"] .simulation-only,[data-view="simulations"] .simulation-only{display:block}[data-view="simulations"] main>section:not(.simulation-only){display:none!important}[data-view="student"] .teacher-only,[data-view="student"] .solution-only,[data-view="student"] .simulation-only{display:none!important}[data-view="teacher"] .student-only,[data-view="teacher"] .solution-only,[data-view="teacher"] .simulation-only{display:none!important}[data-view="solution"] .student-only,[data-view="solution"] .teacher-only,[data-view="solution"] .simulation-only{display:none!important}
+.sim-intro{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1rem;margin:1rem 0}.sim-card{border:1px solid var(--line);border-radius:var(--radius);background:#f8fbfd;padding:1rem;break-inside:avoid}.sim-tag{display:inline-block;padding:.18rem .52rem;border-radius:999px;background:#dceef4;color:#16465d;font-size:.78rem;font-weight:800;margin-bottom:.45rem}.sim-panel{border:1px solid #aebdca;border-radius:14px;background:#fff;padding:1rem;margin:1rem 0;box-shadow:0 6px 18px #1f293710;scroll-margin-top:90px}.sim-panel h3{margin-top:.05rem;color:#183b52}.sim-controls{display:flex;flex-wrap:wrap;align-items:end;gap:.7rem;margin:.75rem 0}.sim-controls label{display:grid;gap:.3rem;font-weight:700;color:#34495e;min-width:205px}.sim-controls select,.sim-controls input{border:1px solid #8797a6;border-radius:9px;padding:.5rem .6rem;background:#fff;color:#172033;min-height:44px}.sim-feedback{min-height:3.2rem;border-left:5px solid #78909c;background:#f3f7f9;border-radius:9px;padding:.65rem .8rem;margin:.65rem 0;color:#253546}.sim-feedback.ok{border-left-color:#2f8b56;background:#e8f6ee}.sim-feedback.warn{border-left-color:#d69a00;background:#fff5d9}.sim-feedback.bad{border-left-color:#b74343;background:#fff0f0}.sim-canvas{display:block;width:100%;height:auto;border:1px solid #aebbc7;border-radius:12px;background:#fff;touch-action:manipulation;margin:.75rem 0}.lab-equation{border:1px solid var(--line);border-radius:10px;background:#f8fafc;padding:.7rem;margin:.55rem 0;font-family:"Cambria Math","Times New Roman",serif;font-weight:700}.range-output{font-weight:800;color:#0b536d}
+.email-card{border:1px solid #9aabb8;border-radius:12px;background:#fff;overflow:hidden;box-shadow:0 6px 18px #1f293715;break-inside:avoid}.email-bar{display:grid;grid-template-columns:92px 1fr;gap:.25rem .75rem;padding:.7rem 1rem;background:#edf3f6;border-bottom:1px solid #b9c6cf;font-size:.93rem}.email-bar b{color:#34495e}.email-body{padding:1rem}.email-body .subject{font-size:1.18rem;font-weight:800;color:#183b52;margin:0 0 .5rem}
+.workpath{counter-reset:path;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:.45rem;margin:.55rem 0}.workpath div{position:relative;border:1px solid var(--line);border-radius:10px;padding:.58rem .52rem .52rem 2rem;background:#f8fafc}.workpath div:before{counter-increment:path;content:counter(path);position:absolute;left:.5rem;top:.5rem;width:1.1rem;height:1.1rem;border-radius:50%;display:grid;place-items:center;background:var(--accent);color:#fff;font-size:.72rem;font-weight:900}
+.ascan-svg{width:100%;height:auto;border:1px solid #aebbc7;border-radius:10px;background:#fff;display:block;margin:.55rem 0}.echo-key{display:flex;flex-wrap:wrap;gap:.45rem;margin:.4rem 0}.echo-key span{border:1px solid var(--line);border-radius:999px;padding:.22rem .52rem;background:#f8fafc;font-size:.86rem}.scan-strip{display:grid;grid-template-columns:48px repeat(8,minmax(54px,1fr));gap:.22rem;align-items:stretch;margin:.5rem 0;overflow-x:auto}.scan-strip>div{border:1px solid #aebbc7;border-radius:7px;min-height:2.2rem;padding:.25rem;display:grid;place-items:center;text-align:center;background:#fff}.scan-strip .head{background:#e7f0f4;font-weight:800;min-height:auto}.scan-strip .rowhead{background:#f0f4f7;font-weight:800}.status-chip{display:inline-block;border-radius:999px;padding:.13rem .4rem;font-size:.76rem;font-weight:800}.status-chip.indication{background:#fff0f0;color:#7e2828}.status-chip.geometry{background:#e8f6ee;color:#245f3d}.status-chip.backwall{background:#eef5f8;color:#264b5e}.evidence-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.55rem;margin:.55rem 0}.evidence-box{border:1px solid var(--line);border-radius:10px;padding:.58rem;background:#f8fafc}.evidence-box b{display:block;color:#34495e}.formula-strip{display:flex;flex-wrap:wrap;gap:.6rem;align-items:center;padding:.65rem;border:1px solid var(--line);border-radius:10px;background:#f7fbfd}.formula-strip .step{font-weight:800}.formula-strip .arrow{color:var(--accent);font-size:1.2rem}
+@media(max-width:850px){.meta,.grid2,.grid3,.sim-intro,.evidence-grid{grid-template-columns:1fr}.appbar .inner{align-items:flex-start}main{margin:0;border-radius:0}section,.hero{padding:1.2rem}.timeline{font-size:.88rem;display:block;overflow-x:auto}.criterion-list,.decision-grid{grid-template-columns:1fr}.sim-controls label{min-width:min(100%,280px)}.workpath{grid-template-columns:1fr}.scan-strip{grid-template-columns:44px repeat(8,minmax(70px,1fr))}}
+@page{size:A4;margin:11mm}
+@media print{
+ body{background:#fff;font-size:8.8pt;line-height:1.21}.appbar,.no-print,.sim-task-note,.simulation-only{display:none!important}main{max-width:none;margin:0;box-shadow:none;border-radius:0}.hero{background:#fff;color:#111;padding:0 0 4mm;border-bottom:2px solid #111}.hero .kicker{color:#333}.meta div{background:#fff;border:1px solid #999;padding:.25rem}.meta b{color:#333}section{padding:2.2mm 0;border-bottom:0}h2{color:#111;margin-bottom:.38rem;break-after:avoid-page;page-break-after:avoid}h3{margin:.38rem 0 .2rem;break-after:avoid-page;page-break-after:avoid}p{margin:.16rem 0}ul,ol{margin:.16rem 0 .3rem}.card,.material,.task-with-hints,.product-sheet{box-shadow:none}.task-with-hints{margin:.2rem 0;padding:.28rem .42rem}.compact-table td,.compact-table th{padding:.16rem .22rem}.answerline{height:.72rem}.answerbox{min-height:1.7rem;margin:.16rem 0}.answerbox.tall{min-height:3rem}.answerbox.medium{min-height:25mm}.answerbox.xlarge{min-height:48mm}.student-only .inline-hints{display:none!important}body.print-hints .student-only .inline-hints{display:block!important}body.print-hints .student-only .task-with-hints{break-inside:auto;page-break-inside:auto}body.print-hints .student-only .product-sheet{break-inside:avoid-page;page-break-inside:avoid}body.print-hints .student-only .inline-hints details{display:block!important;margin:.14rem 0}body.print-hints .student-only .inline-hints details>div{display:block!important;padding:0 .42rem .3rem}body.print-hints .student-only .inline-hints summary{padding:.28rem .42rem}[data-view="student"] .hero{display:none!important}[data-view="student"] .teacher-only,[data-view="student"] .solution-only{display:none!important}[data-view="teacher"] .student-only,[data-view="teacher"] .solution-only{display:none!important}[data-view="solution"] .student-only,[data-view="solution"] .teacher-only{display:none!important}[data-view="all"] .simulation-only{display:none!important}.pagebreak{break-before:page;page-break-before:always}.student-pagebreak{break-before:page;page-break-before:always}body.print-hints .student-pagebreak{break-before:auto;page-break-before:auto}.worksheet-header{margin-bottom:.25rem}.material{padding:.42rem}.protocol-mark{margin:0 0 .16rem}.protocol-head{margin-bottom:.22rem;padding-bottom:.18rem}.product-sheet{padding:.42rem}.ascan-svg{max-height:42mm;width:100%;margin:.2rem 0}.criterion-list{grid-template-columns:1fr 1fr}.decision-grid{grid-template-columns:1fr 1fr;gap:.35rem}.decision-box{min-height:18mm;padding:.35rem}.email-card{box-shadow:none}.email-bar{padding:.35rem .5rem}.email-body{padding:.45rem}.workpath{grid-template-columns:repeat(4,1fr);gap:.18rem}.workpath div{padding:.26rem .18rem .26rem 1.25rem}.workpath div:before{left:.18rem;top:.22rem}.scan-strip>div{min-height:1.45rem;padding:.14rem}.evidence-grid{grid-template-columns:repeat(3,1fr);gap:.22rem}.evidence-box{padding:.28rem}.formula-strip{padding:.28rem}.page-note{font-size:7.5pt}.timeline{font-size:6.7pt;line-height:1.12;table-layout:fixed;width:100%}.timeline th,.timeline td{padding:.12rem .15rem;overflow-wrap:anywhere}.timeline th:nth-child(1){width:6%}.timeline th:nth-child(2){width:11%}.timeline th:nth-child(3){width:22%}.timeline th:nth-child(4){width:22%}.timeline th:nth-child(5){width:10%}.timeline th:nth-child(6){width:10%}.timeline th:nth-child(7){width:19%}
+}
+
+button:focus-visible,input:focus-visible,select:focus-visible,summary:focus-visible{outline:3px solid #8ee3ff;outline-offset:3px}
+.table-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.data-table{min-width:720px}
+.data-table th,.data-table td{text-align:center}
+.data-table th:first-child,.data-table td:first-child{text-align:left}
+.variable-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:.55rem;margin:.55rem 0}
+.variable-box{border:1px solid var(--line);border-radius:10px;padding:.58rem;background:#f8fafc;min-height:5.2rem}
+.variable-box b{display:block;color:#34495e}
+.claim-card{border:1px solid var(--line);border-radius:10px;padding:.65rem;background:#fff;margin:.45rem 0}
+.export-badge{display:inline-block;border:2px solid var(--accent);color:var(--accent);font-weight:900;letter-spacing:.06em;padding:.18rem .48rem;margin:.2rem 0 .6rem}
+.step-strip{display:grid;grid-template-columns:repeat(5,minmax(48px,1fr));gap:.25rem;align-items:center;margin:.5rem 0}
+.step-strip div{border:1px solid #aebbc7;border-radius:8px;padding:.35rem;text-align:center;background:#fff}
+.step-strip .arrow{border:0;background:transparent;color:var(--accent);font-weight:900}
+.unit-chip{display:inline-block;border-radius:999px;padding:.12rem .42rem;background:#e7f0f4;font-size:.78rem;font-weight:800}
+.sim-axis-note{font-size:.86rem;color:var(--muted);margin-top:.2rem}
+input,select{min-height:44px}
+@media(max-width:850px){.variable-grid{grid-template-columns:1fr 1fr}.data-table{min-width:680px}}
+@media(max-width:520px){.variable-grid{grid-template-columns:1fr}}
+@media print{.data-table{min-width:0;table-layout:fixed}.data-table th,.data-table td{font-size:7.2pt;padding:.12rem}.variable-grid{grid-template-columns:repeat(4,1fr);gap:.2rem}.variable-box{min-height:14mm;padding:.28rem}.claim-card{padding:.28rem;margin:.2rem 0}.step-strip{gap:.12rem}.step-strip div{padding:.15rem}.sim-axis-note{display:none}}
+
+.model-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.8rem;margin:.55rem 0}.model-card{border:1px solid var(--line);border-radius:12px;padding:.75rem;background:#fff}.model-card h4{color:#183b52}.model-card.linear{border-top:6px solid #2f8b56}.model-card.exp{border-top:6px solid #8b4a1f}.model-card.neutral{border-top:6px solid #78909c}.graph-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.7rem;margin:.55rem 0}.mini-graph{border:1px solid var(--line);border-radius:12px;background:#fff;padding:.45rem}.mini-graph svg{display:block;width:100%;height:auto}.evidence-table td:first-child,.evidence-table th:first-child{width:19%}.evidence-table td:nth-child(2),.evidence-table td:nth-child(3){width:24%}.formula-choice{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.45rem;margin:.45rem 0}.formula-choice div{border:1px solid var(--line);border-radius:9px;padding:.52rem;background:#f8fafc;text-align:center}.status-line{display:grid;grid-template-columns:135px 1fr;gap:.25rem .7rem;padding:.55rem;border:1px solid var(--line);border-radius:10px;background:#f8fafc;margin:.45rem 0}.status-line b{color:#34495e}.sim-legend{display:flex;gap:.7rem;flex-wrap:wrap;font-size:.86rem;color:var(--muted)}.sim-legend span::before{content:"";display:inline-block;width:18px;height:4px;background:#0b6b8a;vertical-align:middle;margin-right:.3rem}.sim-legend span:nth-child(2)::before{background:#8b4a1f}.sim-legend span:nth-child(3)::before{background:#2f8b56}.mathline{font-family:"Cambria Math","Times New Roman",serif;font-weight:700;font-size:1.05rem}.observed-band{background:#eef8fb;border:1px solid #b6dbe6;border-radius:10px;padding:.55rem .7rem;margin:.45rem 0}.warning-band{background:#fff5d9;border-left:5px solid #d69a00;border-radius:10px;padding:.55rem .7rem;margin:.45rem 0}@media(max-width:850px){.model-grid,.graph-grid,.formula-choice{grid-template-columns:1fr}.status-line{grid-template-columns:1fr}}@media print{#w2-aufgabe-1 .answerbox.medium{min-height:18mm}#w2-aufgabe-2 .answerbox.medium{min-height:11mm}.model-grid,.graph-grid{grid-template-columns:1fr 1fr}.formula-choice{grid-template-columns:repeat(3,1fr)}.mini-graph{padding:.2rem}.mini-graph svg{max-height:39mm}.evidence-table{font-size:7.5pt}.status-line{padding:.25rem}.observed-band,.warning-band{padding:.28rem}.model-card{padding:.35rem}}
+
+.parameter-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:.55rem;margin:.55rem 0}.parameter-box{border:1px solid var(--line);border-radius:10px;padding:.6rem;background:#f8fafc;min-height:5.6rem}.parameter-box b{display:block;color:#34495e}.parameter-box .big{font-size:1.15rem;font-weight:900;color:#0b536d}.formula-map{display:grid;grid-template-columns:1fr auto 1fr;gap:.55rem;align-items:center;border:1px solid var(--line);border-radius:12px;padding:.75rem;background:#f7fbfd;margin:.55rem 0}.formula-map .arrow{font-size:1.5rem;color:var(--accent);font-weight:900;text-align:center}.candidate-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.55rem;margin:.55rem 0}.candidate-card{border:1px solid var(--line);border-radius:10px;padding:.62rem;background:#fff}.candidate-card b{color:#183b52}.candidate-card.correct-candidate{border-left:5px solid #78909c}.data-band{border:1px solid #9fb2c0;border-radius:12px;padding:.7rem;background:#f8fbfd;margin:.55rem 0}.data-band table{margin:.35rem 0}.parameter-table td:first-child,.parameter-table th:first-child{width:16%}.parameter-table td:nth-child(2),.parameter-table th:nth-child(2){width:23%}.parameter-table td:nth-child(3),.parameter-table th:nth-child(3){width:18%}.parameter-table td:nth-child(4),.parameter-table th:nth-child(4){width:43%}.transfer-strip{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.55rem;margin:.55rem 0}.transfer-box{border:1px solid var(--line);border-radius:10px;padding:.58rem;background:#fff}.transfer-box b{display:block;color:#34495e}.mathblock{font-family:"Cambria Math","Times New Roman",serif;font-weight:700;padding:.45rem .55rem;border-radius:9px;background:#f8fafc;border:1px solid var(--line);margin:.4rem 0;overflow-wrap:anywhere}.sensor-note{border-left:5px solid #0b6b8a;background:#eef8fb;border-radius:10px;padding:.65rem .8rem}.mini-check{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.45rem}.mini-check div{border:1px solid var(--line);border-radius:9px;padding:.5rem;background:#fff}.sim-key{display:flex;gap:.7rem;flex-wrap:wrap;font-size:.86rem;color:var(--muted)}.sim-key span::before{content:"";display:inline-block;width:18px;height:4px;vertical-align:middle;margin-right:.3rem;background:#0b6b8a}.sim-key span:nth-child(2)::before{background:#8b4a1f}.sim-key span:nth-child(3)::before{background:#2f8b56}.sim-inline-output{font-weight:900;color:#0b536d}.choice-note{font-size:.86rem;color:var(--muted)}
+@media(max-width:850px){.parameter-grid,.transfer-strip,.candidate-grid,.formula-map{grid-template-columns:1fr}.formula-map .arrow{transform:rotate(90deg)}.mini-check{grid-template-columns:1fr}}
+@media print{#w3-verlauf .timeline{font-size:6.15pt;line-height:1.04}#w3-verlauf .timeline th,#w3-verlauf .timeline td{padding:.08rem .11rem}.parameter-grid{grid-template-columns:repeat(4,1fr);gap:.18rem}.parameter-box{min-height:14mm;padding:.28rem}.candidate-grid{grid-template-columns:repeat(2,1fr);gap:.2rem}.candidate-card{padding:.28rem}.transfer-strip{grid-template-columns:repeat(3,1fr);gap:.2rem}.transfer-box{padding:.28rem}.formula-map{grid-template-columns:1fr auto 1fr;padding:.3rem}.formula-map .arrow{transform:none}.data-band{padding:.3rem}.parameter-table{font-size:7.4pt}.parameter-table td,.parameter-table th{padding:.12rem .18rem}#w3-aufgabe-1 .answerbox{min-height:14mm}#w3-aufgabe-2 .answerbox{min-height:18mm}#w3-aufgabe-3 .answerbox{min-height:20mm}#w3-aufgabe-4 .answerbox{min-height:21mm}.sensor-note{padding:.28rem}}
+
+.property-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:.55rem;margin:.55rem 0}.property-box{border:1px solid var(--line);border-radius:10px;padding:.6rem;background:#f8fafc;min-height:5.8rem}.property-box b{display:block;color:#34495e}.property-box .big{font-size:1.08rem;font-weight:900;color:#0b536d}.domain-pair{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.7rem;margin:.55rem 0}.domain-card{border:1px solid var(--line);border-radius:12px;padding:.7rem;background:#fff}.domain-card.math{border-top:6px solid #0b6b8a}.domain-card.tech{border-top:6px solid #8b4a1f}.domain-card h4{color:#183b52}.profile-table td:first-child,.profile-table th:first-child{width:24%}.profile-table td:nth-child(2),.profile-table th:nth-child(2){width:38%}.profile-table td:nth-child(3),.profile-table th:nth-child(3){width:38%}.statement-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.55rem;margin:.55rem 0}.statement-card{border:1px solid var(--line);border-radius:10px;padding:.62rem;background:#fff;break-inside:avoid;page-break-inside:avoid}.statement-card b{color:#183b52}.graph-sheet{border:2px solid #29475d;border-radius:12px;padding:.65rem;background:#fff}.graph-svg{display:block;width:100%;height:auto;border:1px solid #aebbc7;border-radius:10px;background:#fff;margin:.4rem 0}.release-strip{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.55rem;margin:.55rem 0}.release-box{border:1px solid var(--line);border-radius:10px;padding:.58rem;background:#fff}.release-box b{display:block;color:#34495e}.logic-chain{display:flex;flex-wrap:wrap;gap:.5rem;align-items:center;border:1px solid var(--line);border-radius:10px;background:#f7fbfd;padding:.65rem}.logic-chain .step{font-weight:800}.logic-chain .arrow{color:var(--accent);font-size:1.15rem}.range-badge{display:inline-block;border-radius:999px;padding:.15rem .48rem;background:#e7f0f4;color:#264b5e;font-size:.8rem;font-weight:800}.auto-report{border:1px solid #9aabb8;border-radius:12px;background:#fff;overflow:hidden;box-shadow:0 6px 18px #1f293715}.auto-report .report-head{padding:.65rem .9rem;background:#edf3f6;border-bottom:1px solid #b9c6cf;font-weight:900;color:#183b52}.auto-report .report-body{padding:.8rem}.model-compare{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.7rem}.model-compare .model-card{border:1px solid var(--line);border-radius:11px;padding:.65rem;background:#fff}.model-compare .model-card h4{color:#183b52}.sim-window-readout{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.45rem;margin:.55rem 0}.sim-window-readout div{border:1px solid var(--line);border-radius:9px;background:#f8fafc;padding:.5rem}.sim-window-readout b{display:block;color:#34495e}.classification-key{display:flex;gap:.45rem;flex-wrap:wrap}.classification-key span{border:1px solid var(--line);border-radius:999px;padding:.2rem .48rem;background:#f8fafc;font-size:.82rem}.report-status{border:1px solid var(--line);border-radius:10px;background:#f8fafc;padding:.65rem;margin:.55rem 0;min-height:4rem}.math-domain{font-family:"Cambria Math","Times New Roman",serif;font-weight:700}
+@media(max-width:850px){.property-grid,.domain-pair,.statement-grid,.release-strip,.model-compare,.sim-window-readout{grid-template-columns:1fr}}
+@media print{#w4-verlauf .timeline{font-size:6.05pt;line-height:1.03}#w4-verlauf .timeline th,#w4-verlauf .timeline td{padding:.08rem .1rem}.property-grid{grid-template-columns:repeat(4,1fr);gap:.18rem}.property-box{min-height:14mm;padding:.28rem}.domain-pair,.statement-grid,.model-compare{grid-template-columns:repeat(2,1fr);gap:.2rem}.domain-card,.statement-card,.model-compare .model-card{padding:.28rem}.release-strip{grid-template-columns:repeat(3,1fr);gap:.2rem}.release-box{padding:.28rem}.graph-svg{max-height:76mm;margin:.18rem 0}.profile-table{font-size:7.1pt}.profile-table td,.profile-table th{padding:.11rem .16rem}#w4-aufgabe-1 .answerbox{min-height:12mm}#w4-aufgabe-2 .answerbox{min-height:18mm}#w4-aufgabe-3 .answerbox{min-height:15mm}#w4-aufgabe-4 .answerbox{min-height:17mm}.auto-report{box-shadow:none}.report-body{padding:.35rem!important}.logic-chain{padding:.28rem}.sim-window-readout{grid-template-columns:repeat(3,1fr)}}
+
+
+.percent-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:.55rem;margin:.55rem 0}.percent-box{border:1px solid var(--line);border-radius:10px;padding:.6rem;background:#f8fafc;min-height:5.7rem}.percent-box b{display:block;color:#34495e}.percent-box .big{font-size:1.1rem;font-weight:900;color:#0b536d}.factor-chain{display:grid;grid-template-columns:repeat(5,minmax(74px,1fr));gap:.35rem;align-items:center;margin:.55rem 0}.factor-chain>div{border:1px solid var(--line);border-radius:10px;padding:.55rem;background:#fff;text-align:center}.factor-chain .arrow{border:0;background:transparent;color:var(--accent);font-size:1.25rem;font-weight:900}.threshold-band{border:1px solid #d2b977;border-left:6px solid #d69a00;border-radius:10px;background:#fff9e8;padding:.65rem .8rem;margin:.55rem 0}.release-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.55rem;margin:.55rem 0}.release-card{border:1px solid var(--line);border-radius:10px;padding:.62rem;background:#fff}.release-card b{display:block;color:#34495e}.model-diff{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.65rem;margin:.55rem 0}.model-diff>div{border:1px solid var(--line);border-radius:11px;padding:.65rem;background:#fff}.model-diff .exp-model{border-top:6px solid #0b6b8a}.model-diff .linear-model{border-top:6px solid #8b4a1f}.decision-banner{border:2px solid #29475d;border-radius:12px;padding:.72rem;background:#f7fbfd;margin:.55rem 0}.decision-banner b{color:#183b52}.sim-value-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:.45rem;margin:.55rem 0}.sim-value-grid>div{border:1px solid var(--line);border-radius:9px;background:#f8fafc;padding:.5rem}.sim-value-grid b{display:block;color:#34495e}.formula-ticket{border:2px dashed #0b6b8a;border-radius:12px;padding:.72rem;background:#eef8fb;margin:.55rem 0}.formula-ticket .ticket-line{display:grid;grid-template-columns:165px 1fr;gap:.28rem .7rem}.formula-ticket .ticket-line b{color:#34495e}.cycle-table td:first-child,.cycle-table th:first-child{width:22%}.cycle-table td,.cycle-table th{text-align:center}.cycle-table td:first-child,.cycle-table th:first-child{text-align:left}.model-card-row{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.55rem;margin:.55rem 0}.model-card-row>div{border:1px solid var(--line);border-radius:10px;padding:.58rem;background:#fff}.model-card-row b{display:block;color:#183b52}.unit-check{display:inline-block;border-radius:999px;padding:.14rem .45rem;background:#e8f6ee;color:#245f3d;font-size:.8rem;font-weight:800}.warning-check{display:inline-block;border-radius:999px;padding:.14rem .45rem;background:#fff0f0;color:#7e2828;font-size:.8rem;font-weight:800}
+@media(max-width:850px){.percent-grid,.release-grid,.model-diff,.sim-value-grid,.model-card-row{grid-template-columns:1fr}.factor-chain{grid-template-columns:1fr}.factor-chain .arrow{transform:rotate(90deg)}.formula-ticket .ticket-line{grid-template-columns:1fr}}
+@media print{#w5-verlauf .timeline{font-size:6.05pt;line-height:1.03}#w5-verlauf .timeline th,#w5-verlauf .timeline td{padding:.08rem .1rem}.percent-grid{grid-template-columns:repeat(4,1fr);gap:.18rem}.percent-box{min-height:14mm;padding:.28rem}.factor-chain{grid-template-columns:repeat(5,1fr);gap:.12rem}.factor-chain>div{padding:.2rem}.factor-chain .arrow{transform:none}.release-grid{grid-template-columns:repeat(3,1fr);gap:.2rem}.release-card{padding:.28rem}.model-diff{grid-template-columns:repeat(2,1fr);gap:.2rem}.model-diff>div{padding:.28rem}.model-card-row{grid-template-columns:repeat(3,1fr);gap:.2rem}.model-card-row>div{padding:.28rem}.sim-value-grid{grid-template-columns:repeat(4,1fr)}.formula-ticket{padding:.28rem}.formula-ticket .ticket-line{grid-template-columns:125px 1fr}.cycle-table{font-size:7.2pt}.cycle-table td,.cycle-table th{padding:.11rem .16rem}#w5-aufgabe-1 .answerbox{min-height:12mm}#w5-aufgabe-2 .answerbox{min-height:14mm}#w5-aufgabe-3 .answerbox{min-height:18mm}#w5-aufgabe-4 .answerbox{min-height:14mm}.decision-banner,.threshold-band{padding:.28rem}}
+
+</style>
+</head>
+
+<body data-view="all">
+<nav class="appbar no-print" aria-label="Ansichts- und Drucksteuerung">
+  <div class="inner">
+    <div class="brand">12NF · Mathematik · Woche 5</div>
+    <button type="button" class="viewbtn active" data-view-target="all">Gesamt</button>
+    <button type="button" class="viewbtn" data-view-target="student">Schülerarbeitsblatt</button>
+    <button type="button" class="viewbtn" data-view-target="simulations">Simulationen</button>
+    <button type="button" class="viewbtn" data-view-target="teacher">Lehrkraftfassung</button>
+    <button type="button" class="viewbtn" data-view-target="solution">Musterlösung</button>
+    <button type="button" class="printbtn" id="w5PrintHintToggle">Hilfen beim Drucken: aus</button>
+    <button type="button" class="printbtn" id="w5PrintBtn">Drucken</button>
+    <span class="print-mode" id="w5PrintModeText">Schülerdruck ohne Hilfen</span>
+  </div>
+</nav>
+<main id="w5-main">
+<section class="hero">
+  <div class="kicker">Exponentialmodelle und Differentialrechnung · Halbjahr 12.1</div>
+  <h1>Aus 7&nbsp;% Verlust wird eine belastbare Modellgleichung</h1>
+  <p>Zwei einzelne Lernstunden à 45 Minuten mit gemeinsamem Freigabeauftrag: Prozentangaben in Faktoren übersetzen, ein Exponentialmodell aufstellen, eine lineare Fehlvorlage entlarven und daraus eine technisch begründete Wartungsentscheidung ableiten.</p>
+  <div class="meta">
+    <div><b>Klasse</b>12NF · physikalisch-technische Assistenz mit FHR</div>
+    <div><b>Woche</b>5 · Datum durch Lehrkraft ergänzen</div>
+    <div><b>Stundenlage</b>2 × 45 Minuten · Fortführung der Vorwoche</div>
+    <div><b>Handlungsprodukt</b>Modellfreigabe MF-05</div>
+  </div>
+</section>
+
+<section class="teacher-only" id="w5-einordnung">
+  <h2>1. Einordnung, Rückblick und Lernziele</h2>
+  <div class="grid2">
+    <div class="card">
+      <h3>Letzter bestätigter Stand</h3>
+      <p><span class="tag">Woche 4 vollständig ausgewertet</span> <span class="tag">Graphenfreigabe GF-04</span></p>
+      <p>Die Lernenden trennen mathematischen und sachlich freigegebenen Definitions- und Wertebereich. Sie beschreiben Exponentialgraphen mit y-Achsenabschnitt, Nullstellenstatus, Monotonie, Grenzverhalten und horizontaler Asymptote und begründen die Richtung aus dem Zusammenspiel von <span class="formula">A</span> und <span class="formula">q</span> beziehungsweise <span class="formula">k</span>.</p>
+      <p>Am Modell <span class="formula">T(t)=60·0,75<sup>t</sup>+20</span> wurde eine technisch begrenzte Graphenfreigabe erstellt. Dabei blieben Einheiten, Modellgrenzen und die Unterscheidung „mathematisch berechenbar / technisch zulässig“ verbindliche Bestandteile.</p>
+      <p><b>Grenze der Vorwoche:</b> Ein bereits gegebener Faktor wurde gedeutet; die systematische Übersetzung einer Prozentangabe in einen Wachstums- oder Zerfallsfaktor und der eigenständige Aufbau einer Modellgleichung wurden noch nicht erarbeitet.</p>
+    </div>
+    <div class="card soft">
+      <h3>Nächster offener Teilschritt</h3>
+      <p><b>Curricularer Schritt:</b> Prozentfaktor bestimmen und aus Startwert, Änderungsrate und Zeitschritt eine Exponentialgleichung aufstellen.</p>
+      <p><b>Didaktische Brücke:</b> Die in Woche 4 beschriebenen Grapheneigenschaften werden nun aus einer Sachangabe erzeugt: Aus „7&nbsp;% Verlust je Zyklus“ entsteht zunächst der verbleibende Anteil <span class="formula">93&nbsp;%</span>, daraus <span class="formula">q=0,93</span> und schließlich <span class="formula">S(n)=S<sub>0</sub>·q<sup>n</sup></span>.</p>
+      <p><b>Voraussetzungen:</b> Prozentrechnung, Potenzen, Einsetzen, Startwert und Faktorform, Einheiten, Funktionswerte und Modellgrenzen.</p>
+      <p><b>Bewusste Grenze:</b> keine unbekannte Zeit im Exponenten, keine Logarithmen, keine Halbwerts- oder Verdopplungszeit und keine kontinuierliche Rate <span class="formula">k</span> aus Prozentangaben. <b>Folgestoff:</b> Halbwertszeit, Verdopplungszeit und Anwendungen.</p>
+    </div>
+  </div>
+  <h3>Lernziele</h3>
+  <ul>
+    <li>Die Lernenden übersetzen prozentuale Zu- und Abnahmen sicher in die Faktoren <span class="formula">q=1±p/100</span> und unterscheiden Änderungsrate, verbleibenden Anteil und Faktor.</li>
+    <li>Sie stellen aus Startwert, Faktor, Schrittweite und Geltungsbereich eine Modellgleichung der Form <span class="formula">N(t)=N<sub>0</sub>·q<sup>t</sup></span> auf.</li>
+    <li>Sie berechnen und dokumentieren Modellwerte mit passender Einheit und sinnvoller Genauigkeit, ohne Zwischenwerte unnötig zu runden.</li>
+    <li>Sie erklären, warum eine konstante prozentuale Änderung nicht durch einen konstanten absoluten Betrag pro Schritt ersetzt werden darf.</li>
+    <li>Sie vergleichen zwei konkurrierende Modelle und treffen innerhalb eines bereitgestellten technischen Grenzwerts eine begründete Freigabeentscheidung.</li>
+  </ul>
+</section>
+
+<section class="teacher-only" id="w5-problem-produkt">
+  <h2>2. Problemsituation und Handlungsprodukt</h2>
+  <div class="email-card">
+    <div class="email-bar">
+      <b>Von</b><span>Mara Stein · Qualitätssicherung, RheinLab Sensorsysteme</span>
+      <b>An</b><span>Modellierungsteam 12NF</span>
+      <b>Betreff</b><span>MF-05: Wartungsfreigabe für Referenzmodul widersprüchlich</span>
+    </div>
+    <div class="email-body">
+      <p class="subject">Nach acht Belastungszyklen: 2,11 V oder 2,69 V?</p>
+      <p>Ein Referenzmodul liefert zu Beginn <span class="formula">S<sub>0</sub>=4,80 V</span>. Laut Prüfvorgabe verliert das Signal nach jedem thermischen Belastungszyklus <b>7,0&nbsp;% des jeweils aktuellen Werts</b>. Dokumentiert sind die Zyklen <span class="formula">0≤n≤8</span>.</p>
+      <p>Das Dashboard zieht in jedem Zyklus erneut <span class="formula">0,336 V</span> ab, also 7&nbsp;% des Startwerts. Es meldet nach acht Zyklen <span class="formula">2,11 V</span> und fordert Austausch. Eine zweite Berechnung liefert <span class="formula">2,69 V</span>. Das intern bereitgestellte Entscheidungskriterium lautet: <span class="formula">S(8)≥2,50 V</span> bedeutet „im dokumentierten Bereich weiter verwendbar“.</p>
+      <p><b>Auftrag:</b> Übersetzt die Prozentangabe in den richtigen Faktor, erstellt und prüft das Exponentialmodell, vergleicht es mit der linearen Dashboard-Vorlage und gebt die Modellfreigabe MF-05 mit begrenzter Wartungsentscheidung ab.</p>
+    </div>
+  </div>
+  <p class="small"><span class="tag">didaktisch konstruierte Daten</span> Firma, Personen, Referenzmodul, Belastungszyklen, Grenzwert und Freigabeauftrag sind fiktiv. Es findet kein realer thermischer Versuch statt.</p>
+  <p><b>Entscheidungsfrage:</b> Welche Modellgleichung bildet „7&nbsp;% des jeweils aktuellen Werts“ ab, und welche Wartungsentscheidung folgt daraus nach acht dokumentierten Zyklen?</p>
+  <div class="grid2">
+    <div class="card problem"><h3>Zwischenergebnis Stunde 1</h3><p><b>Faktor- und Modellkarte:</b> verbleibender Anteil, Faktor, Variable mit Einheit, Modellterm, Geltungsbereich und ausgewählte Kontrollwerte sind nachvollziehbar festgehalten.</p></div>
+    <div class="card solution"><h3>Gesamtprodukt Stunde 2</h3><p><b>Modellfreigabe MF-05:</b> korrektes Exponentialmodell, Vergleich mit der linearen Fehlvorlage, Grenzwertentscheidung, Plausibilitätsprüfung und klar begrenzter Freigabevermerk.</p></div>
+  </div>
+  <p><b>Produktkriterien:</b> Startwert mit Einheit · Prozentangabe in verbleibenden Anteil und Faktor übersetzt · Variable und Schrittweite definiert · Modellgleichung korrekt · Funktionswerte aus ungerundeten Zwischenwerten · linearer Fehler erklärt · beide Werte bei <span class="formula">n=8</span> verglichen · Entscheidung am bereitgestellten Grenzwert · Gültigkeit auf <span class="formula">0≤n≤8</span> begrenzt.</p>
+</section>
+
+<section class="teacher-only" id="w5-verlauf">
+  <h2>3. Verlaufsplan für beide Stunden</h2>
+  <table class="timeline">
+    <thead><tr><th>Zeit</th><th>Phase</th><th>Lehrkrafthandeln</th><th>Lernendenhandeln</th><th>Sozialform</th><th>Material</th><th>Erwartetes Ergebnis / Produktbezug</th></tr></thead>
+    <tbody>
+      <tr><td>0–7</td><td>Problemöffnung</td><td>Zeigt die beiden Dashboardwerte 2,11 V und 2,69 V sowie den Grenzwert 2,50 V. Fragt: „Welcher Rechenweg passt zu 7&nbsp;% des jeweils aktuellen Werts?“</td><td>Formulieren erste Modellhypothesen und markieren den entscheidungsrelevanten Unterschied.</td><td>Plenum → EA</td><td>E-Mail, AB</td><td>Konflikt zwischen konstantem Betrag und konstantem Prozentsatz ist sichtbar.</td></tr>
+      <tr><td>7–20</td><td>Prozent in Faktor</td><td>Lenkt auf 100&nbsp;% − 7&nbsp;% und trennt <span class="formula">p</span>, verbleibenden Anteil und <span class="formula">q</span>.</td><td>Bearbeiten Aufgabe 1, bestimmen den ersten Folgewert und formulieren die allgemeine Regel.</td><td>PA</td><td>AB 1, TR</td><td><span class="formula">q=0,93</span>; erster Zyklus <span class="formula">4,464 V</span>.</td></tr>
+      <tr><td>20–34</td><td>Modell aufstellen</td><td>Fordert Variable, Einheit, Schrittweite, Startwert und Geltungsbereich als feste Modellbestandteile.</td><td>Bearbeiten Aufgabe 2 und erstellen die Faktor- und Modellkarte mit Wertetabelle.</td><td>EA → PA</td><td>AB 2</td><td><span class="formula">S(n)=4,80·0,93<sup>n</sup></span> V für <span class="formula">n∈{0,…,8}</span>.</td></tr>
+      <tr><td>34–41</td><td>Faktorlabor</td><td>Gibt Labor 1 erst nach eigener Übersetzung frei; fokussiert auf Zu-/Abnahme und verbleibenden Anteil.</td><td>Prüfen wechselnde Prozentangaben und erklären den Faktor.</td><td>PA</td><td>Sim 1</td><td>Prozentangabe und Faktor werden sicher unterschieden.</td></tr>
+      <tr><td>41–45</td><td>Zwischensicherung</td><td>Sammelt die Modellkette an der Tafel.</td><td>Korrigieren Einheit, Exponent und Geltungsbereich.</td><td>Plenum</td><td>Tafel</td><td><b>Zwischenergebnis:</b> vollständige Faktor- und Modellkarte.</td></tr>
+      <tr><td>45–52</td><td>Reaktivierung</td><td>Kontrastiert „7&nbsp;% des Startwerts“ und „7&nbsp;% des aktuellen Werts“ mit zwei kurzen Zahlenfolgen.</td><td>Ordnen linear / exponentiell zu und begründen sprachlich.</td><td>Think–Pair</td><td>Karten</td><td>Bezugsgröße der Prozentangabe ist geklärt.</td></tr>
+      <tr><td>52–66</td><td>Modelle vergleichen</td><td>Stellt die lineare Vorlage <span class="formula">L(n)=4,80−0,336n</span> bereit und fordert Entscheidung erst nach eigener Rechnung.</td><td>Bearbeiten Aufgabe 3, vergleichen Werte und absolute Verluste, prüfen im Modellvergleichslabor.</td><td>PA → Lerntempoduett</td><td>AB 3, Sim 2</td><td>Exponentielles Modell bleibt bei Zyklus 8 über 2,50 V; lineare Vorlage führt zur falschen Wartungsentscheidung.</td></tr>
+      <tr><td>66–77</td><td>Transfer</td><td>Gibt zwei kurze Modellkarten mit Wachstum und Zerfall; fordert Faktor, Term, Einheit und Plausibilität.</td><td>Bearbeiten Aufgabe 4 und kontrollieren ausgewählte Karten im Prüfstand.</td><td>PA</td><td>AB 4, Sim 3</td><td>Regel <span class="formula">q=1±p/100</span> wird auf neue Daten übertragen.</td></tr>
+      <tr><td>77–88</td><td>Handlungsprodukt</td><td>Fordert die ausführbare MF-05-Freigabe und einen Paarcheck nach Produktkriterien.</td><td>Bearbeiten Aufgabe 5 und überarbeiten den Freigabevermerk.</td><td>EA → PA</td><td>Produktblatt</td><td>Vollständige, begrenzte Modellfreigabe MF-05.</td></tr>
+      <tr><td>88–90</td><td>Sicherung</td><td>Kontrastiert „gleicher Betrag“ und „gleicher Anteil“.</td><td>Formulieren den gemeinsamen Sicherungssatz.</td><td>Plenum</td><td>Tafel</td><td><b>Gesamtprodukt:</b> fachlich begründete Wartungsentscheidung.</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section class="teacher-only" id="w5-didaktik">
+  <h2>4. Differenzierung, Hilfesteuerung und typische Reaktionen</h2>
+  <div class="grid3">
+    <div class="card"><h3>Basisweg</h3><p>Nutzt die feste Kette „100&nbsp;% → verbleibender Anteil → Faktor → Modell“, eine teilweise ausgefüllte Wertetabelle und Satzstarter. In Aufgabe 3 werden nur die Werte bei <span class="formula">n=1</span> und <span class="formula">n=8</span> verglichen; die Entwicklung der Verluste wird mündlich beschrieben.</p></div>
+    <div class="card"><h3>Standardweg</h3><p>Bearbeitet alle Aufgaben, stellt beide Modelle auf, rechnet die geforderten Werte, vergleicht die Bezugsgrößen und erstellt die vollständige MF-05-Freigabe mit Grenzwertentscheidung.</p></div>
+    <div class="card"><h3>Erweiterung</h3><p>Bestimmt aus <span class="formula">N<sub>0</sub>=200</span> und <span class="formula">N<sub>5</sub>=300</span> bei fünf gleichen Schritten den Faktor <span class="formula">q=(300/200)<sup>1/5</sup>≈1,0845</span> und deutet dies als rund 8,45&nbsp;% Wachstum je Schritt. Unbekannte Zeiten bleiben ausgeschlossen.</p></div>
+  </div>
+  <h3>Aufgabennahe Hilfen steuern</h3>
+  <ul>
+    <li><b>Aufgabe 1:</b> Hilfen trennen Verlustanteil und verbleibenden Anteil; der vollständige Modellterm wird nicht vorgegeben.</li>
+    <li><b>Aufgabe 2:</b> Hilfen geben die Modellbausteine und einen ersten Tabellenwert, nicht alle Funktionswerte.</li>
+    <li><b>Aufgabe 3:</b> Hilfen strukturieren den Vergleich; Entscheidung und AFB-III-Begründung bleiben eigenständig.</li>
+    <li><b>Aufgabe 4:</b> Hilfen geben die Vorzeichenregel für Zu- und Abnahme, nicht beide fertigen Terme.</li>
+    <li><b>Aufgabe 5:</b> Hilfen bieten Berichtsteile und Satzstarter, nicht den vollständigen Freigabevermerk.</li>
+  </ul>
+  <h3>Typische Fehler und mögliche Reaktionen</h3>
+  <table>
+    <thead><tr><th>Beobachtung</th><th>Mögliche Reaktion</th></tr></thead>
+    <tbody>
+      <tr><td>7&nbsp;% Abnahme wird als <span class="formula">q=0,07</span> oder <span class="formula">q=−0,07</span> verwendet.</td><td>Mit 100 Kästchen arbeiten: 7 gehen verloren, 93 bleiben; daher <span class="formula">q=93/100=0,93</span>.</td></tr>
+      <tr><td>In jedem Zyklus werden 0,336 V abgezogen.</td><td>Die Bezugsgröße markieren lassen: „7&nbsp;% von welchem Wert?“ Den zweiten Verlust <span class="formula">0,07·4,464 V</span> mit dem ersten vergleichen.</td></tr>
+      <tr><td>Der Term lautet <span class="formula">4,80·7<sup>n</sup></span> oder <span class="formula">4,80·93<sup>n</sup></span>.</td><td>Prozentangabe vor dem Potenzieren in eine Dezimalzahl zwischen 0 und 1 umwandeln.</td></tr>
+      <tr><td>Zwischenwerte werden nach jedem Zyklus auf zwei Dezimalstellen gerundet.</td><td>Mit dem direkten Term <span class="formula">4,80·0,93<sup>n</sup></span> rechnen und erst den Endwert runden.</td></tr>
+      <tr><td>Der Faktor erhält die Einheit Volt.</td><td>Einheitenprüfung: <span class="formula">S(n)/S(n−1)</span> ist V/V und damit einheitenlos; nur <span class="formula">S</span> trägt Volt.</td></tr>
+      <tr><td>Der Exponent wird mit „8 V“ oder ohne Schrittbezug notiert.</td><td><span class="formula">n</span> als Anzahl der Ein-Zyklus-Schritte definieren; bei Zeitmodellen muss die Zeit zur Rate pro Zeiteinheit passen.</td></tr>
+      <tr><td>Die Wartungsentscheidung wird ohne Modellgrenze verallgemeinert.</td><td>Freigabevermerk auf den dokumentierten Bereich <span class="formula">0≤n≤8</span> und den bereitgestellten Grenzwert begrenzen.</td></tr>
+    </tbody>
+  </table>
+  <h3>Sprachliche Unterstützung</h3>
+  <p><b>Satzstarter:</b> „Nach jedem Schritt bleiben …&nbsp;% des vorherigen Werts.“ · „Der Faktor lautet …, weil …“ · „Das Modell ist exponentiell, da …“ · „Die lineare Vorlage verwendet fälschlich … als feste Bezugsgröße.“ · „Bei <span class="formula">n=8</span> liegt der Modellwert … dem Grenzwert.“ · „Die Freigabe gilt ausschließlich …“</p>
+  <p><b>Begriffshilfen:</b> Änderungsrate = prozentuale Zu- oder Abnahme · verbleibender Anteil = 100&nbsp;% minus Verlust · Faktor = Multiplikator pro Schritt · Startwert = Wert bei Schritt 0 · Schrittweite = Länge eines Modellschritts · Modellgleichung = Rechenvorschrift für beliebige zulässige Schritte.</p>
+</section>
+
+<section class="teacher-only" id="w5-simulationen-lehrkraft">
+  <h2>5. Simulationskonzept und Einsatz</h2>
+  <table>
+    <thead><tr><th>Labor</th><th>Zuordnung</th><th>Mehrwert</th><th>Einsatzzeitpunkt</th><th>Schriftliche Denkhandlung bleibt</th></tr></thead>
+    <tbody>
+      <tr><td>Prozent-Faktor-Übersetzer</td><td>Aufgabe 1</td><td>Verknüpft Zu-/Abnahme, verbleibenden Anteil, Faktor und ersten Folgewert für wechselnde Prozentangaben.</td><td>Nach eigener Faktorbestimmung.</td><td>Regel und Begründung in Symbolen und Worten notieren.</td></tr>
+      <tr><td>Modellvergleich am Grenzwert</td><td>Aufgabe 3</td><td>Zeigt exponentielles und lineares Modell gemeinsam, macht schrumpfende absolute Verluste sichtbar und koppelt den Wert bei Zyklus 8 an die Entscheidungsschwelle.</td><td>Nach eigener Rechnung und Vorhersage.</td><td>Fehlerursache und Wartungsentscheidung formulieren.</td></tr>
+      <tr><td>Modellkarten-Prüfstand</td><td>Aufgabe 4</td><td>Prüft Faktoren und Terme für Wachstum und Zerfall mit gezielter Rückmeldung zu Vorzeichen, Einheit und Bezugsgröße.</td><td>Nach eigener Bearbeitung der Transferkarten.</td><td>Korrekturterm und fachliche Deutung bleiben schriftlich.</td></tr>
+    </tbody>
+  </table>
+  <p class="small">Alle Labore arbeiten ausschließlich lokal mit didaktisch konstruierten Daten. Sie speichern nichts, laden nichts nach und erzeugen keine vollständige Modellfreigabe.</p>
+</section>
+
+<section class="student-only" id="w5-arbeitsblatt">
+  <div class="worksheet-header">
+    <div><b>12NF · Mathematik · Woche 5</b><br>Schülerarbeitsblatt: Modellfreigabe MF-05</div>
+    <div>Name: ____________________<br>Datum: ____________________</div>
+  </div>
+  <div class="material">
+    <div class="export-badge">MODELLFREIGABE · MF-05</div>
+    <div class="protocol-head">
+      <b>Messgröße</b><span>Referenzsignal <span class="formula">S</span> in V; Zykluszahl <span class="formula">n</span> ohne Einheit</span>
+      <b>Startwert</b><span><span class="formula">S<sub>0</sub>=4,80 V</span> bei <span class="formula">n=0</span></span>
+      <b>Änderung</b><span>nach jedem Zyklus Verlust von <span class="formula">7,0&nbsp;%</span> des jeweils aktuellen Signalwerts</span>
+      <b>Dokumentiert</b><span><span class="formula">0≤n≤8</span>; Entscheidungskriterium bei Zyklus 8: <span class="formula">S(8)≥2,50 V</span></span>
+      <b>Dashboard</b><span>lineare Vorlage zieht je Zyklus <span class="formula">0,336 V</span> ab und meldet <span class="formula">2,11 V</span></span>
+    </div>
+    <div class="sensor-note"><b>Prüfauftrag:</b> Übersetze die Prozentangabe zuerst in einen Faktor. Entscheide erst danach, welches Modell und welcher Wartungsvermerk fachlich freigegeben werden können.</div>
+    <div class="workpath" aria-label="Arbeitsweg"><div>Prozent in Faktor übersetzen</div><div>Modellterm und Werte bestimmen</div><div>lineare Vorlage prüfen</div><div>MF-05 begrenzt freigeben</div></div>
+  </div>
+
+  <div class="task-with-hints" id="w5-aufgabe-1">
+    <h3>Aufgabe 1 – Aus Prozentangaben den Faktor gewinnen <span class="afb">AFB I–II</span></h3>
+    <p>Ergänze die Übersetzungskette und berechne den Signalwert nach dem ersten Zyklus. Formuliere anschließend die allgemeine Regel für eine Abnahme um <span class="formula">p&nbsp;%</span>.</p>
+    <div class="factor-chain" aria-label="Übersetzungskette von Prozentverlust zum Faktor">
+      <div><b>Start</b>100&nbsp;%</div><div class="arrow">→</div><div><b>Verlust</b>7&nbsp;%</div><div class="arrow">→</div><div><b>verbleiben</b>______&nbsp;% = ______</div>
+    </div>
+    <div class="percent-grid">
+      <div class="percent-box"><b>Rate</b><span class="big">p = ______</span><br><span class="small">in Prozent</span></div>
+      <div class="percent-box"><b>Faktor</b><span class="big">q = ______</span><br><span class="small">einheitenlos</span></div>
+      <div class="percent-box"><b>1. Folgewert</b><span class="big">S(1) = ______</span><br><span class="small">mit Einheit</span></div>
+      <div class="percent-box"><b>1. Verlust</b><span class="big">ΔS<sub>1</sub> = ______</span><br><span class="small">absoluter Betrag</span></div>
+    </div>
+    <p>Allgemeine Regel bei <span class="formula">p&nbsp;%</span> Abnahme: <span class="formula">q=</span> ________________________________</p>
+    <div class="sim-task-note no-print"><b>Optionale Offline-Kontrolle zu Aufgabe 1:</b> Übersetze die 7&nbsp;% zuerst schriftlich. Prüfe danach im <b>Prozent-Faktor-Übersetzer</b> auch andere Zu- und Abnahmen.<br><button type="button" class="sim-link" data-sim-target="sim-factor">Prozent-Faktor-Übersetzer öffnen</button></div>
+    <div class="inline-hints" aria-label="Hilfen zu Aufgabe 1">
+      <details><summary>Hilfe 1 zu Aufgabe 1: Denkimpuls</summary><div>Bei einer Abnahme interessiert nicht nur, was verloren geht, sondern welcher Anteil danach noch vorhanden ist.</div></details>
+      <details><summary>Hilfe 2 zu Aufgabe 1: Strukturhilfe</summary><div>Verbleibender Prozentsatz = <span class="formula">100&nbsp;%−p&nbsp;%</span>; Faktor = verbleibender Prozentsatz geteilt durch 100.</div></details>
+      <details><summary>Hilfe 3 zu Aufgabe 1: erster Zwischenschritt</summary><div><span class="formula">100&nbsp;%−7&nbsp;%=93&nbsp;%</span>. Schreibe <span class="formula">93&nbsp;%</span> als Dezimalzahl.</div></details>
+    </div>
+  </div>
+
+  <div class="task-with-hints" id="w5-aufgabe-2">
+    <h3>Aufgabe 2 – Modellgleichung aufstellen und kontrollieren <span class="afb">AFB II</span></h3>
+    <p>Definiere die Variable <span class="formula">n</span> und stelle das Modell <span class="formula">S(n)=S<sub>0</sub>·q<sup>n</sup></span> auf. Gib den dokumentierten Bereich an. Berechne die Werte ohne gerundete Zwischenwerte und runde das Endergebnis auf Hundertstelvolt.</p>
+    <div class="formula-ticket">
+      <div class="ticket-line"><b>Variable</b><span>________________________________________________________</span><b>Modell</b><span>________________________________________________________</span><b>Geltungsbereich</b><span>________________________________________________________</span></div>
+    </div>
+    <table class="cycle-table compact-table">
+      <thead><tr><th>Zyklus <span class="formula">n</span></th><th>0</th><th>1</th><th>2</th><th>4</th><th>8</th></tr></thead>
+      <tbody><tr><td><span class="formula">S(n)</span> in V</td><td></td><td></td><td></td><td></td><td></td></tr></tbody>
+    </table>
+    <p>Erkläre an den Werten, warum die absoluten Verluste pro Zyklus kleiner werden, obwohl der prozentuale Verlust immer 7&nbsp;% beträgt.</p>
+    <div class="answerbox"></div>
+    <div class="inline-hints" aria-label="Hilfen zu Aufgabe 2">
+      <details><summary>Hilfe 1 zu Aufgabe 2: Denkimpuls</summary><div>Der Exponent zählt, wie oft derselbe Faktor angewendet wird. Bei <span class="formula">n=0</span> muss der Startwert herauskommen.</div></details>
+      <details><summary>Hilfe 2 zu Aufgabe 2: Strukturhilfe</summary><div>Modellbausteine: Messgröße mit Einheit · Startwert · Faktor · Anzahl der Ein-Zyklus-Schritte · dokumentierter Bereich.</div></details>
+      <details><summary>Hilfe 3 zu Aufgabe 2: erster Zwischenschritt</summary><div><span class="formula">S(2)=4,80·0,93<sup>2</sup></span>. Nutze für <span class="formula">n=4</span> und <span class="formula">n=8</span> denselben direkten Term.</div></details>
+    </div>
+  </div>
+
+  <div class="student-pagebreak"></div>
+
+  <div class="task-with-hints" id="w5-aufgabe-3">
+    <h3>Aufgabe 3 – Exponentielles Modell gegen die lineare Vorlage prüfen <span class="afb">AFB II–III</span></h3>
+    <p>Das Dashboard verwendet den konstanten Anfangsverlust <span class="formula">0,07·4,80 V=0,336 V</span> in jedem Zyklus und damit <span class="formula">L(n)=4,80−0,336n</span>. Berechne und vergleiche:</p>
+    <table class="cycle-table compact-table">
+      <thead><tr><th>Vergleich</th><th><span class="formula">n=1</span></th><th><span class="formula">n=4</span></th><th><span class="formula">n=8</span></th></tr></thead>
+      <tbody>
+        <tr><td>Exponentiell <span class="formula">S(n)</span> in V</td><td></td><td></td><td></td></tr>
+        <tr><td>Linear <span class="formula">L(n)</span> in V</td><td></td><td></td><td></td></tr>
+        <tr><td>Differenz <span class="formula">S(n)−L(n)</span> in V</td><td></td><td></td><td></td></tr>
+      </tbody>
+    </table>
+    <p><b>a)</b> Erkläre präzise, warum beide Modelle nach dem ersten Zyklus übereinstimmen, danach aber auseinanderlaufen.</p>
+    <p><b>b)</b> Triff für <span class="formula">n=8</span> die Entscheidung am bereitgestellten Grenzwert <span class="formula">2,50 V</span>. Begründe, welche Dashboardmeldung freigegeben und welche gesperrt werden muss.</p>
+    <div class="answerbox"></div>
+    <div class="sim-task-note no-print"><b>Optionale Offline-Kontrolle zu Aufgabe 3:</b> Rechne <span class="formula">S(8)</span> und <span class="formula">L(8)</span> zuerst selbst. Prüfe danach im <b>Modellvergleich am Grenzwert</b> deine Vorhersage.<br><button type="button" class="sim-link" data-sim-target="sim-compare">Modellvergleich öffnen</button></div>
+    <div class="inline-hints" aria-label="Hilfen zu Aufgabe 3">
+      <details><summary>Hilfe 1 zu Aufgabe 3: Denkimpuls</summary><div>Frage bei jedem Modell: Bleibt der abgezogene Betrag gleich, oder bleibt der Anteil am aktuellen Wert gleich?</div></details>
+      <details><summary>Hilfe 2 zu Aufgabe 3: Strukturhilfe</summary><div>Vergleiche nacheinander Rechenvorschrift → Wert bei <span class="formula">n=8</span> → Lage zum Grenzwert → technische Entscheidung.</div></details>
+      <details><summary>Hilfe 3 zu Aufgabe 3: erster Zwischenschritt</summary><div><span class="formula">L(4)=4,80−0,336·4</span>. Beim Exponentialmodell verwendest du <span class="formula">S(4)=4,80·0,93<sup>4</sup></span>.</div></details>
+    </div>
+  </div>
+
+  <div class="task-with-hints" id="w5-aufgabe-4">
+    <h3>Aufgabe 4 – Prozentmodelle auf neue Prüfkarten übertragen <span class="afb">AFB II</span></h3>
+    <div class="model-card-row">
+      <div><b>Karte A · Zerfall</b>Eine Referenzmasse startet bei 1200 mg und nimmt pro Stunde um 3,5&nbsp;% des aktuellen Werts ab.</div>
+      <div><b>Karte B · Wachstum</b>Eine Kalibriergröße startet bei 250 mV und nimmt pro Zyklus um 12&nbsp;% des aktuellen Werts zu.</div>
+      <div><b>Dokumentation</b>Faktor, Modellterm, Variable mit Einheit und ein Kontrollwert müssen angegeben werden.</div>
+    </div>
+    <p><b>a)</b> Stelle für Karte A das Modell auf und berechne den Wert nach 6 h.</p>
+    <p><b>b)</b> Stelle für Karte B das Modell auf und berechne den Wert nach 3 Zyklen.</p>
+    <p><b>c)</b> Erkläre, warum der Faktor selbst keine Einheit trägt.</p>
+    <div class="answerbox"></div>
+    <div class="sim-task-note no-print"><b>Optionale Offline-Kontrolle zu Aufgabe 4:</b> Wähle erst schriftlich die Faktoren. Prüfe danach im <b>Modellkarten-Prüfstand</b> mehrere Vorschläge.<br><button type="button" class="sim-link" data-sim-target="sim-cards">Modellkarten-Prüfstand öffnen</button></div>
+    <div class="inline-hints" aria-label="Hilfen zu Aufgabe 4">
+      <details><summary>Hilfe 1 zu Aufgabe 4: Denkimpuls</summary><div>Bei Abnahme ist der Faktor kleiner als 1; bei Zunahme ist er größer als 1.</div></details>
+      <details><summary>Hilfe 2 zu Aufgabe 4: Strukturhilfe</summary><div><span class="formula">q<sub>ab</sub>=1−p/100</span> und <span class="formula">q<sub>zu</sub>=1+p/100</span>. Der Startwert steht als Vorfaktor vor <span class="formula">q<sup>t</sup></span>.</div></details>
+      <details><summary>Hilfe 3 zu Aufgabe 4: erster Zwischenschritt</summary><div>Für Karte A bleiben <span class="formula">96,5&nbsp;%</span>; für Karte B entstehen <span class="formula">112&nbsp;%</span>.</div></details>
+    </div>
+  </div>
+
+  <div class="student-pagebreak"></div>
+
+  <div class="task-with-hints product-sheet" id="w5-aufgabe-5">
+    <h3>Aufgabe 5 – Handlungsprodukt: Modellfreigabe MF-05 <span class="afb">AFB II–III</span></h3>
+    <p>Erstelle einen fachlich vollständigen Freigabevermerk für die Qualitätssicherung. Nutze Rechnungen aus den Aufgaben 1–3 und arbeite die folgenden Felder aus.</p>
+    <div class="release-grid">
+      <div class="release-card"><b>1 · Modellgrundlage</b>Startwert, Prozentangabe, verbleibender Anteil, Faktor und Variable mit Einheit.</div>
+      <div class="release-card"><b>2 · Modell und Kontrolle</b>Term, Bereich, Werte bei <span class="formula">n=1</span> und <span class="formula">n=8</span>, Rundung.</div>
+      <div class="release-card"><b>3 · Entscheidung</b>Fehler der linearen Vorlage, Grenzwertvergleich und begrenzte Freigabe.</div>
+    </div>
+    <div class="decision-grid">
+      <div class="decision-box"><b>Modellgleichung und Geltungsbereich</b></div>
+      <div class="decision-box"><b>Kontrollrechnung und Plausibilität</b></div>
+      <div class="decision-box"><b>Vergleich mit der linearen Vorlage</b></div>
+      <div class="decision-box"><b>Wartungs- und Freigabevermerk</b></div>
+    </div>
+    <p class="page-note">Die Entscheidung gilt nur für die bereitgestellten didaktischen Daten und den dokumentierten Bereich. Es wird keine reale Gerätefreigabe erteilt.</p>
+    <div class="inline-hints" aria-label="Hilfen zu Aufgabe 5">
+      <details><summary>Hilfe 1 zu Aufgabe 5: Denkimpuls</summary><div>Ein Freigabevermerk beantwortet vier Fragen: Welches Modell? Welche Daten? Welche Kontrolle? Welche begrenzte Entscheidung?</div></details>
+      <details><summary>Hilfe 2 zu Aufgabe 5: Berichtsstruktur</summary><div>Modellgrundlage → Term und Bereich → Kontrollwerte → Fehleranalyse → Grenzwertentscheidung → Gültigkeitsgrenze.</div></details>
+      <details><summary>Hilfe 3 zu Aufgabe 5: erster Zwischenschritt</summary><div>Beginne: „Da nach jedem Zyklus 93&nbsp;% des aktuellen Signalwerts verbleiben, gilt der Faktor …“</div></details>
+    </div>
+  </div>
+</section>
+
+<section class="simulation-only" id="w5-simulationen">
+  <h2>Simulationen – lokale Prozent- und Modelllabore</h2>
+  <p>Die drei Labore werden erst nach einem eigenen schriftlichen Ansatz genutzt. Sie geben gezielte Rückmeldung, aber keine vollständige Modellfreigabe.</p>
+  <div class="sim-intro">
+    <div class="sim-card"><span class="sim-tag">Aufgabe 1</span><h3>Prozent-Faktor-Übersetzer</h3><p>Prüft, ob aus Zu- oder Abnahme der passende Faktor entsteht und zeigt den ersten Folgewert.</p></div>
+    <div class="sim-card"><span class="sim-tag">Aufgabe 3</span><h3>Modellvergleich am Grenzwert</h3><p>Vergleicht exponentielles und lineares Modell über mehrere Zyklen und macht die Entscheidungsschwelle sichtbar.</p></div>
+    <div class="sim-card"><span class="sim-tag">Aufgabe 4</span><h3>Modellkarten-Prüfstand</h3><p>Klassifiziert Modellvorschläge zu Wachstum und Zerfall und erklärt typische Faktorfehler.</p></div>
+  </div>
+
+  <article class="sim-panel" id="sim-factor" aria-labelledby="sim-factor-title">
+    <h3 id="sim-factor-title">Labor 1 · Prozent-Faktor-Übersetzer</h3>
+    <p><b>Auftrag:</b> Stelle Veränderungsart und Rate ein. Sage den Faktor voraus, bevor du prüfst.</p>
+    <p><b>Deutungsfrage:</b> Welcher Anteil des aktuellen Werts bleibt beziehungsweise entsteht nach genau einem Schritt?</p>
+    <div class="sim-controls">
+      <label for="factorType">Veränderungsart<select id="factorType"><option value="down">Abnahme</option><option value="up">Zunahme</option></select></label>
+      <label for="factorRate">Rate p [%]: <output id="factorRateOut" class="range-output">7,0</output><input id="factorRate" type="range" min="0" max="40" step="0.5" value="7" aria-label="Prozentuale Rate"></label>
+      <label for="factorStart">Startwert<input id="factorStart" type="number" min="0.01" step="0.1" value="4.8" aria-label="Startwert"></label>
+      <label for="factorPrediction">Vorhersage Faktor q<input id="factorPrediction" type="text" inputmode="decimal" placeholder="z. B. 0,93" aria-label="Vorhergesagter Faktor"></label>
+    </div>
+    <button type="button" class="sim-button" id="checkFactor">Faktor prüfen</button><button type="button" class="sim-button secondary" id="resetFactor">Labor zurücksetzen</button>
+    <div class="sim-value-grid" aria-label="Ausgabe des Prozent-Faktor-Labors">
+      <div><b>verbleibender / neuer Anteil</b><span id="factorPercent">–</span></div><div><b>Faktor</b><span id="factorQ">–</span></div><div><b>erster Folgewert</b><span id="factorNext">–</span></div><div><b>absolute Änderung</b><span id="factorDelta">–</span></div>
+    </div>
+    <div class="sim-feedback" id="factorFeedback" aria-live="polite">Startzustand: Faktor vorhersagen und anschließend prüfen.</div>
+  </article>
+
+  <article class="sim-panel" id="sim-compare" aria-labelledby="sim-compare-title">
+    <h3 id="sim-compare-title">Labor 2 · Modellvergleich am Grenzwert</h3>
+    <p><b>Auftrag:</b> Wähle eine Zykluszahl und sage voraus, welches Modell den größeren Wert liefert. Prüfe danach Graph, Werte und Grenzwertlage.</p>
+    <p><b>Deutungsfrage:</b> Wie verändert sich die Differenz, wenn das exponentielle Modell immer 93&nbsp;% des aktuellen Werts verwendet, die lineare Vorlage aber stets denselben Betrag abzieht?</p>
+    <div class="sim-controls">
+      <label for="compareCycle">Zyklus n: <output id="compareCycleOut" class="range-output">8</output><input id="compareCycle" type="range" min="0" max="12" step="1" value="8" aria-label="Zykluszahl"></label>
+      <label for="comparePrediction">Vorhersage<select id="comparePrediction"><option value="">bitte wählen</option><option value="equal">beide gleich</option><option value="exp">Exponentialmodell größer</option><option value="lin">lineares Modell größer</option></select></label>
+    </div>
+    <button type="button" class="sim-button" id="checkCompare">Vergleich prüfen</button><button type="button" class="sim-button secondary" id="resetCompare">Labor zurücksetzen</button>
+    <canvas class="sim-canvas" id="compareCanvas" width="920" height="500" role="img" aria-label="Koordinatensystem zum Vergleich eines exponentiellen und eines linearen Signalmodells mit Grenzwert 2 Komma 5 Volt"></canvas>
+    <div class="sim-value-grid">
+      <div><b>Exponentiell</b><span id="compareExp">–</span></div><div><b>Linear</b><span id="compareLin">–</span></div><div><b>Differenz</b><span id="compareDiff">–</span></div><div><b>Grenzwertlage</b><span id="compareLimit">–</span></div>
+    </div>
+    <div class="sim-feedback" id="compareFeedback" aria-live="polite">Startzustand: Zyklus wählen, Vorhersage treffen und prüfen.</div>
+  </article>
+
+  <article class="sim-panel" id="sim-cards" aria-labelledby="sim-cards-title">
+    <h3 id="sim-cards-title">Labor 3 · Modellkarten-Prüfstand</h3>
+    <p><b>Auftrag:</b> Wähle eine Karte und klassifiziere den vorgeschlagenen Term als „freigeben“ oder „korrigieren“.</p>
+    <p><b>Deutungsfrage:</b> Passt der Faktor zur Prozentangabe und steht der Startwert als Vorfaktor vor der Potenz?</p>
+    <div class="sim-controls">
+      <label for="cardSelect">Modellkarte<select id="cardSelect"><option value="A">A · 3,5 % Abnahme von 1200 mg</option><option value="B">B · 12 % Zunahme von 250 mV</option><option value="C">C · 5 % Abnahme von 600 Einheiten</option><option value="D">D · 8 % Zunahme von 300 Einheiten</option></select></label>
+      <label for="cardClass">Klassifikation<select id="cardClass"><option value="">bitte wählen</option><option value="F">freigeben</option><option value="K">korrigieren</option></select></label>
+    </div>
+    <div class="lab-equation" id="cardText">A: R(t)=1200·0,965<sup>t</sup>, t in h.</div>
+    <button type="button" class="sim-button" id="checkCard">Klassifikation prüfen</button><button type="button" class="sim-button secondary" id="resetCard">Labor zurücksetzen</button>
+    <div class="sim-feedback" id="cardFeedback" aria-live="polite">Startzustand: Karte und Kategorie wählen.</div>
+  </article>
+</section>
+
+<section class="teacher-only" id="w5-sicherung">
+  <h2>6. Ergebnissicherung und Übergang</h2>
+  <div class="board">
+    <h3>Tafelbild: Von der Prozentangabe zur Modellfreigabe</h3>
+    <div class="logic-chain"><span class="step">Startwert und Einheit</span><span class="arrow">→</span><span class="step">p&nbsp;% Zu-/Abnahme</span><span class="arrow">→</span><span class="step">q=1±p/100</span><span class="arrow">→</span><span class="step">N(t)=N<sub>0</sub>·q<sup>t</sup></span><span class="arrow">→</span><span class="step">Werte, Plausibilität, Bereich, Entscheidung</span></div>
+    <p><b>Sicherungssatz:</b> Eine konstante prozentuale Änderung bezieht sich in jedem Schritt auf den aktuellen Wert. Deshalb wird wiederholt mit demselben einheitenlosen Faktor <span class="formula">q</span> multipliziert; ein konstanter absoluter Zu- oder Abzug beschreibt dagegen ein lineares Modell.</p>
+  </div>
+  <h3>Übergang zur folgenden Unterrichtswoche</h3>
+  <p>Die Folgewoche nutzt Exponentialmodelle, um charakteristische Zeiten zu beschreiben: Halbwertszeit bei Zerfall und Verdopplungszeit bei Wachstum. Die hier gesicherten Faktoren, Einheiten und Modellgrenzen bleiben dabei verbindlich.</p>
+  <h3>Übergang in eine mögliche Übungsstunde</h3>
+  <p>Eine separate Übungsstunde ist nicht mitgeplant. Geeignete Anschlussaufgaben wären Prozentangaben mit verschiedenen Zeitschritten, Modellvergleich linear/exponentiell, Wertetabellen und die Rückrechnung eines Faktors aus Start- und Endwert bei gegebener Schrittzahl. Unbekannte Zeiten und logarithmische Lösungsverfahren bleiben ausgeschlossen.</p>
+</section>
+
+<section class="solution-only" id="w5-musterloesung">
+  <h2>7. Vollständige Musterlösung</h2>
+  <div class="card solution">
+    <h3>Aufgabe 1</h3>
+    <p>Nach einer Abnahme um 7&nbsp;% bleiben <span class="formula">100&nbsp;%−7&nbsp;%=93&nbsp;%</span>. Als Dezimalzahl ist das <span class="formula">q=0,93</span>.</p>
+    <p><span class="formula">S(1)=4,80·0,93=4,464 V≈4,46 V</span>. Der erste absolute Verlust beträgt <span class="formula">ΔS<sub>1</sub>=4,80−4,464=0,336 V</span>.</p>
+    <p>Allgemein gilt bei einer Abnahme um <span class="formula">p&nbsp;%</span>: <span class="formula">q=1−p/100</span>. Bei einer Zunahme gilt entsprechend <span class="formula">q=1+p/100</span>.</p>
+  </div>
+  <div class="card solution">
+    <h3>Aufgabe 2</h3>
+    <p><span class="formula">n</span> ist die Anzahl der vollständig durchlaufenen thermischen Belastungszyklen; ein Schritt entspricht einem Zyklus. Das Modell lautet <span class="formula">S(n)=4,80·0,93<sup>n</sup></span> V für <span class="formula">n∈{0;1;…;8}</span>.</p>
+    <table class="cycle-table compact-table"><thead><tr><th><span class="formula">n</span></th><th>0</th><th>1</th><th>2</th><th>4</th><th>8</th></tr></thead><tbody><tr><td><span class="formula">S(n)</span> in V</td><td>4,80</td><td>4,46</td><td>4,15</td><td>3,59</td><td>2,69</td></tr></tbody></table>
+    <p>Ungerundete Werte: <span class="formula">S(1)=4,464</span>, <span class="formula">S(2)=4,15152</span>, <span class="formula">S(4)=3,590649648</span>, <span class="formula">S(8)=2,685992686…</span>.</p>
+    <p>Die 7&nbsp;% werden in jedem Zyklus auf einen kleineren aktuellen Signalwert angewendet. Deshalb bleibt der relative Verlust gleich, der absolute Verlust in Volt wird jedoch kleiner.</p>
+  </div>
+  <div class="card solution">
+    <h3>Aufgabe 3</h3>
+    <table class="cycle-table compact-table"><thead><tr><th>Vergleich</th><th><span class="formula">n=1</span></th><th><span class="formula">n=4</span></th><th><span class="formula">n=8</span></th></tr></thead><tbody>
+      <tr><td><span class="formula">S(n)</span> in V</td><td>4,464</td><td>3,59065</td><td>2,68599</td></tr>
+      <tr><td><span class="formula">L(n)</span> in V</td><td>4,464</td><td>3,456</td><td>2,112</td></tr>
+      <tr><td><span class="formula">S(n)−L(n)</span> in V</td><td>0</td><td>0,13465</td><td>0,57399</td></tr>
+    </tbody></table>
+    <p>Im ersten Zyklus verwenden beide Modelle denselben Verlust von <span class="formula">0,336 V</span>; daher stimmen sie bei <span class="formula">n=1</span> überein. Danach zieht das lineare Modell weiterhin 0,336 V ab. Das Exponentialmodell berechnet dagegen 7&nbsp;% vom jeweils kleineren aktuellen Wert; sein absoluter Verlust schrumpft. Deshalb liegt <span class="formula">S(n)</span> ab <span class="formula">n&gt;1</span> über <span class="formula">L(n)</span>.</p>
+    <p>Bei <span class="formula">n=8</span> gilt <span class="formula">S(8)≈2,69 V≥2,50 V</span>. Nach dem bereitgestellten Kriterium ist das Modul im dokumentierten Bereich weiter verwendbar. Die Dashboardmeldung „Austausch“ auf Basis von <span class="formula">L(8)=2,11 V</span> muss gesperrt werden, weil sie eine konstante absolute statt einer konstanten relativen Abnahme modelliert.</p>
+  </div>
+  <div class="card solution">
+    <h3>Aufgabe 4</h3>
+    <p><b>Karte A:</b> 3,5&nbsp;% Abnahme bedeutet <span class="formula">q=1−0,035=0,965</span>. Mit <span class="formula">t</span> in Stunden gilt <span class="formula">R(t)=1200·0,965<sup>t</sup></span> mg. Nach 6 h: <span class="formula">R(6)=1200·0,965<sup>6</sup>=969,0476… mg≈969,05 mg</span>.</p>
+    <p><b>Karte B:</b> 12&nbsp;% Zunahme bedeutet <span class="formula">q=1+0,12=1,12</span>. Mit <span class="formula">n</span> als Zykluszahl gilt <span class="formula">K(n)=250·1,12<sup>n</sup></span> mV. Nach drei Zyklen: <span class="formula">K(3)=250·1,12<sup>3</sup>=351,232 mV≈351,23 mV</span>.</p>
+    <p>Der Faktor ist ein Verhältnis zweier gleichartiger Größen, zum Beispiel <span class="formula">R(t+1)/R(t)</span>. Die Einheiten kürzen sich, daher ist <span class="formula">q</span> einheitenlos.</p>
+  </div>
+  <div class="card solution">
+    <h3>Aufgabe 5</h3>
+    <p><b>Mögliche Modellfreigabe MF-05:</b></p>
+    <p>„Das Referenzsignal beträgt zu Beginn <span class="formula">S<sub>0</sub>=4,80 V</span>. Da nach jedem Belastungszyklus 7,0&nbsp;% des jeweils aktuellen Werts verloren gehen, bleiben 93&nbsp;% erhalten; der einheitenlose Zerfallsfaktor lautet <span class="formula">q=0,93</span>. Mit <span class="formula">n</span> als Anzahl der abgeschlossenen Zyklen gilt im dokumentierten Bereich <span class="formula">n∈{0;1;…;8}</span> das Modell <span class="formula">S(n)=4,80·0,93<sup>n</sup></span> V.</p>
+    <p>Die Kontrollwerte sind <span class="formula">S(1)=4,464 V≈4,46 V</span> und <span class="formula">S(8)=2,685992686… V≈2,69 V</span>. Gerechnet wird mit dem ungerundeten Term; gerundet wird erst das Endergebnis. Die sinkenden absoluten Verluste sind plausibel, weil 7&nbsp;% jeweils auf einen kleiner werdenden aktuellen Wert bezogen werden.</p>
+    <p>Die lineare Dashboard-Vorlage <span class="formula">L(n)=4,80−0,336n</span> verwendet fälschlich in jedem Zyklus 7&nbsp;% des Startwerts als festen Abzug. Sie stimmt nur beim ersten Schritt mit der Vorgabe überein und liefert bei <span class="formula">n=8</span> den zu kleinen Wert <span class="formula">2,11 V</span>. Nach dem bereitgestellten Grenzwert gilt <span class="formula">S(8)≈2,69 V≥2,50 V</span>; das Referenzmodul wird für den dokumentierten Bereich als weiter verwendbar eingestuft. Die Austauschmeldung der linearen Vorlage wird gesperrt. Diese Freigabe gilt ausschließlich für die didaktisch bereitgestellten Daten, den Bereich <span class="formula">0≤n≤8</span> und das angegebene Entscheidungskriterium.“</p>
+  </div>
+</section>
+
+<section class="teacher-only" id="w5-quellen">
+  <h2>8. Quellen, Kennzeichnungen, Annahmen und technische Hinweise</h2>
+  <ol class="source-list">
+    <li><b>Aktueller Auftrag:</b> vollständige Planung der unmittelbar folgenden Woche nach der jüngsten Vorwochendatei und Ausgabe als eine offlinefähige HTML-Datei.</li>
+    <li><b>Jüngste Vorwochendatei:</b> <span class="formula">12NF_Mathematik_Woche04_Eigenschaften_und_Graphen_mit_Offline_Simulationen(1).html</span>; übernommen wurden der erreichte Lernstand, die Stoffgrenze, zwei Einzelstunden, die GF-04-Kontinuität sowie Design, Ansichten, Hilfen, Simulationssprünge und Drucklogik.</li>
+    <li><b>Didaktische Jahresplanung Mathematik 12.1:</b> Exponentialfunktion mit Wachstum und Zerfall; exponentielles Verhalten aus Daten erkennen, typische Eigenschaften bestimmen, einfache Modelle entwickeln und beurteilen.</li>
+    <li><b>Halbjahresskript Mathematik 12.1:</b> Lernwoche 5 „Prozentfaktor und Modellgleichung“ mit Übersetzung von Prozentraten, Modellterm <span class="formula">N(t)=N<sub>0</sub>·q<sup>t</sup></span>, Einheiten, Genauigkeit und Modellannahmen.</li>
+    <li><b>Klassenprofil 12NF:</b> Mathematik, Jahrgang 12, Halbjahr 12.1, Anlage C1, physikalisch-technischer Bildungsgang mit FHR, zwei Lernstunden, heterogene Lerngruppe, iPads, Beamer, Druck und wissenschaftliche Taschenrechner.</li>
+    <li><b>Didaktisch konstruiert:</b> Firma, Personen, Referenzmodul, Belastungszyklen, Startwert, 7&nbsp;%-Vorgabe, Grenzwert 2,50 V, Dashboardvorlage und MF-05-Auftrag.</li>
+    <li><b>Didaktisch ergänzt:</b> Faktor- und Modellkarte, Transferkarten, Differenzierung, Tafelbild, Musterlösung und drei lokale Labore.</li>
+    <li><b>Extern recherchiert:</b> keine zusätzliche Internetquelle verwendet; die Projektquellen reichen für den curricularen Schritt aus.</li>
+  </ol>
+  <h3>Annahmen</h3>
+  <ul>
+    <li>Datum, Klassengröße, Praktikumsbezug und aktuelle besondere Schwierigkeiten sind nicht angegeben und bleiben offen.</li>
+    <li>Die jüngste Vorwochendatei plant zwei einzelne Stunden à 45 Minuten. Diese Lage wird mangels aktueller Abweichung fortgeführt.</li>
+    <li>Reale Sensoren, Laborräume und Messsoftware sind nicht bestätigt. Genutzt werden Papier, Taschenrechner, iPad, Beamer und eingebettete Offline-Labore.</li>
+    <li>Die Prozentangabe gilt je vollständig abgeschlossenem Ein-Zyklus-Schritt und bezieht sich jeweils auf den aktuellen Signalwert.</li>
+    <li>Funktionswerte werden aus dem exakten Faktor <span class="formula">0,93</span> berechnet und erst am Ende auf Hundertstelvolt gerundet.</li>
+    <li>Der Bereich <span class="formula">0≤n≤8</span> und der Grenzwert <span class="formula">2,50 V</span> sind didaktisch bereitgestellt und keine reale Geräte- oder Sicherheitsnorm.</li>
+    <li>Eine Rückrechnung unbekannter Zeiten, logarithmische Verfahren, Halbwertszeiten und kontinuierliche Raten werden bewusst nicht eingeführt.</li>
+  </ul>
+  <h3>Technische Kontinuität und Abweichungen</h3>
+  <p>Farbkonzept, Typografie, Breite, Hero, Karten- und Tabellenstil, Abschnittsfolge, Ansichtsleiste, <span class="formula">body[data-view]</span>, Schaltflächenreihenfolge, aufgabennahe Hilfen, Simulationssprünge, CSP und Drucksteuerung folgen der Vorwochendatei. Neu sind nur fachlich erforderliche Prozent-, Faktor-, Modellvergleichs- und Freigabekomponenten sowie drei lokale Labore. Alle Bestandteile befinden sich in dieser einen Datei.</p>
+</section>
+</main>
+
+<script>
+(function(){
+'use strict';
+const body=document.body;
+const viewButtons=Array.from(document.querySelectorAll('[data-view-target]'));
+function setView(view){body.dataset.view=view;viewButtons.forEach(function(btn){btn.classList.toggle('active',btn.dataset.viewTarget===view);});window.scrollTo({top:0,behavior:'smooth'});}
+viewButtons.forEach(function(btn){btn.addEventListener('click',function(){setView(btn.dataset.viewTarget);});});
+document.querySelectorAll('[data-sim-target]').forEach(function(btn){btn.addEventListener('click',function(){const id=btn.dataset.simTarget;setView('simulations');requestAnimationFrame(function(){const target=document.getElementById(id);if(target)target.scrollIntoView({behavior:'smooth',block:'start'});});});});
+const printToggle=document.getElementById('w5PrintHintToggle');
+const printModeText=document.getElementById('w5PrintModeText');
+printToggle.addEventListener('click',function(){body.classList.toggle('print-hints');const on=body.classList.contains('print-hints');printToggle.textContent='Hilfen beim Drucken: '+(on?'ein':'aus');printModeText.textContent='Schülerdruck '+(on?'mit aufgabennahen Hilfen':'ohne Hilfen');});
+document.getElementById('w5PrintBtn').addEventListener('click',function(){window.print();});
+let printState=[];
+window.addEventListener('beforeprint',function(){printState=Array.from(document.querySelectorAll('.student-only .inline-hints details')).map(function(d){return d.open;});if(body.classList.contains('print-hints'))document.querySelectorAll('.student-only .inline-hints details').forEach(function(d){d.open=true;});});
+window.addEventListener('afterprint',function(){document.querySelectorAll('.student-only .inline-hints details').forEach(function(d,i){d.open=Boolean(printState[i]);});});
+function de(v,d){return Number(v).toFixed(d).replace('.',',').replace('-', '−');}
+function readNumber(input){return Number(String(input.value).replace(',','.'));}
+function clearCanvas(ctx,w,h){ctx.clearRect(0,0,w,h);ctx.fillStyle='#fff';ctx.fillRect(0,0,w,h);}
+function messageCanvas(ctx,w,h,text){ctx.fillStyle='#526079';ctx.font='bold 22px Arial';ctx.textAlign='center';ctx.fillText(text,w/2,h/2);ctx.textAlign='left';}
+function axesRange(ctx,w,h,xMin,xMax,yMin,yMax,xLabel,yLabel){
+  const p={l:88,r:40,t:44,b:70},cw=w-p.l-p.r,ch=h-p.t-p.b;
+  const mapX=function(x){return p.l+(x-xMin)/(xMax-xMin)*cw;};
+  const mapY=function(y){return p.t+ch-(y-yMin)/(yMax-yMin)*ch;};
+  ctx.font='14px Arial';ctx.fillStyle='#34495e';ctx.lineWidth=1;
+  for(let i=0;i<=8;i++){const x=xMin+(xMax-xMin)*i/8,px=mapX(x);ctx.strokeStyle='#d8e0e7';ctx.beginPath();ctx.moveTo(px,p.t);ctx.lineTo(px,p.t+ch);ctx.stroke();ctx.fillStyle='#34495e';ctx.textAlign='center';ctx.fillText(de(x,0),px,p.t+ch+23);}
+  for(let j=0;j<=6;j++){const y=yMin+(yMax-yMin)*j/6,py=mapY(y);ctx.strokeStyle='#d8e0e7';ctx.beginPath();ctx.moveTo(p.l,py);ctx.lineTo(p.l+cw,py);ctx.stroke();ctx.fillStyle='#34495e';ctx.textAlign='right';ctx.fillText(de(y,1),p.l-10,py+5);}
+  ctx.strokeStyle='#172033';ctx.lineWidth=2;const xAxis=(0>=yMin&&0<=yMax)?mapY(0):p.t+ch;const yAxis=(0>=xMin&&0<=xMax)?mapX(0):p.l;
+  ctx.beginPath();ctx.moveTo(p.l,xAxis);ctx.lineTo(p.l+cw,xAxis);ctx.stroke();ctx.beginPath();ctx.moveTo(yAxis,p.t);ctx.lineTo(yAxis,p.t+ch);ctx.stroke();
+  ctx.fillStyle='#34495e';ctx.textAlign='center';ctx.fillText(xLabel,p.l+cw/2,h-16);ctx.save();ctx.translate(20,p.t+ch/2);ctx.rotate(-Math.PI/2);ctx.fillText(yLabel,0,0);ctx.restore();ctx.textAlign='left';
+  return {x:p.l,y:p.t,w:cw,h:ch,xMin:xMin,xMax:xMax,yMin:yMin,yMax:yMax,mapX:mapX,mapY:mapY};
+}
+function plotCurve(ctx,ch,fn,color,dash){ctx.strokeStyle=color;ctx.lineWidth=4;ctx.setLineDash(dash||[]);ctx.beginPath();let started=false;for(let i=0;i<=500;i++){const x=ch.xMin+(ch.xMax-ch.xMin)*i/500,y=fn(x);if(!Number.isFinite(y)||y<ch.yMin-50||y>ch.yMax+50){started=false;continue;}const px=ch.mapX(x),py=ch.mapY(y);if(!started){ctx.moveTo(px,py);started=true;}else ctx.lineTo(px,py);}ctx.stroke();ctx.setLineDash([]);}
+function drawHorizontal(ctx,ch,y,color){if(y<ch.yMin||y>ch.yMax)return;ctx.strokeStyle=color;ctx.lineWidth=2;ctx.setLineDash([8,6]);ctx.beginPath();ctx.moveTo(ch.x,ch.mapY(y));ctx.lineTo(ch.x+ch.w,ch.mapY(y));ctx.stroke();ctx.setLineDash([]);}
+function drawPoint(ctx,ch,x,y,color,r){if(x<ch.xMin||x>ch.xMax||y<ch.yMin||y>ch.yMax)return;ctx.fillStyle=color;ctx.beginPath();ctx.arc(ch.mapX(x),ch.mapY(y),r||7,0,Math.PI*2);ctx.fill();}
+function S(n){return 4.8*Math.pow(.93,n);}function L(n){return 4.8-.336*n;}
+
+const factorType=document.getElementById('factorType'),factorRate=document.getElementById('factorRate'),factorRateOut=document.getElementById('factorRateOut'),factorStart=document.getElementById('factorStart'),factorPrediction=document.getElementById('factorPrediction'),factorFeedback=document.getElementById('factorFeedback');
+function factorResetOutput(message){document.getElementById('factorPercent').textContent='–';document.getElementById('factorQ').textContent='–';document.getElementById('factorNext').textContent='–';document.getElementById('factorDelta').textContent='–';factorFeedback.className='sim-feedback';factorFeedback.textContent=message;}
+function factorChanged(){factorRateOut.value=de(Number(factorRate.value),1);factorPrediction.value='';factorResetOutput('Einstellung geändert: Faktor erneut vorhersagen.');}
+factorType.addEventListener('change',factorChanged);factorRate.addEventListener('input',factorChanged);factorStart.addEventListener('input',factorChanged);
+document.getElementById('checkFactor').addEventListener('click',function(){const p=Number(factorRate.value),start=readNumber(factorStart),prediction=readNumber(factorPrediction);if(!Number.isFinite(start)||start<=0){factorFeedback.className='sim-feedback bad';factorFeedback.textContent='Der Startwert muss positiv sein.';return;}if(!Number.isFinite(prediction)){factorFeedback.className='sim-feedback warn';factorFeedback.textContent='Trage zuerst eine Faktorvorhersage ein.';return;}const up=factorType.value==='up',q=1+(up?1:-1)*p/100,next=start*q,delta=next-start,ok=Math.abs(prediction-q)<=0.0025;document.getElementById('factorPercent').textContent=de(q*100,1)+' %';document.getElementById('factorQ').textContent=de(q,3);document.getElementById('factorNext').textContent=de(next,3);document.getElementById('factorDelta').textContent=(delta>=0?'+':'')+de(delta,3);factorFeedback.className='sim-feedback '+(ok?'ok':'warn');factorFeedback.textContent=(ok?'Die Vorhersage passt. ':'Prüfe den verbleibenden beziehungsweise neuen Anteil. ')+(up?'Bei Zunahme wird p/100 zu 1 addiert.':'Bei Abnahme wird p/100 von 1 abgezogen.');});
+document.getElementById('resetFactor').addEventListener('click',function(){factorType.value='down';factorRate.value='7';factorStart.value='4.8';factorPrediction.value='';factorRateOut.value='7,0';factorResetOutput('Startzustand: Faktor vorhersagen und anschließend prüfen.');});
+
+const compareCycle=document.getElementById('compareCycle'),compareCycleOut=document.getElementById('compareCycleOut'),comparePrediction=document.getElementById('comparePrediction'),compareFeedback=document.getElementById('compareFeedback');
+function drawCompare(reveal){const canvas=document.getElementById('compareCanvas'),ctx=canvas.getContext('2d');clearCanvas(ctx,canvas.width,canvas.height);ctx.fillStyle='#172033';ctx.font='bold 21px Arial';ctx.fillText('Signalmodelle und Entscheidungsschwelle',42,30);const ch=axesRange(ctx,canvas.width,canvas.height,0,12,0,5.2,'n [Zyklen]','Signal [V]');drawHorizontal(ctx,ch,2.5,'#2f8b56');if(reveal){plotCurve(ctx,ch,S,'#0b6b8a');plotCurve(ctx,ch,L,'#8b4a1f',[9,6]);const n=Number(compareCycle.value);drawPoint(ctx,ch,n,S(n),'#0b6b8a',8);drawPoint(ctx,ch,n,L(n),'#8b4a1f',8);ctx.fillStyle='#34495e';ctx.font='bold 14px Arial';ctx.fillText('Grenzwert 2,50 V',ch.x+8,ch.mapY(2.5)-8);}else messageCanvas(ctx,canvas.width,canvas.height,'Vorhersage treffen und Vergleich prüfen');}
+function resetCompareOutput(message){document.getElementById('compareExp').textContent='–';document.getElementById('compareLin').textContent='–';document.getElementById('compareDiff').textContent='–';document.getElementById('compareLimit').textContent='–';compareFeedback.className='sim-feedback';compareFeedback.textContent=message;drawCompare(false);}
+compareCycle.addEventListener('input',function(){compareCycleOut.value=de(Number(compareCycle.value),0);comparePrediction.value='';resetCompareOutput('Zyklus geändert: Vorhersage erneut auswählen.');});
+document.getElementById('checkCompare').addEventListener('click',function(){if(!comparePrediction.value){compareFeedback.className='sim-feedback warn';compareFeedback.textContent='Wähle zuerst eine Vorhersage.';return;}const n=Number(compareCycle.value),sv=S(n),lv=L(n),expected=Math.abs(sv-lv)<1e-9?'equal':(sv>lv?'exp':'lin'),ok=comparePrediction.value===expected;drawCompare(true);document.getElementById('compareExp').textContent=de(sv,3)+' V';document.getElementById('compareLin').textContent=de(lv,3)+' V';document.getElementById('compareDiff').textContent=de(sv-lv,3)+' V';document.getElementById('compareLimit').textContent=(sv>=2.5?'S über/auf':'S unter')+' 2,50 V';compareFeedback.className='sim-feedback '+(ok?'ok':'warn');let reason=n<=1?'Bis einschließlich Zyklus 1 stimmen die Werte überein.':'Die lineare Vorlage zieht weiter 0,336 V ab; beim Exponentialmodell wird der absolute Verlust kleiner.';compareFeedback.textContent=(ok?'Die Vorhersage passt. ':'Die Vorhersage passt noch nicht. ')+reason;});
+document.getElementById('resetCompare').addEventListener('click',function(){compareCycle.value='8';compareCycleOut.value='8';comparePrediction.value='';resetCompareOutput('Startzustand: Zyklus wählen, Vorhersage treffen und prüfen.');});
+
+const cardData={
+ A:{html:'A: R(t)=1200·0,965<sup>t</sup>, t in h.',answer:'F',explain:'3,5 % Abnahme bedeutet, dass 96,5 % beziehungsweise der Faktor 0,965 verbleiben.'},
+ B:{html:'B: K(n)=250·1,12<sup>n</sup>, n in Zyklen.',answer:'F',explain:'12 % Zunahme entspricht dem Faktor 1,12; der Startwert ist der Vorfaktor 250 mV.'},
+ C:{html:'C: M(t)=600·(−0,05)<sup>t</sup> bei 5 % Abnahme.',answer:'K',explain:'5 % Abnahme hat den positiven Faktor 0,95. Ein negativer Faktor würde Vorzeichenwechsel erzeugen.'},
+ D:{html:'D: N(n)=1,08·300<sup>n</sup> bei 300 Startwert und 8 % Zunahme.',answer:'K',explain:'Startwert und Faktor sind vertauscht. Richtig ist N(n)=300·1,08^n.'}
+};
+const cardSelect=document.getElementById('cardSelect'),cardClass=document.getElementById('cardClass'),cardText=document.getElementById('cardText'),cardFeedback=document.getElementById('cardFeedback');
+cardSelect.addEventListener('change',function(){cardText.innerHTML=cardData[cardSelect.value].html;cardClass.value='';cardFeedback.className='sim-feedback';cardFeedback.textContent='Karte geändert: Kategorie erneut wählen.';});
+document.getElementById('checkCard').addEventListener('click',function(){if(!cardClass.value){cardFeedback.className='sim-feedback warn';cardFeedback.textContent='Wähle zuerst eine Kategorie.';return;}const item=cardData[cardSelect.value],ok=cardClass.value===item.answer;cardFeedback.className='sim-feedback '+(ok?'ok':'warn');cardFeedback.textContent=(ok?'Die Klassifikation passt. ':'Die Klassifikation passt noch nicht. ')+item.explain;});
+document.getElementById('resetCard').addEventListener('click',function(){cardSelect.value='A';cardClass.value='';cardText.innerHTML=cardData.A.html;cardFeedback.className='sim-feedback';cardFeedback.textContent='Startzustand: Karte und Kategorie wählen.';});
+
+factorRateOut.value='7,0';drawCompare(false);
+})();
+</script>
+</body>
+</html>
