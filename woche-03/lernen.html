@@ -1500,209 +1500,580 @@ function start(){
 }
 /* =================== ENDE ENGINE =================== */
 
-/* ==== INHALT START: Grundformen und Parameter von Exponentialfunktionen (12NF, Woche 3, 20 min, spielerisch) ==== */
+/* ==== INHALT START: Grundformen und Parameter von Exponentialfunktionen (12NF, Woche 3) ==== */
 const CONFIG={
-  title:'Zwei Formeln, ein Vorgang?',
-  org:'Lumetra Prüftechnik · Auswertung',
-  mission:'Mission: Modellcheck MC-3',
-  missionText:'Eine Kundin hat zwei Formeln für denselben Abkühlvorgang bekommen. Finde heraus, ob beide dasselbe beschreiben, und überzeuge die Qualitätssicherung!',
-  person:{name:'Mehmet Arslan',role:'Leitung Auswertung',ava:'👨‍🔬'},
-  defaultName:'Praktikant', startEmoji:'🌡️🧪', nameQuestion:'Du startest heute in der Auswertung von Lumetra Prüftechnik. Wie heißt du?',
-  certTitle:'Labor-Ausweis', certSub:'Grundformen und Parameter · Modellcheck MC-3', certButton:'Meinen Labor-Ausweis zeigen',
-  nextTime:'Nächste Woche beschreibst du die Graphen solcher Funktionen genauer.',
-  minuten:20,
-  key:'sim-expo-parameter-12nf-w03-v1', code:'EXPO12',
-  board:{wer:'Das Auswertungsteam von Lumetra Prüftechnik (eure Klasse).',
-         ziel:'Eine kurze, begründete Antwort an Frau Pohl: Beschreiben Modell A und Modell B denselben Abkühlvorgang?',
-         wie:'Zahlen in Modell A benennen → Starttemperatur berechnen → Modell A in die Schreibweise mit e umrechnen → vergleichen und antworten'},
-  karte:{vorlage:'labor',symbole:{0:'✉️',1:'🌡️',2:'🧐',3:'🎯'}},
-  ziele:[{t:'in einer Formel für Zu- oder Abnahme zeigen, wo Startwert, Faktor pro Zeitabschnitt und Restwert stehen, jeweils mit Einheit.',level:[1]},
-         {t:'zwei verschieden geschriebene Formeln für denselben Vorgang vergleichen und entscheiden, ob sie dasselbe beschreiben.',level:[1,2]}],
-  ws:{fach:'Mathematik 12.1 · 12NF',untertitel:'Grundformen und Parameter von Exponentialfunktionen',dauer:'20 min',fusszeile:'Modellcheck MC-3 · Woche 3: Grundformen und Parameter'},
-  rankText:{1:'<br>Du darfst Modellvergleiche selbst an Kunden schicken.'}
+  title:'Zwei Formeln, ein Abkühlvorgang?',
+  org:'Prüflabor Rheinkant GmbH · Labor Werkstoffprüfung',
+  mission:'Mission: Modellkarte MK-03',
+  missionText:'Die Laborleitung hat zwei Formeln für denselben Vorgang bekommen. Prüft sie Zahl für Zahl. Schaffst du alle Etappen und überzeugst die Prüfer?',
+  person:{name:'Jana Okafor',role:'Laborleitung Werkstoffprüfung',ava:'👩‍🔬'},
+  defaultName:'PTA', startEmoji:'🌡️🧪', nameQuestion:'Du startest heute im Labor Werkstoffprüfung der Prüflabor Rheinkant GmbH. Wie heißt du?',
+  certTitle:'Labor-Ausweis', certSub:'Grundformen und Parameter · Modellkarte MK-03', certButton:'Meinen Labor-Ausweis zeigen',
+  nextTime:'Als Nächstes beschreibst du die Graphen solcher Formeln genauer. 📈',
+  minuten:90,
+  key:'sim-expo-parameter-12nf-w03-v1', code:'LEHRER12',
+  board:{wer:'Das PTA-Team im Labor Werkstoffprüfung (eure Klasse): Wir prüfen für die Laborleitung zwei Formeln, die das Abkühlen von Stahlproben beschreiben.',
+         ziel:'Eine beschriftete Modellkarte MK-03: Was bedeutet jede Zahl in beiden Formeln, mit Einheit, und beschreiben beide Formeln denselben Vorgang?',
+         wie:'E-Mail lesen → Formeln mit festem Faktor lesen und Werte berechnen → Formel mit e verstehen und umrechnen → angehängten Restwert und Wert am Anfang deuten → beide Formeln vergleichen → Modellkarte schreiben.'},
+  karte:{vorlage:'labor',symbole:{0:'✉️',1:'🔢',2:'📈',3:'🧐',4:'🧮',5:'🌡️',6:'🤝',7:'💻',8:'🏁',9:'🎯'}},
+  ziele:[{t:'in einer Formel für Zunahme oder Abnahme den Wert am Anfang, den Faktor und die Zeitspanne finden und sagen, ob der Wert wächst, sinkt oder gleich bleibt.',level:[1,2,3]},
+         {t:'zwei verschieden geschriebene Formeln für denselben Vorgang ineinander umrechnen und prüfen, ob sie dasselbe liefern.',level:[4,7]},
+         {t:'erklären, was ein angehängter Restwert in der Formel bewirkt und welchen Wert die Formel am Anfang liefert.',level:[5,6]}],
+  ws:{fach:'Mathematik 12.1 · 12NF',untertitel:'Grundformen und Parameter von Exponentialfunktionen',dauer:'2 Lernstunden à 45 min',fusszeile:'Modellkarte MK-03 · Grundformen und Parameter'},
+  rankText:{1:'<br>Du darfst Formeln aus Datenblättern selbst prüfen.',2:'<br>Du gibst Formeln für die Prüfsoftware frei.',3:'<br>Du berätst die Laborleitung bei neuen Modellen.'}
 };
-const RANKS=['Praktikant','Laborassistent'];
+const RANKS=['Praktikant','Prüfassistent','Modellprüfer','Laborexperte'];
 
-/* ---------- Daten (konstruiertes Unterrichtsbeispiel, mit Python nachgerechnet) ---------- */
-const MA={A:60,q:0.8,dt:5,c:20};                 // Modell A: T(t)=60 °C·0,8^(t/5 min)+20 °C
-const KB=-0.0446;                                 // Modell B: k gerundet in 1/min
-const KX=Math.log(MA.q)/MA.dt;                    // exakt ≈ −0,04463 1/min
-const TA=t=>MA.A*Math.pow(MA.q,t/MA.dt)+MA.c;
-const TB=t=>MA.A*Math.exp(KB*t)+MA.c;
-const TT=[0,5,10,15];                             // Tabelle: 80; 68; 58,4; 50,72 °C
-const MC={A:40,k:-0.2,c:15,dt:5};                 // Gegner: f(t)=40 °C·e^(−0,2t)+15 °C
-const MCq=Math.exp(MC.k*MC.dt);                   // ≈ 0,368
-const MCp=100*(MCq-1);                            // ≈ −63,2 %
+/* ---------- Daten ---------- */
+const U0=120,QU=0.8,DTU=2;                       // Spannung aus Woche 2: U(t) = 120 V · 0,8^(t/2 s)
+const Uf=t=>U0*Math.pow(QU,t/DTU);
+const KU=Math.log(QU)/DTU;                        // −0,1116 1/s
+const B0=500,QB=1.5,DTB=3;                        // Keimzahl: B(t) = 500 · 1,5^(t/3 h)
+const ANG={A:60,c:20,q:0.8,dt:5,k:-0.0446};       // Angebote 1 und 2 (Abkühlung, t in min)
+const T1=t=>ANG.A*Math.pow(ANG.q,t/ANG.dt)+ANG.c;
+const T2=t=>ANG.A*Math.exp(ANG.k*t)+ANG.c;
+const OFEN=[[0,180],[4,116],[8,77.6],[12,54.56]]; // Partneraufgabe: Bauteil aus dem Härteofen
+const OF={T0:180,c:20,A:160,q:0.6,dt:4,k:Math.log(0.6)/4};
+const M0=2.5,QM=1.2,DTM=30;                       // Gegner 1: M(t) = 2,5 mg · 1,2^(t/30 min)
 
 const GL={
-  zeitspanne:['Zeitspanne Δt','Die Zeit, nach der immer derselbe Faktor wirkt. Bei Modell A sind das 5 Minuten.','„Alle 5 Minuten bleiben 80 % des Abstands übrig.“',{sg:'die Zeitspanne',pl:'die Zeitspannen'}],
-  versch:['Verschiebung c','Ein fester Wert, der zum Ganzen addiert wird. Die Kurve rutscht dadurch nach oben oder unten.','Der Prüfkörper kühlt nur bis zur Raumtemperatur von 20 °C ab.',{sg:'die Verschiebung',pl:'die Verschiebungen'}],
-  euler:['eulersche Zahl e','Eine feste Zahl, ungefähr 2,718. Der Taschenrechner hat dafür eine eigene Taste.','Wie π ist e eine feste Zahl mit eigenem Zeichen.',{sg:'die eulersche Zahl',pl:''}],
-  eform:['e-Form','Die Schreibweise mit e hoch k mal t. Sie beschreibt denselben Vorgang wie die Form mit dem Faktor q.','Modell B ist die e-Form von Modell A.',{art:'die',pl:'die e-Formen'}],
-  wk:['Wachstumskonstante k','Die Zahl vor dem t in der e-Form. Ist sie negativ, nimmt der Wert ab.','Modell B: k = −0,0446 pro Minute.',{sg:'die Wachstumskonstante',pl:'die Wachstumskonstanten'}]
+  faktorform:['Faktorform','Die Formel N(t) = N₀ · q hoch (t/Δt). Man liest direkt ab, womit man startet und womit man nach jeder Zeitspanne malnimmt.','Eine Spannung von 120 V, die alle 2 s mal 0,8 genommen wird.',{art:'die',pl:'die Faktorformen'}],
+  startwert:['Startwert','Der Wert zum Zeitpunkt t = 0. In der Faktorform steht er vorne als N₀.','Die Spannung beim Einschalten der Messung: 120 V.',{art:'der',pl:'die Startwerte'}],
+  faktor:['Faktor q','Die Zahl, mit der der Wert nach jeder Zeitspanne malgenommen wird. q = 0,8 heißt: 80 % bleiben übrig.',null,{sg:'der Faktor',pl:'die Faktoren'}],
+  zeitspanne:['Zeitspanne Δt','Die Zeit, nach der genau einmal mit q malgenommen wird. t/Δt zählt, wie viele Zeitspannen vergangen sind.','Alle 2 s misst das Gerät: Δt = 2 s.',{sg:'die Zeitspanne',pl:'die Zeitspannen'}],
+  wachstum:['Wachstum','Der Wert wird in gleichen Zeitspannen immer mit derselben Zahl größer als 1 malgenommen (q > 1).','Keime im Kühlschmierstoff vermehren sich.',{art:'das',pl:''}],
+  zerfall:['Zerfall','Der Wert wird in gleichen Zeitspannen immer mit derselben Zahl zwischen 0 und 1 malgenommen (0 < q < 1). Er wird immer um denselben Anteil kleiner.','Eine Spannung sinkt alle 2 s auf 80 %.',{art:'der',pl:''}],
+  konstanz:['Konstanz','Der Wert bleibt gleich, weil der Faktor q = 1 ist.',null,{art:'die',pl:''}],
+  eulerzahl:['Eulersche Zahl e','Eine feste Zahl, ungefähr 2,718. Der Taschenrechner hat dafür eine eigene Taste.',null,{art:'die',pl:''}],
+  eform:['e-Form','Die gleiche Formel, nur mit e als Grundzahl: N(t) = N₀ · e hoch (k·t). Statt q steht die Rate k im Hochzahl-Teil.',null,{art:'die',pl:'die e-Formen'}],
+  rate:['Rate k','Die Zahl vor t in der e-Form. Sie hat die Einheit „pro Zeit“, z. B. 1/min. Negativ heißt: Der Wert nimmt ab.',null,{sg:'die Rate',pl:'die Raten'}],
+  vorfaktor:['Vorfaktor A','Die Zahl vor dem e-Teil. Er gibt an, wie weit der Wert am Anfang über (oder unter) dem Restwert c liegt.','Die Probe ist am Anfang 60 °C wärmer als der Raum.',{sg:'der Vorfaktor',pl:'die Vorfaktoren'}],
+  verschiebung:['Verschiebung c','Ein fester Wert, der hinten addiert wird. Er hebt alle Werte gleich weit an. Hier ist es die Raumtemperatur.','Die Probe kühlt nicht auf 0 °C ab, sondern Richtung 20 °C.',{sg:'die Verschiebung',pl:'die Verschiebungen'}],
+  prozent:['Prozentänderung','Um wie viel Prozent sich der Wert in einer Zeitspanne ändert: 100 · (e hoch (k·Δt) − 1) %. Bei einem Restwert gilt sie für den Abstand zu c.','−20 % in 5 min: Der Abstand zur Raumtemperatur schrumpft auf 80 %.',{art:'die',pl:'die Prozentänderungen'}]
 };
 
 /* ---------- Bausteine ---------- */
-const FA=()=>K('T(t)=60\\,^\\circ\\mathrm{C}\\cdot 0{,}8^{\\,t/(5\\,\\mathrm{min})}+20\\,^\\circ\\mathrm{C}');
-const FB=()=>K('T(t)=60\\,^\\circ\\mathrm{C}\\cdot e^{-0{,}0446\\,t}+20\\,^\\circ\\mathrm{C}');
-const FORM=()=>KD('N(t)=N_0\\cdot q^{\\,t/\\Delta t}')+KD('N(t)=N_0\\cdot e^{k t}\\quad\\text{mit}\\quad k=\\dfrac{\\ln(q)}{\\Delta t},\\;\\; q=e^{k\\,\\Delta t}')+KD('f(t)=A\\cdot e^{k t}+c,\\quad f(0)=A+c');
-function MAIL(){return `<div class="mail"><div class="mh"><b>Von:</b> Jana Pohl, Rheinkant Werkstofftechnik<br><b>An:</b> Auswertung Lumetra Prüftechnik (eure Klasse)<br><div class="subj">Zwei Formeln für unseren Abkühlversuch – welche stimmt?</div></div>
-<div class="mb"><p>Hallo zusammen,</p>
-<p>nach einer Wärmebehandlung kühlt unser Prüfkörper an der Luft ab. Zwei Dienstleister haben mir dafür je eine Formel geschickt (t in Minuten):</p>
-<p><b>Modell A:</b> ${FA()}<br><b>Modell B:</b> ${FB()}</p>
-<p>Bei beiden bleibt ein Restwert von 20 °C. Beschreiben die beiden Formeln denselben Abkühlvorgang, oder muss ich mich für eine entscheiden? Bitte schickt mir eine kurze, begründete Antwort.</p>
-<p>Viele Grüße<br>Jana Pohl</p></div></div>`}
-function tabA(){return `<table class="tb"><tr><th>t in min</th>${TT.map(t=>`<th class="n">${t}</th>`).join('')}</tr><tr><td>T(t) in °C (Modell A)</td>${TT.map(t=>`<td class="n">${fmt(TA(t),2).replace(',00','')}</td>`).join('')}</tr></table>`}
-function DATA(){return `<h4 style="margin:4px 0">Die beiden Modelle (t in min)</h4><p>Modell A: ${FA()}<br>Modell B: ${FB()}</p>${tabA()}
- ${levelOpen(1)?`<h4 style="margin:12px 0 4px">Formeln</h4>${FORM()}`:''}
- <details style="margin-top:8px"><summary>✉️ E-Mail von Frau Pohl</summary>${MAIL()}</details>`}
-const BOSS={name:'Herr Brandt',role:'Qualitätssicherung',ava:'🧐'};
+const UN=s=>`\\,\\text{${s}}`;
+function curve(f,x0,x1,color,dash,n){n=n||60;const a=[];for(let i=0;i<n;i++){const xa=x0+(x1-x0)*i/n,xb=x0+(x1-x0)*(i+1)/n;a.push({x1:xa,y1:f(xa),x2:xb,y2:f(xb),color:color||'#c2410c',w:3.5,dash:dash?1:0})}return a}
+const FU=()=>K('U(t)=120'+UN('V')+'\\cdot 0{,}8^{\\,t/(2'+UN('s')+')}');
+const FB=()=>K('B(t)=500\\cdot 1{,}5^{\\,t/(3'+UN('h')+')}');
+const FA1=()=>K('T_1(t)=60\\,\\text{°C}\\cdot 0{,}8^{\\,t/(5'+UN('min')+')}+20\\,\\text{°C}');
+const FA2=()=>K('T_2(t)=60\\,\\text{°C}\\cdot e^{-0{,}0446\\,t}+20\\,\\text{°C}');
+const FM=()=>K('M(t)=2{,}5'+UN('mg')+'\\cdot 1{,}2^{\\,t/(30'+UN('min')+')}');
+const UFIG=(extra)=>plotSVG(Object.assign({xmin:0,xmax:10,ymin:0,ymax:130,ygrid:10,ylab:20,h:360,xt:'t in s',yt:'U in V',
+  segs:curve(Uf,0,10,'#17607a'),points:[0,2,4,6,8,10].map(t=>({x:t,y:Uf(t),r:6}))},extra||{}));
+const ANGFIG=(h)=>plotSVG({xmin:0,xmax:30,xgrid:5,xlab:5,ymin:0,ymax:90,ygrid:10,ylab:20,h:h||360,xt:'t in min',yt:'T in °C',
+  segs:curve(T1,0,30,'#c2410c').concat(curve(T2,0,30,'#5b3fc4',1)).concat([{x1:0,y1:20,x2:30,y2:20,color:'#4d5a6b',dash:1}]),
+  texts:[{x:29.5,y:24,t:'20 °C (Raum)',size:15,bold:false,color:'#4d5a6b',anchor:'end'},{x:29.5,y:82,t:'orange: Angebot 1',size:15,bold:false,color:'#c2410c',anchor:'end'},{x:29.5,y:73,t:'lila, gestrichelt: Angebot 2',size:15,bold:false,color:'#5b3fc4',anchor:'end'}]});
+const OFENFIG=()=>plotSVG({xmin:0,xmax:14,xgrid:1,xlab:2,ymin:0,ymax:230,ygrid:10,ylab:40,h:380,xt:'t in min',yt:'T in °C',
+  points:OFEN.map(([x,y])=>({x,y})),segs:[{x1:0,y1:20,x2:14,y2:20,color:'#4d5a6b',dash:1}],texts:[{x:13.8,y:28,t:'Raumtemperatur',size:15,bold:false,color:'#4d5a6b',anchor:'end'}]});
+const ofenTab=()=>`<table class="tb"><tr><th>t in min</th>${OFEN.map(d=>`<td class="n">${d[0]}</td>`).join('')}</tr><tr><th>T in °C</th>${OFEN.map(d=>`<td class="n">${fmt(d[1],d[1]%1?2:0)}</td>`).join('')}</tr></table>`;
+function MAIL(){return `<div class="mail"><div class="mh"><b>Von:</b> Jana Okafor, Laborleitung Werkstoffprüfung<br><b>An:</b> PTA-Team (eure Klasse)<br><div class="subj">Kundenanfrage: Zwei Formeln für unsere Abkühlkurve – welche stimmt?</div></div>
+<div class="mb"><p>Hallo PTA-Team,</p>
+<p>unsere gehärteten Stahlproben kühlen nach dem Härten an der Luft ab. Für die Prüfsoftware brauchen wir eine Formel für die Probentemperatur T (t in Minuten). Zwei Dienstleister haben mir je eine geschickt:</p>
+<p><b>Angebot 1:</b> ${FA1()}<br><b>Angebot 2:</b> ${FA2()}</p>
+<p>Beide schreiben, ihre Formel sei „die richtige“. Sie sehen ganz verschieden aus: Die eine nimmt mit 0,8 mal, die andere hat die Zahl e. Bei beiden hängt hinten noch etwas dran.</p>
+<p>Bevor ich eine davon übernehme, brauche ich eure <b>Modellkarte MK-03</b>: Was bedeutet <b>jede Zahl</b> in beiden Formeln, <b>mit Einheit</b>? Welche Temperatur liefern sie <b>am Anfang</b>? Und: <b>Beschreiben beide denselben Abkühlvorgang?</b></p>
+<p>Danke und viele Grüße<br>Jana Okafor</p></div></div>
+<p class="tip" style="margin:6px 0 0">Unternehmen, Personen und Daten sind für den Unterricht erfunden.</p>`}
+function DATA(){return `<h4 style="margin:4px 0">Die beiden Angebote (t in min, T in °C)</h4><p>${FA1()}</p><p>${FA2()}</p>
+ <h4 style="margin:12px 0 4px">Weitere Formeln aus dem Labor</h4><p>Spannung: ${FU()}</p><p>Keimzahl im Kühlschmierstoff: ${FB()} (Keime je ml)</p>
+ ${levelOpen(4)?`<h4 style="margin:12px 0 4px">Umrechnen</h4>${KD('N(t)=N_0\\cdot q^{\\,t/\\Delta t}=N_0\\cdot e^{k t}')}${KD('q=e^{k\\cdot\\Delta t}\\qquad k=\\dfrac{\\ln(q)}{\\Delta t}')}`:''}
+ ${levelOpen(5)?`<h4 style="margin:12px 0 4px">Mit Restwert</h4>${KD('f(t)=A\\cdot e^{k t}+c\\qquad f(0)=A+c')}${KD('\\text{Prozentänderung je }\\Delta t:\\;100\\cdot\\left(e^{k\\cdot\\Delta t}-1\\right)\\,\\%')}`:''}
+ <details class="given"><summary>✉️ E-Mail nochmal lesen</summary><div class="gb">${MAIL()}</div></details>`}
+const BOSS1={name:'Herr Demir',role:'Qualitätssicherung',ava:'🧐'};
+const BOSS2={name:'Frau Lindqvist',role:'Entwicklung Prüfsoftware',ava:'💻'};
 
-/* ---------- Simulation: Regler für den Faktor q ---------- */
-function curveSegs(q,col){const s=[];for(let t=0;t<20;t+=0.5){s.push({x1:t,y1:60*Math.pow(q,t/5)+20,x2:t+0.5,y2:60*Math.pow(q,(t+0.5)/5)+20,color:col})}return s}
-function simQ(c,api){
-  let q=0.8;const seen={lt:0,eq:0,gt:0};let m=null;
-  const pl=makePlot(c,{xmin:0,xmax:20,ymin:0,ymax:260,xgrid:5,xlab:5,ygrid:20,ylab:40,h:380,xt:'t in min',yt:'N(t)'});
+/* ---------- Simulationen ---------- */
+function simFaktor(c,api){
+  let q=1.2;const seen={up:0,down:0,eq:0};let asked=false;
+  const pl=makePlot(c,{xmin:0,xmax:10,ymin:0,ymax:300,ygrid:20,ylab:50,h:420,xt:'t in s',yt:'N'});
   const ro=document.createElement('div');ro.className='readout';c.appendChild(ro);
-  const ck=checklist(['einen Faktor kleiner als 1 eingestellt','den Faktor genau 1 eingestellt','einen Faktor größer als 1 eingestellt']);
+  const ck=checklist(['Kurve steigt: q eingestellt, bei dem der Wert größer wird','Kurve sinkt: q eingestellt, bei dem der Wert kleiner wird','Kurve bleibt waagerecht: q eingestellt, bei dem nichts passiert']);
   const q2=document.createElement('div');
-  const draw=()=>{const col=q<1?'#17607a':q>1?'#c2410c':'#16233a';
-    pl.draw({segs:curveSegs(q,col),lines:[{m:0,b:20,color:'#5b3fc4',dash:1}],points:[{x:0,y:80,color:col,r:6}]});
-    const qt=fmt(q,2).replace(',','{,}');
-    ro.innerHTML=`<span>${K(`N(t)=60\\cdot ${qt}^{\\,t/5}+20`)}</span><span>${q<1?'📉 nimmt ab':q>1?'📈 nimmt zu':'➖ bleibt gleich'}</span>`;
-    if(q<1)seen.lt=1;if(Math.abs(q-1)<1e-9)seen.eq=1;if(q>1)seen.gt=1;ck.set(0,!!seen.lt);ck.set(1,!!seen.eq);ck.set(2,!!seen.gt);
-    if(seen.lt&&seen.eq&&seen.gt&&!q2.dataset.on){q2.dataset.on=1;m=mcqW(q2,{q:'Für welche Faktoren q wird der Abstand zur gestrichelten Linie mit der Zeit kleiner?',o:[
-      {t:K('0<q<1'),ok:1,fb:'Genau. Dann bleibt pro 5 Minuten nur ein Teil des Abstands übrig. Das ist Abnahme (Zerfall).'},
-      {t:K('q>1'),fb:'Bei q > 1 wird der Abstand pro 5 Minuten größer. Das ist Wachstum.'},
-      {t:K('q=1'),fb:'Bei q = 1 bleibt der Abstand immer gleich. Die Kurve ist waagerecht.'},
-      {t:K('q<0'),fb:'Ein negativer Faktor ist hier nicht erlaubt. In diesen Formeln gilt immer q > 0.'}]},api.solved,api.wrong)}};
-  const ctl=ctlRow({label:'Faktor q pro 5 min',min:0.6,max:1.4,step:0.05,val:q,fmtV:v=>`q = ${fmt(v,2)}`,onChange:v=>{q=v;draw()}});
+  const f=t=>100*Math.pow(q,t/2);
+  const draw=()=>{pl.draw({segs:curve(f,0,10,'#5b3fc4'),points:[0,2,4,6,8,10].map(t=>({x:t,y:Math.min(f(t),299),r:6}))});
+    ro.innerHTML=`<span>${K(`N(t)=100\\cdot ${fmt(q,2).replace(',','{,}')}^{\\,t/(2\\,\\text{s})}`)}</span><span>nach 10 s: ${K(fmt(f(10),1).replace(',','{,}').replace('−','-'))}</span>`;
+    if(q>1.001)seen.up=1;if(q<0.999)seen.down=1;if(Math.abs(q-1)<0.001)seen.eq=1;ck.set(0,!!seen.up);ck.set(1,!!seen.down);ck.set(2,!!seen.eq);
+    if(seen.up&&seen.down&&seen.eq&&!asked){asked=true;mcqW(q2,{q:'Was entscheidet, ob der Wert wächst, sinkt oder gleich bleibt?',o:[
+      {t:`Wie q zu 1 liegt: ${K('q>1')} heißt ${T('wachstum')}, ${K('0<q<1')} heißt ${T('zerfall')}, ${K('q=1')} heißt ${T('konstanz')}.`,ok:1,fb:'Genau. Malnehmen mit einer Zahl über 1 macht größer, mit einer Zahl zwischen 0 und 1 kleiner, mit 1 bleibt alles gleich.'},
+      {t:'Der Startwert: Ist er groß, wächst der Wert.',fb:'Der Startwert war im Versuch immer 100. Trotzdem ist die Kurve mal gestiegen, mal gefallen.'},
+      {t:'Die Zeitspanne: Je länger sie ist, desto stärker sinkt der Wert.',fb:'Die Zeitspanne war fest 2 s. Verändert hast du nur q.'},
+      {t:'Ob q größer oder kleiner als 0 ist.',fb:'q war immer positiv. Entscheidend ist der Vergleich mit 1: q = 0,8 ist positiv und trotzdem sinkt der Wert.'}]},api.solved,api.wrong)}};
+  const ctl=ctlRow({label:'Faktor q',min:0.5,max:1.5,step:0.05,val:q,fmtV:v=>`q = ${fmt(v,2)}`,onChange:v=>{q=v;draw()}});
   c.appendChild(ctl);c.appendChild(ck);c.appendChild(q2);draw();
-  api.setAuto(()=>{ctl.set(1.2);ctl.set(1);ctl.set(0.8);if(m)m._auto()});
+  api.setAuto(()=>{ctl.set(0.8);ctl.set(1);ctl.set(1.2)});
 }
-function formelNr(){const C=['#c2410c','#17607a','#1b7a47','#5b3fc4'],W=['60 °C','0,8','5 min','20 °C'];return `<div style="text-align:center;font-size:1.2em;margin:6px 0">${KD('T(t)={\\color{#c2410c}\\underbrace{60\\,^\\circ\\mathrm{C}}_{1}}\\cdot {\\color{#17607a}\\underbrace{0{,}8}_{2}}{}^{\\,t/({\\color{#1b7a47}5\\,\\mathrm{min}})}+{\\color{#5b3fc4}\\underbrace{20\\,^\\circ\\mathrm{C}}_{4}}')}</div>
- <p style="text-align:center;font-weight:700">${W.map((w,j)=>`<span style="color:${C[j]};white-space:nowrap">Nr. ${j+1}: ${w}</span>`).join(' · ')}</p><p class="tip" style="text-align:center">Nr. 3 steht im Exponenten (grün).</p>`}
+function simEForm(c,api){
+  let k=0.05;const seen={neg:0,pos:0,hit:0};let asked=false;
+  const pl=makePlot(c,{xmin:0,xmax:10,ymin:0,ymax:200,ygrid:10,ylab:40,h:420,xt:'t in s',yt:'U in V'});
+  const ro=document.createElement('div');ro.className='readout';c.appendChild(ro);
+  const ck=checklist(['k negativ eingestellt','k positiv eingestellt','Kurve trifft die Messpunkte der Spannung']);
+  const q2=document.createElement('div');const say=statusFb(c);
+  const g=t=>120*Math.exp(k*t);
+  const draw=()=>{const q=Math.exp(2*k);pl.draw({segs:curve(g,0,10,'#5b3fc4'),points:[0,2,4,6,8,10].map(t=>({x:t,y:Uf(t),r:6,color:'#17607a'}))});
+    ro.innerHTML=`<span>${K(`U(t)=120\\cdot e^{${fmt(k,2).replace(',','{,}').replace('−','-')}\\,t}`)}</span><span>${K(`q=e^{k\\cdot 2}\\approx ${fmt(q,3).replace(',','{,}')}`)}</span>`;
+    if(k<-0.001)seen.neg=1;if(k>0.001)seen.pos=1;if(Math.abs(q-0.8)<0.01)seen.hit=1;ck.set(0,!!seen.neg);ck.set(1,!!seen.pos);ck.set(2,!!seen.hit);
+    if(Math.abs(q-0.8)<0.01&&!asked)say('ok',`✅ Getroffen! Mit ${K('k\\approx-0{,}11')} liefert die Formel mit e fast dieselben Werte wie ${FU()}.`);
+    if(seen.neg&&seen.pos&&seen.hit&&!asked){asked=true;mcqW(q2,{q:`Was gilt, wenn die ${T('rate')} negativ ist?`,o:[
+      {t:`Dann ist ${K('q=e^{k\\cdot\\Delta t}')} kleiner als 1: Der Wert nimmt ab.`,ok:1,fb:'Genau. e hoch eine negative Zahl liegt zwischen 0 und 1. Negatives k gehört also zu einer Abnahme.'},
+      {t:'Dann werden die Werte negativ.',fb:'Die Kurve blieb immer über der t-Achse. e hoch irgendwas ist immer positiv.'},
+      {t:'Dann wächst der Wert, nur langsamer.',fb:'Bei negativem k ist die Kurve gefallen, nicht gestiegen.'},
+      {t:'Dann ist q negativ.',fb:'q = e hoch (k · Δt) ist immer positiv. Bei negativem k liegt q zwischen 0 und 1.'}]},api.solved,api.wrong)}};
+  const ctl=ctlRow({label:'Rate k (in 1/s)',min:-0.3,max:0.3,step:0.01,val:k,fmtV:v=>`k = ${fmt(v,2)} 1/s`,onChange:v=>{k=v;draw()}});
+  c.appendChild(ctl);c.appendChild(ck);c.appendChild(q2);draw();
+  api.setAuto(()=>{ctl.set(0.1);ctl.set(-0.2);ctl.set(-0.11)});
+}
+function simShift(c,api){
+  let A=40,cc=0;let asked=false;const say=statusFb(c);
+  const pts=[0,5,10,15,20,25,30].map(t=>({x:t,y:T1(t),r:6,color:'#c2410c'}));
+  const pl=makePlot(c,{xmin:0,xmax:30,xgrid:5,xlab:5,ymin:0,ymax:110,ygrid:10,ylab:20,h:420,xt:'t in min',yt:'T in °C'});
+  const ro=document.createElement('div');ro.className='readout';c.appendChild(ro);
+  const ck=checklist(['Die Kurve startet bei 80 °C','Die Kurve trifft alle Messpunkte']);const q2=document.createElement('div');
+  const g=t=>A*Math.pow(0.8,t/5)+cc;
+  const draw=()=>{pl.draw({points:pts,segs:curve(g,0,30,'#5b3fc4').concat([{x1:0,y1:cc,x2:30,y2:cc,color:'#4d5a6b',dash:1}])});
+    ro.innerHTML=`<span>${K(`f(t)=${A}\\cdot 0{,}8^{\\,t/5}+${cc}`)}</span><span>${K(`f(0)=${A}+${cc}=${A+cc}`)} °C</span>`;
+    const st=A+cc===80,all=A===60&&cc===20;ck.set(0,st);ck.set(1,all);
+    if(st&&!all)say('info','Der Anfang stimmt. Aber trifft die Kurve auch die späteren Messpunkte? Probiere andere Paare mit Summe 80.');
+    else if(!st)say('info','Verschiebe die Regler. Die gestrichelte Linie zeigt den Wert, den du hinten addierst.');
+    if(all&&!asked){asked=true;say('ok','✅ Alle Messpunkte getroffen: A = 60, c = 20.');mcqW(q2,{q:'Was bedeutet A = 60 °C in Angebot 1?',o:[
+      {t:'Am Anfang ist die Probe 60 °C wärmer als der Raum (20 °C). A ist der Abstand zum Restwert am Anfang.',ok:1,fb:'Genau. 60 + 20 = 80 °C am Anfang. Abnehmen tut nur der Abstand von 60 °C.'},
+      {t:'Die Probe startet bei 60 °C.',fb:'Am Anfang liefert die Formel 60 + 20 = 80 °C. Der Restwert gehört dazu.'},
+      {t:'Die Probe kühlt um 60 °C pro Minute ab.',fb:'A ist kein Tempo. Er gibt an, wie weit der Wert am Anfang über dem Restwert liegt.'},
+      {t:'Nach 60 Minuten ist die Probe kalt.',fb:'A ist keine Zeit. Die Zeit steckt nur im Hochzahl-Teil.'}]},api.solved,api.wrong)}};
+  const cA=ctlRow({label:'Vorfaktor A (in °C)',min:0,max:100,step:10,val:A,fmtV:v=>`A = ${v} °C`,onChange:v=>{A=v;draw()}});
+  const cC=ctlRow({label:'Verschiebung c (in °C)',min:0,max:40,step:5,val:cc,fmtV:v=>`c = ${v} °C`,onChange:v=>{cc=v;draw()}});
+  c.appendChild(cA);c.appendChild(cC);c.appendChild(ck);c.appendChild(q2);draw();
+  const chk=addCheckBtn(c,'Passt meine Kurve? ✔');
+  chk.onclick=()=>{if(asked)return;if(A+cc===80&&!(A===60&&cc===20)){api.wrong();say('bad',`❌ ${K(`f(0)=${A+cc}`)} stimmt, aber die späteren Punkte nicht. Der Wert am Anfang allein legt A und c noch nicht fest.`)}
+    else if(A+cc!==80){api.wrong();say('bad',`❌ Die Kurve startet bei ${A+cc} °C. Die Probe startet bei 80 °C.`)}};
+  api.setAuto(()=>{cA.set(70);cC.set(10);cA.set(60);cC.set(20)});
+}
 
-/* ---------- Aufwärmen: 3 Fragen aus den Wochen 1 und 2 ---------- */
+/* ---------- Abschlussdokument ---------- */
+function mkDoc(){return `<div class="doc"><div class="stamp">MK-03</div><h4>Modellkarte MK-03: Abkühlung gehärteter Stahlproben (t in min, T in °C)</h4><dl>
+<dt>Angebot 1</dt><dd>${FA1()}</dd>
+<dt>Wert am Anfang</dt><dd>${K('T(0)=60+20=80')} °C (beide Angebote)</dd>
+<dt>Vorfaktor A</dt><dd>60 °C: Abstand zur Raumtemperatur am Anfang</dd>
+<dt>Verschiebung c</dt><dd>20 °C: Raumtemperatur, wird zu allen Werten addiert</dd>
+<dt>Faktor q</dt><dd>0,8 je Zeitspanne 5 min: Der Abstand schrumpft alle 5 min auf 80 %</dd>
+<dt>Angebot 2</dt><dd>${FA2()}</dd>
+<dt>Rate k</dt><dd>${K('k=\\dfrac{\\ln(0{,}8)}{5\\,\\text{min}}\\approx-0{,}0446\\,\\tfrac{1}{\\text{min}}')}, also ${K('q=e^{-0{,}0446\\cdot 5}\\approx0{,}80')}</dd>
+<dt>Prozentänderung</dt><dd>etwa −20 % je 5 min (gilt für den Abstand zur Raumtemperatur), etwa −4,4 % je Minute</dd>
+<dt>Urteil</dt><dd>Beide Angebote beschreiben denselben Vorgang, bis auf die Rundung von k (z. B. T(10): 58,40 °C bzw. 58,41 °C).</dd>
+<dt>Empfehlung</dt><dd>${esc(state.sim.empf||'—')}</dd>
+<dt>Erstellt von</dt><dd>${nm()} · PTA-Team · ${new Date().toLocaleDateString('de-DE')}</dd></dl></div>`}
+function mkText(){return ['Modellkarte MK-03: Abkühlung gehärteter Stahlproben (t in min, T in °C)','',
+'Angebot 1: T1(t) = 60 °C · 0,8^(t/5 min) + 20 °C','Wert am Anfang: T(0) = 60 + 20 = 80 °C (beide Angebote)',
+'Vorfaktor A = 60 °C: Abstand zur Raumtemperatur am Anfang','Verschiebung c = 20 °C: Raumtemperatur',
+'Faktor q = 0,8 je 5 min: Der Abstand schrumpft alle 5 min auf 80 %','Angebot 2: T2(t) = 60 °C · e^(−0,0446 t) + 20 °C',
+'Rate k = ln(0,8)/5 min ≈ −0,0446 1/min, also q = e^(−0,0446 · 5) ≈ 0,80','Prozentänderung: etwa −20 % je 5 min (für den Abstand), etwa −4,4 % je Minute',
+'Urteil: Beide beschreiben denselben Vorgang, bis auf die Rundung von k.','Empfehlung: '+(state.sim.empf||'—'),'Erstellt von: '+(state.name||CONFIG.defaultName)].join('\n')}
+
+/* ---------- Aufwärmen (Wochen 1 und 2) ---------- */
 const AUFWAERMEN=[
- {woche:1,q:'Eine Spannung sinkt von 50 V auf 40 V. Welcher Faktor gehört dazu?',o:[
-   {t:'0,8',ok:1,fb:'Richtig: 40 V : 50 V = 0,8.'},{t:'−10 V',fb:'Das ist die Differenz, nicht der Faktor.'},
-   {t:'1,25',fb:'Vertauscht: Der Faktor ist neu durch alt, also 40 : 50.'},{t:'−0,2',fb:'Das ist die relative Änderung q − 1, nicht der Faktor selbst.'}]},
- {woche:1,q:'Welche Einheit hat ein Faktor q = U_neu : U_alt?',o:[
-   {t:'keine, er ist einheitenlos',ok:1,fb:'Genau: Volt durch Volt kürzt sich weg.'},{t:'Volt',fb:'Volt durch Volt kürzt sich weg.'},
-   {t:'Volt pro Sekunde',fb:'Das wäre eine Änderung pro Zeit. Der Faktor vergleicht nur zwei Werte.'},{t:'Sekunde',fb:'Die Zeit steckt im Faktor nicht drin.'}]},
- {woche:2,q:'Bei gleichen Zeitschritten sind die Quotienten benachbarter Messwerte immer gleich. Welches Modell liegt nahe?',o:[
-   {t:'exponentiell',ok:1,fb:'Richtig: gleicher Faktor pro Schritt bedeutet exponentiell.'},{t:'linear',fb:'Linear erkennt man an gleichen Differenzen, nicht an gleichen Quotienten.'},
-   {t:'beide gleich gut',fb:'Gleiche Quotienten passen nur zum exponentiellen Modell.'},{t:'keines, man braucht mehr Messpunkte',fb:'Mehr Punkte sind immer gut, aber das Muster spricht schon klar für exponentiell.'}]}
+ {woche:1,q:'Eine Spannung sinkt in einem Messschritt von 50 V auf 40 V. Welche Zahl erhältst du, wenn du neu durch alt teilst?',o:[
+   {t:K('0{,}8'),ok:1,fb:'Genau: 40 : 50 = 0,8. Diese Zahl hat keine Einheit.'},
+   {t:'10 V',fb:'Das ist die Differenz (absolute Änderung), nicht der Quotient.'},
+   {t:K('1{,}25'),fb:'Du hast alt durch neu geteilt. Gefragt ist neu durch alt: 40 : 50.'},
+   {t:K('-0{,}2'),fb:'Das ist die relative Änderung, also Quotient minus 1. Gefragt ist der Quotient selbst.'}]},
+ {woche:2,q:'Bei gleichen Zeitschritten sind die Differenzen einer Messreihe immer gleich. Welches Modell passt?',o:[
+   {t:'linear',ok:1,fb:'Richtig: konstante Differenzen sprechen für ein lineares Modell.'},
+   {t:'exponentiell',fb:'Dafür müssten die Quotienten benachbarter Werte gleich sein, nicht die Differenzen.'},
+   {t:'keines, weil der Graph fällt',fb:'Auch fallende Graphen können linear oder exponentiell sein. Entscheidend ist das Zahlenmuster.'},
+   {t:'beide gleich gut',fb:'Konstante Differenzen sprechen eindeutig für linear.'}]},
+ {woche:2,q:'Messwerte im Stundentakt: 200, 240, 288. Welches Modell beschreibt sie (t in Stunden)?',o:[
+   {t:K('N(t)=200\\cdot 1{,}2^{t}'),ok:1,fb:'Genau: 240 : 200 = 1,2 und 288 : 240 = 1,2. Bei t = 0 ist der Wert 200.'},
+   {t:K('N(t)=40t+200'),fb:'Die Differenzen sind 40 und 48, also nicht gleich. Linear passt nicht.'},
+   {t:K('N(t)=200\\cdot 0{,}2^{t}'),fb:'0,2 ist die relative Änderung (20 %). Malgenommen wird mit 1,2.'},
+   {t:K('N(t)=240\\cdot 1{,}2^{t}'),fb:'Bei t = 0 muss die Formel 200 liefern, nicht 240.'}]}
 ];
 
-const H1='20 min';
+/* ---------- Etappen ---------- */
+const H1='Stunde 1 · 45 min',H2='Stunde 2 · 45 min';
 const LEVELS=[
-/* ===== Einstieg: Kundenanfrage + Mythos ===== */
-{title:'Einstieg: Zwei Formeln, ein Vorgang?',tag:'Einstieg',sub:'Anfrage lesen, abstimmen, Auftrag klären',badge:'🧭 Auftrag geklärt',num:'✉️',hour:H1,short:'Anfrage',steps:[
- {type:'info',html:()=>`<div class="newmail"><span class="dot"></span><b>1 neue Nachricht</b>&nbsp;· Rheinkant Werkstofftechnik</div>${MAIL()}
-   <div class="task"><b>Dein Auftrag:</b> Lies die Mail. Gleich stimmst du ab, ohne zu rechnen.</div><p class="tip">Unterrichtsbeispiel: Firmen, Personen und Zahlen sind erfunden.</p>`},
- {type:'vote',id:'m1',phase:'vor',title:'Abstimmung vorher',q:'„Zwei Formeln mit verschiedener Grundzahl (einmal 0,8, einmal e) beschreiben immer verschiedene Vorgänge.“ Stimmt das?'},
- {type:'mcq',title:'Wer sind wir, was ist das Ziel?',q:'Worin besteht unser Auftrag?',
-  einfach:{q:'Frau Pohl hat zwei Formeln. Was sollen wir für sie tun?'},
-  o:[{t:'Wir prüfen als Auswertungsteam, ob Modell A und Modell B denselben Abkühlvorgang beschreiben, und antworten Frau Pohl begründet.',ok:1,fb:'Genau. Am Ende steht eine kurze, begründete Antwort an Frau Pohl.'},
-   {t:'Wir messen die Temperatur des Prüfkörpers selbst neu.',fb:'Messen ist nicht unser Auftrag. Wir vergleichen die beiden Formeln.'},
-   {t:'Wir suchen uns das Modell aus, das schöner aussieht.',fb:'Das Aussehen der Formel zählt nicht. Es geht darum, ob beide dieselben Werte liefern.'},
-   {t:'Wir erfinden ein drittes Modell.',fb:'Davon ist in der Mail keine Rede. Frau Pohl will wissen, ob A und B dasselbe beschreiben.'}],
-  hints:['Was fragt Frau Pohl am Ende ihrer Mail?','Wir sind das Auswertungsteam. Wir rechnen und vergleichen.','Gesucht ist eine begründete Antwort zu Modell A und B.']},
- {type:'seq',title:'Wie gehen wir vor?',text:'Bringe die Schritte in eine sinnvolle Reihenfolge. Geprüft wird erst, wenn alle Schritte eingeordnet sind.',items:[
-   'Die Zahlen in Modell A benennen, jeweils mit Einheit','Die Temperatur zu Beginn berechnen','Modell A in die Schreibweise mit e umrechnen','Beide Modelle vergleichen und Frau Pohl antworten'],
-  okfb:'Das ist unser Fahrplan für die 20 Minuten. Unterwegs prüft Herr Brandt aus der Qualitätssicherung eure Antwort.',
-  hints:['Erst muss man wissen, was die Zahlen bedeuten.','Umrechnen kommt vor dem Vergleichen.','Die Antwort an Frau Pohl steht am Ende.']}
+/* ===== 0 Einstieg ===== */
+{title:'Einstieg: Die Kundenanfrage',tag:'Einstieg',sub:'Wer sind wir? Was ist das Ziel? Wie erreichen wir es?',badge:'🧭 Auftrag geklärt',num:'✉️',hour:H1,short:'Einstieg',steps:[
+ {type:'info',html:()=>`<div class="newmail"><span class="dot"></span><b>1 neue Nachricht</b>&nbsp;· Laborleitung</div>${MAIL()}
+   <div class="task"><b>Dein Auftrag:</b> Lies die E-Mail genau. Danach klärst du drei Fragen: <b>Wer sind wir? Was ist das Ziel? Wie erreichen wir es?</b> Die Mail findest du jederzeit unter 📂.</div>`},
+ {type:'mcq',title:'Frage 1: Wer sind wir?',dataTitle:'✉️ E-Mail anzeigen',data:()=>MAIL(),q:'In welcher Rolle arbeitet ihr in dieser Lerneinheit?',o:[
+   {t:'Wir sind das PTA-Team im Labor Werkstoffprüfung und prüfen für die Laborleitung zwei Formeln.',ok:1,fb:'Genau. Ihr verkauft nichts und entscheidet nichts allein. Ihr liefert eine saubere fachliche Prüfung.'},
+   {t:'Wir sind einer der Dienstleister und wollen unser Angebot verkaufen.',fb:'Die Dienstleister haben die Formeln geschickt. Schau, an wen die E-Mail gerichtet ist.'},
+   {t:'Wir sind die Härterei und härten die Stahlproben.',fb:'Gehärtet ist schon. Ihr kümmert euch um die Formel für das Abkühlen.'},
+   {t:'Wir schreiben die Prüfsoftware.',fb:'Die Software gibt es schon. Ihr prüft, welche Formel hineinkommt.'}],
+  hints:['Schau in die Zeile „An:“ der E-Mail.','Ein PTA-Team im Labor prüft und misst.','Frau Okafor schreibt an euch als PTA-Team.']},
+ {type:'mcq',title:'Frage 2: Was ist das Ziel?',dataTitle:'✉️ E-Mail anzeigen',data:()=>MAIL(),q:'Was genau sollt ihr am Ende abliefern?',o:[
+   {t:'Eine Modellkarte MK-03: was jede Zahl in beiden Formeln bedeutet, mit Einheit, und ob beide denselben Abkühlvorgang beschreiben.',ok:1,fb:'Richtig. Das ist unsere Leitfrage: <b>Welche Angaben in den beiden Formeln musst du vergleichen, bevor du sagen kannst, dass sie denselben Vorgang beschreiben?</b>'},
+   {t:'Eine neue Messreihe der Probentemperatur.',fb:'Gemessen wird nicht. Ihr prüft die beiden Formeln, die schon da sind.'},
+   {t:'Die Entscheidung, welcher Dienstleister billiger ist.',fb:'Preise stehen nicht in der Mail. Es geht um die Formeln.'},
+   {t:'Eine dritte, eigene Formel.',fb:'Gesucht ist keine neue Formel, sondern eine Prüfung der beiden vorhandenen.'}],
+  hints:['Welches Dokument nennt Frau Okafor?','Achte auf die fett gedruckten Wörter im vierten Absatz.','Gesucht ist eine beschriftete Karte mit einem Urteil.']},
+ {type:'pick',title:'Was gehört auf die Modellkarte?',dataTitle:'✉️ E-Mail anzeigen',data:()=>MAIL(),text:'Frau Okafor nennt, was auf die Karte soll. Tippe alle passenden Bausteine an und prüfe dann.',items:[
+   {e:'🔢',t:'Bedeutung jeder Zahl in Angebot 1',ok:1},{e:'🔣',t:'Bedeutung jeder Zahl in Angebot 2',ok:1},{e:'📏',t:'Einheiten zu jeder Zahl',ok:1},
+   {e:'🌡️',t:'Temperatur am Anfang',ok:1},{e:'⚖️',t:'Urteil: derselbe Vorgang oder nicht?',ok:1},
+   {e:'💶',t:'Preisvergleich der Dienstleister',fb:'Nach Preisen fragt Frau Okafor nicht.'},
+   {e:'🔥',t:'Anleitung zum Härten',fb:'Das Härten ist nicht Thema. Es geht um das Abkühlen danach.'},
+   {e:'🆕',t:'eine neue, dritte Formel',fb:'Geprüft werden die beiden vorhandenen Formeln.'}],
+  okfb:'Diese fünf Bausteine sind eure Checkliste für das Finale.',
+  hints:['Lies den vierten Absatz der Mail.','Alles, was nicht nach den Formeln fragt, gehört nicht hinein.','Fünf Bausteine sind richtig, drei sind Fallen.']},
+ {type:'seq',title:'Frage 3: Wie erreichen wir das Ziel?',text:'Bringe die Arbeitsschritte in eine sinnvolle Reihenfolge. Geprüft wird erst, wenn alle Schritte eingeordnet sind.',items:[
+   'Formeln mit festem Faktor lesen: Womit startet man, womit nimmt man mal, wie oft?','Werte aus solchen Formeln berechnen','Die Formel mit e verstehen und in die andere Schreibweise umrechnen','Den hinten angehängten Wert und den Wert am Anfang deuten','Beide Angebote Zahl für Zahl vergleichen','Modellkarte MK-03 schreiben'],
+  okfb:'Das ist unser Fahrplan für die beiden Stunden.',
+  hints:['Zuerst muss man eine einfache Formel lesen können.','Vergleichen kann man erst, wenn man beide Schreibweisen versteht.','Die Modellkarte ist das Endprodukt.']},
+ {type:'info',html:()=>person(`<p>Super, ${nm()}! Ihr habt den Auftrag verstanden. Hier ist euer Fahrplan. Unterwegs prüfen Herr Demir aus der Qualitätssicherung und Frau Lindqvist aus der Software-Entwicklung eure Ergebnisse. Überzeugt sie!</p>`)+
+   `<div class="mission" style="margin-top:6px"><h3>🧭 Unser Auftrag</h3><dl><dt>Wer?</dt><dd>${CONFIG.board.wer}</dd><dt>Ziel?</dt><dd>${CONFIG.board.ziel}</dd><dt>Wie?</dt><dd>${CONFIG.board.wie}</dd></dl></div>
+   <div class="task"><b>Stunde 1:</b> Level 1 Formel lesen → Level 2 wächst oder sinkt? → ⚔️ Herr Demir → 🏰 ganze Klasse<br><b>Stunde 2:</b> Level 3 Formel mit e → Level 4 Restwert → 🤝 Partneraufgabe → ⚔️ Frau Lindqvist → 🏁 Modellkarte → 🎯 Quiz</div>
+   <div class="merke"><b>🎖 Dein Rang:</b> Du startest als <b>Praktikant</b>. Jeder überzeugte Prüfer bringt dich eine Stufe höher: Prüfassistent → Modellprüfer → Laborexperte.</div>`}
 ]},
-/* ===== Level 1 ===== */
-{title:'Level 1: Faktor, e-Form und Verschiebung',tag:'Lernabschnitt 1',sub:'Parameter benennen und umrechnen',badge:'🌡️ Parameter-Profi',num:1,hour:H1,short:'Parameter',
- halt:{frage:'Modell B nutzt k = −0,0446 statt des genauen Werts. Darf Frau Pohl die beiden Modelle trotzdem gleichwertig nennen? Wann könnte die Rundung stören?',
-   impulse:['Vergleicht beide Modelle nach 60 Minuten: etwa 24,12 °C (A) und 24,13 °C (B).','Was würde passieren, wenn man k auf −0,04 rundet?','Welche Genauigkeit braucht ein Prüflabor bei Temperaturen wirklich?'],
-   starters:['Ich finde,','Die Rundung stört erst, wenn','Für das Labor reicht'],
-   bonus:{type:'mcq',title:'Bonus: Eine wachsende Kultur',q:`Eine Schimmelkultur auf einer Prüfplatte wächst alle 4 h um den Faktor 1,5. Welche Wachstumskonstante gehört dazu?`,o:[
-     {t:'k ≈ 0,101 pro Stunde',ok:1,fb:'Genau: ln(1,5) : 4 h ≈ 0,101 pro Stunde.'},{t:'k ≈ 0,405 pro Stunde',fb:'Das ist nur ln(1,5). Du musst noch durch 4 h teilen.'},
-     {t:'k ≈ 1,62 pro Stunde',fb:'Du hast mit 4 multipliziert statt geteilt.'},{t:'k ≈ −0,101 pro Stunde',fb:'Die Kultur wächst, also ist k positiv.'}],
-     hints:['k = ln(q) : Δt.','q = 1,5 und Δt = 4 h.','ln(1,5) ≈ 0,405.']}},
+/* ===== 1 Level 1 ===== */
+{title:'Level 1: Die Faktorform lesen',tag:'Lernabschnitt 1',sub:'Startwert, Faktor, Zeitspanne',badge:'🔢 Formel-Leser',num:1,hour:H1,short:'Faktorform',steps:[
+ {type:'info',html:()=>person(`<p>Hallo ${nm()}! Fangen wir mit einer Formel an, die ihr schon kennt: die Spannung aus Woche 2, ${FU()}. So eine Schreibweise heißt ${T('faktorform')}:</p>${KD('N(t)=N_0\\cdot q^{\\,t/\\Delta t}')}<p>Vorne steht der ${T('startwert')} ${K('N_0')}. ${K('q')} ist der ${T('faktor')}, mit dem nach jeder ${T('zeitspanne')} malgenommen wird.</p>`)+`<div class="task"><b>Ziel dieses Levels:</b> Du beschriftest die Teile der Faktorform mit Einheit und berechnest Werte.</div>`},
+ {type:'cloze',title:'Die Spannungsformel beschriften',text:`${OP('Beschrifte')} die Teile von ${FU()}.`,
+  einfach:{text:`${OP('Beschrifte')} die Formel ${FU()}. Vorne steht der Wert am Anfang. Unten in der Potenz steht die Zahl zum Malnehmen. Im Bruch oben steht die Zeitspanne.`},
+  parts:[['Startwert ',[K('N_0=120\\,\\text{V}'),K('N_0=0{,}8'),K('N_0=2\\,\\text{s}')],0,', '],
+         ['Faktor ',[K('q=0{,}8'),K('q=120\\,\\text{V}'),K('q=2\\,\\text{s}')],0,', '],
+         ['Zeitspanne ',[K('\\Delta t=2\\,\\text{s}'),K('\\Delta t=0{,}8'),K('\\Delta t=t')],0,'.'],
+         [' Der Faktor hat ',['keine Einheit','die Einheit V','die Einheit s'],0,'.']],
+  okfb:'Alle Teile sitzen. q ist ein Verhältnis zweier Spannungen, deshalb hat er keine Einheit.',
+  hints:['Setze t = 0 ein: Was bleibt übrig?','Der Faktor steht unten in der Potenz, die Zeitspanne im Bruch der Hochzahl.','q = neu : alt, zum Beispiel 96 V : 120 V. Volt durch Volt kürzt sich.']},
+ {type:'sim',title:'Faktor ausprobieren',text:`${OP('Untersuche')} mit dem Regler, wie der Faktor q die Kurve verändert. Startwert 100 und Zeitspanne 2 s bleiben fest.`,run:simFaktor,solution:'q > 1: Kurve steigt (Wachstum), 0 < q < 1: Kurve sinkt (Zerfall), q = 1: waagerecht (Konstanz).',
+  hints:['Schiebe den Regler einmal nach rechts und einmal nach links.','Bei welchem q passiert gar nichts?','Probiere q = 1,2, dann q = 0,8, dann q = 1.']},
+ {type:'mcq',title:'Wie viele Zeitspannen?',pre:()=>`<div class="fig">${UFIG()}</div>`,q:`Bei ${FU()} sind ${K('t=5\\,\\text{s}')} vergangen. Wie oft wurde mit 0,8 malgenommen?`,
+  profi:{q:`Bestimme den Exponenten ${K('t/\\Delta t')} von ${FU()} für ${K('t=5\\,\\text{s}')}.`},
+  o:[{t:K('2{,}5')+'-mal',ok:1,fb:'Genau: 5 s : 2 s = 2,5. Auch halbe Zeitspannen sind erlaubt.'},
+     {t:'5-mal',fb:'Malgenommen wird nicht jede Sekunde, sondern alle 2 s. Teile 5 s durch 2 s.'},
+     {t:'2-mal',fb:'Nach 4 s wäre es 2-mal. Bei 5 s kommt noch eine halbe Zeitspanne dazu.'},
+     {t:'10-mal',fb:'Du hast 5 · 2 gerechnet. Es heißt t geteilt durch Δt.'}],
+  hints:['Die Hochzahl ist t/Δt.','Δt = 2 s.','5 s : 2 s = ?']},
+ {type:'calc',title:'Spannung nach 5 s',text:`${OP('Berechne')} mit ${FU()} die Spannung nach ${K('t=5\\,\\text{s}')}. Runde auf zwei Nachkommastellen.`,
+  data:()=>`<p>${FU()} · ${K('t=5\\,\\text{s}')}</p>`,
+  rows:[{pre:K('\\dfrac{t}{\\Delta t}='),ans:2.5,d:1,tol:.001,u:'',traps:[[5,'Du hast die Zeitspanne vergessen: 5 s : 2 s.'],[10,'Geteilt, nicht malgenommen: 5 : 2.']]},
+        {pre:K('U(5\\,\\text{s})='),ans:68.69,d:2,tol:.02,u:'V',traps:[[39.32,'Du hast 0,8⁵ gerechnet. Die Hochzahl ist 5 : 2 = 2,5.'],[76.8,'Das ist der Wert nach 4 s (2 Zeitspannen). Bei 5 s sind es 2,5.'],[240,'Malnehmen mit 2,5 ist falsch: 2,5 gehört in die Hochzahl.'],[96,'Das ist der Wert nach einer Zeitspanne (2 s).']]}],
+  after:`${K('U(5\\,\\text{s})=120\\cdot 0{,}8^{2{,}5}\\approx 68{,}69\\,\\text{V}')}. Liegt zwischen 76,8 V (4 s) und 61,44 V (6 s). ✔`,
+  hints:['Zuerst die Hochzahl: t : Δt.','Dann 120 · 0,8 hoch 2,5 in den Rechner tippen (Taste xʸ).','120 · 0,8^2,5: Potenz zuerst, dann malnehmen.'],
+  twin:{type:'calc',title:'Zwilling: Leistung eines Heizstabs',text:`Die Leistung eines abkühlenden Heizstabs: ${K('P(t)=80\\,\\text{W}\\cdot 0{,}9^{\\,t/(4\\,\\text{min})}')}. ${OP('Berechne')} ${K('P(10\\,\\text{min})')} auf zwei Nachkommastellen.`,
+   rows:[{pre:K('\\dfrac{t}{\\Delta t}='),ans:2.5,d:1,tol:.001,u:'',traps:[[10,'Zeitspanne vergessen: 10 min : 4 min.'],[40,'Geteilt, nicht malgenommen.']]},
+         {pre:K('P(10\\,\\text{min})='),ans:61.47,d:2,tol:.02,u:'W',traps:[[27.89,'Du hast 0,9¹⁰ gerechnet. Die Hochzahl ist 2,5.'],[64.8,'Das ist der Wert nach 2 Zeitspannen (8 min).']]}],
+   after:`${K('P(10\\,\\text{min})=80\\cdot 0{,}9^{2{,}5}\\approx 61{,}47\\,\\text{W}')}`}},
+ {type:'mcq',title:'Was bedeutet q = 0,8?',q:`Was bedeutet ${K('q=0{,}8')} bei ${FU()}?`,o:[
+   {t:'Alle 2 s bleiben 80 % der Spannung übrig.',ok:1,fb:'Genau. Der Faktor gehört immer zu seiner Zeitspanne.'},
+   {t:'Jede Sekunde bleiben 80 % übrig.',fb:'Der Faktor gilt pro Zeitspanne Δt = 2 s, nicht pro Sekunde.'},
+   {t:'Die Spannung sinkt alle 2 s um 0,8 V.',fb:'q ist kein fester Betrag, sondern ein Faktor: 80 % bleiben, 20 % gehen verloren.'},
+   {t:'Die Spannung sinkt alle 2 s um 80 %.',fb:'Umgekehrt: 80 % bleiben übrig, 20 % gehen verloren.'}],
+  hints:['Malnehmen mit 0,8 heißt: 80 % von vorher.','Zu welcher Zeitspanne gehört q?','Schau in die Hochzahl: t/(2 s).']}
+]},
+/* ===== 2 Level 2 ===== */
+{title:'Level 2: Wachstum, Zerfall, Konstanz',tag:'Lernabschnitt 1',sub:'Formeln einordnen und Werte berechnen',badge:'📈 Trend-Erkenner',num:2,hour:H1,short:'Einordnen',
+ halt:{frage:'Ein Datenblatt nennt für einen Akku nur „Faktor 0,8“. Reicht das, um die Spannung nach 10 Sekunden anzugeben? Was muss ein vollständiges Datenblatt noch nennen?',
+   impulse:['Pro welcher Zeit gilt der Faktor?','Womit startet die Rechnung?','Welche Einheiten gehören dazu?'],
+   starters:['Es reicht nicht, weil','Es fehlt noch','Auf dem Datenblatt sollte stehen'],
+   bonus:{type:'mcq',title:'Bonus: halbe Zeitspanne',q:`Welchen Wert liefert ${FB()} nach ${K('t=4{,}5\\,\\text{h}')}?`,o:[
+     {t:'etwa 918,6',ok:1,fb:'Genau: 4,5 h : 3 h = 1,5 Zeitspannen, also 500 · 1,5^1,5 ≈ 918,6.'},
+     {t:'750',fb:'Das ist der Wert nach einer Zeitspanne (3 h).'},
+     {t:'etwa 3100',fb:'Du hast 1,5^4,5 gerechnet. Die Hochzahl ist 4,5 : 3 = 1,5.'},
+     {t:'1125',fb:'Das ist der Wert nach 6 h (2 Zeitspannen).'}],
+     hints:['Hochzahl: t : Δt.','4,5 : 3 = 1,5.','500 · 1,5^1,5.']}},
  steps:[
- {type:'info',html:()=>person(`<p>Hallo ${nm()}! In Modell A steht ${K('0{,}8^{\\,t/(5\\,\\mathrm{min})}')}. Die 5 Minuten sind die ${T('zeitspanne')}: Nach jeweils 5 Minuten wird der Abstand zum Restwert mit dem Faktor 0,8 multipliziert.</p>`)+
-   `<div class="merke"><b>Merke:</b> ${KD('N(t)=N_0\\cdot q^{\\,t/\\Delta t}\\qquad N_0>0,\\;\\Delta t>0,\\;q>0')}</div><div class="task"><b>Ziel dieses Levels:</b> Du benennst die Zahlen in Modell A und rechnest es in die Schreibweise von Modell B um.</div>`},
- {type:'sim',title:'Was macht der Faktor?',text:`${OP('Untersuche')} mit dem Regler, wie der Faktor q die Kurve verändert. Stelle nacheinander einen Faktor unter 1, genau 1 und über 1 ein.`,run:simQ,
-  einfach:{text:`${OP('Untersuche')} die Kurve. Schiebe den Regler. Probiere: q unter 1, q genau 1, q über 1.`},
-  solution:'0 < q < 1: Abnahme (Zerfall); q = 1: konstant; q > 1: Wachstum.',
-  hints:['Beobachte, ob die Kurve von links nach rechts steigt oder fällt.','Faktor heißt: Der Abstand wird pro 5 Minuten damit multipliziert.','Mal 0,8 macht etwas kleiner, mal 1,2 macht es größer.']},
- {type:'place',title:'Modell A beschriften',text:`${OP('Ordne zu')}: Welche Bedeutung haben die nummerierten Zahlen in Modell A? Geprüft wird erst, wenn alle Felder belegt sind.`,svg:()=>formelNr(),
-  slots:['Abstand zum Restwert am Anfang (°C)','Faktor pro 5 min (ohne Einheit)','Zeitspanne, nach der der Faktor wirkt (min)','Restwert, bis zu dem abgekühlt wird (°C)'],
-  slotHint:['… Nr. 1','… Nr. 2','… Nr. 3','… Nr. 4'],
-  labels:['Abstand zum Restwert am Anfang (°C)','Faktor pro 5 min (ohne Einheit)','Zeitspanne, nach der der Faktor wirkt (min)','Restwert, bis zu dem abgekühlt wird (°C)','Temperatur zu Beginn (°C)','Abnahme in Prozent pro 5 min'],
-  fb:{'Temperatur zu Beginn (°C)':'Zu Beginn ist der Prüfkörper 60 °C + 20 °C = 80 °C warm. 60 °C ist nur der Abstand zum Restwert.','Abnahme in Prozent pro 5 min':'0,8 ist der Faktor: 80 % des Abstands bleiben übrig. Die Abnahme wären 20 %.'},
-  okfb:'Alle vier Zahlen sind richtig beschriftet.',
-  profi:{text:`${OP('Ordne zu')}: Bestimme die Bedeutung der Parameter ${K('N_0')}, ${K('q')}, ${K('\\Delta t')} und des additiven Summanden in Modell A.`},
-  hints:['Setze t = 0 ein: Was bleibt dann von der Formel übrig?','Der Exponent t/(5 min) zählt, wie viele 5-Minuten-Abschnitte vergangen sind.','Der Summand am Ende ändert sich nie. Er ist der Restwert.']},
- {type:'calc',title:'Start und Abnahme',text:`Der Summand +20 °C am Ende heißt ${T('versch')}: Er hebt die ganze Kurve um 20 °C an. ${OP('Berechne')} die Temperatur zu Beginn und die Änderung des Abstands zum Restwert in Prozent pro 5 min.`,
-  data:()=>`<p>Modell A: ${FA()}</p>`,
-  einfach:{text:`Die +20 °C am Ende heißen ${T('versch')}. ${OP('Berechne')} die Temperatur bei t = 0. Berechne dann, um wie viel Prozent der Abstand pro 5 min kleiner wird.`},
-  rows:[{pre:K('T(0)='),ans:80,tol:.05,u:'°C',traps:[[60,'Du hast die Verschiebung vergessen. Bei t = 0 ist 0,8 hoch 0 gleich 1, also 60 °C + 20 °C.'],[20,'Das ist nur der Restwert. Der Abstand von 60 °C kommt noch dazu.'],[68,'Das ist die Temperatur nach 5 Minuten. Gefragt ist t = 0.']]},
-        {pre:'Änderung des Abstands pro 5 min:',ans:-20,tol:.05,u:'%',traps:[[20,'Vorzeichen: Der Abstand wird kleiner, also negativ.'],[80,'80 % bleiben übrig. Gefragt ist die Änderung.'],[-80,'80 % bleiben übrig, verloren gehen 20 %.'],[-0.2,'Das ist die Änderung als Dezimalzahl. Gib sie in Prozent an.']]}],
-  after:`${K('T(0)=60+20=80')} °C. Pro 5 min ändert sich der Abstand um ${K('100\\cdot(0{,}8-1)\\,\\%=-20\\,\\%')}. Achtung: Die −20 % gelten für den Abstand zu 20 °C, nicht für die ganze Temperatur.`,
-  hints:['Bei t = 0 ist der Exponent 0. Jede Zahl hoch 0 ergibt 1.','Prozentänderung = 100 · (q − 1) %.','T(0) = 60 · 1 + 20.'],
-  twin:{type:'calc',title:'Zwilling: Ein anderer Prüfkörper',text:`${OP('Berechne')} für ${K('T(t)=50\\,^\\circ\\mathrm{C}\\cdot 0{,}9^{\\,t/(2\\,\\mathrm{min})}+15\\,^\\circ\\mathrm{C}')} die Temperatur zu Beginn und die Änderung des Abstands pro 2 min.`,
-   rows:[{pre:K('T(0)='),ans:65,tol:.05,u:'°C',traps:[[50,'Die Verschiebung 15 °C fehlt.'],[15,'Das ist nur der Restwert.']]},{pre:'Änderung pro 2 min:',ans:-10,tol:.05,u:'%',traps:[[10,'Vorzeichen: Der Abstand nimmt ab.'],[90,'90 % bleiben übrig.']]}],
-   after:'65 °C; der Abstand zu 15 °C sinkt pro 2 min um 10 %.'}},
- {type:'calc',title:'Umrechnen in die e-Form',text:`Modell B ist in der ${T('eform')} geschrieben: ${K('N(t)=N_0\\cdot e^{k t}')}. Darin ist e die ${T('euler')} (≈ 2,718) und k die ${T('wk')}. Es gilt ${K('k=\\dfrac{\\ln(q)}{\\Delta t}')}. ${OP('Berechne')} k für Modell A auf vier Nachkommastellen und mache die Probe.`,
-  data:()=>`<p>Modell A: ${FA()}</p><p>${K('q=0{,}8')}, ${K('\\Delta t=5\\,\\mathrm{min}')}</p>`,
-  einfach:{text:`Modell B nutzt die ${T('eform')} mit der ${T('euler')} (≈ 2,718). Die Zahl k heißt ${T('wk')}. Rechne: k = ln(0,8) : 5. Mache dann die Probe: e hoch (k · 5).`},
-  profi:{text:`${OP('Berechne')} die ${T('wk')} k der äquivalenten ${T('eform')} ${K('N_0\\, e^{k t}')} aus ${K('q=e^{k\\Delta t}')} und verifiziere ${K('e^{k\\Delta t}=q')}.`},
-  rows:[{pre:K('k=\\dfrac{\\ln(0{,}8)}{5\\,\\mathrm{min}}\\approx'),ans:-0.0446,tol:.0003,u:'1/min',w:5,traps:[[0.0446,'Vorzeichen: ln(0,8) ist negativ, weil 0,8 kleiner als 1 ist.'],[-0.2231,'Das ist nur ln(0,8). Teile noch durch 5 min.'],[-1.1157,'Du hast mal 5 gerechnet. Es muss geteilt werden.'],[-0.0194,'Du hast die Taste log genommen. Gesucht ist ln.'],[-0.04,'Zu grob gerundet. Gib vier Nachkommastellen an.']]},
-        {pre:K('\\text{Probe: } e^{k\\cdot 5}\\approx'),ans:0.8,tol:.002,u:'',traps:[[1.25,'Vorzeichen: Mit negativem k muss etwas kleiner als 1 herauskommen.'],[-0.223,'Das ist nur k · 5. Nimm davon noch e hoch.'],[2.718,'Das ist e selbst. Rechne e hoch (k · 5).']]}],
-  after:`${K('k\\approx-0{,}0446\\,\\tfrac{1}{\\mathrm{min}}')} und ${K('e^{-0{,}0446\\cdot 5}\\approx 0{,}8')}. Das ist genau das k aus Modell B. k hat die Einheit 1/min, damit ${K('k\\cdot t')} keine Einheit hat.`,
-  hints:['Die Formel steht im Text: k = ln(q) : Δt.','Nutze die Taste ln am Rechner (wiss.). ln(0,8) ≈ −0,2231.','k = −0,2231 : 5 = ?'],
-  twin:{type:'calc',title:'Zwilling: Faktor 0,9 pro 2 min',text:`${OP('Berechne')} k für ${K('q=0{,}9')} und ${K('\\Delta t=2\\,\\mathrm{min}')} und mache die Probe.`,
-   rows:[{pre:K('k\\approx'),ans:-0.0527,tol:.0003,u:'1/min',traps:[[0.0527,'Vorzeichen: ln(0,9) ist negativ.'],[-0.1054,'Das ist nur ln(0,9). Teile durch 2.']]},{pre:K('e^{k\\cdot 2}\\approx'),ans:0.9,tol:.002,u:'',traps:[[1.111,'Vorzeichen von k prüfen.']]}],
-   after:'k ≈ −0,0527 pro Minute, Probe: e hoch (−0,0527 · 2) ≈ 0,9.'}}
+ {type:'info',html:()=>person(`<p>In der Werkstatt nebenan wird der Kühlschmierstoff überwacht. Die Keimzahl je ml folgt ungefähr ${FB()}. Mal wächst ein Wert, mal sinkt er, mal bleibt er gleich. Ordnen wir das!</p>`)+`<div class="task"><b>Ziel dieses Levels:</b> Du ordnest Formeln nach ${T('wachstum')}, ${T('zerfall')} und ${T('konstanz')} ein und berechnest Werte.</div>`},
+ {type:'decide',title:'Vier Formeln aus dem Labor',text:`${OP('Ordne')} jede Formel ein.`,actions:['📈 Wachstum','📉 Zerfall','➖ Konstanz'],cards:[
+   {title:FB(),info:'Keimzahl im Kühlschmierstoff',ans:0,fb:[null,'q = 1,5 ist größer als 1: Malnehmen macht größer.','q = 1,5 ist nicht 1.'],okfb:'Richtig: q = 1,5 > 1.'},
+   {title:K('L(t)=2{,}5\\cdot 0{,}95^{\\,t/(1\\,\\text{d})}'),info:'Lösungsmittelrest auf einer Probe',ans:1,fb:['q = 0,95 liegt zwischen 0 und 1: Der Wert wird kleiner.',null,'0,95 ist knapp unter 1, aber nicht 1. Der Wert sinkt langsam.'],okfb:'Richtig: 0 < q < 1.'},
+   {title:K('R(t)=80\\cdot 1^{\\,t/(5\\,\\text{s})}'),info:'Widerstand eines Messwiderstands',ans:2,fb:['1 hoch irgendwas ist 1. Der Wert bleibt 80.','1 hoch irgendwas ist 1. Der Wert bleibt 80.',null],okfb:'Richtig: q = 1, der Wert bleibt bei 80.'},
+   {title:K('V(t)=40\\cdot 1{,}02^{\\,t/(1\\,\\text{a})}'),info:'Anzahl der Prüfaufträge',ans:0,fb:[null,'1,02 ist größer als 1, wenn auch nur knapp.','1,02 ist nicht 1.'],okfb:'Richtig: q = 1,02 > 1, langsames Wachstum.'}],
+  hints:['Schau nur auf q, also die Zahl unten in der Potenz.','Vergleiche q mit 1.','Eine Formel hat q = 1.']},
+ {type:'calc',title:'Keimzahl nach 6 Stunden',text:`${OP('Berechne')} mit ${FB()} die Keimzahl nach ${K('t=6\\,\\text{h}')}.`,
+  data:()=>`<p>${FB()} (Keime je ml) · ${K('t=6\\,\\text{h}')}</p>`,
+  rows:[{pre:K('B(6\\,\\text{h})='),ans:1125,tol:.5,u:'Keime je ml',traps:[[5695.3,'Du hast 1,5⁶ gerechnet. Die Hochzahl ist 6 h : 3 h = 2.'],[1500,'Das wäre 500 · 1,5 · 2. Die 2 gehört in die Hochzahl.'],[750,'Das ist der Wert nach einer Zeitspanne (3 h).']]}],
+  after:`${K('B(6\\,\\text{h})=500\\cdot 1{,}5^{2}=1125')} Keime je ml.`,
+  hints:['Hochzahl: t : Δt.','6 h : 3 h = 2.','500 · 1,5² = ?'],
+  twin:{type:'calc',title:'Zwilling: nach 9 Stunden',text:`${OP('Berechne')} mit ${FB()} die Keimzahl nach ${K('t=9\\,\\text{h}')}.`,
+   rows:[{pre:K('B(9\\,\\text{h})='),ans:1687.5,d:1,tol:.5,u:'Keime je ml',traps:[[19221.7,'Du hast 1,5⁹ gerechnet. Die Hochzahl ist 9 : 3 = 3.'],[2250,'Das wäre 500 · 1,5 · 3. Die 3 gehört in die Hochzahl.']]}],
+   after:`${K('B(9\\,\\text{h})=500\\cdot 1{,}5^{3}=1687{,}5')} Keime je ml.`}},
+ {type:'mcq',title:'Der Wert bei t = 0',q:`Welchen Wert liefert ${FB()} bei ${K('t=0')}?`,o:[
+   {t:'500',ok:1,fb:`Genau: ${K('1{,}5^{0}=1')}, also bleibt 500. Der Startwert steht vorne in der Formel.`},
+   {t:'750',fb:'750 ist der Wert nach 3 h. Bei t = 0 ist die Hochzahl 0.'},
+   {t:'0',fb:'Hoch 0 ergibt 1, nicht 0. Also 500 · 1.'},
+   {t:'1,5',fb:'1,5 ist der Faktor. Hoch 0 ergibt 1, also bleibt 500 · 1.'}],
+  hints:['Setze t = 0 in die Hochzahl ein.','Jede Zahl hoch 0 ist 1.','500 · 1 = ?']},
+ {type:'mcq',title:'Gleiche Einheiten!',q:`Kai will ${FB()} für ${K('t=90\\,\\text{min}')} ausrechnen und tippt ${K('1{,}5^{90/3}')}. Was ist falsch?`,
+  einfach:{q:`Kai rechnet ${FB()} für 90 Minuten. Er tippt ${K('1{,}5^{90/3}')}. Was ist falsch?`},
+  o:[{t:'t und Δt haben verschiedene Einheiten. 90 min sind 1,5 h, also ist die Hochzahl 1,5 : 3 = 0,5.',ok:1,fb:'Genau. Erst gleiche Einheiten, dann teilen. Dann ist t/Δt eine reine Zahl.'},
+     {t:'Nichts, 90 : 3 = 30 stimmt.',fb:'Minuten durch Stunden passt nicht. 30 Zeitspannen wären 90 Stunden.'},
+     {t:'Er hätte 90 · 3 rechnen müssen.',fb:'Geteilt wird schon richtig. Das Problem sind die Einheiten.'},
+     {t:'Der Startwert muss in Minuten umgerechnet werden.',fb:'500 ist eine Keimzahl, keine Zeit. Umrechnen muss man t oder Δt.'}],
+  hints:['Welche Einheit hat t, welche Δt?','90 min = ? h','Die Hochzahl muss eine reine Zahl ohne Einheit sein.']}
 ]},
-/* ===== Gegner (letzte Aufgabe = Handlungsprodukt) ===== */
-{title:'Gegner: Der Qualitäts-Check',tag:'Aufgabenblock 1',sub:'Neues Modell, Mythos, Antwort an Frau Pohl',badge:'🧐 Qualitäts-Check',hour:H1,short:'Q-Check',rankUp:'Laborassistent',
- boss:{name:'Herr Brandt',role:'Qualitätssicherung',ava:'🧐',bar:'Zweifel',win:'Herr Brandt gibt die Antwort an Frau Pohl frei!'},steps:[
- {type:'info',html:()=>person(`<p>Bevor eine Antwort an eine Kundin rausgeht, prüfe ich sie. Ich habe drei Aufgaben für dich. Überzeug mich!</p>`,BOSS)+
-   `<div class="merke"><b>So funktioniert der Gegner:</b> Ohne Hilfe gibt es bis zu 15 ⭐ je Aufgabe. Der erste Denkanstoß ist frei, jede weitere Hilfe kostet 3 ⭐. Die 4. Hilfe 🔁 zeigt dir die passende Level-Aufgabe. Einen Fehlversuch kannst du für 8 ⭐ zurückkaufen. Im Quiz gibt es Joker: 50:50 für 10 ⭐, +15 s für 5 ⭐.</div>`},
- {type:'calc',title:'Ein drittes Modell',text:`Ein weiterer Dienstleister schickt für einen anderen Prüfkörper ${K('f(t)=40\\,^\\circ\\mathrm{C}\\cdot e^{-0{,}2t}+15\\,^\\circ\\mathrm{C}')} (t in min). ${OP('Berechne')} die Temperatur zu Beginn, den Faktor pro 5 min und die Änderung des Abstands zu 15 °C pro 5 min.`,
-  data:()=>`<p>${K('f(t)=40\\,^\\circ\\mathrm{C}\\cdot e^{-0{,}2t}+15\\,^\\circ\\mathrm{C}')}, ${K('\\Delta t=5\\,\\mathrm{min}')}</p>${FORM()}`,
-  einfach:{text:`Neues Modell: ${K('f(t)=40\\,^\\circ\\mathrm{C}\\cdot e^{-0{,}2t}+15\\,^\\circ\\mathrm{C}')}. ${OP('Berechne')} 1. f(0). 2. den Faktor q = e hoch (k · 5). 3. die Änderung in Prozent: 100 · (q − 1).`},
-  rows:[{pre:K('f(0)='),ans:55,tol:.05,u:'°C',traps:[[40,'Die Verschiebung 15 °C fehlt.'],[15,'Das ist nur die Verschiebung.']]},
-        {pre:K('q=e^{-0{,}2\\cdot 5}\\approx'),ans:MCq,tol:.002,u:'',traps:[[-1,'Das ist nur k · 5. Nimm davon noch e hoch.'],[2.718,'Vorzeichen: e hoch −1, nicht e hoch 1.'],[0.819,'Das ist der Faktor pro Minute. Gefragt ist der Faktor pro 5 min.']]},
-        {pre:'Änderung pro 5 min:',ans:MCp,tol:.2,u:'%',traps:[[-MCp,'Vorzeichen: Der Abstand nimmt ab.'],[-36.8,'36,8 % bleiben übrig. Gefragt ist die Änderung.'],[-20,'−0,2 ist k, keine Prozentangabe.']]}],
-  after:`${K('f(0)=40+15=55')} °C, ${K('q=e^{-1}\\approx 0{,}368')}, Änderung ${K('\\approx -63{,}2\\,\\%')} pro 5 min (für den Abstand zu 15 °C).`,
-  hints:['Bei t = 0 ist e hoch 0 gleich 1.','Faktor pro Zeitspanne: q = e hoch (k · Δt).','−0,2 · 5 = −1, also q = e hoch −1.'],recap:[1,4],
-  twin:{type:'calc',title:'Zwilling: Noch ein Modell',text:`${OP('Berechne')} für ${K('f(t)=30\\,^\\circ\\mathrm{C}\\cdot e^{-0{,}1t}+10\\,^\\circ\\mathrm{C}')} die Temperatur zu Beginn, den Faktor pro 5 min und die Änderung pro 5 min.`,
-   rows:[{pre:K('f(0)='),ans:40,tol:.05,u:'°C',traps:[[30,'Die Verschiebung fehlt.']]},{pre:K('q\\approx'),ans:0.607,tol:.002,u:'',traps:[[-0.5,'Nimm noch e hoch.']]},{pre:'Änderung:',ans:-39.3,tol:.2,u:'%',traps:[[39.3,'Vorzeichen.']]}],
-   after:'40 °C, q ≈ 0,607, Änderung ≈ −39,3 % pro 5 min.'}},
- {type:'vote',id:'m1',phase:'nach',title:'Abstimmung nachher',q:'„Zwei Formeln mit verschiedener Grundzahl (einmal 0,8, einmal e) beschreiben immer verschiedene Vorgänge.“ Stimmt das?',ok:1,
-  fix:'Das stimmt nicht. Jede Formel mit Faktor q pro Zeitspanne Δt lässt sich mit k = ln(q) : Δt in die e-Form umschreiben. Für Modell A ist k = ln(0,8) : 5 min ≈ −0,0446 pro Minute, genau das k von Modell B. Beide liefern bis auf die Rundung dieselben Temperaturen.'},
- {type:'cloze',title:'Antwort an Frau Pohl',text:`${OP('Formuliere')} die Antwort an Frau Pohl, indem du die Lücken füllst.`,
-  einfach:{text:'Fülle die Lücken. So entsteht die Antwort an Frau Pohl.'},
-  parts:[
-   ['Beide Modelle starten bei ',['80 °C','60 °C','20 °C'],0,'. '],
-   ['Der Faktor 0,8 pro 5 min in Modell A entspricht der Wachstumskonstante ',[K('k\\approx-0{,}0446\\,\\tfrac{1}{\\mathrm{min}}'),K('k\\approx-0{,}2231\\,\\tfrac{1}{\\mathrm{min}}'),K('k\\approx 0{,}8\\,\\tfrac{1}{\\mathrm{min}}')],0,'. '],
-   ['Beide haben die Verschiebung ',['20 °C','80 °C','60 °C'],0,'. '],
-   ['Modell B ist deshalb ',['bis auf Rundung gleichwertig','ein schnellerer Vorgang','ein ganz anderer Vorgang'],0,' zu Modell A.']],
-  okfb:'Die Antwort an Frau Pohl ist fertig und begründet.',
-  hints:['Starttemperatur: T(0) = A + c.','k = ln(q) : Δt aus Level 1.','Gleiche Starttemperatur, gleiche Verschiebung, gleiches k bedeutet: derselbe Vorgang.'],recap:[1,4]}
+/* ===== 3 Gegner 1 ===== */
+{title:'Gegner 1: Der Datenblatt-Check',tag:'Aufgabenblock 1',sub:'Faktorform prüfen und anwenden',badge:'🛡️ QS überzeugt',hour:H1,short:'Demir',rankUp:'Prüfassistent',
+ boss:{name:'Herr Demir',role:'Qualitätssicherung: „Ich glaube keinem Datenblatt, bevor ihr es geprüft habt!“',ava:'🧐',bar:'Zweifel',win:'Herr Demir ist überzeugt!'},
+ klasse:{name:'Der Formelfälscher',role:'Jemand verschickt Formeln mit falsch beschrifteten Zahlen. Entlarvt ihn gemeinsam!',ava:'🦹',bar:'Fälschungen',win:'Der Formelfälscher ist entlarvt. Die Klasse hat gewonnen!',
+  runden:[
+   {type:'mcq',title:'Fälschung 1: „Alle vier nehmen ab.“',text:'Der Fälscher behauptet, alle vier Formeln beschreiben eine Abnahme.',q:'Welche Formel beschreibt wirklich einen Zerfall?',o:[
+     {t:K('300\\cdot 0{,}95^{\\,t/(1\\,\\text{h})}'),ok:1,fb:'Genau: q = 0,95 liegt zwischen 0 und 1.'},
+     {t:K('300\\cdot 1{,}05^{\\,t/(1\\,\\text{h})}'),fb:'q = 1,05 ist größer als 1: Das ist Wachstum.'},
+     {t:K('300\\cdot 1^{\\,t}'),fb:'q = 1: Der Wert bleibt gleich.'},
+     {t:K('0{,}95\\cdot 300^{\\,t}'),fb:'Hier ist 300 der Faktor: Das wächst sehr schnell. Startwert und Faktor sind vertauscht.'}],
+    hints:['Suche den Faktor q: Er steht unten in der Potenz.','Zerfall heißt 0 < q < 1.','Vorsicht bei der Formel, in der Startwert und Faktor vertauscht sind.']},
+   {type:'calc',title:'Fälschung 2: „Nach 6 h sind es 500.“',text:`Der Fälscher behauptet: ${K('N(t)=400\\cdot 1{,}25^{\\,t/(2\\,\\text{h})}')} liefert nach 6 h genau 500. ${OP('Berechne')} den richtigen Wert.`,
+    pre:()=>`<p style="font-size:1.15em">${K('N(t)=400\\cdot 1{,}25^{\\,t/(2\\,\\text{h})}')}</p>`,
+    rows:[{pre:K('N(6\\,\\text{h})='),ans:781.25,d:2,tol:.01,u:'',traps:[[500,'Das ist die Fälschung. 500 wäre nur eine Zeitspanne.'],[1525.88,'Du hast 1,25⁶ gerechnet. Die Hochzahl ist 6 : 2 = 3.'],[1500,'400 · 1,25 · 3 ist falsch: Die 3 gehört in die Hochzahl.']]}],
+    after:'400 · 1,25³ = 781,25. Die Fälschung ist aufgeflogen.',
+    hints:['Hochzahl: 6 h : 2 h.','Die Hochzahl ist 3.','400 · 1,25³ = ?']},
+   {type:'mcq',title:'Fälschung 3: „U(5 s) ist etwa 39,3 V.“',text:`Der Fälscher rechnet bei ${FU()}: ${K('U(5\\,\\text{s})=120\\cdot 0{,}8^{5}\\approx 39{,}3\\,\\text{V}')}.`,q:'Was ist sein Fehler?',o:[
+     {t:'Er hat die Zeitspanne vergessen. Richtig ist 120 · 0,8^2,5 ≈ 68,69 V.',ok:1,fb:'Genau: Die Hochzahl ist t/Δt = 5 s : 2 s = 2,5.'},
+     {t:'Kein Fehler, das stimmt.',fb:'0,8⁵ hieße 5 Zeitspannen, also 10 s. Nach 5 s sind es erst 2,5 Zeitspannen.'},
+     {t:'Er hätte 120 − 0,8 · 5 rechnen müssen.',fb:'Das wäre ein lineares Modell. Hier wird malgenommen.'},
+     {t:'Er hätte 120 · 0,8 · 5 rechnen müssen.',fb:'Die Anzahl der Zeitspannen gehört in die Hochzahl, nicht als Faktor davor.'}],
+    hints:['Wie oft wird in 5 s mit 0,8 malgenommen?','Die Zeitspanne ist 2 s.','5 : 2 = 2,5.']}]},
+ steps:[
+ {type:'info',html:()=>person(`<p>Ich bin für die Qualität zuständig. Bevor eine Formel in unsere Software kommt, prüfe ich, ob ihr Datenblätter wirklich lesen könnt. Vier Aufgaben. Überzeugt mich!</p>`,BOSS1)+
+   `<div class="merke"><b>So funktioniert ein Gegner:</b> Jede gelöste Aufgabe senkt seinen Zweifel. Ohne Hilfe gibt es bis zu 15 ⭐ pro Aufgabe. Der erste Denkanstoß ist frei, jede weitere Hilfe kostet 3 ⭐ (mindestens 5 ⭐ bleiben). Wer kaum Hilfen braucht, bekommt am Ende bis zu 20 ⭐ Bonus. Als letzte Hilfe zeigt 🔁 Rückblick die passende Level-Aufgabe. Nach einem Fehlversuch kannst du ihn für 8 ⭐ zurückkaufen. Im Quiz gibt es Joker (50:50 für 10 ⭐, +15 s für 5 ⭐), und am Ende von Level 3 wartet eine Knobel-Aufgabe (15 ⭐).</div>`},
+ {type:'cloze',title:'Datenblatt Mikrobiologie',text:`Ein Labor misst eine Bakterienmasse: ${FM()}. ${OP('Beschrifte')} die Formel.`,parts:[
+   ['Startwert: ',['2,5 mg','1,2 mg','30 mg'],0,', '],['Faktor: ',['1,2 je 30 min','1,2 je min','2,5 je 30 min'],0,', '],
+   ['also ',['Wachstum','Zerfall','Konstanz'],0,'.'],[' Nach 30 min ist die Masse ',['um 20 % größer','um 1,2 mg größer','20 % kleiner'],0,'.']],
+  hints:['Vorne steht der Startwert.','q gehört zu der Zeitspanne im Bruch der Hochzahl.','q = 1,2 heißt: mal 1,2, also +20 %.'],recap:[1,1]},
+ {type:'calc',title:'Masse nach 90 und 45 Minuten',text:`${OP('Berechne')} mit ${FM()} die Masse nach 90 min und nach 45 min. Runde auf zwei Nachkommastellen.`,
+  data:()=>`<p>${FM()}</p>`,
+  rows:[{pre:K('M(90\\,\\text{min})='),ans:4.32,d:2,tol:.01,u:'mg',traps:[[3.6,'Das sind nur 2 Zeitspannen (60 min). 90 : 30 = 3.'],[9,'2,5 · 1,2 · 3 ist falsch: Die 3 gehört in die Hochzahl.']]},
+        {pre:K('M(45\\,\\text{min})='),ans:3.29,d:2,tol:.01,u:'mg',traps:[[3.6,'Das wäre nach 60 min. 45 : 30 = 1,5.'],[3,'Das wäre nach 30 min. 45 : 30 = 1,5.'],[4.5,'2,5 · 1,2 · 1,5 ist falsch: 1,5 gehört in die Hochzahl.']]}],
+  after:`${K('M(90)=2{,}5\\cdot1{,}2^{3}=4{,}32\\,\\text{mg}')} und ${K('M(45)=2{,}5\\cdot1{,}2^{1{,}5}\\approx3{,}29\\,\\text{mg}')}.`,
+  hints:['Hochzahl jeweils t : 30 min.','90 : 30 = 3 und 45 : 30 = 1,5.','2,5 · 1,2³ und 2,5 · 1,2^1,5.'],recap:[1,4],
+  twin:{type:'calc',title:'Zwilling: nach 60 Minuten',text:`${OP('Berechne')} mit ${FM()} die Masse nach 60 min.`,
+   rows:[{pre:K('M(60\\,\\text{min})='),ans:3.6,d:1,tol:.01,u:'mg',traps:[[6,'2,5 · 1,2 · 2 ist falsch: Die 2 gehört in die Hochzahl.'],[3,'Das ist nach 30 min.']]}],after:'2,5 · 1,2² = 3,6 mg.'}},
+ {type:'decide',title:'Demirs Behauptungen',text:`${OP('Beurteile')} Herrn Demirs Behauptungen.`,actions:['👍 stimmt','👎 stimmt nicht'],cards:[
+   {title:`„Bei ${FU()} bleiben jede Sekunde 80 % übrig.“`,ans:1,fb:['Der Faktor 0,8 gilt pro 2 s, nicht pro Sekunde.'],okfb:'Richtig: 80 % bleiben alle 2 s übrig.'},
+   {title:`„Bei ${FU()} sind nach 2 s noch 80 % da.“`,ans:0,fb:[null,'Doch: Nach einer Zeitspanne (2 s) wurde genau einmal mit 0,8 malgenommen.'],okfb:'Richtig: 120 V · 0,8 = 96 V, das sind 80 %.'},
+   {title:'„Ein Faktor von genau 1 bedeutet langsames Wachstum.“',ans:1,fb:['q = 1 bedeutet Konstanz: Malnehmen mit 1 ändert nichts.'],okfb:'Richtig: q = 1 heißt Konstanz.'},
+   {title:'„Bei q = 0,95 je Tag sinkt der Wert jeden Tag um denselben Betrag.“',ans:1,fb:['Er sinkt jeden Tag um denselben Anteil (5 %), nicht um denselben Betrag. Die Beträge werden kleiner.'],okfb:'Richtig: gleicher Anteil, nicht gleicher Betrag.'}],
+  hints:['Zu welcher Zeitspanne gehört der Faktor?','Was macht Malnehmen mit 1?','Fester Anteil ist etwas anderes als fester Betrag.'],recap:[2,1]},
+ {type:'mcq',title:'Welcher Akku verliert schneller?',text:'Zwei Datenblätter für die Ladung von Akkus (in %):',pre:()=>`<p>Akku A: ${K('L_A(t)=100\\cdot 0{,}9^{\\,t/(1\\,\\text{h})}')}<br>Akku B: ${K('L_B(t)=100\\cdot 0{,}8^{\\,t/(2\\,\\text{h})}')}</p>`,
+  q:`${OP('Beurteile')}: Welcher Akku verliert schneller Ladung?`,
+  profi:{q:`${OP('Beurteile')} durch Vergleich auf gleicher Zeitspanne, welcher Akku stärker entlädt.`},
+  o:[{t:'Akku B: Nach 2 h hat A noch 81 %, B nur 80 %.',ok:1,fb:'Genau. Vergleichen kann man nur bei gleicher Zeitspanne: 0,9² = 0,81 gegen 0,8.'},
+     {t:'Akku B, weil 0,8 kleiner ist als 0,9.',fb:'Das Ergebnis stimmt zufällig, die Begründung nicht: Die Faktoren gelten für verschiedene Zeitspannen. Rechne beide auf 2 h um.'},
+     {t:'Akku A, weil er jede Stunde Ladung verliert, B nur alle 2 h.',fb:'B verliert auch zwischendurch. Vergleiche nach derselben Zeit: 2 h.'},
+     {t:'Beide gleich schnell.',fb:'Rechne nach: A nach 2 h: 100 · 0,9² = 81 %. B nach 2 h: 80 %.'}],
+  hints:['Die Faktoren gehören zu verschiedenen Zeitspannen.','Rechne beide Ladungen nach 2 h aus.','A: 100 · 0,9², B: 100 · 0,8¹.'],recap:[1,5]}
 ]},
-/* ===== Quiz ===== */
-{title:'Abschlussquiz',tag:'Quiz',sub:'Begriffe und Anwendungen',badge:'🎯 Quiz',num:'🎯',hour:H1,short:'Quiz',steps:[]}
+/* ===== 4 Level 3 ===== */
+{title:'Level 3: Die e-Form',tag:'Lernabschnitt 2',sub:'Rate k und Faktor q umrechnen',badge:'🧮 Umrechner',num:3,hour:H2,short:'e-Form',
+ knobel:{type:'calc',title:'Knobel-Aufgabe: Faktor pro Sekunde',text:`Bei ${FU()} ist ${K('k\\approx-0{,}1116\\,\\tfrac{1}{\\text{s}}')}. ${OP('Berechne')} den Faktor für die Zeitspanne ${K('\\Delta t=1\\,\\text{s}')} auf vier Nachkommastellen.`,
+   rows:[{pre:K('q_{1\\,\\text{s}}=e^{k\\cdot 1}='),ans:0.8944,d:4,tol:.0005,u:'',traps:[[0.4,'0,8 : 2 ist falsch. Nutze q = e hoch (k · Δt).'],[0.64,'0,8² wäre der Faktor für 4 s.'],[1.1181,'Vorzeichen: k ist negativ.']]}],
+   after:'Pro Sekunde bleiben etwa 89,4 % übrig. Zweimal hintereinander: 0,8944² ≈ 0,8. ✔',
+   hints:['Setze Δt = 1 s in q = e hoch (k · Δt) ein.','e hoch (−0,1116).','Probe: Das Ergebnis zum Quadrat sollte 0,8 ergeben.']},
+ steps:[
+ {type:'info',html:()=>person(`<p>Willkommen zurück, ${nm()}! Angebot 2 benutzt die ${T('eulerzahl')} (Taste ${K('e^x')} auf dem Rechner). Diese Schreibweise heißt ${T('eform')}:</p>${KD('N(t)=N_0\\cdot e^{k t}')}<p>Die Zahl ${K('k')} heißt ${T('rate')}. Sie hängt so mit ${K('q')} und ${K('\\Delta t')} zusammen:</p>${KD('q=e^{k\\cdot\\Delta t}\\qquad k=\\dfrac{\\ln(q)}{\\Delta t}')}`)+`<div class="task"><b>Ziel dieses Lernabschnitts:</b> Du rechnest Faktorform und e-Form ineinander um und deutest Startwert, Vorfaktor und Verschiebung.</div>`},
+ {type:'sim',title:'Die passende Rate finden',text:`${OP('Untersuche')}: Die Punkte sind Messwerte von ${FU()}. Stelle k so ein, dass die Kurve ${K('120\\cdot e^{k t}')} die Punkte trifft.`,run:simEForm,solution:'k ≈ −0,11 1/s, dann q = e^(2k) ≈ 0,80. Negatives k gehört zu q < 1 (Abnahme).',
+  hints:['Probiere zuerst positive und negative Werte aus.','Die Punkte fallen: k muss negativ sein.','Achte auf die Anzeige q ≈ 0,80.']},
+ {type:'calc',title:'k genau berechnen',text:`${OP('Berechne')} die Rate k für ${FU()} auf vier Nachkommastellen.`,
+  einfach:{text:`${OP('Berechne')} k für die Spannung. Der Faktor ist q = 0,8. Die Zeitspanne ist 2 s. Nutze k = ln(q) : Δt.`},
+  profi:{text:`${OP('Bestimme')} die Wachstumskonstante k der äquivalenten e-Form von ${FU()} (vier Nachkommastellen).`},
+  data:()=>`<p>${FU()}</p>${KD('k=\\dfrac{\\ln(q)}{\\Delta t}')}`,
+  rows:[{pre:K('k=\\dfrac{\\ln(0{,}8)}{2\\,\\text{s}}\\approx'),ans:-0.1116,d:4,tol:.0003,u:'1/s',traps:[[-0.2231,'Das ist nur ln(0,8). Teile noch durch Δt = 2.'],[0.1116,'Vorzeichen: ln(0,8) ist negativ, weil 0,8 < 1.'],[-0.4463,'Geteilt, nicht malgenommen.'],[-0.0485,'Du hast die log-Taste genommen. Gebraucht wird ln.']]}],
+  after:`${K('k\\approx-0{,}1116\\,\\tfrac{1}{\\text{s}}')}, also ${K('U(t)\\approx120\\,\\text{V}\\cdot e^{-0{,}1116\\,t}')}.`,
+  hints:['k = ln(q) : Δt.','q = 0,8 und Δt = 2 s. Nimm die Taste ln, nicht log.','ln(0,8) ≈ −0,2231, dann durch 2.'],
+  twin:{type:'calc',title:'Zwilling: Heizstab',text:`${OP('Berechne')} k für ${K('P(t)=80\\,\\text{W}\\cdot 0{,}9^{\\,t/(4\\,\\text{min})}')} auf vier Nachkommastellen.`,
+   rows:[{pre:K('k\\approx'),ans:-0.0263,d:4,tol:.0003,u:'1/min',traps:[[-0.1054,'Das ist nur ln(0,9). Teile noch durch 4.'],[0.0263,'Vorzeichen: ln(0,9) ist negativ.'],[-0.0114,'Du hast log statt ln genommen.']]}],
+   after:`${K('k=\\ln(0{,}9)/4\\approx-0{,}0263\\,\\tfrac{1}{\\text{min}}')}`}},
+ {type:'mcq',title:'Die Einheit von k',q:`Welche Einheit hat ${K('k\\approx-0{,}1116')}, wenn t in Sekunden gemessen wird?`,o:[
+   {t:`${K('\\tfrac{1}{\\text{s}}')}, damit ${K('k\\cdot t')} keine Einheit hat`,ok:1,fb:'Genau: Im Exponenten darf keine Einheit stehen. 1/s mal s ergibt eine reine Zahl.'},
+   {t:'s, wie die Zeit',fb:'Dann hätte k · t die Einheit s². Im Exponenten muss eine reine Zahl stehen.'},
+   {t:'V, wie die Spannung',fb:'Die Einheit V steckt im Startwert 120 V, nicht in k.'},
+   {t:'keine Einheit',fb:'k · t muss einheitenlos sein. Weil t die Einheit s hat, braucht k die Einheit 1/s.'}],
+  hints:['Im Exponenten steht k · t.','Eine Hochzahl ist immer eine reine Zahl.','Was muss man mit Sekunden malnehmen, damit sie wegfallen?']},
+ {type:'calc',title:'Probe für Angebot 2',text:`Angebot 2 nennt ${K('k=-0{,}0446\\,\\tfrac{1}{\\text{min}}')}. ${OP('Berechne')} daraus den Faktor für die Zeitspanne von Angebot 1, ${K('\\Delta t=5\\,\\text{min}')}, auf drei Nachkommastellen.`,
+  data:()=>`<p>${FA2()}</p>${KD('q=e^{k\\cdot\\Delta t}')}`,
+  rows:[{pre:K('q=e^{-0{,}0446\\cdot 5}\\approx'),ans:0.800,d:3,tol:.001,u:'',traps:[[0.956,'Du hast nur e hoch (−0,0446) gerechnet. Das ist der Faktor pro Minute.'],[1.250,'Vorzeichen: k ist negativ.'],[0.777,'Das ist 1 − 5 · 0,0446. Rechne mit der e-Taste.']]}],
+  after:`${K('q\\approx0{,}800')}: Das passt zum Faktor 0,8 je 5 min aus Angebot 1. ✔`,
+  hints:['q = e hoch (k · Δt).','k · Δt = −0,0446 · 5 = −0,223.','e hoch (−0,223) mit der Taste eˣ.'],
+  twin:{type:'calc',title:'Zwilling: Prüfaufträge',text:`Eine Formel für Prüfaufträge hat ${K('k=0{,}0953\\,\\tfrac{1}{\\text{a}}')}. ${OP('Berechne')} den Faktor pro Jahr auf drei Nachkommastellen.`,
+   rows:[{pre:K('q=e^{0{,}0953\\cdot 1}\\approx'),ans:1.100,d:3,tol:.001,u:'',traps:[[0.909,'Vorzeichen: k ist positiv.'],[1.0953,'1 + k ist nur ungefähr richtig. Rechne mit der e-Taste.']]}],
+   after:'q ≈ 1,100: pro Jahr etwa 10 % mehr Prüfaufträge.'}},
+ {type:'mcq',title:'Angebot 1 und Angebot 2',pre:()=>`<div class="fig">${ANGFIG()}</div>`,q:'Was stellst du beim Vergleich der Faktoren fest?',o:[
+   {t:'Beide liefern denselben Faktor 0,8 je 5 min. Der kleine Unterschied in den Kurven kommt vom Runden von k.',ok:1,fb:`Genau: ${K('\\ln(0{,}8)/5\\approx-0{,}04463')}. Angebot 2 hat auf −0,0446 gerundet.`},
+   {t:'Angebot 2 sinkt viel schneller, weil e größer als 0,8 ist.',fb:'Man darf e nicht mit q vergleichen. Erst q = e hoch (k · Δt) ausrechnen: 0,800.'},
+   {t:'Angebot 2 wächst, weil e > 1 ist.',fb:'Die Rate k ist negativ. Dann liegt e hoch (k · t) zwischen 0 und 1: Abnahme.'},
+   {t:'Man kann sie nicht vergleichen, weil sie verschieden aussehen.',fb:'Genau dafür rechnet man um: q = e hoch (k · Δt).'}],
+  hints:['Ihr habt q aus k gerade berechnet.','Vergleiche mit dem Faktor in Angebot 1.','Die Kurven liegen fast übereinander.']}
+]},
+/* ===== 5 Level 4 ===== */
+{title:'Level 4: Restwert und Startwert',tag:'Lernabschnitt 2',sub:'Vorfaktor A, Verschiebung c, Prozentänderung',badge:'🌡️ Abkühl-Profi',num:4,hour:H2,short:'Restwert',
+ halt:{frage:'Angebot 1 und Angebot 2 liefern fast dieselben Werte. Welche Schreibweise würdet ihr Frau Okafor für die Prüfsoftware empfehlen, und warum?',
+   impulse:['Was liest man an „0,8 je 5 min“ sofort ab, was an k?','Was bewirkt das Runden von k?','Was muss in beiden Fällen dazugeschrieben werden, zum Beispiel die Einheit von t?'],
+   starters:['Ich würde empfehlen,','Der Vorteil von','Wichtig ist auf jeden Fall'],
+   bonus:{type:'mcq',title:'Bonus: Wert nach 15 Minuten',q:`Welche Temperatur liefert ${FA1()} nach 15 min?`,o:[
+     {t:'50,72 °C',ok:1,fb:'Genau: 60 · 0,8³ + 20 = 30,72 + 20.'},
+     {t:'30,72 °C',fb:'Die 20 °C Raumtemperatur fehlen noch.'},
+     {t:'22,11 °C',fb:'Du hast 0,8¹⁵ gerechnet. Die Hochzahl ist 15 : 5 = 3.'},
+     {t:'60,96 °C',fb:'80 · 0,8³ + 20 ist falsch: Nur der Abstand 60 wird malgenommen.'}],
+     hints:['Hochzahl 15 : 5 = 3.','60 · 0,8³ = 30,72.','Dann + 20.']}},
+ steps:[
+ {type:'info',html:()=>person(`<p>Unsere Proben kühlen nicht auf 0 °C ab, sondern nur bis zur Raumtemperatur. Deshalb hängt hinten etwas dran:</p>${KD('f(t)=A\\cdot e^{k t}+c')}<p>${K('A')} ist der ${T('vorfaktor')}, ${K('c')} die ${T('verschiebung')}. Bei Angebot 1 steht statt ${K('e^{kt}')} die Potenz ${K('0{,}8^{\\,t/5}')}, die Idee ist dieselbe.</p>`)},
+ {type:'sim',title:'Die Kurve anpassen',text:`${OP('Untersuche')}: Die Punkte zeigen Angebot 1. Stelle A und c so ein, dass die Kurve ${K('A\\cdot 0{,}8^{\\,t/5}+c')} alle Punkte trifft.`,run:simShift,solution:'A = 60 °C, c = 20 °C. Nur die Summe A + c = 80 °C reicht nicht; erst A = 60, c = 20 trifft alle Punkte.',
+  hints:['Am Anfang liefert die Formel A + c. Die Probe startet bei 80 °C.','c ist die Temperatur, die hinten addiert wird: die Raumtemperatur.','Der Raum hat 20 °C.']},
+ {type:'calc',title:'Beide Angebote nach 10 Minuten',text:`${OP('Berechne')} die Temperatur nach ${K('t=10\\,\\text{min}')} mit beiden Angeboten auf zwei Nachkommastellen.`,
+  data:()=>`<p>${FA1()}</p><p>${FA2()}</p>`,
+  rows:[{pre:K('T_1(10)='),ans:58.40,d:2,tol:.005,u:'°C',traps:[[38.4,'Die Verschiebung c = 20 °C fehlt.'],[26.44,'Du hast 0,8¹⁰ gerechnet. Die Hochzahl ist 10 : 5 = 2.'],[71.2,'80 · 0,8² + 20 ist falsch: Nur der Abstand A = 60 wird malgenommen.']]},
+        {pre:K('T_2(10)='),ans:58.41,d:2,tol:.005,u:'°C',traps:[[38.41,'Die Verschiebung c = 20 °C fehlt.'],[113.72,'Vorzeichen: Die Hochzahl ist −0,0446 · 10 = −0,446.'],[58.4,'Rechne mit k = −0,0446 genau nach: Es kommt 58,41 heraus.']]}],
+  after:'58,40 °C und 58,41 °C: Der Unterschied von 0,01 °C kommt vom Runden von k.',
+  hints:['Erst den Potenzteil, dann mal A, dann + c.','Angebot 1: 0,8 hoch (10 : 5). Angebot 2: e hoch (−0,0446 · 10).','60 · 0,8² + 20 und 60 · e^(−0,446) + 20.'],
+  twin:{type:'calc',title:'Zwilling: nach 15 Minuten',text:`${OP('Berechne')} die Temperatur nach ${K('t=15\\,\\text{min}')} mit beiden Angeboten auf zwei Nachkommastellen.`,
+   rows:[{pre:K('T_1(15)='),ans:50.72,d:2,tol:.005,u:'°C',traps:[[30.72,'Die Verschiebung c fehlt.'],[22.11,'Hochzahl 15 : 5 = 3, nicht 15.']]},
+         {pre:K('T_2(15)='),ans:50.73,d:2,tol:.005,u:'°C',traps:[[30.73,'Die Verschiebung c fehlt.']]}],
+   after:'50,72 °C und 50,73 °C.'}},
+ {type:'calc',title:'Prozentänderung',text:`${OP('Berechne')} mit ${K('k=-0{,}0446\\,\\tfrac{1}{\\text{min}}')} die ${T('prozent')} je 5 min und je Minute (zwei Nachkommastellen).`,
+  einfach:{text:`${OP('Berechne')} die Prozentänderung. Rechne erst e hoch (k · Δt), dann minus 1, dann mal 100. Einmal mit Δt = 5 min, einmal mit Δt = 1 min.`},
+  data:()=>`${KD('100\\cdot\\left(e^{k\\cdot\\Delta t}-1\\right)\\,\\%')}<p>${K('k=-0{,}0446\\,\\tfrac{1}{\\text{min}}')}</p>`,
+  rows:[{pre:'je 5 min:',ans:-19.99,d:2,tol:.03,u:'%',traps:[[19.99,'Vorzeichen: Der Abstand nimmt ab.'],[80,'Das ist der Anteil, der übrig bleibt. Gefragt ist die Änderung: 0,8 − 1.'],[-22.3,'k · Δt · 100 ist nur eine Näherung. Rechne mit e.']]},
+        {pre:'je Minute:',ans:-4.36,d:2,tol:.01,u:'%',traps:[[-4.46,'k · 100 ist nur eine Näherung. Rechne 100 · (e^(−0,0446) − 1).'],[4.36,'Vorzeichen: Der Abstand nimmt ab.'],[95.64,'Das bleibt übrig. Die Änderung ist 0,9564 − 1.']]}],
+  after:'Etwa −20 % je 5 min und −4,36 % je Minute. Achtung: Bei einem Restwert gilt das für den Abstand zur Raumtemperatur.',
+  hints:['Erst q = e hoch (k · Δt) berechnen.','Dann (q − 1) · 100.','Δt = 5: e^(−0,223) ≈ 0,8001.'],
+  twin:{type:'calc',title:'Zwilling: Spannung',text:`${OP('Berechne')} für ${K('k=-0{,}1116\\,\\tfrac{1}{\\text{s}}')} die Prozentänderung je Sekunde (zwei Nachkommastellen).`,
+   rows:[{pre:'je Sekunde:',ans:-10.56,d:2,tol:.01,u:'%',traps:[[-11.16,'k · 100 ist nur eine Näherung. Rechne mit e.'],[10.56,'Vorzeichen: Die Spannung nimmt ab.']]}],after:'Etwa −10,56 % je Sekunde.'}},
+ {type:'mcq',title:'20 % wovon?',q:'In den ersten 5 min sinkt die Probentemperatur von 80 °C auf 68 °C. Das sind nur 15 %, nicht 20 %. Wie passt das zusammen?',o:[
+   {t:'Die 20 % beziehen sich auf den Abstand zur Raumtemperatur: Er sinkt von 60 °C auf 48 °C.',ok:1,fb:'Genau: 48 = 0,8 · 60. Die Verschiebung c = 20 °C bleibt immer gleich.'},
+   {t:'Angebot 1 ist falsch gerechnet.',fb:'68 = 60 · 0,8 + 20 stimmt. Nur die Bezugsgröße ist eine andere.'},
+   {t:'Die 20 % gelten erst nach 10 min.',fb:'Der Faktor gilt pro 5 min. Er bezieht sich nur auf den Abstand A, nicht auf die ganze Temperatur.'},
+   {t:'Die 20 % beziehen sich auf die Raumtemperatur.',fb:'Die Raumtemperatur ändert sich nicht. Es schrumpft der Abstand der Probe zur Raumtemperatur.'}],
+  hints:['Welcher Teil der Formel wird mit 0,8 malgenommen?','Die + 20 bleibt immer gleich.','Abstand am Anfang: 80 − 20 = 60.']},
+ {type:'akte',title:'Aus der Forschung',titel:'Newtons Abkühlungsgesetz',zeit:'1701',wer:'Isaac Newton, englischer Naturforscher',
+  rows:[['Frage','Wie schnell kühlt ein heißer Körper ab?'],
+        ['Beobachtung','Ein heißer Körper kühlt umso schneller ab, je größer sein Temperaturunterschied zur Umgebung ist.'],
+        ['Veröffentlichung','Anonym in den Philosophical Transactions der Royal Society, in einer Arbeit über eine Temperaturskala.'],
+        ['Heute','Die Formel T(t) = A · e hoch (k·t) + c mit c = Umgebungstemperatur ist eine spätere mathematische Fassung dieser Idee. Sie gilt nur näherungsweise.']],
+  fakten:['Isaac Newton','1701','anonym veröffentlicht','Philosophical Transactions der Royal Society','Aussage: Abkühlung umso schneller, je größer der Temperaturunterschied zur Umgebung'],
+  q:'Was hat die Akte mit Angebot 1 zu tun?',o:[
+   {t:'Abgekühlt wird nicht auf 0 °C, sondern Richtung Umgebungstemperatur. Deshalb steht c = 20 °C in der Formel.',ok:1,fb:'Genau. Der Abstand zur Umgebung schrumpft, und mit ihm wird auch das Abkühlen langsamer.'},
+   {t:'Newton hat Angebot 1 berechnet.',fb:'Angebot 1 ist ein erfundenes Unterrichtsbeispiel. Newton beschrieb die Idee dahinter.'},
+   {t:'Ein Körper kühlt immer gleich schnell ab.',fb:'Im Gegenteil: Je kleiner der Unterschied zur Umgebung, desto langsamer.'},
+   {t:'Die Formel gilt exakt für jeden Körper.',fb:'Die Formel ist ein Modell und gilt nur näherungsweise.'}],
+  hints:['Lies die Zeile „Beobachtung“.','Wohin kühlt die Probe ab?','Denk an die Verschiebung c.']}
+]},
+/* ===== 6 Partneraufgabe ===== */
+{title:'Partneraufgabe: Bauteil aus dem Härteofen',tag:'Lernabschnitt 2 · zu zweit',sub:'Neue Messwerte in die e-Form bringen',badge:'🤝 Teamplayer',hour:H2,short:'Härteofen',
+ partner:{rollen:{A:{name:'Messplatz',text:'Du hast das Messprotokoll und das Diagramm.'},B:{name:'Auswertung',text:'Du hast die Formelkarte und die Kundenvorgabe.'}},
+   kontrolle:['Werden die Einheiten genannt (°C, min, 1/min)?','Stimmt das Vorzeichen von k?','Wird die Prozentänderung auf den Abstand zur Raumtemperatur bezogen?']},
+ steps:[
+ {type:'info',html:()=>person(`<p>Neuer Auftrag: Ein Bauteil kommt aus dem Härteofen und kühlt ab. Der Kunde will das Modell in der Form ${K('T(t)=A\\cdot e^{kt}+c')}. Die Messwerte liegen am Messplatz, die Formeln bei der Auswertung. Das schafft ihr nur <b>gemeinsam</b>.</p>`)+
+   `<div class="merke"><b>So funktioniert die Partneraufgabe:</b> Erst löst jede Person ihren eigenen Teil. Dann zeigt dein Gerät einen <b>Teilcode</b>, den du deinem Partner sagst. Mit beiden Codes öffnet sich die gemeinsame Aufgabe: Ihr besprecht sie und gebt beide das Ergebnis ein. Pro Aufgabe gibt es bis zu 10 ⭐, am Ende bis zu <b>15 ⭐ Teambonus</b> (−5 je Fehlversuch bei einem gemeinsamen Ergebnis).</div>`},
+ {type:'team',title:'Vorfaktor und Abstand',text:'Bestimmt gemeinsam den Vorfaktor A und den Abstand zur Raumtemperatur nach 4 min.',
+  A:{info:()=>`<p>Dein Messprotokoll (t in min, T in °C):</p>${ofenTab()}<p>Raumtemperatur im Labor: <b>20 °C</b>.</p>${OFENFIG()}`,
+     teil:{type:'calc',title:'Werte ablesen',text:`${OP('Lies ab')}: Welche Temperatur hat das Bauteil am Anfang, und welche Raumtemperatur herrscht?`,
+       rows:[{pre:K('T(0)='),ans:180,tol:.1,u:'°C',traps:[[116,'116 °C ist der Wert nach 4 min. Gesucht ist t = 0.']]},
+             {pre:'Raumtemperatur:',ans:20,tol:.1,u:'°C',traps:[[0,'Die Raumtemperatur steht unter der Tabelle.']]}]}},
+  B:{info:()=>`<p>Deine Formelkarte:</p>${KD('T(t)=A\\cdot e^{kt}+c\\qquad T(0)=A+c')}${KD('q=e^{k\\cdot\\Delta t}\\qquad k=\\dfrac{\\ln(q)}{\\Delta t}')}${KD('\\text{Prozentänderung je }\\Delta t:\\;100\\cdot\\left(e^{k\\Delta t}-1\\right)\\%')}<p class="tip">Kundenvorgabe: c ist die Raumtemperatur. k auf vier Nachkommastellen, mit Einheit. Die Messwerte kennt nur der Messplatz.</p>`,
+     teil:{type:'mcq',title:'Wie bekommt man A?',q:'Startwert T(0) und Raumtemperatur c sind bekannt. Wie bestimmt ihr A?',o:[
+       {t:K('A=T(0)-c'),ok:1,fb:'Genau: Aus T(0) = A + c folgt A = T(0) − c.'},
+       {t:K('A=T(0)+c'),fb:'Aus T(0) = A + c muss man c abziehen, nicht addieren.'},
+       {t:K('A=T(0)'),fb:'Dann wäre c vergessen. T(0) = A + c.'},
+       {t:K('A=c'),fb:'A ist der Abstand am Anfang, nicht die Raumtemperatur selbst.'}]}},
+  gemeinsam:{type:'calc',title:'A und der Abstand nach 4 min',text:`${OP('Bestimme')} gemeinsam den Vorfaktor A und den Abstand zur Raumtemperatur nach 4 min.`,
+    rows:[{pre:K('A='),ans:160,tol:.1,u:'°C',traps:[[180,'180 °C ist T(0). Davon muss noch c abgezogen werden.'],[200,'Abziehen, nicht addieren: 180 − 20.']]},
+          {pre:'Abstand nach 4 min:',ans:96,tol:.1,u:'°C',traps:[[116,'116 °C ist die Temperatur. Der Abstand ist 116 − 20.'],[136,'Abziehen, nicht addieren: 116 − 20.']]}],
+    after:'A = 160 °C, Abstand nach 4 min: 96 °C.',
+    einfach:{text:`${OP('Bestimme')} gemeinsam A und den Abstand nach 4 min. Der Messplatz nennt die Werte, die Auswertung die Formel.`}},
+  hints:['Der Messplatz nennt T(0), T(4) und die Raumtemperatur, die Auswertung die Formel.','A = T(0) − c.','Abstand nach 4 min: T(4) − 20.']},
+ {type:'team',title:'Faktor und Rate',text:'Bestimmt gemeinsam die Rate k und die Prozentänderung des Abstands.',
+  A:{info:()=>`<p>Dein Messprotokoll (t in min, T in °C):</p>${ofenTab()}<p>Raumtemperatur: <b>20 °C</b>. Abstände zur Raumtemperatur: ${K('160')} · ${K('96')} · ${K('57{,}6')} · ${K('34{,}56')} (in °C).</p>`,
+     teil:{type:'calc',title:'Faktor der Abstände',text:`${OP('Berechne')} den Faktor, mit dem der Abstand alle 4 min malgenommen wird.`,
+       rows:[{pre:K('q=\\dfrac{96}{160}='),ans:0.6,d:1,tol:.001,u:'',traps:[[1.667,'Umgekehrt geteilt: neu durch alt.'],[64,'Das ist die Differenz. Gesucht ist der Quotient.'],[0.644,'Du hast die Temperaturen 116 : 180 genommen. Teile die Abstände.']]}]}},
+  B:{info:()=>`<p>Deine Formelkarte:</p>${KD('k=\\dfrac{\\ln(q)}{\\Delta t}')}${KD('\\text{Prozentänderung je }\\Delta t:\\;100\\cdot\\left(e^{k\\Delta t}-1\\right)\\%')}<p class="tip">Kundenvorgabe: t in Minuten, k auf vier Nachkommastellen mit Einheit. Faktor und Zeitspanne kennt nur der Messplatz.</p>`,
+     teil:{type:'mcq',title:'Einheit von k',q:'Welche Einheit muss k haben, wenn t in Minuten gemessen wird?',o:[
+       {t:K('\\tfrac{1}{\\text{min}}'),ok:1,fb:'Genau: k · t muss eine reine Zahl sein.'},
+       {t:'min',fb:'Dann hätte k · t die Einheit min².'},
+       {t:'°C',fb:'Die Temperatur-Einheit steckt in A und c, nicht in k.'},
+       {t:'°C/min',fb:'Im Exponenten darf keine Temperatur-Einheit stehen.'}]}},
+  gemeinsam:{type:'calc',title:'Rate und Prozentänderung',text:`${OP('Berechne')} gemeinsam k (vier Nachkommastellen) und die Prozentänderung des Abstands je 4 min.`,
+    rows:[{pre:K('k='),ans:-0.1277,d:4,tol:.0003,u:'1/min',traps:[[-0.5108,'Das ist nur ln(0,6). Teile noch durch Δt = 4 min.'],[0.1277,'Vorzeichen: ln(0,6) ist negativ.'],[-0.0555,'Du hast log statt ln genommen.']]},
+          {pre:'Prozentänderung je 4 min:',ans:-40,tol:.1,u:'%',traps:[[60,'60 % bleiben übrig. Die Änderung ist 0,6 − 1.'],[40,'Vorzeichen: Der Abstand nimmt ab.']]}],
+    after:`${K('T(t)\\approx160\\,\\text{°C}\\cdot e^{-0{,}1277\\,t}+20\\,\\text{°C}')}: Alle 4 min schrumpft der Abstand um 40 %.`},
+  hints:['Der Messplatz nennt q und Δt = 4 min, die Auswertung die Formeln.','k = ln(q) : Δt.','k = ln(0,6) : 4 und 100 · (0,6 − 1).']},
+ {type:'duell',title:'Erklär-Duell',text:'Eine Person erklärt, die andere prüft mit ihrer Prüfkarte. Danach tauscht ihr.',
+  runden:[{erklaert:'A',frage:'Was bedeuten c = 20 °C und A = 160 °C beim Bauteil?',tipp:'Denk an die Raumtemperatur und an den Wert am Anfang.',
+           pruef:['nennt c als Raumtemperatur (Restwert)','sagt, dass c alle Werte um 20 °C nach oben verschiebt','erklärt A als Abstand zur Raumtemperatur am Anfang','rechnet T(0) = A + c = 180 °C']},
+          {erklaert:'B',frage:'Warum ist k negativ, und welche Einheit hat k?',tipp:'Denk an q = 0,6 und an die Zeit in Minuten.',
+           pruef:['sagt, dass q = 0,6 kleiner als 1 ist','folgert: ln(q) ist negativ, also k negativ','sagt, dass der Abstand abnimmt','nennt die Einheit 1/min (k · t ohne Einheit)']}]}
+]},
+/* ===== 7 Gegner 2 ===== */
+{title:'Gegner 2: Die Software-Abnahme',tag:'Aufgabenblock 2',sub:'Umrechnen, vergleichen, Rundung beurteilen',badge:'💻 Software-Profi',hour:H2,short:'Lindqvist',rankUp:'Modellprüfer',
+ boss:{name:'Frau Lindqvist',role:'Entwicklung Prüfsoftware: „Meine Software rechnet nur mit sauberen Zahlen!“',ava:'💻',bar:'Bedenken',win:'Frau Lindqvist ist überzeugt!'},steps:[
+ {type:'info',html:()=>person(`<p>Ich programmiere die Prüfsoftware. Sie rechnet intern nur mit der e-Form. Bevor ich irgendetwas einbaue, will ich sehen, dass ihr sauber umrechnet. Vier Aufgaben.</p>`,BOSS2)+
+   `<div class="merke"><b>Gegner 2:</b> Bis zu 15 ⭐ pro Aufgabe, der erste Denkanstoß ist frei, jede weitere Hilfe kostet 3 ⭐. 🔁 Rückblick zeigt als letzte Hilfe die passende Level-Aufgabe. Formeln findest du unter 📂.</div>`},
+ {type:'calc',title:'Keimzahl für die Software',text:`Frau Lindqvist braucht ${FB()} in der e-Form ${K('B(t)=N_0\\cdot e^{kt}')}. ${OP('Bestimme')} ${K('N_0')} und ${K('k')} (vier Nachkommastellen).`,
+  data:()=>`<p>${FB()}</p>${KD('k=\\dfrac{\\ln(q)}{\\Delta t}')}`,
+  rows:[{pre:K('N_0='),ans:500,tol:.1,u:'Keime je ml',traps:[[1.5,'1,5 ist der Faktor. Der Startwert steht vorne.']]},
+        {pre:K('k\\approx'),ans:0.1352,d:4,tol:.0003,u:'1/h',traps:[[0.4055,'Das ist nur ln(1,5). Teile noch durch 3 h.'],[-0.1352,'Vorzeichen: ln(1,5) ist positiv, weil 1,5 > 1.'],[0.0587,'Du hast log statt ln genommen.'],[1.2164,'Geteilt, nicht malgenommen.']]}],
+  after:`${K('B(t)\\approx500\\cdot e^{0{,}1352\\,t}')} (t in h). Positives k passt zu Wachstum.`,
+  hints:['Der Startwert bleibt beim Umrechnen gleich.','k = ln(1,5) : 3 h.','ln(1,5) ≈ 0,4055.'],recap:[4,2]},
+ {type:'calc',title:'Ein Sensor in e-Form',text:`Ein Temperatursensor liefert die Spannung ${K('f(t)=40\\,\\text{mV}\\cdot e^{-0{,}2\\,t}+15\\,\\text{mV}')} (t in s). ${OP('Berechne')} den Wert am Anfang, den Faktor je Sekunde und die Prozentänderung des Abstands je Sekunde.`,
+  data:()=>`<p>${K('f(t)=40\\cdot e^{-0{,}2\\,t}+15')} (mV, t in s)</p>`,
+  rows:[{pre:K('f(0)='),ans:55,tol:.01,u:'mV',traps:[[40,'Die Verschiebung 15 mV fehlt: f(0) = A + c.'],[15,'Das ist nur c. f(0) = A + c.']]},
+        {pre:K('q_{1\\,\\text{s}}=e^{-0{,}2}\\approx'),ans:0.8187,d:4,tol:.0005,u:'',traps:[[1.2214,'Vorzeichen: Die Hochzahl ist −0,2.'],[0.8,'1 − 0,2 ist nur eine Näherung. Rechne mit der e-Taste.']]},
+        {pre:'Prozentänderung je s:',ans:-18.13,d:2,tol:.02,u:'%',traps:[[-20,'k · 100 ist nur eine Näherung. Rechne 100 · (e^(−0,2) − 1).'],[18.13,'Vorzeichen: Der Abstand nimmt ab.'],[81.87,'Das bleibt übrig. Die Änderung ist q − 1.']]}],
+  after:'f(0) = 55 mV, q ≈ 0,8187 je s, der Abstand zu 15 mV schrumpft um etwa 18,13 % je Sekunde.',
+  hints:['f(0) = A + c.','q = e hoch (k · 1 s).','Prozentänderung: 100 · (q − 1).'],recap:[5,3]},
+ {type:'decide',title:'Welche Formeln sind gleichwertig zu Angebot 1?',text:`${OP('Beurteile')} jeden Vorschlag aus der Software-Abteilung. Vergleiche mit ${FA1()} (t in min).`,actions:['✅ gleichwertig','❌ nicht gleichwertig'],cards:[
+   {title:K('60\\cdot e^{-0{,}0446\\,t}+20'),ans:0,fb:[null,'Doch: A, c und q = e^(−0,0446 · 5) ≈ 0,8 stimmen überein.'],okfb:'Richtig: Das ist Angebot 2, gleichwertig bis auf die Rundung von k.'},
+   {title:K('80\\cdot e^{-0{,}0446\\,t}'),ans:1,fb:['Der Wert am Anfang ist zwar 80 °C, aber nach 10 min liefert sie 51,21 °C statt 58,40 °C. Die Raumtemperatur fehlt.'],okfb:'Richtig: gleicher Anfang, aber ohne c = 20 °C. T(10) ≈ 51,21 °C statt 58,40 °C.'},
+   {title:K('60\\cdot 0{,}8^{\\,t}+20'),ans:1,fb:['Hier fehlt die Zeitspanne: Malgenommen würde jede Minute statt alle 5 min.'],okfb:'Richtig: Die Zeitspanne 5 min fehlt in der Hochzahl.'},
+   {title:K('60\\cdot e^{-0{,}223\\,t}+20'),ans:1,fb:['−0,223 ist k · Δt, nicht k. Pro Minute ergäbe das den Faktor 0,8.'],okfb:'Richtig: −0,223 gehört zu Δt = 5 min. Die Rate pro Minute ist −0,0446.'}],
+  hints:['Prüfe drei Dinge: Wert am Anfang, c und den Faktor je 5 min.','Rechne bei der e-Form q = e hoch (k · 5).','Nur ein Vorschlag stimmt in allem.'],recap:[4,5]},
+ {type:'mcq',title:'Darf k gerundet werden?',text:`Frau Lindqvist will in der Software ${K('k=-0{,}04')} statt ${K('k=-0{,}0446')} speichern. Nach 20 min ergibt das 46,96 °C statt 44,58 °C.`,
+  q:`${OP('Nimm Stellung')}: Ist diese Rundung in Ordnung?`,
+  einfach:{q:'Ist es in Ordnung, k so stark zu runden?'},
+  o:[{t:'Nein. Schon 2,4 °C Unterschied nach 20 min sind für eine Prüfung zu viel. k sollte auf vier Nachkommastellen bleiben.',ok:1,fb:'Genau. Kleine Änderungen in k wirken im Exponenten stark. Deshalb genau runden und mit q = e^(k · 5) ≈ 0,8 prüfen.'},
+     {t:'Ja, k ist ja nur eine kleine Zahl.',fb:'Gerade weil k klein ist, ist der relative Fehler groß: −0,04 statt −0,0446 sind etwa 10 % daneben.'},
+     {t:'Ja, die Werte am Anfang stimmen ja überein.',fb:'Am Anfang ja, aber mit der Zeit wächst der Unterschied.'},
+     {t:'Nein, k darf überhaupt nicht gerundet werden.',fb:'Runden ist erlaubt, aber nicht zu grob. Mit −0,0446 liegt der Fehler bei 0,01 °C.'}],
+  hints:['Vergleiche die beiden Temperaturen nach 20 min.','Prüfe, welchen Faktor je 5 min k = −0,04 liefert: e^(−0,2) ≈ 0,82.','Ein Unterschied von mehreren Grad ist für eine Prüfsoftware zu groß.'],recap:[5,2]}
+]},
+/* ===== 8 Finale ===== */
+{title:'Finale: Die Modellkarte MK-03',tag:'Handlungsprodukt',sub:'Parameter beschriften und urteilen',badge:'🏁 Modellkarten-Profi',hour:H2,short:'Modellkarte',final:true,rankUp:'Laborexperte',
+ boss:{name:'Die Laborbesprechung',role:'Jana Okafor, Herr Demir und Frau Lindqvist warten auf eure Modellkarte',ava:'📋',bar:'Offene Fragen',win:'Eure Modellkarte MK-03 überzeugt die Laborbesprechung!'},steps:[
+ {type:'info',html:()=>person(`<p>Gleich ist Laborbesprechung, ${nm()}! Jetzt baut ihr aus euren Ergebnissen die <b>Modellkarte MK-03</b>. Jeder fertige Abschnitt klärt eine offene Frage.</p>`)},
+ {type:'cloze',title:'Abschnitt 1: Angebot 1 beschriften',text:`${OP('Beschrifte')} ${FA1()}.`,data:()=>`<p>${FA1()}</p>`,parts:[
+   ['<b>Wert am Anfang:</b> ',[K('T(0)=80')+' °C',K('T(0)=60')+' °C',K('T(0)=20')+' °C'],0,'.<br>'],
+   ['<b>Vorfaktor:</b> ',['A = 60 °C, Abstand zur Raumtemperatur am Anfang','A = 60 °C, Temperatur am Anfang','A = 60 °C, Abkühlung pro Minute'],0,'.<br>'],
+   ['<b>Verschiebung:</b> ',['c = 20 °C, Raumtemperatur','c = 20 °C, Temperatur nach 20 min','c = 20 °C, Abkühlung pro 5 min'],0,'.<br>'],
+   ['<b>Faktor:</b> ',['q = 0,8 je 5 min, der Abstand schrumpft auf 80 %','q = 0,8 je Minute','q = 0,8 je 5 min, die Temperatur sinkt um 0,8 °C'],0,'.']],
+  hints:['T(0) = A + c.','A ist der Abstand, c der Restwert.','Der Faktor gehört zur Zeitspanne 5 min.']},
+ {type:'cloze',title:'Abschnitt 2: Angebot 2 und Vergleich',text:`${OP('Erläutere')} Angebot 2 und vergleiche.`,data:()=>`<p>${FA2()}</p>`,parts:[
+   ['<b>Rate:</b> ',[K('k\\approx-0{,}0446\\,\\tfrac{1}{\\text{min}}'),K('k\\approx-0{,}223\\,\\tfrac{1}{\\text{min}}'),K('k\\approx-0{,}0446\\,\\text{min}')],0,', also '],
+   ['',[K('q=e^{-0{,}0446\\cdot5}\\approx0{,}80'),K('q=e^{-0{,}0446}\\approx0{,}96'),K('q=-0{,}0446\\cdot 5')],0,' je 5 min.<br>'],
+   ['<b>Prozentänderung:</b> etwa ',['−20 % je 5 min, bezogen auf den Abstand','−20 % je 5 min, bezogen auf die ganze Temperatur','−4,46 % je 5 min'],0,'.<br>'],
+   ['<b>Urteil:</b> ',['Beide Angebote beschreiben denselben Vorgang, bis auf die Rundung von k.','Angebot 2 kühlt deutlich schneller ab.','Die Angebote sind nicht vergleichbar.'],0,'']],
+  hints:['k = ln(0,8) : 5 min.','q = e hoch (k · 5).','T(10): 58,40 °C und 58,41 °C.']},
+ {type:'write',title:'Abschnitt 3: Eure Empfehlung',text:`${OP('Begründe')} in einem eigenen Satz, welche Schreibweise ihr für die Prüfsoftware empfehlt.`,save:'empf',min:25,
+  keys:['faktor','rate','k ','q ','e-form','faktorform','runden','rundung','einheit','minute','min','genau','ablesen','software','angebot'],
+  starters:['Wir empfehlen','Für die Prüfsoftware ist','Wichtig ist dabei'],
+  placeholder:'z. B.: Wir empfehlen …',example:'Wir empfehlen Angebot 2 in der e-Form, weil die Software damit rechnet; k sollte aber auf vier Nachkommastellen mit Einheit 1/min stehen.',
+  okfb:'Gut begründet. Die Empfehlung steht jetzt auf eurer Modellkarte.',missfb:'Eine Begründung nennt einen Grund, z. B. was man an q oder k ablesen kann, wie genau k gerundet ist oder welche Einheit dazugehört. Möchtest du ergänzen?',
+  hints:['Welche Schreibweise ist leichter zu lesen, welche braucht die Software?','Denk an die Rundung von k.','Satzanfang: „Wir empfehlen …, weil …“']},
+ {type:'selfcheck',title:'Eure Modellkarte MK-03',text:'Hier ist eure fertige Modellkarte. Prüft sie mit der Checkliste aus der E-Mail.',doc:mkDoc,copy:mkText,checkTitle:'Endkontrolle',
+  items:['Bedeutung jeder Zahl in Angebot 1','Bedeutung jeder Zahl in Angebot 2','Einheiten zu jeder Zahl','Temperatur am Anfang','Urteil: derselbe Vorgang oder nicht, mit Begründung'],
+  okfb:'Alles drin! Tippe auf „Gegner besiegen“ und stellt eure Modellkarte vor.',
+  hints:['Geht die Karte Zeile für Zeile durch.','Jeder Checklistenpunkt entspricht einer Zeile.','Hakt erst ab, wenn ihr die Zeile wirklich gefunden habt.']}
+]},
+/* ===== 9 Quiz ===== */
+{title:'Abschlussquiz',tag:'Quiz',sub:'Fachbegriffe im Kahoot-Stil',badge:'🎯 Begriffs-Profi',num:'🎯',hour:H2,steps:[]}
 ];
 const QUIZ=[
- {q:'In N(t) = N₀ · q^(t/Δt) bedeutet 0 < q < 1 …',o:[{t:'Abnahme',ok:1},{t:'Wachstum'},{t:'konstanter Wert'},{t:'negativer Wert'}],why:'Pro Zeitspanne bleibt nur ein Teil übrig.'},
- {q:'Welche Einheit hat k, wenn t in Minuten gemessen wird?',o:[{t:'1/min',ok:1},{t:'min'},{t:'°C'},{t:'keine'}],why:'k · t muss einheitenlos sein, also hat k die Einheit 1/min.'},
- {q:'Bei f(t) = A · e^(kt) + c ist f(0) gleich …',o:[{t:'A + c',ok:1},{t:'A'},{t:'c'},{t:'A · c'}],why:'e hoch 0 ist 1, also f(0) = A + c.'},
- {q:'Ein negatives k in der e-Form bedeutet …',o:[{t:'Abnahme',ok:1},{t:'Wachstum'},{t:'negativer Startwert'},{t:'einen Rechenfehler'}],why:'k < 0 gehört zu q = e^(kΔt) < 1.'},
- {transfer:1,q:'Ein Kaffee kühlt ab: f(t) = 70 · e^(−0,05t) + 21 (in °C). Welche Zahl ist die Raumtemperatur?',o:[{t:'21 °C',ok:1},{t:'70 °C'},{t:'91 °C'},{t:'0,05 °C'}],why:'Die Verschiebung c = 21 °C ist der Restwert.'},
- {transfer:1,q:'Ein Messsignal wächst alle 2 s mit dem Faktor 1,1. Welche Wachstumskonstante k gilt?',o:[{t:'≈ 0,048 1/s',ok:1},{t:'≈ 0,095 1/s'},{t:'≈ 0,55 1/s'},{t:'≈ −0,048 1/s'}],why:'k = ln(1,1) : 2 s ≈ 0,048 pro Sekunde.'}
+ {q:`In ${K('N(t)=N_0\\cdot q^{\\,t/\\Delta t}')} ist ${K('N_0')} …`,o:[{t:'der Startwert',ok:1},{t:'der Faktor'},{t:'die Zeitspanne'},{t:'die Rate'}],why:'N(0) = N₀ · q⁰ = N₀.'},
+ {q:'Ein Faktor 0 < q < 1 bedeutet …',o:[{t:'Zerfall',ok:1},{t:'Wachstum'},{t:'Konstanz'},{t:'negative Werte'}],why:'Malnehmen mit einer Zahl zwischen 0 und 1 macht kleiner.'},
+ {q:'q = 1 bedeutet …',o:[{t:'Konstanz',ok:1},{t:'langsames Wachstum'},{t:'Zerfall'},{t:'Verdopplung'}],why:'Malnehmen mit 1 ändert nichts.'},
+ {q:`Was zählt ${K('t/\\Delta t')}?`,o:[{t:'die Anzahl der Zeitspannen',ok:1},{t:'die Sekunden'},{t:'den Startwert'},{t:'die Prozent'}],why:'Wie oft mit q malgenommen wurde, auch halbe Zeitspannen.'},
+ {q:'Wie berechnet man k aus q und Δt?',o:[{t:K('k=\\dfrac{\\ln(q)}{\\Delta t}'),ok:1},{t:K('k=\\ln(q)\\cdot\\Delta t')},{t:K('k=\\dfrac{q}{\\Delta t}')},{t:K('k=e^{q\\Delta t}')}],why:'Aus q = e^(k·Δt) folgt k = ln(q) : Δt.'},
+ {q:'Welche Einheit hat k, wenn t in Stunden gemessen wird?',o:[{t:'1/h',ok:1},{t:'h'},{t:'keine'},{t:'%'}],why:'k · t muss eine reine Zahl sein.'},
+ {q:'Eine negative Rate k bedeutet …',o:[{t:'Abnahme (0 < q < 1)',ok:1},{t:'negative Werte'},{t:'Wachstum'},{t:'q < 0'}],why:'e hoch eine negative Zahl liegt zwischen 0 und 1.'},
+ {q:`Bei ${K('f(t)=A\\cdot e^{kt}+c')} gilt f(0) = …`,o:[{t:'A + c',ok:1},{t:'A'},{t:'c'},{t:'A · c'}],why:'e⁰ = 1, also f(0) = A + c.'},
+ {q:'Die Verschiebung c …',o:[{t:'hebt alle Werte gleich weit an',ok:1},{t:'ist der Wert am Anfang'},{t:'ist die Rate'},{t:'ändert die Zeitspanne'}],why:'c wird zu jedem Wert addiert, z. B. die Raumtemperatur.'},
+ {q:'Prozentänderung je Δt bei der e-Form:',o:[{t:K('100\\cdot(e^{k\\Delta t}-1)\\,\\%'),ok:1},{t:K('100\\cdot k\\,\\%')},{t:K('100\\cdot e^{k}\\,\\%')},{t:K('(1-k)\\,\\%')}],why:'Erst q = e^(k·Δt), dann (q − 1) · 100.'},
+ {transfer:1,q:`Ein Kredit wächst nach ${K('K(t)=2000\\,\\text{€}\\cdot 1{,}05^{\\,t/(1\\,\\text{a})}')}. Was bedeutet 1,05?`,o:[{t:'+5 % pro Jahr',ok:1},{t:'+1,05 € pro Jahr'},{t:'+105 % pro Jahr'},{t:'−5 % pro Jahr'}],why:'q = 1,05 je Jahr: Jedes Jahr wird mit 1,05 malgenommen, also +5 %.'},
+ {transfer:1,q:`Ein Tee kühlt nach ${K('T(t)=70\\cdot e^{-0{,}05t}+22')} ab (°C, t in min). Wie heiß ist er am Anfang?`,o:[{t:'92 °C',ok:1},{t:'70 °C'},{t:'22 °C'},{t:'48 °C'}],why:'T(0) = A + c = 70 + 22 = 92 °C.'}
 ];
 /* ==== INHALT ENDE ==== */
 
-CONFIG.ueben=[{"level": 1, "aufgaben": "Aufgabe a–e", "text": "Parameter Startwert, Asymptote, Faktor, Umrechnung in k"}, {"level": 2, "aufgaben": "Aufgabe f–g", "text": "Prozentänderung und Modellvergleich, linear oder exponentiell"}];
+CONFIG.ueben=[{"level": 1, "aufgaben": "Aufgabe a–c", "text": "Startwert, Asymptote und Faktor mit Zeitspanne ablesen"}, {"level": 3, "aufgaben": "Aufgabe f–g", "text": "Prozentänderung und Modellvergleich, linear oder exponentiell"}, {"level": 4, "aufgaben": "Aufgabe e", "text": "Umrechnung von Faktor-Form in e-Form (Rate k)"}, {"level": 5, "aufgaben": "Aufgabe d", "text": "Bedeutung von Anfangs- und Restwert"}];
 CONFIG.code="12NF-YXR7";
 start();
 </script>
