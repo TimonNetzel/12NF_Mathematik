@@ -158,6 +158,15 @@ details.given .gb{padding:0 12px 12px;font-size:16px}
 .seqitem.in{border-color:var(--blue)} .seqitem.in .n{background:var(--blue);color:#fff}
 .seqitem.ok{border-color:var(--ok);background:var(--okbg)} .seqitem.ok .n{background:var(--ok);color:#fff}
 .seqitem.bad{border-color:var(--bad);background:var(--badbg)} .seqitem.bad .n{background:var(--bad);color:#fff}
+.seqitem.gap{border-style:dashed;background:#f6f8fb;color:var(--muted)} .seqitem.gap.act{border-color:var(--blue);border-style:solid;background:#eef4fe}
+.seqitem .lock{margin-left:auto;font-size:14px}
+.tabs{display:flex;gap:6px;margin:0 0 10px}
+.tabs button{flex:1;min-height:44px;border:2px solid var(--line);background:#fff;border-radius:12px;font-weight:700;font-size:15px;color:var(--ink)}
+.tabs button.on{border-color:var(--blue);background:#eef4fe}
+.gloss{margin:0}.gloss dt{font-weight:800;margin-top:10px}.gloss dd{margin:2px 0 0}.gloss .gx{font-size:14px;color:var(--muted);margin-top:2px}
+.newterms{background:#eef4fe;border:2px solid var(--blue);border-radius:12px;padding:10px 12px;margin:10px 0;text-align:left;font-size:15px}
+.card.twin{border:2px dashed var(--blue);margin-top:14px}
+.hintbox.recap .m{margin:6px 0;font-size:15px}.hintbox.recap .sol{margin:6px 0;font-size:15px}.hintbox.recap .a{font-weight:800;color:var(--ok)}
 .empty{color:var(--muted);font-size:15px;padding:10px;border:2px dashed var(--line);border-radius:12px;text-align:center}
 .tip{font-size:14px;color:var(--muted)}
 /* calc */
@@ -262,6 +271,10 @@ table.tb{border-collapse:collapse;width:100%;font-size:15px;margin:6px 0}
 .calckeys button.op{background:#d3e4ec}
 .calckeys button.eq{background:var(--acc);color:#fff}
 .cwins{width:100%;margin-top:8px}
+.cwh button#cwSci{font-size:13px;padding:0 8px}
+.cwh button#cwSci.on{background:var(--gold);color:#16233a}
+.calckeys.sci .deg{grid-column:1/-1;font-size:12px;color:var(--muted);text-align:center}
+.calckeys.sci button{min-height:40px;font-size:16px;background:#e4e0f5;color:#2e2266}
 .term{border-bottom:2px dotted var(--blue);color:var(--blue-d);font-weight:700;cursor:pointer}
 .term:after{content:" ⓘ";font-size:.75em}
 /* overlays */
@@ -306,6 +319,122 @@ input.name{width:100%;min-height:52px;border:2px solid #8fa1b5;border-radius:12p
 .sol h4{margin:16px 0 6px;font-size:17px;border-bottom:2px solid var(--line);padding-bottom:4px}
 .sol ol{margin:0;padding-left:22px}.sol li{margin:4px 0}
 .sol .a{color:var(--ok);font-weight:700}
+/* Stufen, Glossar */
+.toast{position:fixed;left:50%;bottom:96px;transform:translateX(-50%);z-index:95;background:#16233a;color:#fff;border-radius:12px;padding:10px 14px;font-size:15px;max-width:90vw;box-shadow:0 6px 24px rgba(0,0,0,.25)}
+.card{position:relative}
+.gram{display:block;font-size:13px;font-weight:600;color:var(--muted)}
+.gsheet .gram{margin:-6px 0 8px}.gsheet .gx{font-size:15px;color:var(--muted)}
+.stufechip{margin-top:12px;background:rgba(255,255,255,.14);border:0;color:#fff;border-radius:999px;padding:8px 14px;min-height:44px;font-size:15px}
+.stufen{display:grid;gap:8px}
+.stufe{display:flex;flex-direction:column;gap:2px;text-align:left;background:#fff;border:2px solid var(--line);border-radius:14px;padding:10px 12px;min-height:54px}
+.stufe span{font-size:14px;color:var(--muted)}
+.stufe.on{border-color:var(--blue);background:#eef4fe}
+.st-p .term{border-bottom:0;color:inherit;font-weight:inherit}.st-p .term:after{content:none}
+.hintbox.first{background:#eef4fe;border-color:#9cc0e0}
+.starters{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin:0 0 8px}
+.starters .chip{min-height:42px;padding:6px 12px;font-size:14px}
+/* Lernziele, Landkarte */
+.ziele{background:#fff;border-radius:var(--r);box-shadow:var(--sh);padding:12px 16px;margin-top:16px;border-left:6px solid var(--blue)}
+.ziele h3{margin:0 0 6px;font-size:18px}.ziele ul{margin:0;padding-left:20px}
+.map{margin-top:16px;background:#fff;border-radius:var(--r);box-shadow:var(--sh);overflow:hidden}
+.map svg{display:block;width:100%;height:auto}
+.maphead{padding:10px 14px;font-weight:800;font-size:15px;border-bottom:1px solid var(--line)}
+.map .stn{cursor:pointer;outline:none}.map .stn.l{cursor:default}.map .stn:focus-visible circle{stroke:#5b3fc4}
+.lv.plen{border-color:#b7d6e2;background:#f3f9fb}
+/* Haltepunkt, Mythos, Experiment-Akte */
+.plenum{background:#eaf3f7;border:2px solid #b7d6e2;border-radius:14px;padding:12px 14px;margin:6px 0 10px}
+.plenum .pk,.mythos .mk{font-size:13px;font-weight:800;text-transform:uppercase;letter-spacing:.05em;color:var(--blue-d)}
+.plenum .pq,.mythos .mq{font-size:19px;font-weight:800;margin:4px 0 0}
+.mythos{background:#fff8e1;border:2px solid var(--hintb);border-radius:14px;padding:12px 14px;margin:6px 0 10px}
+.mythos .mk{color:#7a5a00}
+.opt.sel{border-color:var(--blue);background:#eef4fe}
+.fix{margin-top:8px;background:#fff;border-left:5px solid var(--ok);border-radius:8px;padding:8px 10px;color:var(--ink)}
+.akte{background:#fbf7ee;border:2px solid #d8c9a5;border-radius:12px;padding:0 0 10px;margin:8px 0;overflow:hidden}
+.akte .ah{display:flex;justify-content:space-between;gap:8px;background:#e9dcbc;padding:6px 12px;font-weight:800;font-size:14px;color:#4d3b12;letter-spacing:.03em}
+.akte h4{margin:10px 12px 6px;font-size:18px}
+.akte dl{display:grid;grid-template-columns:minmax(80px,auto) 1fr;gap:6px 12px;margin:0 12px;font-size:15px}
+.akte dt{font-weight:800;color:#6b5320}.akte dd{margin:0}
+.akte .fig,.akte .tip{margin-left:12px;margin-right:12px}
+.jokers{display:flex;gap:8px;margin-top:10px}.jokers .btn{flex:1}
+/* Ampel, Ausweis, Beamer */
+.ampq{border-top:1px solid var(--line);padding:8px 0}.ampq p{margin:0 0 6px}
+.ampbtns{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
+.ampb{display:flex;align-items:center;justify-content:center;gap:6px;min-height:46px;border:2px solid var(--line);border-radius:12px;background:#fff;font-weight:700;font-size:15px;padding:4px}
+.ampb.on{border-color:var(--blue);background:#eef4fe}
+.amp{display:inline-block;width:16px;height:16px;border-radius:50%;flex:0 0 16px;border:2px solid rgba(0,0,0,.25)}
+.amp.g{background:#2f9e5f}.amp.y{background:#f2b705}.amp.r{background:#d64545}.amp.n{background:#cfd7e2}
+.ampcert{margin-top:12px;background:rgba(255,255,255,.1);border-radius:12px;padding:10px 12px}
+.ampcert ul{list-style:none;margin:6px 0 0;padding:0;display:grid;gap:6px}
+.ampcert li{display:flex;gap:10px;align-items:flex-start}.ampcert li .amp{margin-top:4px;border-color:#fff}
+.ampcert small{color:#ffd88a;font-size:14px}
+.pcode{margin-top:12px;font-size:15px;color:#dbe5f1;position:relative;z-index:1}
+.pcode b{font:800 22px/1 ui-monospace,Menlo,Consolas,monospace;letter-spacing:.18em;color:#fff;background:rgba(255,255,255,.14);border-radius:8px;padding:4px 10px;margin-left:6px}
+.helpl{margin:6px 0 10px;padding-left:20px}.helpl li{margin:3px 0}
+.tcheck{margin-top:12px;background:#f4f7fa;border-radius:12px;padding:10px 12px}
+.newterms.ueb{border-color:var(--ok);background:var(--okbg)}
+.beamer{position:fixed;inset:0;z-index:90;background:#0f1a2b;color:#fff;overflow:auto}
+.beamer .bwrap{max-width:1100px;margin:0 auto;padding:24px}
+.beamer .btop{display:flex;justify-content:space-between;align-items:center;gap:10px;color:#b9c7da;font-size:18px}
+.beamer .bx{background:rgba(255,255,255,.14);border:0;color:#fff;border-radius:12px;min-height:44px;padding:6px 14px;font-weight:800}
+.beamer h2{font-size:clamp(26px,4.2vw,48px);line-height:1.2;margin:28px 0 18px}
+.beamer .imp{font-size:clamp(20px,2.8vw,32px);line-height:1.35;padding-left:1.3em}.beamer .imp li{margin:10px 0}
+.beamer .bbtn{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
+.beamer .bcode{margin-top:24px;font-size:clamp(28px,5vw,64px);font-weight:900}.beamer .bcode b{color:var(--gold);letter-spacing:.12em}
+/* Paket C: Partner-Etappe (Rollen, Teilcodes, Erklär-Duell) und Klassen-Gegner */
+.lv.team{border-color:#cfc4f3;background:#f6f3ff}.lv.team .tag{color:var(--purple)}.lv.team.next{border-color:var(--purple)}
+.lv.kg{border-color:#e9c3cc;background:var(--bossbg)}.lv.kg .tag{color:var(--boss)}
+.rq{margin:14px 0 6px}.rsel{display:flex;gap:8px;flex-wrap:wrap}.rsel .chip{min-width:120px;text-align:center}
+.crow input.tnr{width:90px}
+.rkarte{border:2px solid var(--purple);border-radius:14px;background:#f6f3ff;padding:10px 14px;margin:8px 0}
+.rkarte .rk{font-size:13px;font-weight:800;text-transform:uppercase;letter-spacing:.05em;color:var(--purple);margin-bottom:4px}
+.rkarte .rk span{display:block;text-transform:none;letter-spacing:0;font-weight:600;color:var(--muted);font-size:14px}
+.rkarte.rB{border-color:var(--blue);background:#eaf3f7}.rkarte.rB .rk{color:var(--blue-d)}
+.rkarte.rC{border-color:#8a6d1f;background:#fff8e1}.rkarte.rC .rk{color:#6b5212}
+.tpart{border-top:1px dashed var(--line);margin-top:12px;padding-top:10px}
+.tjoint:not(:empty){border-top:3px solid var(--purple);margin-top:16px;padding-top:12px}.tjoint .kicker{color:var(--purple)}
+.tcode{display:flex;flex-direction:column;align-items:center;gap:2px;background:var(--nav);color:#fff;border-radius:14px;padding:12px;margin:12px 0;text-align:center}
+.tcode span{font-size:13px;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:#cfe0ea}
+.tcode b{font-size:40px;letter-spacing:.18em;font-family:ui-monospace,Menlo,Consolas,monospace;color:var(--gold)}
+.tcode small{font-size:14px;color:#dbe5f1}
+.crow input.cin{width:130px;text-align:center;text-transform:uppercase;letter-spacing:.14em;font-family:ui-monospace,Menlo,Consolas,monospace}
+.dround{margin-top:10px}.dround.done{background:var(--okbg);color:var(--ok);border-radius:10px;padding:8px 12px;font-weight:700;font-size:15px}
+.pkarte label{background:#fff8e1}
+.kgbar{background:linear-gradient(135deg,#3a0d17,#7a1d2e);color:#fff;border-radius:var(--r);padding:10px 14px;margin-bottom:14px;font-size:15px;box-shadow:var(--sh)}
+.kgcard{display:flex;gap:12px;align-items:center;background:linear-gradient(135deg,#3a0d17,#7a1d2e);color:#fff;border-radius:var(--r);padding:12px 14px;margin:8px 0}
+.kgcard .kgava{flex:0 0 60px;height:60px;border-radius:50%;background:#fff;display:grid;place-items:center;font-size:34px}
+.kgcard .kgn{font-weight:800}.kgcard .kgr{font-size:14px;color:#f3d5dc}
+.beamer.kgb .kghead{display:flex;gap:18px;align-items:center;margin:22px 0 10px}
+.beamer .kgava{flex:0 0 96px;height:96px;border-radius:50%;background:#fff;display:grid;place-items:center;font-size:56px}.beamer .kgava.hit{animation:hit .5s}
+.beamer .kgn{font-size:clamp(26px,4vw,46px);font-weight:900;line-height:1.15}.beamer .kgr{font-size:clamp(16px,2vw,22px);color:#b9c7da}
+.beamer .kghp{height:clamp(28px,4.5vw,52px);background:rgba(255,255,255,.15);border-radius:999px;overflow:hidden;margin-top:12px;position:relative}
+.beamer .kghp i{position:absolute;left:0;top:0;bottom:0;background:linear-gradient(90deg,#ff6b6b,#ffd43b);border-radius:999px;transition:width .6s}
+.beamer .kghp.prog i{background:#8fd1b0}
+.beamer .kgt{font-size:clamp(16px,2vw,22px);color:#dbe5f1;margin-top:6px}
+.beamer .kgwin{font-size:clamp(24px,3.6vw,42px);font-weight:900;color:var(--gold);margin:10px 0}
+.beamer .kgctl{align-items:center;margin:12px 0 14px}.beamer .kground{font-size:clamp(17px,2vw,22px);color:#dbe5f1}
+.beamer .btask svg{max-height:42vh;width:auto;max-width:100%;display:block;margin:6px auto}
+.beamer .btask{background:#fff;color:var(--ink);border-radius:18px;padding:18px 22px;font-size:clamp(18px,2.4vw,28px);line-height:1.4}
+.beamer .btask h3{margin:0 0 8px;font-size:1.1em}.beamer .btask p{margin:6px 0}.beamer .btask .tip{font-size:.7em}
+.beamer .bsol{margin-top:12px;background:var(--okbg);border-radius:12px;padding:10px 14px;font-size:.85em}.beamer .bsol .a{font-weight:800;color:var(--ok)}
+.beamer .btn.kghit{background:#1b7a47;box-shadow:0 2px 0 #0f4f2d;font-size:clamp(18px,2.2vw,24px);min-height:64px}
+.beamer .btn:disabled{opacity:.45}
+.beamer .kgg{display:inline-flex;align-items:center;gap:8px;color:#fff;font-weight:800}.beamer .kgg .btn{min-width:48px}
+.aopts{margin:6px 0;padding-left:1.4em}.aopts li{margin:4px 0}
+.abox{display:inline-block;min-width:4.5em;height:1.3em;border-bottom:2px solid currentColor;vertical-align:-.2em}
+.arows>div{margin:6px 0}.adata{margin:6px 0;font-size:.9em}
+/* Sachliche Version (CONFIG.stil='sachlich'): ruhige Farben, keine Figuren */
+body.sachlich{--acc:#17607a;--acc-d:#0f4557;--nav:#24324a;--boss:#3d4b5f;--bossbg:#f0f3f7}
+.sachlich .hero,.sachlich .cert,.sachlich .bossbar,.sachlich .win .rankup{background:#24324a}
+.sachlich .hero .kicker,.sachlich .cert .kicker{color:#cfe0ea!important}
+.sachlich .cert:after{display:none}
+.sachlich .hp.prog{background:rgba(255,255,255,.25)}.sachlich .hp.prog i{background:#8fd1b0}
+.sachlich .kopt.k0{background:#3f5873}.sachlich .kopt.k1{background:#17607a}.sachlich .kopt.k2{background:#6a5a2c;color:#fff}.sachlich .kopt.k3{background:#2f6b4f}
+.sachlich .ktimer .tbar i,.sachlich .ktimer .tnum,.sachlich .toggle button:not(.off){background:#3f5873}
+.sachlich .float{background:#dfe6ee;color:#132033;font-size:17px;white-space:nowrap}
+.sachlich .newmail .dot{animation:none}
+.sachlich .tile .e{display:none}.sachlich .tile{min-height:64px}
+.sachlich .kgbar,.sachlich .kgcard{background:#24324a}.sachlich .lv.kg{background:#f0f3f7;border-color:#cfd7e2}.sachlich .lv.kg .tag{color:#3d4b5f}
+.story.sach .bubble{border-left:4px solid var(--blue);border-radius:4px 12px 12px 4px}
 @media print{.top,.foot,.calcwin{display:none!important}.shade{position:static;background:none}.sheet{max-height:none;box-shadow:none}}
 </style>
 </head>
@@ -326,8 +455,8 @@ input.name{width:100%;min-height:52px;border:2px solid #8fa1b5;border-radius:12p
   <button class="btn wide" id="bNext" disabled>Weiter ▶</button>
 </div></footer>
 <div class="calcwin hidden" id="calcWin" role="dialog" aria-label="Taschenrechner">
-  <div class="cwh" id="cwh">🧮 <small>Rechner · zum Verschieben hier ziehen</small><button id="cwx" aria-label="Rechner schließen">✕</button></div>
-  <div class="cwb"><div class="calcdisp" id="cd"><small id="cdh"></small><span id="cdv">0</span></div><div class="calckeys" id="ck"></div>
+  <div class="cwh" id="cwh">🧮 <small>Rechner · zum Verschieben hier ziehen</small><button id="cwSci" aria-pressed="false" aria-label="Wissenschaftliche Tasten ein- oder ausblenden">wiss.</button><button id="cwx" aria-label="Rechner schließen">✕</button></div>
+  <div class="cwb"><div class="calcdisp" id="cd"><small id="cdh"></small><span id="cdv">0</span></div><div class="calckeys sci hidden" id="ckx"></div><div class="calckeys" id="ck"></div>
   <button class="btn blue small cwins" id="cwIns">↵ Ergebnis ins Eingabefeld</button></div>
 </div>
 <script>
@@ -335,7 +464,7 @@ input.name{width:100%;min-height:52px;border:2px solid #8fa1b5;border-radius:12p
 </script>
 <script>
 "use strict";
-/* ===================== ENGINE „Lernabenteuer“ v1 (unverändert übernehmen) ===================== */
+/* ===================== ENGINE „Lernabenteuer“ v3 (unverändert übernehmen) ===================== */
 const $=(s,r=document)=>r.querySelector(s);
 const $$=(s,r=document)=>Array.from(r.querySelectorAll(s));
 const fmt=(x,d=1)=>Number(x).toFixed(d).replace('.',',').replace('-','−');
@@ -343,25 +472,62 @@ function shuffle(a){a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor
 function parseNum(s){if(s==null)return NaN;s=String(s).trim().replace(/\s/g,'').replace(/[−–]/g,'-');if(!s)return NaN;if(s.includes(','))s=s.replace(/\./g,'').replace(',','.');return Number(s)}
 function shake(el){if(!el)return;el.classList.remove('shake');void el.offsetWidth;el.classList.add('shake')}
 function esc(s){return String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]))}
+function hashStr(t){let h=2166136261;for(const ch of String(t)){h^=ch.codePointAt(0);h=Math.imul(h,16777619)}return h>>>0}
+function rng(seed){let s=(seed>>>0)||1;return ()=>{s=(Math.imul(s,1664525)+1013904223)>>>0;return s/4294967296}}
 
 /* ---------- Formeln (KaTeX, offline eingebettet) ---------- */
 function K(tex,disp){let h;try{h=katex.renderToString(tex,{throwOnError:false,displayMode:!!disp,strict:false,output:'html'})}catch(e){h=esc(tex)}return `<span class="kx" data-tex="${esc(tex)}">${h}</span>`}
 const KD=tex=>K(tex,true);
 function tex2txt(t){const sub={'0':'₀','1':'₁','2':'₂','3':'₃','4':'₄','5':'₅','6':'₆','7':'₇','8':'₈','9':'₉'};
-  let s=t;for(let k=0;k<3;k++)s=s.replace(/\\frac\{([^{}]*)\}\{([^{}]*)\}/g,'($1)/($2)');
+  let s=t;s=s.replace(/\\[dt]frac/g,'\\frac');for(let k=0;k<3;k++)s=s.replace(/\\frac\{([^{}]*)\}\{([^{}]*)\}/g,'($1)/($2)');
   return s.replace(/\\text\{([^}]*)\}/g,'$1').replace(/\\cdot/g,'·').replace(/\\Delta\s?/g,'Δ').replace(/\{,\}/g,',').replace(/\\approx/g,'≈').replace(/\\mid/g,'|').replace(/\\left|\\right/g,'').replace(/\\[,;!:]/g,' ').replace(/\\quad/g,'  ').replace(/\\Rightarrow/g,'⇒').replace(/\\le/g,'≤').replace(/\\ge/g,'≥').replace(/_(\d)/g,(m,d)=>sub[d]).replace(/_\{(\d)\}/g,(m,d)=>sub[d]).replace(/[{}]/g,'').replace(/\\/g,'').replace(/-/g,'−').replace(/\s+/g,' ').trim()}
 function plain(h){const d=document.createElement('div');d.innerHTML=String(typeof h==='function'?h():h);$$('.kx',d).forEach(k=>k.replaceWith(document.createTextNode(tex2txt(k.dataset.tex))));$$('br',d).forEach(b=>b.replaceWith(' '));return d.textContent.replace(/\s+/g,' ').trim()}
 const OP=o=>`<span class="op">${o}</span>`;
 
 /* ---------- Zustand ---------- */
-const S0={name:'',points:0,done:{},awarded:{},solved:{},maxStep:{},stepIdx:{},hints:0,quiz:{},teacher:false,sim:{},timer:true,bossHints:{}};
+const S0={name:'',points:0,done:{},awarded:{},solved:{},maxStep:{},stepIdx:{},hints:0,quiz:{},teacher:false,sim:{},timer:null,bossHints:{},sci:false,seen:{},
+  stufe:null,help:{},ampel:{},notes:{},votes:{},shop:{},team:{},tp:{},kg:{}};
 let state;
 function load(){try{const s=JSON.parse(localStorage.getItem(CONFIG.key));if(s)return Object.assign(JSON.parse(JSON.stringify(S0)),s)}catch(e){}return JSON.parse(JSON.stringify(S0))}
 function save(){try{localStorage.setItem(CONFIG.key,JSON.stringify(state))}catch(e){}}
 
+/* ---------- Stufe, Stil, Preise ---------- */
+// Stufe: e = Einsteiger, s = Standard, p = Profi (Schüler wählen beim Start, jederzeit änderbar; steht nicht auf dem Ausweis).
+// Stil: CONFIG.stil = 'sachlich' (aus kurs.json) → keine Emojis/Figuren, Prüfauftrag statt Gegner, Kompetenzstufen, ruhige Farben.
+let SACH=false;
+const STUFEN={e:['Einsteiger','🌱','Einfachere Texte, der erste Schritt steht schon da, alle Hilfen sind frei.'],
+              s:['Standard','🚀','Aufgaben wie im Unterricht, drei Hilfen pro Aufgabe.'],
+              p:['Profi','🔥','Fachsprache, nur der Denkanstoß ist frei, weitere Hilfen kosten 3 ⭐, „Lösung zeigen“ kommt später.']};
+const stufe=()=>STUFEN[state.stufe]?state.stufe:'s';
+const timerOn=()=>state.timer==null?!(SACH||stufe()==='e'):!!state.timer;
+const PREIS={j50:10,jzeit:5,versuch:8,hilfe:3,knobel:15};
+const G=(spiel,sach)=>SACH?sach:spiel;
+function variant(S){const v=stufe()==='e'?S.einfach:stufe()==='p'?S.profi:null;return v?Object.assign({},S,v):S}
+function setBodyCls(){document.body.classList.toggle('sachlich',SACH);['e','s','p'].forEach(k=>document.body.classList.toggle('st-'+k,stufe()===k))}
+// Sterne ausgeben (Shop). Lehrkraft-Modus: kostenlos.
+function buy(cost){if(state.teacher)return true;if(state.points<cost){toast(`Dafür fehlen dir noch ${cost-state.points} ⭐.`);return false}
+  state.points-=cost;updPts();floatPts('−'+cost);save();return true}
+function toast(h){const e=document.createElement('div');e.className='toast';e.innerHTML=h;document.body.appendChild(e);setTimeout(()=>e.remove(),2600)}
+
+/* ---------- Sachliche Version: Emojis entfernen ---------- */
+const KEEP='▶◀✔↩↺↻';
+function stripEmo(t){if(!t)return t;let s=t.replace(/(\d)\s*⭐/g,'$1 Punkte').replace(/⭐\s*/g,'');
+  return s.replace(/[\p{Extended_Pictographic}\u{1F1E6}-\u{1F1FF}\u{1F3FB}-\u{1F3FF}]️?(‍[\p{Extended_Pictographic}]️?)*|️|⃣/gu,m=>KEEP.includes(m[0])?m:'')}
+function deEmo(root){if(root.nodeType===3){const u=stripEmo(root.nodeValue);if(u!==root.nodeValue)root.nodeValue=u;return}
+  const w=document.createTreeWalker(root,NodeFilter.SHOW_TEXT);let n;while((n=w.nextNode())){const u=stripEmo(n.nodeValue);if(u!==n.nodeValue)n.nodeValue=u}}
+// Kopfleiste ohne Emojis: schlichte SVG-Symbole
+const ICO={bHome:'<path d="M3 11l9-7 9 7v9h-6v-6H9v6H3z" fill="currentColor"/>',bData:'<path d="M3 6h7l2 2h9v11H3z" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/>',
+  bCalc:'<rect x="5" y="3" width="14" height="18" rx="2.5" fill="none" stroke="currentColor" stroke-width="2.2"/><path d="M8 7h8M8.5 12h1M14.5 12h1M8.5 16h1M14.5 16h1" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>'};
+function sachInit(){if(!SACH)return;Object.keys(ICO).forEach(id=>{const b=$('#'+id);if(b)b.innerHTML=`<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">${ICO[id]}</svg>`});deEmo(document.body);
+  new MutationObserver(ms=>ms.forEach(m=>{if(m.type==='characterData')deEmo(m.target);else m.addedNodes.forEach(x=>{if(x.nodeType===1||x.nodeType===3)deEmo(x)})}))
+   .observe(document.body,{subtree:true,childList:true,characterData:true});
+  const t=document.title;document.title=stripEmo(t)}
+
 /* ---------- Wort-Hilfe ---------- */
 const T=(k,txt)=>`<span class="term" data-g="${k}" role="button" tabindex="0">${txt||(GL[k]?GL[k][0]:k)}</span>`;
-document.addEventListener('click',e=>{const t=e.target.closest('.term');if(t&&GL[t.dataset.g]){const g=GL[t.dataset.g];sheet(`<h3>📘 ${g[0]}</h3><p>${g[1]}</p><button class="btn wide" style="width:100%" data-close>Verstanden</button>`)}});
+// 4. Eintrag in GL: {art:'die', pl:'die Steigungen'} oder {sg:'der Stützpunkt', pl:'die Stützpunkte'}; pl:'' = kein Plural
+function gram(g){const x=g&&g[3];if(!x)return '';const pl=x.pl==null?'':(x.pl===''||x.pl==='–'?'kein Plural':'Plural: '+x.pl);return [x.sg||(x.art?x.art+' '+plain(g[0]):''),pl].filter(Boolean).join(' · ')}
+document.addEventListener('click',e=>{const t=e.target.closest('.term');if(t&&GL[t.dataset.g]){const g=GL[t.dataset.g],gr=gram(g);sheet(`<div class="gsheet"><h3>📘 ${g[0]}</h3>${gr?`<div class="gram">${gr}</div>`:''}<p>${g[1]}</p>${g[2]?`<p class="gx">Beispiel: ${g[2]}</p>`:''}</div><button class="btn wide" style="width:100%" data-close>Verstanden</button>`)}});
 
 /* ---------- Bottom-Sheet ---------- */
 function sheet(html,onOpen){
@@ -377,19 +543,29 @@ document.addEventListener('focusin',e=>{if(e.target.matches&&e.target.matches('.
 function calcInit(){
   const w=$('#calcWin'),h=$('#cwh');
   const keys=['C','⌫','(',')','7','8','9','÷','4','5','6','×','1','2','3','−','0',',','+','='];
+  // Wissenschaftliche Tasten: [Anzeige, interner Baustein]. Winkel in Grad.
+  const sci=[['sin','sin('],['cos','cos('],['tan','tan('],['√','sqrt('],['x²','^2'],['xʸ','^'],['log','log('],['ln','ln('],['π','PI'],['e','EU'],['·10ˣ','E'],['±','NEG']];
   $('#ck').innerHTML=keys.map(k=>`<button class="${'÷×−+'.includes(k)?'op':''}${k==='='?' eq':''}" data-k="${k}">${k}</button>`).join('');
-  const disp=s=>s.replace(/\*/g,'×').replace(/\//g,'÷').replace(/-/g,'−').replace(/\./g,',');
+  $('#ckx').innerHTML=sci.map(([l,t])=>`<button class="sx" data-t="${t}">${l}</button>`).join('')+'<small class="deg">Winkel in Grad · ·10ˣ für Zehnerpotenzen, z. B. 6,6 ·10ˣ −34</small>';
+  const setSci=on=>{$('#ckx').classList.toggle('hidden',!on);$('#cwSci').classList.toggle('on',on);$('#cwSci').setAttribute('aria-pressed',on?'true':'false');if(w._place&&!w.classList.contains('hidden'))w._place(parseFloat(w.style.left)||0,parseFloat(w.style.top)||0)};
+  $('#cwSci').onclick=()=>{state.sci=!state.sci;save();setSci(state.sci)};setSci(!!state.sci);
+  const disp=s=>s.replace(/sqrt\(/g,'√(').replace(/PI/g,'π').replace(/EU/g,'e').replace(/E/g,'·10^').replace(/\*/g,'×').replace(/\//g,'÷').replace(/-/g,'−').replace(/\./g,',');
   const up=()=>{$('#cdv').textContent=disp(cExpr)||'0'};
-  const ev=()=>{if(!/^[0-9+\-*/().]+$/.test(cExpr))return NaN;try{return Function('"use strict";return ('+cExpr+')')()}catch(e){return NaN}};
+  const ev=()=>{if(!/^([0-9+\-*/().^E]|sin\(|cos\(|tan\(|sqrt\(|log\(|ln\(|PI|EU)*$/.test(cExpr))return NaN;
+    const js=cExpr.replace(/PI/g,'(Math.PI)').replace(/EU/g,'(Math.E)').replace(/\^/g,'**');
+    try{return Function('"use strict";const R=Math.PI/180,sin=x=>Math.sin(x*R),cos=x=>Math.cos(x*R),tan=x=>Math.tan(x*R),sqrt=Math.sqrt,log=Math.log10,ln=Math.log;return ('+js+')')()}catch(e){return NaN}};
+  const tok=/(sin\(|cos\(|tan\(|sqrt\(|log\(|ln\(|PI|EU|.)$/;
   const press=k=>{
     if(k==='C'){cExpr='';$('#cdh').textContent=''}
-    else if(k==='⌫')cExpr=cExpr.slice(0,-1);
-    else if(k==='='){const r=ev();if(!isFinite(r)){$('#cdv').textContent='Fehler';cExpr='';return}$('#cdh').textContent=disp(cExpr)+' =';cExpr=String(Number(r.toPrecision(10)))}
+    else if(k==='⌫')cExpr=cExpr.replace(tok,'');
+    else if(k==='='){const r=ev();if(!isFinite(r)){$('#cdv').textContent='Fehler';cExpr='';return}$('#cdh').textContent=disp(cExpr)+' =';cExpr=String(Number(r.toPrecision(10))).replace('e','E')}
+    else if(k==='NEG'){cExpr=/^-\(.*\)$/.test(cExpr)?cExpr.slice(2,-1):cExpr?'-('+cExpr+')':'-'}
     else cExpr+=({'÷':'/','×':'*','−':'-',',':'.'})[k]||k;
     up()};
   $$('#ck button').forEach(b=>b.onclick=()=>press(b.dataset.k));
+  $$('#ckx button').forEach(b=>b.onclick=()=>press(b.dataset.t));
   document.addEventListener('keydown',e=>{if(w.classList.contains('hidden'))return;if(e.target.matches('input,textarea'))return;
-    const m={'Enter':'=','=':'=','Backspace':'⌫','Escape':'C','*':'×','/':'÷','-':'−','+':'+',',':',','.':',','(':'(',')':')'};
+    const m={'Enter':'=','=':'=','Backspace':'⌫','Escape':'C','*':'×','/':'÷','-':'−','+':'+',',':',','.':',','(':'(',')':')','^':'^'};
     if(/^[0-9]$/.test(e.key))press(e.key);else if(m[e.key]){e.preventDefault();press(m[e.key])}});
   $('#cwIns').onclick=()=>{const r=Number(cExpr);
     if(!lastInput||!document.body.contains(lastInput)||lastInput.disabled){$('#cdh').textContent='Tippe zuerst in ein Eingabefeld.';return}
@@ -408,7 +584,21 @@ function calcInit(){
 function toggleCalc(){const w=$('#calcWin');if(w.classList.contains('hidden')){w.classList.remove('hidden');if(!w.style.left)w._place(innerWidth-w.offsetWidth-12,72);else w._place(parseFloat(w.style.left),parseFloat(w.style.top))}else w.classList.add('hidden')}
 
 /* ---------- Daten-Koffer ---------- */
-function openData(){sheet(`<h3>📂 Daten & Formeln</h3>${DATA()}<button class="btn sec" style="width:100%;margin-top:12px" data-close>Schließen</button>`)}
+function glossarHTML(){
+  const ks=Object.keys(GL).filter(k=>state.teacher||state.seen[k]!=null).sort((a,b)=>plain(GL[a][0]).localeCompare(plain(GL[b][0]),'de'));
+  if(!ks.length)return '<p class="tip">Hier sammeln sich die Fachbegriffe, sobald sie dir in den Etappen begegnen.</p>';
+  return `<dl class="gloss">${ks.map(k=>{const g=GL[k],gr=gram(g);return `<div class="ge"><dt>${g[0]}${gr?`<span class="gram">${gr}</span>`:''}</dt><dd>${g[1]}${g[2]?`<div class="gx">Beispiel: ${g[2]}</div>`:''}</dd></div>`}).join('')}</dl>`+
+    (Object.keys(GL).length>ks.length?`<p class="tip">Weitere Begriffe erscheinen, sobald du sie in den Etappen kennenlernst.</p>`:'');
+}
+function openData(tab){
+  const n=Object.keys(GL).filter(k=>state.teacher||state.seen[k]!=null).length;
+  sheet(`<h3>📂 Daten & Begriffe</h3><div class="tabs" role="tablist"><button role="tab" data-tab="d" class="${tab!=='g'?'on':''}">📊 Daten & Formeln</button><button role="tab" data-tab="g" class="${tab==='g'?'on':''}">📘 Glossar (${n})</button></div>
+   <div id="dTab" class="${tab==='g'?'hidden':''}">${DATA()}</div><div id="gTab" class="${tab==='g'?'':'hidden'}">${glossarHTML()}</div>
+   <button class="btn sec" style="width:100%;margin-top:12px" data-close>Schließen</button>`,s=>{
+    $$('[data-tab]',s).forEach(b=>b.onclick=()=>{const g=b.dataset.tab==='g';$('#dTab',s).classList.toggle('hidden',g);$('#gTab',s).classList.toggle('hidden',!g);$$('[data-tab]',s).forEach(x=>x.classList.toggle('on',x===b))})});
+}
+// Begriffe, die in einem Schritt antippbar vorkommen, gelten ab dann als eingeführt (Glossar, „Neu gelernt“).
+function markSeen(){$$('#stepBox .term[data-g]').forEach(t=>{const k=t.dataset.g;if(GL[k]&&state.seen[k]==null)state.seen[k]=cur.li})}
 
 /* ---------- Koordinatensystem (SVG) ---------- */
 const PL=56,PR=18,PT=14,PB=50;
@@ -467,47 +657,171 @@ function ctlRow({label,min,max,step,val,fmtV,onChange}){
   sp.innerHTML=fmtV(val);d.set=set;return d;
 }
 function statusFb(c){const f=document.createElement('div');f.className='fb';c.appendChild(f);return (cls,h)=>{f.className='fb '+cls;f.innerHTML=h}}
-const person=(txt,who)=>{const P=who||CONFIG.person;return `<div class="story"><div class="ava">${P.ava}</div><div class="bubble"><div class="who">${P.name} · ${P.role}</div>${txt}</div></div>`};
+const person=(txt,who)=>{const P=who||CONFIG.person;return SACH?`<div class="story sach"><div class="bubble"><div class="who">${P.name} · ${P.role}</div>${txt}</div></div>`
+  :`<div class="story"><div class="ava">${P.ava}</div><div class="bubble"><div class="who">${P.name} · ${P.role}</div>${txt}</div></div>`};
 const nm=()=>esc(state.name||CONFIG.defaultName);
 
-/* ---------- Ränge ---------- */
+/* ---------- Ränge / Kompetenzstufen ---------- */
 function rankIdx(){let r=0;LEVELS.forEach((L,i)=>{if(L.rankUp&&state.done[i])r=Math.max(r,RANKS.indexOf(L.rankUp))});return r}
+function rankName(i){if(!SACH)return RANKS[i];const k=CONFIG.kompetenz;return k&&k[i]?k[i]:`Kompetenzstufe ${i+1}`}
+
+/* ---------- Etappen vorbereiten: Aufwärmen, Haltepunkte, Knobel-Aufgaben ---------- */
+// Die Engine fügt Aufwärmen (vor dem Einstieg) und Plenum-Haltepunkte (nach Etappen mit halt) als eigene Etappen ein.
+// Inhalte verwenden weiter die ursprünglichen Indizes: recap:[li,si] und levelOpen(n) werden umgerechnet (ORIG).
+let ORIG=[],HALTS=[],KLASSEN=[],PARTNER=[];
+const haltCode=n=>String(100+hashStr(CONFIG.key+'|halt|'+n)%900);
+const kgCode=n=>String(100+hashStr(CONFIG.key+'|klasse|'+n)%900);
+function prepLevels(){
+  LEVELS.forEach((L,i)=>{L._o=i;L.steps.forEach(S=>{if(Array.isArray(S.recap)&&LEVELS[S.recap[0]])S._rc=[LEVELS[S.recap[0]],S.recap[1]]})});
+  const out=[];HALTS=[];KLASSEN=[];PARTNER=[];
+  if(typeof AUFWAERMEN!=='undefined'&&AUFWAERMEN&&AUFWAERMEN.length){const A=AUFWAERMEN,L0=LEVELS[0];
+    out.push({title:'Aufwärmen',tag:'Wiederholung',sub:`${A.length} kurze Fragen aus den letzten Wochen`,badge:'🔥 Aufgewärmt',num:'🔥',icon:'🔥',hour:L0.hour,short:'Aufwärmen',roadH:L0.roadH||'Start',warm:true,
+      steps:A.map((q,k)=>Object.assign({type:'mcq',title:`Aufwärmen ${k+1}/${A.length}`+(q.woche!=null?(typeof q.woche==='number'?` · aus Woche ${q.woche}`:` · ${q.woche}`):''),hints:[]},q,
+        k===0&&!q.text?{text:'Drei kurze Fragen aus den letzten Wochen zum Warmwerden. Du kannst das Aufwärmen auch auslassen und gleich mit dem Einstieg anfangen.'}:{}))})}
+  LEVELS.forEach(L=>{
+    if(SACH){L.title=L.title.replace(/^Gegner\b/,'Prüfauftrag');L.tag=L.tag.replace(/^Gegner\b/,'Prüfauftrag')}
+    if(L.knobel&&!L.boss&&!L.quiz&&!L.partner&&!L.steps.some(s=>s.knobel))L.steps.push(Object.assign({title:'Knobel-Aufgabe'},L.knobel,{bonus:1,knobel:1}));
+    // Partner-Etappe: Rollenwahl als erster Schritt; team/duell-Schritte bekommen eine feste Nummer für die Teilcodes
+    if(L.partner&&!L.steps.some(s=>s.type==='rolle')){let t=0;L.steps.forEach(S=>{if(S.type==='team'||S.type==='duell')S._ti=t++});
+      L.steps.unshift({type:'rolle',title:'Rollen verteilen'});L.num=L.num||'🤝';L.icon=L.icon||'🤝';PARTNER.push(L)}
+    out.push(L);
+    if(L.halt){const H=L.halt,n=HALTS.length;HALTS.push({H,after:L,code:haltCode(n)});
+      out.push({title:`Haltepunkt ${n+1}: Plenum`,tag:'Plenum',sub:H.titel||'Gemeinsam besprechen',badge:'🗣️ Mitdiskutiert',num:'🗣️',icon:'🗣️',hour:L.hour,short:'Plenum',roadH:L.roadH,plenum:true,hi:n,
+        steps:[{type:'plenum',hi:n,title:H.titel||'Kurz innehalten: Plenum'}]
+          .concat(H.bonus?[Object.assign({title:'Bonus-Aufgabe für Schnelle'},H.bonus,{bonus:1})]:[])
+          .concat([{type:'freigabe',hi:n,title:'Weiter nach dem Plenum'}])})}
+    // Klassen-Gegner: die ganze Klasse gemeinsam, Lebensbalken am Beamer, Runden auf den eigenen Geräten
+    if(L.klasse){const Kq=L.klasse,n=KLASSEN.length,R=Kq.runden||[],code=kgCode(n);KLASSEN.push({K:Kq,after:L,code});
+      out.push({title:G('Klassen-Gegner: ','Klassen-Prüfauftrag: ')+Kq.name,tag:G('Klassen-Gegner','Klassen-Prüfauftrag'),sub:Kq.sub||G('Die ganze Klasse gemeinsam · Lebensbalken am Beamer','Die ganze Klasse gemeinsam · Fortschritt am Beamer'),
+        badge:Kq.badge||'🏰 Klasse gemeinsam',num:'🏰',icon:'🏰',hour:L.hour,short:Kq.short||G('Klassen-Gegner','Klasse'),roadH:L.roadH,klasse:true,ki:n,
+        steps:[{type:'info',html:()=>kgIntro(n)}]
+          .concat(R.map((S,r)=>Object.assign({},S,{kg:n,kr:r})))
+          .concat([{type:'freigabe',kg:n,code,title:G('Weiter, wenn der Gegner besiegt ist','Weiter nach dem Klassen-Prüfauftrag'),
+            msg:G('Wartet, bis die Klasse den Gegner am Beamer besiegt hat. Danach nennt eure Lehrkraft den <b>Freigabecode</b>.','Wartet, bis die Klasse den Prüfauftrag am Beamer abgeschlossen hat. Danach nennt eure Lehrkraft den <b>Freigabecode</b>.')}])})}});
+  LEVELS.length=0;out.forEach(L=>LEVELS.push(L));
+  ORIG=[];LEVELS.forEach((L,i)=>{if(L._o!=null)ORIG[L._o]=i});
+}
+const ni=i=>ORIG.length&&ORIG[i]!=null?ORIG[i]:i;   // ursprünglicher Index → aktueller Index
 
 /* ---------- Navigation ---------- */
 let cur=null,ctx=null,timers=[];
 function clearTimers(){timers.forEach(t=>clearInterval(t));timers=[]}
-function levelOpen(i){return state.teacher||i===0||!!state.done[i-1]}
+// isOpen: aktuelle Indizes (Engine). levelOpen: ursprüngliche Indizes aus content.js (z. B. levelOpen(4) in DATA()).
+function isOpen(i){if(state.teacher||i===0)return true;let j=i-1;while(j>=0&&LEVELS[j].warm)j--;return j<0||!!state.done[j]}
+function levelOpen(i){return isOpen(ni(i))}
 function reach(li){const L=LEVELS[li];return (state.done[li]||state.teacher)?L.steps.length-1:Math.min(state.maxStep[li]||0,L.steps.length-1)}
-function updPts(){$('#tPts').textContent='⭐ '+state.points}
+function updPts(){$('#tPts').textContent=SACH?state.points+' Punkte':'⭐ '+state.points}
 function show(id){['home','level','certView'].forEach(x=>$('#'+x).classList.toggle('hidden',x!==id));$('#foot').classList.toggle('hidden',id!=='level');$('#bHome').classList.toggle('hidden',id==='home')}
+function nextOpen(){return LEVELS.findIndex((l,i)=>!state.done[i])}
 function renderHome(){
   clearTimers();cur=null;show('home');
   $('#tTitle').textContent=CONFIG.title;$('#dots').innerHTML='';updPts();
-  const N=LEVELS.length,nDone=LEVELS.filter((l,i)=>state.done[i]).length,nextI=LEVELS.findIndex((l,i)=>!state.done[i]),ri=rankIdx();
+  const N=LEVELS.length,nDone=LEVELS.filter((l,i)=>state.done[i]).length,nextI=nextOpen(),ri=rankIdx();
   let hours='';let lastH=null;
   LEVELS.forEach((L,i)=>{if(L.hour!==lastH){hours+=(lastH!==null?'</div>':'')+`<div class="hourlbl">${L.hour}</div><div class="levels">`;lastH=L.hour}
-    const d=state.done[i],o=levelOpen(i);
-    hours+=`<button class="lv ${d?'done':''} ${i===nextI?'next':''} ${L.boss?'boss':''}" data-l="${i}" ${o?'':'disabled'}>
-     <div class="num">${d?'✓':L.boss?'⚔️':L.num||i}</div><div class="tx"><div class="tag">${L.tag}</div><div class="tt">${L.title}</div><div class="sub">${L.sub}</div></div>
+    const d=state.done[i],o=isOpen(i);
+    hours+=`<button class="lv ${d?'done':''} ${i===nextI?'next':''} ${L.boss?'boss':''} ${L.plenum?'plen':''} ${L.partner?'team':''} ${L.klasse?'kg':''}" data-l="${i}" ${o?'':'disabled'}>
+     <div class="num">${d?'✓':L.boss?G('⚔️',String(i+1)):SACH?String(i+1):L.num||i}</div><div class="tx"><div class="tag">${L.tag}</div><div class="tt">${L.title}</div><div class="sub">${L.sub}</div></div>
      <div class="st">${d?`<b>${L.badge.split(' ')[0]}</b>↻ nochmal`:o?'<b>▶</b>':'<b>🔒</b>'}</div></button>`});
   hours+='</div>';
-  const B=CONFIG.board;
+  const B=CONFIG.board,Z=CONFIG.ziele;
   $('#home').innerHTML=`<section class="hero"><div class="wrap">
     <div class="kicker">${CONFIG.org}</div><h2>${CONFIG.mission}</h2>
     <p>Hallo ${nm()}! ${CONFIG.missionText}</p>
-    <div class="stats"><div class="stat"><b>${nDone}/${N}</b>Etappen</div><div class="stat"><b>⭐ ${state.points}</b>Punkte</div><div class="stat"><b>${nDone}</b>Abzeichen</div></div>
-    <div class="rankbox"><div>Dein Rang: <span class="rk">🎖 ${RANKS[ri]}</span></div><div class="rankladder">${RANKS.map((r,k)=>`<span class="${k<=ri?'on':''}">${r}</span>`).join('')}</div></div>
+    <div class="stats"><div class="stat"><b>${nDone}/${N}</b>Etappen</div><div class="stat"><b>${G('⭐ ','')}${state.points}</b>Punkte</div><div class="stat"><b>${nDone}</b>Abzeichen</div></div>
+    <div class="rankbox"><div>${G('Dein Rang','Deine Kompetenzstufe')}: <span class="rk">${G('🎖 ','')}${rankName(ri)}</span></div><div class="rankladder">${RANKS.map((r,k)=>`<span class="${k<=ri?'on':''}">${rankName(k)}</span>`).join('')}</div></div>
+    <button class="stufechip" id="bStufe">Stufe: <b>${STUFEN[stufe()][0]}</b> · ändern</button>
   </div></section><div class="wrap">
    ${nextI>=0?`<button class="btn wide" style="width:100%;margin-top:16px" id="goNext">▶ ${state.stepIdx[nextI]?'Weitermachen':'Starten'}: ${LEVELS[nextI].title}</button>`:`<button class="btn wide" style="width:100%;margin-top:16px" id="goCert">🪪 ${CONFIG.certButton}</button>`}
-   ${state.done[0]&&B?`<div class="mission"><h3>🧭 Unser Auftrag</h3><dl><dt>Wer?</dt><dd>${B.wer}</dd><dt>Ziel?</dt><dd>${B.ziel}</dd><dt>Wie?</dt><dd>${B.wie}</dd></dl></div>`:''}
+   ${Z&&Z.length?`<div class="ziele"><h3>🎯 Am Ende kannst du …</h3><ul>${Z.map(z=>`<li>… ${z.t}</li>`).join('')}</ul></div>`:''}
+   <div class="map" id="map">${mapSVG(nextI)}</div>
+   ${state.done[ni(0)]&&B?`<div class="mission"><h3>🧭 Unser Auftrag</h3><dl><dt>Wer?</dt><dd>${B.wer}</dd><dt>Ziel?</dt><dd>${B.ziel}</dd><dt>Wie?</dt><dd>${B.wie}</dd></dl></div>`:''}
    ${hours}
    <h3 style="margin:20px 0 8px">Deine Abzeichen</h3>
    <div class="badges">${LEVELS.map((L,i)=>`<span class="bdg ${state.done[i]?'':'off'}">${L.badge}</span>`).join('')}</div>
    <p style="margin:26px 0 30px;text-align:center"><button class="btn sec small" id="bSet">⚙️ Einstellungen</button></p></div>`;
   $$('.lv').forEach(b=>b.onclick=()=>openLevel(+b.dataset.l));
+  $$('#map .stn').forEach(g=>{const go=()=>{const i=+g.dataset.l;if(isOpen(i))openLevel(i);else toast('🔒 Diese Station öffnet sich, wenn du die vorherige geschafft hast.')};g.addEventListener('click',go);g.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();go()}})});
   const gn=$('#goNext');if(gn)gn.onclick=()=>openLevel(nextI);const gc=$('#goCert');if(gc)gc.onclick=renderCert;
-  $('#bSet').onclick=openSettings;window.scrollTo(0,0);
+  $('#bSet').onclick=openSettings;$('#bStufe').onclick=()=>pickStufe(renderHome);window.scrollTo(0,0);
 }
+
+/* ---------- Landkarte: Level als Weg mit Stationen (SVG aus Vorlagen) ---------- */
+// CONFIG.karte={vorlage:'stadt'|'labor'|'werkhalle'|'weltraum'|'insel'|'gebirge', symbole:{<ursprünglicher Index>:'🏢',…}}
+function mapPts(N,port){
+  const cols=port?3:Math.min(5,Math.max(3,Math.ceil(N/2))),rows=Math.ceil(N/cols),W=port?600:1000,M=port?70:90,RH=port?178:175,TOP=port?82:88;
+  const P=[];for(let i=0;i<N;i++){const r=Math.floor(i/cols);let c=i%cols;if(r%2)c=cols-1-c;
+    P.push([M+(c+.5)*(W-2*M)/cols+(r%2?-1:1)*8*Math.sin(i*1.7),TOP+r*RH+14*Math.sin(i*2.3)])}
+  return {P,W,H:TOP+(rows-1)*RH+118,cols};
+}
+function smoothPath(P){if(!P.length)return '';let d=`M${P[0][0].toFixed(1)} ${P[0][1].toFixed(1)}`;
+  for(let i=0;i<P.length-1;i++){const p0=P[i-1]||P[i],p1=P[i],p2=P[i+1],p3=P[i+2]||p2,t=.5;
+    const c1=[p1[0]+(p2[0]-p0[0])*t/3*2,p1[1]+(p2[1]-p0[1])*t/3*2],c2=[p2[0]-(p3[0]-p1[0])*t/3*2,p2[1]-(p3[1]-p1[1])*t/3*2];
+    if(p1[1]!==p2[1]&&Math.abs(p1[1]-p2[1])>60){const s=p1[0]<300||(p1[0]<500&&p2[0]<500)?-1:1,bx=s<0?Math.min(p1[0],p2[0])-75:Math.max(p1[0],p2[0])+75;
+      d+=` C${bx.toFixed(1)} ${p1[1].toFixed(1)} ${bx.toFixed(1)} ${p2[1].toFixed(1)} ${p2[0].toFixed(1)} ${p2[1].toFixed(1)}`}
+    else d+=` C${c1[0].toFixed(1)} ${c1[1].toFixed(1)} ${c2[0].toFixed(1)} ${c2[1].toFixed(1)} ${p2[0].toFixed(1)} ${p2[1].toFixed(1)}`}
+  return d}
+const MAPS={
+ stadt:{lab:'#132033',halo:'#fff',bg(W,H,R){let s=`<rect width="${W}" height="${H}" fill="#e6ecf1"/>`;
+    s+=`<path d="M-20 ${H*.78} C ${W*.3} ${H*.6} ${W*.55} ${H*.98} ${W+20} ${H*.7}" stroke="#b9d8ea" stroke-width="46" fill="none"/>`;
+    for(let y=14;y<H;y+=104)for(let x=14;x<W;x+=128){const park=R()<.18;s+=`<rect x="${x}" y="${y}" width="108" height="84" rx="8" fill="${park?'#cfe7d3':'#d6dee7'}"/>`;
+      if(park)s+=`<circle cx="${x+30}" cy="${y+40}" r="13" fill="#a9d3b1"/><circle cx="${x+70}" cy="${y+50}" r="16" fill="#a9d3b1"/>`;
+      else for(let k=0;k<3;k++)if(R()<.7)s+=`<rect x="${x+8+k*33}" y="${y+10+R()*22}" width="26" height="${30+R()*20}" rx="3" fill="#c3cdd8"/>`}
+    return s},
+   road(d){return `<path d="${d}" stroke="#aab6c3" stroke-width="34" fill="none" stroke-linecap="round"/><path d="${d}" stroke="#fafbfc" stroke-width="27" fill="none" stroke-linecap="round"/><path d="${d}" stroke="#f2b705" stroke-width="3" stroke-dasharray="14 12" fill="none"/>`}},
+ labor:{lab:'#132033',halo:'#fff',bg(W,H,R){let s=`<rect width="${W}" height="${H}" fill="#f2f6f9"/><rect x="8" y="8" width="${W-16}" height="${H-16}" fill="none" stroke="#5c6f86" stroke-width="8" rx="4"/>`;
+    for(let x=180;x<W-20;x+=180)s+=`<path d="M${x} 8 V${H*.3} M${x} ${H*.3+56} V${H*.66} M${x} ${H*.66+56} V${H-8}" stroke="#93a6ba" stroke-width="5"/>`;
+    for(let y=140;y<H-20;y+=170)s+=`<path d="M8 ${y} H${W*.4} M${W*.4+60} ${y} H${W-8}" stroke="#93a6ba" stroke-width="5"/>`;
+    for(let k=0;k<Math.round(W*H/90000);k++){const x=30+R()*(W-60),y=30+R()*(H-60);s+=`<rect x="${x}" y="${y}" width="46" height="22" rx="3" fill="#dde6ee" stroke="#b4c3d1"/><circle cx="${x+12}" cy="${y-8}" r="7" fill="#cfe6ee" stroke="#8fb8c9"/>`}
+    return s},
+   road(d){return `<path d="${d}" stroke="#cfe5ef" stroke-width="44" fill="none" stroke-linecap="round"/><path d="${d}" stroke="#17607a" stroke-width="3.5" stroke-dasharray="5 11" fill="none" stroke-linecap="round"/>`}},
+ werkhalle:{lab:'#132033',halo:'#fff',bg(W,H,R){let s=`<defs><pattern id="hz" width="24" height="24" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="12" height="24" fill="#f2b705"/><rect x="12" width="12" height="24" fill="#2b2f36"/></pattern></defs><rect width="${W}" height="${H}" fill="#e8e3da"/>`;
+    for(let x=0;x<W;x+=60)s+=`<line x1="${x}" y1="0" x2="${x}" y2="${H}" stroke="#ddd5c8"/>`;for(let y=0;y<H;y+=60)s+=`<line x1="0" y1="${y}" x2="${W}" y2="${y}" stroke="#ddd5c8"/>`;
+    s+=`<rect width="${W}" height="14" fill="url(#hz)"/><rect y="${H-14}" width="${W}" height="14" fill="url(#hz)"/>`;
+    for(let k=0;k<Math.round(W*H/70000);k++){const x=20+R()*(W-120),y=30+R()*(H-110);s+=`<rect x="${x}" y="${y}" width="84" height="52" rx="6" fill="#7b828c"/><rect x="${x+6}" y="${y+6}" width="34" height="16" rx="3" fill="#a3aab3"/><circle cx="${x+62}" cy="${y+30}" r="13" fill="none" stroke="#c9cdd2" stroke-width="5" stroke-dasharray="5 4"/>`}
+    return s},
+   road(d){return `<path d="${d}" stroke="#3a3f47" stroke-width="32" fill="none" stroke-linecap="round"/><path d="${d}" stroke="#8b929b" stroke-width="26" stroke-dasharray="3 12" fill="none"/>`}},
+ weltraum:{lab:'#ffffff',halo:'#0e1730',bg(W,H,R){let s=`<defs><linearGradient id="sp" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0e1730"/><stop offset="1" stop-color="#22336a"/></linearGradient><radialGradient id="pl1" cx=".35" cy=".35" r=".7"><stop offset="0" stop-color="#f6b37a"/><stop offset="1" stop-color="#a5502a"/></radialGradient><radialGradient id="pl2" cx=".35" cy=".35" r=".7"><stop offset="0" stop-color="#9fd6f2"/><stop offset="1" stop-color="#2e6f9a"/></radialGradient></defs><rect width="${W}" height="${H}" fill="url(#sp)"/>`;
+    for(let k=0;k<Math.round(W*H/2500);k++)s+=`<circle cx="${(R()*W).toFixed(0)}" cy="${(R()*H).toFixed(0)}" r="${(.6+R()*1.6).toFixed(1)}" fill="#fff" opacity="${(.35+R()*.6).toFixed(2)}"/>`;
+    s+=`<circle cx="${W-70}" cy="60" r="38" fill="url(#pl1)"/><ellipse cx="${W-70}" cy="60" rx="62" ry="13" fill="none" stroke="#f3d4b0" stroke-width="4" opacity=".8"/><circle cx="48" cy="${H-50}" r="26" fill="url(#pl2)"/>`;return s},
+   road(d){return `<path d="${d}" stroke="#9fb3ff" stroke-width="16" opacity=".22" fill="none" stroke-linecap="round"/><path d="${d}" stroke="#c9d4ff" stroke-width="4" stroke-dasharray="1 11" fill="none" stroke-linecap="round"/>`}},
+ insel:{lab:'#132033',halo:'#fff',bg(W,H,R,P){let s=`<rect width="${W}" height="${H}" fill="#a7d8ec"/>`;
+    for(let k=0;k<Math.round(W*H/9000);k++){const x=R()*W,y=R()*H;s+=`<path d="M${x.toFixed(0)} ${y.toFixed(0)} q8 -6 16 0 t16 0" stroke="#d2edf8" stroke-width="2.5" fill="none"/>`}
+    const pts=[];for(let i=0;i<P.length;i++){pts.push(P[i]);if(P[i+1])pts.push([(P[i][0]+P[i+1][0])/2,(P[i][1]+P[i+1][1])/2])}
+    s+=pts.map(p=>`<circle cx="${p[0]}" cy="${p[1]}" r="98" fill="#efd9a3"/>`).join('')+pts.map(p=>`<circle cx="${p[0]}" cy="${p[1]}" r="76" fill="#b9dc9b"/>`).join('');
+    s+=`<text x="${W-46}" y="${H-24}" font-size="40">🌴</text><text x="16" y="52" font-size="40">🌴</text>`;return s},
+   road(d){return `<path d="${d}" stroke="#f6ecd2" stroke-width="16" fill="none" stroke-linecap="round"/><path d="${d}" stroke="#8a5a2b" stroke-width="5" stroke-dasharray="2 12" fill="none" stroke-linecap="round"/>`}},
+ gebirge:{lab:'#132033',halo:'#fff',bg(W,H,R){let s=`<defs><linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#d4e9fa"/><stop offset="1" stop-color="#f4f9fd"/></linearGradient></defs><rect width="${W}" height="${H}" fill="url(#sky)"/>`;
+    for(let row=0;row<Math.ceil(H/170);row++){const y0=150+row*170;for(let x=-60;x<W+60;x+=150+R()*60){const h=110+R()*70,w=110+R()*80;
+      s+=`<path d="M${x-w} ${y0} L${x} ${y0-h} L${x+w} ${y0}Z" fill="${row%2?'#a6b8ca':'#b8c7d6'}"/><path d="M${x-w*.28} ${y0-h*.72} L${x} ${y0-h} L${x+w*.28} ${y0-h*.72} L${x+w*.1} ${y0-h*.66} L${x-w*.08} ${y0-h*.74}Z" fill="#fff"/>`}}
+    for(let k=0;k<Math.round(W*H/16000);k++){const x=R()*W,y=40+R()*(H-40);s+=`<path d="M${x.toFixed(0)} ${(y-22).toFixed(0)} l10 22 h-20z" fill="#4f8a5b"/>`}
+    return s},
+   road(d){return `<path d="${d}" stroke="#f5ecdc" stroke-width="16" fill="none" stroke-linecap="round"/><path d="${d}" stroke="#7a4b23" stroke-width="5" stroke-dasharray="10 8" fill="none" stroke-linecap="round"/>`}},
+ plan:{lab:'#132033',halo:'#fff',bg(W,H){return `<rect width="${W}" height="${H}" fill="#fff"/>`},road(d){return `<path d="${d}" stroke="#b8c3cf" stroke-width="4" fill="none"/>`}}
+};
+function mapSym(L,i){if(SACH)return String(i+1);const k=CONFIG.karte&&CONFIG.karte.symbole;if(k&&L._o!=null&&k[L._o])return k[L._o];
+  return L.icon||(L.final?'🏁':L.boss?'⚔️':L.quiz?'🎯':String(L.badge||'').split(' ')[0]||String(i+1))}
+function mapLbl(t){t=plain(t);if(t.length<=13)return [t];const w=t.split(' ');let a='';const out=[];w.forEach(x=>{if((a+' '+x).trim().length>13&&a){out.push(a);a=x}else a=(a+' '+x).trim()});out.push(a);return out.slice(0,2)}
+function mapSVG(nextI){
+  const N=LEVELS.length,port=(window.innerWidth||800)<700,{P,W,H}=mapPts(N,port);
+  const V=SACH?'plan':(CONFIG.karte&&MAPS[CONFIG.karte.vorlage]?CONFIG.karte.vorlage:'gebirge'),M=MAPS[V],R=rng(hashStr(CONFIG.key+V));
+  const d=smoothPath(P);
+  let s=`<svg viewBox="0 0 ${W} ${H}" xmlns="http://www.w3.org/2000/svg" role="group" aria-label="Landkarte der Etappen" font-family="-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif">${M.bg(W,H,R,P)}${M.road(d)}`;
+  LEVELS.forEach((L,i)=>{const [x,y]=P[i],dn=!!state.done[i],o=isOpen(i),nx=i===nextI;
+    const ring=dn?'#1b7a47':nx?(SACH?'#17607a':'#c2410c'):L.boss?(SACH?'#3d4b5f':'#7a1d2e'):'#24324a';
+    s+=`<g class="stn ${o?'o':'l'} ${dn?'d':''}" data-l="${i}" role="button" tabindex="${o?0:-1}" aria-label="${esc(plain(L.title))}${dn?' (geschafft)':o?'':' (gesperrt)'}">`;
+    if(nx&&!SACH)s+=`<circle cx="${x}" cy="${y}" r="40" fill="none" stroke="#c2410c" stroke-width="4"><animate attributeName="r" values="38;50;38" dur="1.8s" repeatCount="indefinite"/><animate attributeName="opacity" values="1;.2;1" dur="1.8s" repeatCount="indefinite"/></circle>`;
+    s+=`<circle cx="${x}" cy="${y}" r="34" fill="${o?'#fff':'#e3e9f1'}" stroke="${ring}" stroke-width="${nx?6:4}"/>`;
+    s+=`<text x="${x}" y="${y+(SACH?9:11)}" text-anchor="middle" font-size="${SACH?26:30}" font-weight="800" fill="#132033" opacity="${o?1:.45}">${esc(mapSym(L,i))}</text>`;
+    if(dn)s+=`<circle cx="${x+25}" cy="${y-25}" r="13" fill="#1b7a47" stroke="#fff" stroke-width="2.5"/><path d="M${x+19} ${y-25} l4 5 l8 -9" stroke="#fff" stroke-width="3.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>`;
+    else if(!o)s+=`<circle cx="${x+25}" cy="${y-25}" r="12" fill="#4d5a6b" stroke="#fff" stroke-width="2"/><rect x="${x+20}" y="${y-26}" width="10" height="8" rx="1.5" fill="#fff"/><path d="M${x+22} ${y-26} v-3 a3 3 0 0 1 6 0 v3" stroke="#fff" stroke-width="2" fill="none"/>`;
+    mapLbl(L.short||L.title).forEach((t,k)=>{s+=`<text x="${x}" y="${y+58+k*22}" text-anchor="middle" font-size="20" font-weight="800" fill="${M.lab}" stroke="${M.halo}" stroke-width="5" paint-order="stroke">${esc(t)}</text>`});
+    s+='</g>'});
+  return `<div class="maphead">${G('🗺️ ','')}Eure Route · ${LEVELS.filter((l,i)=>state.done[i]).length}/${N} Stationen</div>`+s+'</svg>';
+}
+let mapPort=null;
+window.addEventListener('resize',()=>{const p=(window.innerWidth||800)<700;if(mapPort!==null&&p!==mapPort&&cur===null&&!$('#home').classList.contains('hidden'))renderHome();mapPort=p});
+
 function openLevel(i,si){cur={li:i,si:si!=null?si:(state.done[i]?0:Math.min(state.stepIdx[i]||0,reach(i)))};show('level');renderStep()}
 function goStep(si){if(si<0||si>=LEVELS[cur.li].steps.length)return;cur.si=si;renderStep()}
 function renderDots(){
@@ -515,128 +829,307 @@ function renderDots(){
   $('#dots').innerHTML=L.steps.map((s,i)=>`<button data-s="${i}" class="${state.solved[cur.li+'-'+i]?'on':''} ${i===cur.si?'cur':''}" ${(!L.quiz&&i<=r&&i!==cur.si)?'':'disabled'} aria-label="Schritt ${i+1}"></button>`).join('');
   $$('#dots button').forEach(b=>b.onclick=()=>goStep(+b.dataset.s));
 }
-function bossHP(L,li){const ks=L.steps.map((s,i)=>s.type!=='info'?li+'-'+i:null).filter(Boolean);const n=ks.length,d=ks.filter(k=>state.solved[k]).length;return {n,d,hp:Math.round(100*(1-d/n))}}
+function bossHP(L,li){const ks=L.steps.map((s,i)=>s.type!=='info'&&!s.knobel?li+'-'+i:null).filter(Boolean);const n=ks.length,d=ks.filter(k=>state.solved[k]).length;return {n,d,hp:Math.round(100*(1-d/n))}}
 function bossBar(L,li){const b=bossHP(L,li),B=L.boss;const el=document.createElement('div');el.className='bossbar';
-  el.innerHTML=`<div class="bava" id="bAva">${B.ava}</div><div style="flex:1;min-width:0"><div class="bn">⚔️ ${B.name}</div><div class="bs">${B.role}</div>
+  el.innerHTML=SACH?`<div style="flex:1;min-width:0"><div class="bn">Prüfauftrag: ${B.name}</div><div class="bs">${B.role}</div>
+   <div class="hp prog" aria-label="Fortschritt"><i id="bHp" style="width:${100-b.hp}%"></i></div><div class="hpt" id="bHpt">Fortschritt: ${b.d}/${b.n} Aufgaben gelöst</div></div>`
+  :`<div class="bava" id="bAva">${B.ava}</div><div style="flex:1;min-width:0"><div class="bn">⚔️ ${B.name}</div><div class="bs">${B.role}</div>
    <div class="hp" aria-label="${B.bar}"><i id="bHp" style="width:${b.hp}%"></i></div><div class="hpt" id="bHpt">${B.bar}: ${b.hp} % · ${b.d}/${b.n} Aufgaben gelöst</div></div>`;return el}
-function bossHit(){const L=LEVELS[cur.li],b=bossHP(L,cur.li);const i=$('#bHp');if(!i)return;i.style.width=b.hp+'%';$('#bHpt').textContent=`${L.boss.bar}: ${b.hp} % · ${b.d}/${b.n} Aufgaben gelöst`;
+function bossHit(){const L=LEVELS[cur.li],b=bossHP(L,cur.li);const i=$('#bHp');if(!i)return;
+  if(SACH){i.style.width=(100-b.hp)+'%';$('#bHpt').textContent=`Fortschritt: ${b.d}/${b.n} Aufgaben gelöst`;return}
+  i.style.width=b.hp+'%';$('#bHpt').textContent=`${L.boss.bar}: ${b.hp} % · ${b.d}/${b.n} Aufgaben gelöst`;
   const a=$('#bAva');a.classList.remove('hit');void a.offsetWidth;a.classList.add('hit');
   const r=$('.hp').getBoundingClientRect(),e=document.createElement('div');e.className='dmg';e.textContent='−'+Math.round(100/b.n)+' % '+L.boss.bar;e.style.left=Math.max(4,r.right-150)+'px';e.style.top=(r.bottom+6)+'px';document.body.appendChild(e);setTimeout(()=>e.remove(),1200)}
+// Hilfen in Reihenfolge; Einsteiger bekommt den „Ersten Schritt“ sofort, Profi zahlt ab der 2. Hilfe.
+function hintPlan(S){const labs=['💡 Denkanstoß','📘 Wort-Hilfe','✏️ Erster Schritt'];const a=(S.hints||[]).map((h,i)=>({lab:labs[i]||'💡 Tipp',html:h,i}));if(S.recap!=null)a.push({lab:'🔁 Rückblick',recap:1});return a}
+function hintLabel(){const P=ctx.plan,n=ctx.hint;if(n>=P.length)return '💡 Alle offen';const cost=stufe()==='p'&&n>=1&&!ctx.review;return (n?`💡 Hilfe ${n+1}/${P.length}`:'💡 Hilfe')+(cost?` · ${PREIS.hilfe} ⭐`:'')}
 function renderStep(){
   clearTimers();
-  const L=LEVELS[cur.li],S=L.steps[cur.si],key=cur.li+'-'+cur.si,was=!!state.solved[key];
+  const L=LEVELS[cur.li],S=variant(L.steps[cur.si]),key=cur.li+'-'+cur.si,was=!!state.solved[key];
   $('#tTitle').textContent=L.title;
   const box=$('#stepBox');box.innerHTML='';
-  ctx={attempts:0,hint:0,solved:false,S,key,auto:null,reveal:null,revealed:false,review:was};
+  ctx={attempts:0,hint:0,penal:0,used:0,solved:false,S,key,auto:null,reveal:null,revealed:false,review:was,twin:null,plan:hintPlan(S),retry:false};
+  let first=null;if(stufe()==='e'){first=ctx.plan.find(h=>h.i===2);if(first)ctx.plan=ctx.plan.filter(h=>h!==first)}
+  // Partneraufgabe: der „Erste Schritt“ gehört zur gemeinsamen Aufgabe und erscheint erst dort
+  if(first&&S.type==='team'){ctx.first=first;first=null}
   if(L.boss)box.appendChild(bossBar(L,cur.li));
-  const next=$('#bNext');next.disabled=!was;next.textContent=cur.si===L.steps.length-1?(L.boss?'Gegner besiegen ⚔️':'Abschließen 🏁'):'Weiter ▶';
+  if(L.klasse&&S.kr!=null)box.appendChild(kgBanner(L));
+  const next=$('#bNext');next.disabled=!was;next.textContent=cur.si===L.steps.length-1?(L.boss?G('Gegner besiegen ⚔️','Prüfauftrag abschließen'):'Abschließen 🏁'):'Weiter ▶';
   const back=$('#bBack');back.disabled=cur.si===0;back.classList.toggle('hidden',!!L.quiz&&cur.si>0);
-  $('#bHint').classList.toggle('hidden',!(S.hints&&S.hints.length));$('#bHint').textContent='💡 Hilfe';
+  $('#bHint').classList.toggle('hidden',!ctx.plan.length);$('#bHint').textContent=hintLabel();
   const card=document.createElement('div');card.className='card';box.appendChild(card);
   if(S.type==='info'){card.innerHTML=S.html();if(S.mount)S.mount(card);solved(true)}
+  else if(S.knobel&&!was&&!state.teacher&&!state.shop[key]){
+    // Knobel-Aufgabe: für Sterne freischalten, sonst überspringen
+    card.innerHTML=`<div class="kicker">🧩 Knobel-Aufgabe · freiwillig</div><h3>${S.title}</h3><p>Für Schnelle und Neugierige: Schalte die Aufgabe für <b>${PREIS.knobel} ⭐</b> frei. Gelöst bringt sie bis zu <b>30 ⭐</b>. Du kannst sie auch überspringen.</p>`;
+    const b=addCheckBtn(card,`🔓 Freischalten (${PREIS.knobel} ⭐)`);
+    const unlock=()=>{if(!buy(PREIS.knobel))return false;state.shop[key]=1;save();renderStep();return true};
+    b.onclick=unlock;ctx.auto=()=>{if(unlock()&&ctx.auto)ctx.auto()};
+    next.disabled=false;next.textContent='Überspringen ▶';$('#bHint').classList.add('hidden');
+  }
   else{
     const head=(was&&!L.quiz?`<div class="review">✅ Schon gemeistert – du kannst die Aufgabe wiederholen oder mit „Weiter“ springen.</div>`:'')+
-      (S.title?`<div class="kicker">${L.boss?'⚔️ Aufgabenblock':L.tag}${S.bonus?' · Bonus (freiwillig)':''}</div><h3>${S.title}</h3>`:'');
+      (S.title?`<div class="kicker">${L.boss?G('⚔️ Aufgabenblock','Prüfauftrag'):L.tag}${S.kr!=null?` · Runde ${S.kr+1}/${KLASSEN[S.kg].K.runden.length}`:''}${S.knobel?' · Knobel-Aufgabe':S.bonus?' · Bonus (freiwillig)':''}</div><h3>${S.title}</h3>`:'');
     const tx=S.text?`<p>${typeof S.text==='function'?S.text():S.text}</p>`:'';
     const dt=S.data?`<details class="given"><summary>${S.dataTitle||'📂 Gegebene Werte'}</summary><div class="gb">${typeof S.data==='function'?S.data():S.data}</div></details>`:'';
-    card.innerHTML=head+tx+dt+(S.pre?S.pre():'');
-    const api={solved:()=>solved(),wrong:()=>{ctx.attempts++;updReveal()},card,setAuto:f=>{ctx.auto=f;ctx.reveal=S.noReveal?null:f}};
+    card.innerHTML=head+tx+dt+(S.pre?S.pre():'')+(first?`<div class="hintbox first"><b>✏️ Erster Schritt:</b> ${first.html}</div>`:'');
+    const api={solved:()=>solved(),wrong:()=>{ctx.attempts++;updReveal();offerRetry()},card,setAuto:f=>{ctx.auto=f;ctx.reveal=S.noReveal?null:f}};
     W[S.type](card,S,api);
     const hb=document.createElement('div');hb.id='hintArea';card.appendChild(hb);
     if(S.bonus&&!was){next.disabled=false;next.textContent='Überspringen ▶'}
   }
-  renderDots();
-  if(!state.done[cur.li]){state.stepIdx[cur.li]=cur.si;save()}
+  renderDots();markSeen();
+  if(!state.done[cur.li]){state.stepIdx[cur.li]=cur.si}save();
   window.scrollTo(0,0);
 }
 function updReveal(){
   if(!ctx.reveal||ctx.solved||$('#revBtn'))return;
-  const n=(ctx.S.hints||[]).length;if(!(ctx.attempts>=2||(n&&ctx.hint>=n)))return;
-  const b=document.createElement('button');b.id='revBtn';b.className='btn sec small revealbtn';b.textContent='👁 Lösung zeigen (dann 0 Punkte für diese Aufgabe)';
-  b.onclick=()=>{ctx.revealed=true;ctx.reveal();b.remove();const d=document.createElement('div');d.className='hintbox';d.innerHTML='👁 <b>So sieht die Lösung aus.</b> Lies sie genau – mit ◀ kannst du die Aufgabe später nochmal selbst lösen.';$('#hintArea').appendChild(d)};
+  const n=ctx.plan.length,need=stufe()==='p'?3:2;if(!(ctx.attempts>=need||(n&&ctx.hint>=n)))return;
+  const b=document.createElement('button');b.id='revBtn';b.className='btn sec small revealbtn';b.textContent=ctx.S.twin?'👁 Lösung zeigen (danach kommt eine Zwillingsaufgabe)':'👁 Lösung zeigen (dann 0 Punkte für diese Aufgabe)';
+  b.onclick=()=>{ctx.revealed=true;ctx.reveal();b.remove();const d=document.createElement('div');d.className='hintbox';d.innerHTML=ctx.S.twin?'👁 <b>So sieht die Lösung aus.</b> Lies sie genau. Darunter wartet eine Zwillingsaufgabe: gleicher Weg, andere Werte. Die löst du jetzt selbst.':'👁 <b>So sieht die Lösung aus.</b> Lies sie genau – mit ◀ kannst du die Aufgabe später nochmal selbst lösen.';$('#hintArea').appendChild(d);if(ctx.S.twin)showTwin()};
   $('#hintArea').appendChild(b);
 }
+// Gegner: einen Fehlversuch für Sterne zurückkaufen (einmal je Aufgabe), danach zählt der nächste Versuch wie der erste.
+function offerRetry(){
+  const L=LEVELS[cur.li],ha=$('#hintArea');if(!L.boss||ctx.review||ctx.solved||ctx.retry||ctx.revealed||!ha||$('#retryBtn')||ctx.attempts<1)return;
+  const b=document.createElement('button');b.id='retryBtn';b.className='btn sec small revealbtn';b.textContent=`🛡️ Fehlversuch zurückkaufen (${PREIS.versuch} ⭐)`;
+  b.onclick=()=>{if(!buy(PREIS.versuch))return;ctx.retry=true;ctx.attempts=Math.max(0,ctx.attempts-1);b.remove();const d=document.createElement('div');d.className='hintbox';d.innerHTML='🛡️ Der Fehlversuch zählt nicht. Dein nächster Versuch bringt wieder die vollen Punkte.';ha.appendChild(d)};
+  ha.appendChild(b);
+}
+// Zwillingsaufgabe: erscheint nach „Lösung zeigen“. Erst wenn sie gelöst ist, gilt der Schritt als geschafft.
+function showTwin(){
+  if(ctx.twin)return;const T=variant(ctx.S.twin);ctx.twin={attempts:0,ok:false};
+  const card=document.createElement('div');card.className='card twin';card.id='twinCard';
+  card.innerHTML=`<div class="kicker">🔁 Zwillingsaufgabe · jetzt du</div>${T.title?`<h3>${T.title}</h3>`:''}${T.text?`<p>${typeof T.text==='function'?T.text():T.text}</p>`:''}${T.data?`<details class="given"><summary>${T.dataTitle||'📂 Gegebene Werte'}</summary><div class="gb">${typeof T.data==='function'?T.data():T.data}</div></details>`:''}${T.pre?T.pre():''}`;
+  $('#stepBox').appendChild(card);
+  const api={solved:()=>{if(ctx.twin.ok)return;ctx.twin.ok=true;solved()},wrong:()=>{ctx.twin.attempts++},card,setAuto:f=>{ctx.auto=f}};
+  ctx.auto=null;W[T.type](card,T,api);markSeen();
+  setTimeout(()=>card.scrollIntoView({behavior:'smooth',block:'start'}),300);
+}
 function solved(silent,fixed){
-  if(ctx.solved)return;ctx.solved=true;
+  if(ctx.solved)return;
+  if(ctx.revealed&&ctx.S.twin&&!(ctx.twin&&ctx.twin.ok))return;
+  ctx.solved=true;
   const S=ctx.S,L=LEVELS[cur.li];
-  $('#bNext').disabled=false;if(S.bonus)$('#bNext').textContent='Weiter ▶';
+  $('#bNext').disabled=false;if(S.bonus)$('#bNext').textContent=cur.si===L.steps.length-1?'Abschließen 🏁':'Weiter ▶';
   const first=!state.solved[ctx.key];
   state.solved[ctx.key]=1;state.maxStep[cur.li]=Math.max(state.maxStep[cur.li]||0,cur.si+1);
   if(!silent&&!state.awarded[ctx.key]){
     let p;
     if(fixed!=null)p=fixed;
-    else if(ctx.revealed)p=0;
-    else if(L.boss){p=ctx.attempts===0?15:ctx.attempts===1?10:5;if(ctx.hint>0)p=Math.min(p,5)}
+    else if(ctx.revealed)p=ctx.twin&&ctx.twin.ok?(L.boss?(ctx.twin.attempts===0?8:4):(ctx.twin.attempts===0?5:2)):0;
+    else if(S.knobel)p=ctx.attempts===0?30:ctx.attempts===1?20:10;
+    else if(L.boss){p=ctx.attempts===0?15:ctx.attempts===1?10:5;p=Math.max(5,p-3*ctx.penal)}
     else p=ctx.attempts===0?10:ctx.attempts===1?6:3;
-    if(S.bonus&&!ctx.revealed&&fixed==null)p+=5;
+    if(S.bonus&&!S.knobel&&!ctx.revealed&&fixed==null)p+=5;
     state.awarded[ctx.key]=1;
     if(p>0){state.points+=p;updPts();floatPts('+'+p)}
+    // Rückmeldung für den Ausweis: Wo waren Hilfen oder die Lösung nötig?
+    if(!ctx.review&&!L.quiz&&(ctx.used||ctx.revealed))state.help[ctx.key]={h:ctx.used,r:ctx.revealed?1:0};
   }
-  if(L.boss&&S.type!=='info'&&first)bossHit();
-  const rb=$('#revBtn');if(rb)rb.remove();
+  if(L.boss&&S.type!=='info'&&!S.knobel&&first)bossHit();
+  ['#revBtn','#retryBtn'].forEach(s=>{const b=$(s);if(b)b.remove()});
   save();renderDots();
 }
-function floatPts(t){const e=document.createElement('div');e.className='float';e.textContent=t;const r=$('#tPts').getBoundingClientRect();e.style.left=Math.max(4,r.left-10)+'px';e.style.top=(r.bottom+4)+'px';document.body.appendChild(e);setTimeout(()=>e.remove(),1200)}
+function floatPts(t){const e=document.createElement('div');e.className='float';e.textContent=SACH?t+' Punkte':t;const r=$('#tPts').getBoundingClientRect();e.style.left=Math.max(4,r.left-10)+'px';e.style.top=(r.bottom+4)+'px';document.body.appendChild(e);setTimeout(()=>e.remove(),1200)}
+// Teambonus der Partner-Etappe: 15 ⭐, je Fehlversuch bei einem gemeinsamen Ergebnis −5, „Lösung zeigen“ zählt wie 3 Fehlversuche.
+function teamBonus(li){const L=LEVELS[li];let e=0;L.steps.forEach((S,si)=>{if(S.type!=='team')return;const k=li+'-'+si,t=state.tp[k]||{};e+=(t.err||0)+(state.help[k]&&state.help[k].r?3:0)});return Math.max(0,15-5*e)}
+function uebenFor(L){return (CONFIG.ueben||[]).filter(u=>u.level===L._o)}
 function finishLevel(){
   const i=cur.li,L=LEVELS[i],first=!state.done[i],r0=rankIdx();
   state.done[i]=true;let lines=[];
-  if(first){let b=20;lines.push('Etappe geschafft: <b>+20 ⭐</b>');
-    if(L.boss){b+=30;lines.push('Gegner überzeugt: <b>+30 ⭐</b>');if(!state.bossHints[i]){b+=20;lines.push('Ohne Hilfe: <b>+20 ⭐</b>')}}
+  if(first){let b=L.warm||L.plenum?10:20;lines.push(`Etappe geschafft: <b>+${b} ⭐</b>`);
+    if(L.boss){b+=30;lines.push(G('Gegner überzeugt','Prüfauftrag erledigt')+': <b>+30 ⭐</b>');const h=+state.bossHints[i]||0,sb=Math.max(0,20-5*h);if(sb){b+=sb;lines.push((h?'Fast ohne Hilfe':'Ohne Hilfe')+`: <b>+${sb} ⭐</b>`)}}
+    if(L.partner){const T=state.team[L._o]||{},tb=teamBonus(i);if(T.solo)lines.push('Allein gelöst (Solo-Freigabe): kein Teambonus');else{b+=tb;lines.push(`Teambonus${tb<15?' (nach Fehlversuchen)':''}: <b>+${tb} ⭐</b>`)}}
     state.points+=b;updPts()}
   state.stepIdx[i]=0;save();confetti();
-  const r1=rankIdx(),last=i===LEVELS.length-1,nx=LEVELS[i+1];
+  const r1=rankIdx(),last=i===LEVELS.length-1,nx=LEVELS[i+1],ub=uebenFor(L);
   sheet(`<div class="win"><div class="big">${L.boss?L.boss.ava:L.badge.split(' ')[0]}</div>
    <h3 style="margin:10px 0 4px">${L.boss?L.boss.win:L.title+' – geschafft!'}</h3>
    <p>Neues Abzeichen: <b>${L.badge}</b>${lines.length?'<br>'+lines.join('<br>'):''}</p>
-   ${r1>r0?`<div class="rankup">🎖 Beförderung!<b>${RANKS[r1]}</b>${CONFIG.rankText?CONFIG.rankText[r1]||'':''}</div>`:''}
+   ${(()=>{const nw=Object.keys(state.seen).filter(k=>state.seen[k]===i&&GL[k]);return nw.length?`<div class="newterms"><b>🆕 Neu gelernt:</b> ${nw.map(k=>GL[k][0]).join(' · ')}<br><small>Alle Begriffe findest du im 📂 unter „Glossar“.</small></div>`:''})()}
+   ${ub.length?`<div class="newterms ueb"><b>📝 Passend dazu üben:</b> ${ub.map(u=>`${u.aufgaben}${u.text?' ('+u.text+')':''}`).join(' · ')}<br><small>im Aufgabenblatt „Üben“ dieser Woche</small></div>`:''}
+   ${r1>r0?`<div class="rankup">${G('🎖 Beförderung!','Neue Kompetenzstufe erreicht')}<b>${rankName(r1)}</b>${CONFIG.rankText?CONFIG.rankText[r1]||'':''}</div>`:''}
    <button class="btn wide" style="width:100%" id="wNext">${last?'🪪 '+CONFIG.certButton:'Weiter: '+nx.title+' ▶'}</button>
    <button class="btn sec" style="width:100%;margin-top:8px" id="wRep">↻ Diese Etappe wiederholen</button>
    <button class="btn sec" style="width:100%;margin-top:8px" id="wHome">Zur Übersicht</button></div>`,(s,close)=>{
      $('#wNext',s).onclick=()=>{close();last?renderCert():openLevel(i+1)};$('#wHome',s).onclick=()=>{close();renderHome()};$('#wRep',s).onclick=()=>{close();openLevel(i,0)}});
 }
-function confetti(){const cs=['#c2410c','#f2b705','#1b7a47','#17607a','#5b3fc4'];for(let k=0;k<40;k++){const c=document.createElement('div');c.className='conf';c.style.left=Math.random()*100+'vw';c.style.background=cs[k%5];c.style.animationDelay=Math.random()*.5+'s';document.body.appendChild(c);setTimeout(()=>c.remove(),2600)}}
+function confetti(){if(SACH)return;const cs=['#c2410c','#f2b705','#1b7a47','#17607a','#5b3fc4'];for(let k=0;k<40;k++){const c=document.createElement('div');c.className='conf';c.style.left=Math.random()*100+'vw';c.style.background=cs[k%5];c.style.animationDelay=Math.random()*.5+'s';document.body.appendChild(c);setTimeout(()=>c.remove(),2600)}}
 function quizScore(){return Object.values(state.quiz).filter(Boolean).length}
+
+/* ---------- Ausweis: Rückmeldung, Prüfcode, Ampel ---------- */
+// Prüfcode: 4 Zeichen aus Name und Punkten (ohne Verwechsler). Prüfung im Lehrkraft-Modus unter ⚙️.
+// 4 Zeichen ohne Verwechsler (kein 0/O, 1/I, 2/Z, 5/S, 6/G, 8/B), ca. 280 000 Möglichkeiten. Auch für Teilcodes der Partner-Etappe.
+function code4(seed){const A='ACDEFHJKLMNPRTUVWXY3479';let h=hashStr(seed),s='';for(let k=0;k<4;k++){s+=A[h%A.length];h=Math.floor(h/A.length)+Math.imul(k+7,2654435761)>>>0}return s}
+function pruefCode(name,points){return code4(String(name||'').trim().toLowerCase()+'|'+Number(points)+'|'+CONFIG.key)}
+const AMP={g:['sicher','Das kann ich sicher.'],y:['teilweise','Das klappt teilweise.'],r:['unsicher','Da bin ich noch unsicher.']};
+function zielUeben(z){if(z.ueben)return z.ueben;const u=(CONFIG.ueben||[]).filter(x=>(z.level||[]).includes(x.level)).map(x=>x.aufgaben);return u.join(', ')}
+function askAmpel(then){const Z=CONFIG.ziele||[];if(!Z.length){then&&then();return}
+  sheet(`<h3>🚦 Wie sicher bist du jetzt?</h3><p class="tip">Schätze dich ehrlich ein. Das steht auf deinem Ausweis und zeigt dir, was du noch üben kannst.</p>
+   ${Z.map((z,i)=>`<div class="ampq"><p><b>Ich kann …</b> ${z.t}</p><div class="ampbtns">${Object.keys(AMP).map(k=>`<button class="ampb ${state.ampel[i]===k?'on':''}" data-i="${i}" data-a="${k}"><span class="amp ${k}"></span>${AMP[k][0]}</button>`).join('')}</div></div>`).join('')}
+   <button class="btn wide" style="width:100%;margin-top:10px" id="aOk">Fertig ✔</button>`,(s,close)=>{
+    $$('.ampb',s).forEach(b=>b.onclick=()=>{state.ampel[b.dataset.i]=b.dataset.a;save();$$(`.ampb[data-i="${b.dataset.i}"]`,s).forEach(x=>x.classList.toggle('on',x===b))});
+    $('#aOk',s).onclick=()=>{close();then&&then()}});
+}
+function helpList(){return Object.keys(state.help).map(k=>{const [li,si]=k.split('-').map(Number),L=LEVELS[li],S=L&&L.steps[si];if(!S)return null;const h=state.help[k];
+  return `<li><b>${esc(plain(L.short||L.title))}</b> · ${esc(plain(S.title||'Aufgabe'))}: ${[h.h?`${h.h} Hilfe${h.h>1?'n':''}`:'',h.r?'Lösung gezeigt':''].filter(Boolean).join(', ')}</li>`}).filter(Boolean)}
 function renderCert(){
   clearTimers();show('certView');$('#bHome').classList.remove('hidden');
   $('#tTitle').textContent=CONFIG.certTitle;$('#dots').innerHTML='';
-  const q=quizScore(),n=QUIZ.length,all=LEVELS.every((l,i)=>state.done[i]),stars=q>=n*.9?3:q>=n*.65?2:q>=n*.4?1:0;
+  const q=quizScore(),n=QUIZ.length,all=LEVELS.every((l,i)=>state.done[i]),stars=q>=n*.9?3:q>=n*.65?2:q>=n*.4?1:0,Z=CONFIG.ziele||[],hl=helpList(),U=CONFIG.ueben||[];
   $('#certView').innerHTML=`<div class="wrap" style="padding:18px 16px 40px">
    <div class="cert"><div class="kicker" style="color:#ffb199">${CONFIG.org}</div><h2>🪪 ${CONFIG.certTitle}</h2><div style="color:#dbe5f1">${CONFIG.certSub}</div>
-   <div class="nm">${nm()}</div><div style="color:#dbe5f1">🎖 Rang: <b style="color:#fff">${RANKS[rankIdx()]}</b> · ${all?`alle ${LEVELS.length} Etappen geschafft`:'noch nicht alle Etappen geschafft'}</div>
-   <div class="stars">${'★'.repeat(stars)}${'☆'.repeat(3-stars)}</div>
-   <div class="row"><div>⭐ <b>${state.points}</b> Punkte</div><div>🎯 Quiz: <b>${q}/${n}</b></div><div>💡 Hilfen: <b>${state.hints}</b></div><div>📅 ${new Date().toLocaleDateString('de-DE')}</div></div>
-   <div class="badges" style="margin-top:14px">${LEVELS.map((L,i)=>`<span class="bdg ${state.done[i]?'':'off'}">${L.badge}</span>`).join('')}</div></div>
+   <div class="nm">${nm()}</div><div style="color:#dbe5f1">${G('🎖 Rang','Kompetenzstufe')}: <b style="color:#fff">${rankName(rankIdx())}</b> · ${all?`alle ${LEVELS.length} Etappen geschafft`:'noch nicht alle Etappen geschafft'}</div>
+   ${SACH?'':`<div class="stars">${'★'.repeat(stars)}${'☆'.repeat(3-stars)}</div>`}
+   <div class="row"><div>${G('⭐ ','')}<b>${state.points}</b> Punkte</div><div>🎯 Quiz: <b>${q}/${n}</b></div><div>💡 Hilfen: <b>${state.hints}</b></div><div>📅 ${new Date().toLocaleDateString('de-DE')}</div></div>
+   ${Z.length?`<div class="ampcert"><b>Selbsteinschätzung</b><ul>${Z.map((z,i)=>{const a=state.ampel[i];return `<li><span class="amp ${a||'n'}"></span><span>${z.t}${a&&a!=='g'&&zielUeben(z)?`<br><small>→ Übe: ${zielUeben(z)}</small>`:''}</span></li>`}).join('')}</ul></div>`:''}
+   <div class="badges" style="margin-top:14px">${LEVELS.map((L,i)=>`<span class="bdg ${state.done[i]?'':'off'}">${L.badge}</span>`).join('')}</div>
+   <div class="pcode">Prüfcode <b id="pCode">${pruefCode(state.name||CONFIG.defaultName,state.points)}</b></div></div>
+   <div class="card" style="margin-top:14px"><h3>${G('🧾 ','')}Rückmeldung</h3>${hl.length?`<p>Hier hast du Unterstützung gebraucht. Diese Schritte lohnen sich zum Wiederholen:</p><ul class="helpl">${hl.join('')}</ul>`:'<p>Alles ohne Hilfen gelöst. Stark!</p>'}
+   ${Z.length?`<button class="btn sec small" style="width:100%" id="cAmp">🚦 Selbsteinschätzung ${Object.keys(state.ampel).length?'ändern':'ausfüllen'}</button>`:''}</div>
+   ${U.length?`<div class="card"><h3>${G('📝 ','')}So geht's weiter: Üben</h3><ul class="helpl">${U.map(u=>{const L=LEVELS[ni(u.level)];return `<li><b>${esc(u.aufgaben)}</b>${L?` passt zu ${esc(plain(L.title))}`:''}${u.text?` · ${esc(u.text)}`:''}</li>`}).join('')}</ul></div>`:''}
    <p class="tip" style="margin-top:14px">📸 Mach einen Screenshot von deinem Ausweis und gib ihn bei deiner Lehrkraft ab.</p>
    <p class="tip">${CONFIG.nextTime}</p><button class="btn wide" style="width:100%" id="cHome">Zur Übersicht</button></div>`;
-  $('#cHome').onclick=renderHome;window.scrollTo(0,0);
+  $('#cHome').onclick=renderHome;const ca=$('#cAmp');if(ca)ca.onclick=()=>askAmpel(renderCert);window.scrollTo(0,0);
+  if(Z.length&&all&&Z.some((z,i)=>!state.ampel[i])&&!renderCert._asked){renderCert._asked=true;askAmpel(renderCert)}
+}
+function pickStufe(then){
+  sheet(`<h3>Wähle deine Stufe</h3><p class="tip">Inhalt und Zahlen sind auf allen Stufen gleich. Du kannst jederzeit wechseln.</p><div class="stufen">${Object.keys(STUFEN).map(k=>`<button class="stufe ${stufe()===k?'on':''}" data-k="${k}"><b>${G(STUFEN[k][1]+' ','')}${STUFEN[k][0]}</b><span>${STUFEN[k][2]}</span></button>`).join('')}</div>
+   <button class="btn sec" style="width:100%;margin-top:10px" data-close>Schließen</button>`,(s,close)=>{
+    $$('.stufe',s).forEach(b=>b.onclick=()=>{state.stufe=b.dataset.k;save();setBodyCls();close();then&&then()})});
 }
 function openSettings(){
   sheet(`<h3>⚙️ Einstellungen</h3><label><b>Dein Name</b><input class="name" id="sName" value="${esc(state.name)}" maxlength="30"></label>
   <button class="btn blue" style="width:100%;margin-top:10px" id="sSave">Name speichern</button>
-  <div class="toggle"><span>⏱ Countdown im Abschlussquiz</span><button id="sTim" class="${state.timer?'':'off'}">${state.timer?'AN':'AUS'}</button></div>
+  <div class="toggle"><span>Stufe: <b>${STUFEN[stufe()][0]}</b></span><button id="sStu">ändern</button></div>
+  <div class="toggle"><span>⏱ Countdown im Abschlussquiz</span><button id="sTim" class="${timerOn()?'':'off'}">${timerOn()?'AN':'AUS'}</button></div>
   <hr style="margin:18px 0;border:0;border-top:1px solid var(--line)"><b>Für Lehrkräfte</b>
   <p class="tip" style="margin:4px 0 8px">Code eingeben: schaltet alle Etappen frei und zeigt die Lösungsübersicht.</p>
   <div style="display:flex;gap:8px"><input class="name" id="sPin" placeholder="Code" autocomplete="off"><button class="btn blue" id="sUnl">OK</button></div><div id="sMsg" class="tip"></div>
-  ${state.teacher?`<button class="btn sec" style="width:100%;margin-top:8px" id="sSol">📄 Lösungsübersicht anzeigen</button>`:''}
+  ${state.teacher?`<button class="btn sec" style="width:100%;margin-top:8px" id="sSol">📄 Lösungsübersicht anzeigen</button>
+   ${HALTS.length?`<button class="btn sec" style="width:100%;margin-top:8px" id="sBea">📽 Beamer-Ansicht (Haltepunkte)</button>`:''}
+   ${KLASSEN.length?`<button class="btn sec" style="width:100%;margin-top:8px" id="sKg">📽 Beamer-Ansicht (${G('Klassen-Gegner','Klassen-Prüfauftrag')})</button>`:''}
+   ${PARTNER.length?`<button class="btn sec" style="width:100%;margin-top:8px" id="sTc">${G('🤝 ','')}Teilcodes der Partneraufgaben</button>`:''}
+   <div class="tcheck"><b>Ausweis prüfen</b><div style="display:flex;gap:8px;margin-top:6px"><input class="name" id="sCN" placeholder="Name"><input class="name" id="sCP" placeholder="Punkte" inputmode="numeric" style="max-width:110px"></div>
+   <button class="btn sec small" style="width:100%;margin-top:6px" id="sCC">Prüfcode berechnen</button><div id="sCR" class="tip"></div></div>`:''}
   <hr style="margin:18px 0;border:0;border-top:1px solid var(--line)">
   <button class="btn sec" style="width:100%" id="sReset">🗑️ Fortschritt löschen</button><button class="btn sec" style="width:100%;margin-top:8px" data-close>Schließen</button>`,(s,close)=>{
    $('#sSave',s).onclick=()=>{state.name=$('#sName',s).value.trim();save();close();renderHome()};
-   $('#sTim',s).onclick=e=>{state.timer=!state.timer;save();e.target.textContent=state.timer?'AN':'AUS';e.target.classList.toggle('off',!state.timer)};
+   $('#sStu',s).onclick=()=>{close();pickStufe(()=>{renderHome();openSettings()})};
+   $('#sTim',s).onclick=e=>{state.timer=!timerOn();save();e.target.textContent=timerOn()?'AN':'AUS';e.target.classList.toggle('off',!timerOn())};
    $('#sUnl',s).onclick=()=>{if($('#sPin',s).value.trim().toUpperCase()===CONFIG.code.toUpperCase()){state.teacher=true;save();close();renderHome();openSettings()}else $('#sMsg',s).textContent='Code falsch.'};
    const so=$('#sSol',s);if(so)so.onclick=()=>{close();sheet(solutionsHTML()+'<button class="btn sec" style="width:100%;margin-top:12px" data-close>Schließen</button>')};
-   $('#sReset',s).onclick=e=>{if(e.target.dataset.sure){const n=state.name;state=JSON.parse(JSON.stringify(S0));state.name=n;save();close();renderHome()}else{e.target.dataset.sure=1;e.target.textContent='Wirklich löschen? Nochmal tippen.'}};
+   const be=$('#sBea',s);if(be)be.onclick=()=>{close();openBeamer(0)};
+   const kg=$('#sKg',s);if(kg)kg.onclick=()=>{close();openKlasse(0)};
+   const tc=$('#sTc',s);if(tc)tc.onclick=()=>{close();teilcodeSheet()};
+   const cc=$('#sCC',s);if(cc)cc.onclick=()=>{$('#sCR',s).innerHTML=`Zu „${esc($('#sCN',s).value.trim())}“ mit ${parseNum($('#sCP',s).value)||0} Punkten passt der Prüfcode <b>${pruefCode($('#sCN',s).value,parseNum($('#sCP',s).value)||0)}</b>.`};
+   $('#sReset',s).onclick=e=>{if(e.target.dataset.sure){const n=state.name,st=state.stufe;state=JSON.parse(JSON.stringify(S0));state.name=n;state.stufe=st;save();close();renderHome()}else{e.target.dataset.sure=1;e.target.textContent='Wirklich löschen? Nochmal tippen.'}};
   });
 }
 function askName(){
-  sheet(`<div style="text-align:center"><div style="font-size:54px">${CONFIG.startEmoji}</div><h3>${CONFIG.title}</h3><p>${CONFIG.nameQuestion}</p></div>
-  <input class="name" id="nIn" placeholder="Vorname" maxlength="30" autocomplete="off"><button class="btn wide" style="width:100%;margin-top:10px" id="nGo">Los geht's ▶</button>`,(s,close)=>{
-   const go=()=>{state.name=$('#nIn',s).value.trim()||CONFIG.defaultName;save();close();renderHome()};$('#nGo',s).onclick=go;$('#nIn',s).addEventListener('keydown',e=>{if(e.key==='Enter')go()})});
+  let st=state.stufe||'s';
+  sheet(`<div style="text-align:center"><div style="font-size:54px">${SACH?'':CONFIG.startEmoji}</div><h3>${CONFIG.title}</h3><p>${CONFIG.nameQuestion}</p></div>
+  <input class="name" id="nIn" placeholder="Vorname" maxlength="30" autocomplete="off">
+  <p style="margin:12px 0 6px"><b>Deine Stufe</b> <span class="tip">(jederzeit änderbar)</span></p><div class="stufen">${Object.keys(STUFEN).map(k=>`<button class="stufe ${st===k?'on':''}" data-k="${k}"><b>${G(STUFEN[k][1]+' ','')}${STUFEN[k][0]}</b><span>${STUFEN[k][2]}</span></button>`).join('')}</div>
+  <button class="btn wide" style="width:100%;margin-top:10px" id="nGo">Los geht's ▶</button>`,(s,close)=>{
+   $$('.stufe',s).forEach(b=>b.onclick=()=>{st=b.dataset.k;$$('.stufe',s).forEach(x=>x.classList.toggle('on',x===b))});
+   const go=()=>{state.name=$('#nIn',s).value.trim()||CONFIG.defaultName;state.stufe=st;save();setBodyCls();close();renderHome()};$('#nGo',s).onclick=go;$('#nIn',s).addEventListener('keydown',e=>{if(e.key==='Enter')go()})});
+}
+
+/* ---------- Beamer-Ansicht (Lehrkraft-Modus): Haltepunkte mit Impulsen ---------- */
+function openBeamer(hi){
+  if(!HALTS.length)return;const old=$('.beamer');if(old)old.remove();let k=0,code=false;
+  const d=document.createElement('div');d.className='beamer';document.body.appendChild(d);
+  const r=()=>{const B=HALTS[hi],H=B.H,I=H.impulse||[];
+    d.innerHTML=`<div class="bwrap"><div class="btop"><span>Haltepunkt ${hi+1} von ${HALTS.length} · nach „${esc(plain(B.after.title))}“</span><button class="bx" data-x>✕ Schließen</button></div>
+     <h2>${H.frage}</h2><ol class="imp">${I.slice(0,k).map(t=>`<li>${t}</li>`).join('')}</ol>
+     <div class="bbtn">${k<I.length?`<button class="btn" data-n>Impuls ${k+1}/${I.length} zeigen ▶</button>`:''}<button class="btn sec" data-c>${code?'Code verbergen':'Freigabecode zeigen'}</button>
+     ${HALTS.length>1?HALTS.map((h,j)=>`<button class="btn sec small" data-h="${j}" ${j===hi?'disabled':''}>Haltepunkt ${j+1}</button>`).join(''):''}</div>
+     ${code?`<div class="bcode">Freigabecode: <b>${B.code}</b></div>`:''}</div>`;
+    $('[data-x]',d).onclick=()=>d.remove();const n=$('[data-n]',d);if(n)n.onclick=()=>{k++;r()};$('[data-c]',d).onclick=()=>{code=!code;r()};
+    $$('[data-h]',d).forEach(b=>b.onclick=()=>{hi=+b.dataset.h;k=0;code=false;r()})};
+  r();
+}
+
+/* ---------- Partner-Etappe: Rollen, Teilcodes, Erklär-Duell ---------- */
+// Jedes Gerät zeigt nur die eigene Rollenkarte. Teilcodes hängen von Etappe, Aufgabe, Rolle und Teamnummer ab:
+// keine Verbindung zwischen den Geräten nötig, je Team verschieden. Solo-Freigabe: Lehrkraft tippt ihren Code ein.
+const val=x=>typeof x==='function'?x():x;
+const teamCode=(L,ti,r,nr)=>code4(CONFIG.key+'|team|'+L._o+'|'+ti+'|'+r+'|'+nr);
+const duellCode=(L,ti,rd,nr)=>code4(CONFIG.key+'|duell|'+L._o+'|'+ti+'|'+rd+'|'+nr);
+const normCode=v=>String(v||'').toUpperCase().replace(/[^A-Z0-9]/g,'');
+const KONTROLLE=['Werden die Einheiten genannt?','Stimmen die Vorzeichen?','Passt das Ergebnis zur Situation?'];
+function rolleName(L,r){const R=(L.partner.rollen||{})[r]||{};return R.name||(r==='C'?'Kontrolle':'Rolle '+r)}
+function teamRoles(T){return T&&T.n===3?['A','B','C']:['A','B']}
+function rkarte(L,S,r){const R=S[r],P=(L.partner.rollen||{})[r]||{};
+  const info=R&&R.info?val(R.info):r==='C'?`<p>Du hast keine eigenen Daten. Du sammelst die Teilcodes von A und B, achtest im Gespräch auf diese Punkte und fragst nach, bis alle die Lösung verstehen:</p><ul>${(L.partner.kontrolle||KONTROLLE).map(t=>`<li>${t}</li>`).join('')}</ul>`:'';
+  return `<div class="rkarte r${r}"><div class="rk">${G('🪪 ','')}Rolle ${r} · ${rolleName(L,r)}${P.text?`<span>${P.text}</span>`:''}</div>${info}</div>`}
+function noRole(c){c.insertAdjacentHTML('beforeend','<div class="fb info">Wähle zuerst im ersten Schritt deine Rolle und eure Teamnummer.</div>');const b=addCheckBtn(c,'◀ Zur Rollenwahl','sec');b.onclick=()=>goStep(0);ctx.auto=()=>{}}
+function teilcodeSheet(){
+  sheet(`<h3>${G('🤝 ','')}Teilcodes nachschlagen</h3><p class="tip">Für Teams, deren Gerät neu starten musste. Teamnummer eingeben:</p>
+   <div style="display:flex;gap:8px"><input class="name" id="tcN" inputmode="numeric" maxlength="2" placeholder="Teamnummer"><button class="btn blue" id="tcGo">Anzeigen</button></div><div id="tcOut"></div>
+   <button class="btn sec" style="width:100%;margin-top:12px" data-close>Schließen</button>`,(s)=>{
+    $('#tcGo',s).onclick=()=>{const nr=parseInt($('#tcN',s).value,10);if(!(nr>=1&&nr<=99))return;
+      $('#tcOut',s).innerHTML=PARTNER.map(L=>`<h4 style="margin:12px 0 4px">${L.title}</h4><div style="overflow-x:auto"><table class="tb">`+L.steps.filter(x=>x.type==='team'||x.type==='duell').map(x=>x.type==='team'
+        ?`<tr><td>${plain(x.title||'Aufgabe')}</td>${['A','B','C'].map(r=>`<td>${r}: <b>${teamCode(L,x._ti,r,nr)}</b></td>`).join('')}</tr>`
+        :`<tr><td>${plain(x.title||'Erklär-Duell')}</td>${(x.runden||[]).map((y,i)=>`<td>Runde ${i+1}: <b>${duellCode(L,x._ti,i,nr)}</b></td>`).join('')}</tr>`).join('')+'</table></div>').join('')}});
+}
+
+/* ---------- Klassen-Gegner: ganze Klasse, Lebensbalken am Beamer, Runden auf den eigenen Geräten ---------- */
+function kgIntro(n){const B=KLASSEN[n],Kq=B.K,R=Kq.runden||[];
+  return (Kq.intro?`<p>${val(Kq.intro)}</p>`:'')+`<div class="kgcard">${SACH?'':`<div class="kgava">${Kq.ava||'🏰'}</div>`}<div style="min-width:0"><div class="kgn">${G('Klassen-Gegner','Klassen-Prüfauftrag')}: ${Kq.name}</div>${Kq.role?`<div class="kgr">${Kq.role}</div>`:''}</div></div>
+   <div class="merke"><b>So geht's:</b> Jetzt arbeitet die ganze Klasse zusammen. Am Beamer seht ihr ${G('den Lebensbalken','den gemeinsamen Fortschritt')} und die Aufgabe. Löst die ${R.length} Runden zu zweit auf euren Geräten. Bei ✅ meldet ihr euch: Eure Lehrkraft zählt einen Treffer für eure Gruppe. Jede Runde bringt bis zu 10 ⭐. Zum Schluss nennt eure Lehrkraft den Freigabecode.</div>`
+   +(state.teacher?`<button class="btn sec" style="width:100%;margin-top:8px" data-kgb="${n}">📽 Beamer-Ansicht öffnen</button>`:'')}
+function kgBanner(L){const e=document.createElement('div');e.className='kgbar';e.innerHTML=`${G('🏰 ','')}<b>${KLASSEN[L.ki].K.name}</b> · ${G('Der Lebensbalken steht am Beamer. Jede Gruppe mit ✅ ist ein Treffer.','Der Fortschritt steht am Beamer.')}`;return e}
+document.addEventListener('click',e=>{const b=e.target.closest('[data-kgb]');if(b)openKlasse(+b.dataset.kgb)});
+// Aufgabe als ruhiger Text (Beamer, Tafel, Papier): Titel, Text, Frage, Optionen bzw. Rechenzeilen mit Lücke. Reihenfolge fest gemischt.
+const mixed=a=>a.slice().sort((x,y)=>hashStr(plain(x.t||x))-hashStr(plain(y.t||y)));
+function aufgabeHTML(S,o){o=o||{};let h=(S.title&&!o.noTitle?`<h3>${S.title}</h3>`:'')+(S.text?`<p>${val(S.text)}</p>`:'');
+  if(S.data&&!o.noData)h+=`<div class="adata">${val(S.data)}</div>`;if(S.pre)h+=S.pre();
+  const box='<span class="abox"></span>';
+  switch(S.type){
+   case 'mcq':h+=`<p class="aq">${val(S.q)}</p><ol class="aopts" type="A">${mixed(S.o).map(x=>`<li>${x.t}</li>`).join('')}</ol>`;break;
+   case 'calc':h+=`<div class="arows">${S.rows.map(r=>r.given?`<div>${r.given}</div>`:`<div>${r.pre} ${box} ${r.u||''}</div>`).join('')}</div>`;break;
+   case 'cloze':h+=`<p>${S.parts.map(p=>`${p[0]} ${box} <small>(${mixed(p[1]).join(' / ')})</small>${p[3]||''}`).join(' ')}</p>`;break;
+   case 'pick':h+=`<ul class="aopts">${mixed(S.items).map(x=>`<li>${x.t}</li>`).join('')}</ul>`;break;
+   case 'seq':h+=`<ul class="aopts">${mixed(S.items).map(x=>`<li>${x}</li>`).join('')}</ul>`;break;
+   case 'decide':h+=`<ul class="aopts">${S.cards.map(x=>`<li><b>${x.title}</b> ${x.info||''}</li>`).join('')}</ul><p>${S.actions.join(' · ')}</p>`;break;
+   case 'write':h+=`<p>${box}</p>`;break;
+  }
+  return h}
+function openKlasse(ki){
+  if(!KLASSEN.length)return;const old=$('.beamer');if(old)old.remove();let sol=false,code=false,hit=false;ki=ki||0;
+  const d=document.createElement('div');d.className='beamer kgb';document.body.appendChild(d);
+  const r=()=>{const B=KLASSEN[ki],Kq=B.K,R=Kq.runden||[],n=R.length,st=state.kg[ki]||(state.kg[ki]={g:6,h:[],r:0});
+    st.h=R.map((x,i)=>Math.min(st.g,st.h[i]||0));st.r=Math.max(0,Math.min(st.r||0,n-1));
+    const tot=st.h.reduce((a,b)=>a+b,0),max=st.g*n,hp=Math.round(100*(1-tot/max)),ri=st.r,S=R[ri];
+    d.innerHTML=`<div class="bwrap"><div class="btop"><span>${G('Klassen-Gegner','Klassen-Prüfauftrag')}${KLASSEN.length>1?` ${ki+1} von ${KLASSEN.length}`:''} · nach „${esc(plain(B.after.title))}“</span><button class="bx" data-x>✕ Schließen</button></div>
+     <div class="kghead">${SACH?'':`<div class="kgava ${hit?'hit':''}">${Kq.ava||'🏰'}</div>`}<div style="flex:1;min-width:0"><div class="kgn">${Kq.name}</div>${Kq.role?`<div class="kgr">${Kq.role}</div>`:''}
+      <div class="kghp ${SACH?'prog':''}" aria-label="${SACH?'Fortschritt':Kq.bar||'Lebensbalken'}"><i style="width:${SACH?100-hp:hp}%"></i></div>
+      <div class="kgt">${SACH?`Fortschritt: ${100-hp} %`:`${Kq.bar||'Lebensbalken'}: ${hp} %`} · ${tot} von ${max} Treffern (${st.g} Gruppen × ${n} Runden)</div></div></div>
+     ${hp<=0?`<div class="kgwin">${G('🏆 ','')}${Kq.win||G('Besiegt! Die Klasse hat gewonnen.','Geschafft. Der Prüfauftrag ist abgeschlossen.')}</div>`:''}
+     <div class="bbtn kgctl"><button class="btn kghit" data-hit ${st.h[ri]>=st.g?'disabled':''}>✔ Treffer: eine Gruppe richtig (+1)</button><button class="btn sec" data-undo ${st.h[ri]?'':'disabled'}>↶ Rückgängig</button><button class="btn sec small" data-prev ${ri?'':'disabled'}>◀ Runde</button><button class="btn sec small" data-next ${ri<n-1?'':'disabled'}>Runde ▶</button>
+      <span class="kground">Runde ${ri+1} von ${n} · Treffer in dieser Runde: <b>${st.h[ri]}</b> von ${st.g}</span></div>
+     <div class="btask">${aufgabeHTML(S)}${sol?`<div class="bsol"><b>Lösung:</b> ${solText(Object.assign({},S,{title:''}))}</div>`:''}</div>
+     <div class="bbtn"><span class="kgg">Gruppen <button class="btn sec small" data-gm aria-label="weniger Gruppen">−</button><b>${st.g}</b><button class="btn sec small" data-gp aria-label="mehr Gruppen">+</button></span>
+      <button class="btn sec small" data-sol>${sol?'Lösung verbergen':'Lösung zeigen'}</button><button class="btn sec small" data-c>${code?'Code verbergen':'Freigabecode zeigen'}</button>
+      ${KLASSEN.length>1?KLASSEN.map((k,j)=>`<button class="btn sec small" data-k="${j}" ${j===ki?'disabled':''}>${G('Klassen-Gegner','Prüfauftrag')} ${j+1}</button>`).join(''):''}</div>
+     ${code?`<div class="bcode">Freigabecode: <b>${B.code}</b></div>`:''}</div>`;
+    hit=false;const on=(s,f)=>{const b=$(s,d);if(b)b.onclick=()=>{f();save();r()}};
+    $('[data-x]',d).onclick=()=>d.remove();
+    on('[data-hit]',()=>{if(st.h[ri]<st.g){st.h[ri]++;hit=true}});on('[data-undo]',()=>{if(st.h[ri]>0)st.h[ri]--});
+    on('[data-prev]',()=>{st.r=ri-1;sol=false});on('[data-next]',()=>{st.r=ri+1;sol=false});
+    on('[data-gm]',()=>{st.g=Math.max(1,st.g-1)});on('[data-gp]',()=>{st.g=Math.min(30,st.g+1)});
+    on('[data-sol]',()=>{sol=!sol});on('[data-c]',()=>{code=!code});
+    $$('[data-k]',d).forEach(b=>b.onclick=()=>{ki=+b.dataset.k;sol=false;code=false;r()})};
+  r();
 }
 
 /* ---------- Lösungsübersicht (aus den Daten erzeugt) ---------- */
-function solutionsHTML(){
+function solText(S){
   const A=t=>`<span class="a">${t}</span>`;
-  const one=S=>{const t=S.title?`<b>${plain(S.title)}</b>: `:'';
+  {const t=S.title?`<b>${plain(S.title)}</b>: `:'';
     switch(S.type){
      case 'mcq':return t+plain(S.q)+' → '+A(plain(S.o.find(o=>o.ok).t));
      case 'pick':return t+A(S.items.filter(i=>i.ok).map(i=>plain(i.t)).join(', '));
@@ -648,9 +1141,20 @@ function solutionsHTML(){
      case 'write':return t+'Freitext, z. B.: '+A(esc(S.example));
      case 'selfcheck':return t+'Selbstkontrolle: '+S.items.map(plain).join('; ');
      case 'sim':return t+A(S.solution||'(siehe Simulation)');
-     default:return '';}};
+     case 'vote':return t+(S.phase==='nach'?A(plain(voteOpts(S)[S.ok]))+' · Richtigstellung: '+plain(S.fix||''):'Abstimmung vorher (ohne Wertung)');
+     case 'akte':return t+(S.q?plain(S.q)+' → '+A(plain(S.o.find(o=>o.ok).t)):'Experiment-Akte (lesen)');
+     case 'plenum':{const H=HALTS[S.hi].H;return t+'Offene Frage: '+plain(H.frage)+' · Impulse: '+A((H.impulse||[]).map(plain).join(' / '))}
+     case 'freigabe':return t+'Freigabecode '+A(S.code||HALTS[S.hi].code);
+     case 'rolle':return t+'Gruppengröße, Rolle (A, B, zu dritt auch C) und Teamnummer wählen; Solo-Freigabe mit dem Lehrkraft-Code';
+     case 'team':return t+'Gemeinsam: '+solText(Object.assign({},S.gemeinsam,{title:''}))+['A','B','C'].filter(r=>S[r]&&S[r].teil).map(r=>` <small class="m">· Teil ${r}:</small> `+solText(Object.assign({},S[r].teil,{title:''}))).join('');
+     case 'duell':return t+(S.runden||[]).map((x,i)=>`Runde ${i+1} (${x.erklaert} erklärt): ${plain(x.frage)} → Prüfkarte: ${A(x.pruef.map(plain).join('; '))}`).join(' · ');
+     default:return '';}}
+}
+function solutionsHTML(){
+  const A=t=>`<span class="a">${t}</span>`;
+  const one=S=>solText(S)+(S.twin?' <small class="m">· Zwilling:</small> '+solText(S.twin):'');
   return `<div class="sol"><h3>📄 Lösungsübersicht – ${CONFIG.title}</h3>`+LEVELS.filter(L=>!L.quiz).map(L=>`<h4>${L.title} <small class="m">(${L.tag})</small></h4><ol>`+L.steps.filter(s=>!['info','quizEnd','kahoot'].includes(s.type)).map(s=>`<li>${one(s)}</li>`).join('')+'</ol>').join('')
-    +`<h4>Abschlussquiz</h4><ol>${QUIZ.map(q=>`<li>${plain(q.q)} → ${A(plain(q.o.find(o=>o.ok).t))}</li>`).join('')}</ol></div>`;
+    +`<h4>Abschlussquiz</h4><ol>${QUIZ.map(q=>`<li>${q.transfer?'<small class="m">Transfer:</small> ':''}${plain(q.q)} → ${A(plain(q.o.find(o=>o.ok).t))}</li>`).join('')}</ol></div>`;
 }
 
 /* ---------- Widgets ---------- */
@@ -666,6 +1170,10 @@ function mcqW(container,S,onOk,onWrong){
   container.appendChild(d);d._auto=()=>{const b=$$('.opt',ob).find(x=>x._ok);b&&b.click()};return d;
 }
 function addCheckBtn(c,label,cls){const b=document.createElement('button');b.className='btn '+(cls||'blue');b.style.cssText='width:100%;margin-top:12px';b.textContent=label||'Prüfen ✔';c.appendChild(b);return b}
+// Satzanfänge (Einsteiger): antippen fügt den Anfang ins Textfeld ein.
+function starters(c,ta,list){if(stufe()!=='e'||!list||!list.length)return;const d=document.createElement('div');d.className='starters';d.innerHTML='<span class="tip">Satzanfänge:</span>'+list.map((t,i)=>`<button class="chip" data-i="${i}">${t} …</button>`).join('');
+  d.onclick=e=>{const b=e.target.closest('.chip');if(!b||ta.disabled)return;ta.value=(ta.value.trim()?ta.value.trim()+' ':'')+list[+b.dataset.i]+' ';ta.focus();ta.dispatchEvent(new Event('input'))};c.insertBefore(d,ta)}
+const voteOpts=S=>S.o||['Stimmt','Stimmt nicht','Weiß ich nicht'];
 const W={
  mcq:(c,S,api)=>{const d=mcqW(c,S,api.solved,api.wrong);ctx.auto=d._auto},
  pick:(c,S,api)=>{
@@ -690,35 +1198,40 @@ const W={
     ch.innerHTML=free||'<span class="tip">Alle Felder belegt – jetzt prüfen.</span>';
     b.disabled=asg.some(v=>v==null)||ctx.solved;b.textContent=asg.some(v=>v==null)?`Prüfen ✔ (noch ${asg.filter(v=>v==null).length} frei)`:'Prüfen ✔'};
   sl.onclick=e=>{const s=e.target.closest('.slot');if(!s||ctx.solved)return;const i=+s.dataset.i;
-    if(asg[i]!=null){asg[i]=null;mark[i]='';selS=i}else selS=selS===i?null:i;render()};
+    if(asg[i]!=null){if(mark[i]==='ok'){shake(s);return}asg[i]=null;mark[i]='';selS=i}else selS=selS===i?null:i;render()};
   ch.onclick=e=>{const k=e.target.closest('.chip');if(!k||ctx.solved)return;const j=+k.dataset.j;let i=selS!=null&&asg[selS]==null?selS:asg.findIndex(v=>v==null);if(i<0)return;asg[i]=j;mark[i]='';selS=null;fb.className='fb';fb.innerHTML='';render()};
   b.onclick=()=>{if(ctx.solved||asg.some(v=>v==null))return;const bad=[];
     asg.forEach((j,i)=>{const ok=labels[j]===S.slots[i];mark[i]=ok?'ok':'bad';if(!ok)bad.push(i)});
     if(!bad.length){fb.className='fb ok';fb.innerHTML='✅ Alles richtig zugeordnet!'+(S.okfb?'<br>'+S.okfb:'');render();b.disabled=true;api.solved()}
-    else{api.wrong();render();fb.className='fb bad';fb.innerHTML=`❌ ${n-bad.length} von ${n} richtig. Das passt noch nicht:<ul>${bad.map(i=>`<li>Feld ${i+1}: „${labels[asg[i]]}“${S.fb&&S.fb[labels[asg[i]]]?' – '+S.fb[labels[asg[i]]]:''}</li>`).join('')}</ul>Tippe die roten Felder an und ordne neu zu.`;shake(b)}};
+    else{api.wrong();render();fb.className='fb bad';fb.innerHTML=`❌ ${n-bad.length} von ${n} richtig. Das passt noch nicht:<ul>${bad.map(i=>`<li>Feld ${i+1}: „${labels[asg[i]]}“${S.fb&&S.fb[labels[asg[i]]]?' – '+S.fb[labels[asg[i]]]:''}</li>`).join('')}</ul>Grüne Felder bleiben stehen. Tippe die roten Felder an und ordne neu zu.`;shake(b)}};
   render();
   api.setAuto(()=>{S.slots.forEach((a,i)=>{asg[i]=labels.indexOf(a);mark[i]=''});render();b.click()});
  },
  seq:(c,S,api)=>{
-  const items=shuffle(S.items.map((t,i)=>({t,i})));let order=[];const mark={};
-  c.insertAdjacentHTML('beforeend','<p class="tip" style="margin:0 0 6px"><b>Deine Reihenfolge</b> (antippen = zurücklegen):</p>');
+  // Feste, nummerierte Plätze: Zurücklegen hinterlässt eine Lücke, nichts rutscht nach. Nach „Prüfen“ bleiben richtige Plätze gesperrt.
+  const items=shuffle(S.items.map((t,i)=>({t,i}))),n=items.length,pos=Array(n).fill(null),mark=Array(n).fill('');let selS=null;
+  c.insertAdjacentHTML('beforeend','<p class="tip" style="margin:0 0 6px"><b>Deine Reihenfolge</b> (Platz antippen = Schritt zurücklegen, die Lücke bleibt frei):</p>');
   const ol=document.createElement('div');ol.className='seqlist';c.appendChild(ol);
-  c.insertAdjacentHTML('beforeend','<p class="tip" style="margin:12px 0 6px"><b>Noch einzuordnen</b> (tippe den nächsten Schritt an):</p>');
+  c.insertAdjacentHTML('beforeend','<p class="tip" style="margin:12px 0 6px"><b>Noch einzuordnen</b> (landet im markierten oder ersten freien Platz):</p>');
   const pool=document.createElement('div');pool.className='seqlist';c.appendChild(pool);
   const b=addCheckBtn(c);const fb=document.createElement('div');fb.className='fb';c.appendChild(fb);
+  const free=()=>pos.filter(v=>v==null).length;
   const render=()=>{
-    ol.innerHTML=order.length?order.map((it,k)=>`<button class="seqitem in ${mark[it.i]||''}" data-k="${k}"><span class="n">${k+1}</span><span>${it.t}</span></button>`).join(''):'<div class="empty">— noch leer —</div>';
-    const rest=items.filter(it=>!order.includes(it));
+    ol.innerHTML=pos.map((it,k)=>it?`<button class="seqitem in ${mark[k]}" data-k="${k}"${mark[k]==='ok'?' aria-disabled="true"':''}><span class="n">${k+1}</span><span>${it.t}</span>${mark[k]==='ok'?'<span class="lock">🔒</span>':''}</button>`
+      :`<button class="seqitem gap ${selS===k?'act':''}" data-k="${k}"><span class="n">${k+1}</span><span class="m">… frei</span></button>`).join('');
+    const rest=items.filter(it=>!pos.includes(it));
     pool.innerHTML=rest.length?rest.map(it=>`<button class="seqitem" data-i="${it.i}"><span class="n">+</span><span>${it.t}</span></button>`).join(''):'<div class="empty">Alles eingeordnet – jetzt prüfen.</div>';
-    b.disabled=order.length<items.length||ctx.solved;b.textContent=order.length<items.length?`Prüfen ✔ (noch ${items.length-order.length} offen)`:'Prüfen ✔'};
-  pool.onclick=e=>{const x=e.target.closest('.seqitem');if(!x||ctx.solved)return;order.push(items.find(it=>it.i===+x.dataset.i));fb.className='fb';fb.innerHTML='';render()};
-  ol.onclick=e=>{const x=e.target.closest('.seqitem');if(!x||ctx.solved)return;const it=order.splice(+x.dataset.k,1)[0];delete mark[it.i];render()};
-  b.onclick=()=>{if(ctx.solved||order.length<items.length)return;let nOk=0;const bad=[];
-    order.forEach((it,k)=>{const ok=it.i===k;mark[it.i]=ok?'ok':'bad';if(ok)nOk++;else bad.push(k+1)});render();
-    if(nOk===items.length){fb.className='fb ok';fb.innerHTML='✅ Die Reihenfolge stimmt!'+(S.okfb?'<br>'+S.okfb:'');b.disabled=true;api.solved()}
-    else{api.wrong();fb.className='fb bad';fb.innerHTML=`❌ ${nOk} von ${items.length} Schritten stehen richtig. Falsch platziert: Position ${bad.join(', ')}. Tippe die roten Schritte an, um sie zurückzulegen.`;shake(b)}};
+    b.disabled=free()>0||ctx.solved;b.textContent=free()?`Prüfen ✔ (noch ${free()} offen)`:'Prüfen ✔'};
+  pool.onclick=e=>{const x=e.target.closest('.seqitem');if(!x||ctx.solved)return;let k=selS!=null&&pos[selS]==null?selS:pos.findIndex(v=>v==null);if(k<0)return;
+    pos[k]=items.find(it=>it.i===+x.dataset.i);mark[k]='';selS=null;fb.className='fb';fb.innerHTML='';render()};
+  ol.onclick=e=>{const x=e.target.closest('.seqitem');if(!x||ctx.solved)return;const k=+x.dataset.k;
+    if(pos[k]){if(mark[k]==='ok'){shake(x);return}pos[k]=null;mark[k]='';selS=k}else selS=selS===k?null:k;render()};
+  b.onclick=()=>{if(ctx.solved||free())return;let nOk=0;const bad=[];
+    pos.forEach((it,k)=>{const ok=it.i===k;mark[k]=ok?'ok':'bad';if(ok)nOk++;else bad.push(k+1)});render();
+    if(nOk===n){fb.className='fb ok';fb.innerHTML='✅ Die Reihenfolge stimmt!'+(S.okfb?'<br>'+S.okfb:'');b.disabled=true;api.solved()}
+    else{api.wrong();fb.className='fb bad';fb.innerHTML=`❌ ${nOk} von ${n} Schritten stehen richtig (🔒 bleiben stehen). Falsch: Platz ${bad.join(', ')}. Tippe die roten Schritte an – sie gehen zurück, die Lücke bleibt frei.`;shake(b)}};
   render();
-  api.setAuto(()=>{order=S.items.map((t,i)=>items.find(x=>x.i===i));Object.keys(mark).forEach(k=>delete mark[k]);render();b.click()});
+  api.setAuto(()=>{S.items.forEach((t,k)=>{pos[k]=items.find(x=>x.i===k);mark[k]=''});render();b.click()});
  },
  calc:(c,S,api)=>{
   const w=document.createElement('div');w.className='calc';let ln=0;
@@ -761,7 +1274,7 @@ const W={
   api.setAuto(()=>{P.forEach((p,i)=>{sel[i]=p[2];upd(i)});b.click()});
  },
  write:(c,S,api)=>{
-  const ta=document.createElement('textarea');ta.className='write';ta.placeholder=S.placeholder||'Schreib hier …';ta.value=state.sim[S.save]||'';c.appendChild(ta);
+  const ta=document.createElement('textarea');ta.className='write';ta.placeholder=S.placeholder||'Schreib hier …';ta.value=state.sim[S.save]||'';c.appendChild(ta);starters(c,ta,S.starters);
   const cnt=document.createElement('div');cnt.className='tip';c.appendChild(cnt);const up=()=>cnt.textContent=`${ta.value.trim().length} Zeichen (mindestens ${S.min})`;ta.oninput=up;up();
   const b=addCheckBtn(c,'Übernehmen ✔');const fb=document.createElement('div');fb.className='fb';c.appendChild(fb);
   const take=()=>{state.sim[S.save]=ta.value.trim();save();ta.disabled=true;b.disabled=true;api.solved()};
@@ -781,20 +1294,158 @@ const W={
   ctx.auto=()=>{$$('input',ul).forEach(x=>x.checked=true);ul.onchange()};
  },
  sim:(c,S,api)=>S.run(c,api),
+ // Mythos: Abstimmung vorher (ohne Wertung) und nachher (mit ausdrücklicher Richtigstellung), verbunden über id.
+ vote:(c,S,api)=>{const o=voteOpts(S),V=state.votes[S.id]||{},nach=S.phase==='nach';
+  c.insertAdjacentHTML('beforeend',`<div class="mythos"><div class="mk">${nach?'Abstimmung nachher':'Abstimmung vorher'}</div><p class="mq">${S.q}</p></div>`+(nach&&V.vor!=null?`<p class="tip">Am Anfang hast du gewählt: <b>${o[V.vor]}</b></p>`:''));
+  const g=document.createElement('div');g.className='opts';c.appendChild(g);const fb=document.createElement('div');fb.className='fb';c.appendChild(fb);
+  o.forEach((t,j)=>{const b=document.createElement('button');b.className='opt';b.innerHTML=t;b.onclick=()=>{if(ctx.solved)return;$$('.opt',g).forEach(x=>{x.disabled=true;x.classList.toggle('sel',x===b)});
+    state.votes[S.id]=Object.assign({},state.votes[S.id],{[nach?'nach':'vor']:j});save();
+    if(!nach){fb.className='fb info';fb.innerHTML='🗳️ Deine Stimme ist gespeichert. '+(S.okfb||'Am Ende stimmst du nochmal ab. Mal sehen, ob du dabei bleibst.');solved(false,5)}
+    else{const ok=j===S.ok;if(ok)b.classList.add('ok');else{b.classList.add('bad');$$('.opt',g)[S.ok].classList.add('ok')}
+      fb.className='fb '+(ok?'ok':'bad');fb.innerHTML=(ok?'✅ Richtig.':'❌ Nicht ganz.')+(V.vor!=null?` Am Anfang: <b>${o[V.vor]}</b> → jetzt: <b>${t}</b>.`:'')+`<div class="fix"><b>Richtigstellung:</b> ${S.fix}</div>`;solved(false,ok?10:0)}};g.appendChild(b)});
+  ctx.auto=()=>{$$('.opt',g)[nach?S.ok:0].click()};
+ },
+ // Experiment-Akte: historisches/aktuelles Experiment, didaktisch reduziert, mit Abschlussfrage.
+ akte:(c,S,api)=>{
+  c.insertAdjacentHTML('beforeend',`<div class="akte"><div class="ah"><span>${G('📁 ','')}Experiment-Akte</span><span>${S.zeit||''}</span></div><h4>${S.titel}</h4>
+   <dl>${(S.wer?[['Wer',S.wer]]:[]).concat(S.rows||[]).map(r=>`<dt>${r[0]}</dt><dd>${r[1]}</dd>`).join('')}</dl>${S.fig?`<div class="fig">${typeof S.fig==='function'?S.fig():S.fig}</div>`:''}
+   <p class="tip" style="margin:6px 0 0">Didaktisch vereinfacht${S.quelle?' · '+S.quelle:''}.</p></div>`);
+  if(S.q){const d=mcqW(c,S,api.solved,api.wrong);ctx.auto=d._auto}else{ctx.auto=()=>{};solved(true)}
+ },
+ // Plenum-Haltepunkt: offene Frage ohne Lösung, eigene Notiz.
+ plenum:(c,S,api)=>{const B=HALTS[S.hi],H=B.H,k='halt'+S.hi;
+  c.insertAdjacentHTML('beforeend',`<div class="plenum"><div class="pk">${G('🗣️ ','')}Offene Frage fürs Plenum</div><div class="pq">${H.frage}</div></div><p class="tip">Notiere deine Gedanken in Stichworten. Hier gibt es kein Richtig oder Falsch: Ihr besprecht die Frage gleich gemeinsam.</p>`);
+  const ta=document.createElement('textarea');ta.className='write';ta.placeholder='Meine Gedanken …';ta.value=state.notes[k]||'';c.appendChild(ta);starters(c,ta,H.starters);
+  const b=addCheckBtn(c,'Notiz speichern ✔');const fb=document.createElement('div');fb.className='fb';c.appendChild(fb);const min=H.min||15;
+  b.onclick=()=>{if(ctx.solved)return;const t=ta.value.trim();if(t.length<min){fb.className='fb info';fb.innerHTML=`✏️ Schreib mindestens ${min} Zeichen.`;return}
+    state.notes[k]=t;save();ta.disabled=true;b.disabled=true;fb.className='fb ok';fb.innerHTML=`✅ Notiz gespeichert. ${H.bonus?'Bis das Plenum beginnt: Weiter geht es mit einer Bonus-Aufgabe für Schnelle.':'Warte jetzt auf das Plenum.'}`;solved(false,5)};
+  if(state.teacher){const bb=addCheckBtn(c,'📽 Beamer-Ansicht öffnen','sec');bb.onclick=()=>openBeamer(S.hi)}
+  ctx.auto=()=>{ta.value='Erste Idee: ich vermute, dass …';b.click()};
+ },
+ freigabe:(c,S,api)=>{const B={code:S.code||HALTS[S.hi].code};
+  c.insertAdjacentHTML('beforeend',`<p>${S.msg||'Wartet, bis ihr die Frage im Plenum besprochen habt. Danach nennt eure Lehrkraft den <b>Freigabecode</b>.'}</p>${state.teacher?`<p class="tip">Lehrkraft-Modus: Der Code ist <b>${B.code}</b>.</p>`:''}`);
+  const row=document.createElement('div');row.className='crow';row.innerHTML='<span>Freigabecode:</span><input inputmode="numeric" maxlength="3" autocomplete="off" aria-label="Freigabecode">';c.appendChild(row);
+  const inp=$('input',row),b=addCheckBtn(c,'Freischalten ✔');const fb=document.createElement('div');fb.className='fb';c.appendChild(fb);
+  b.onclick=()=>{if(ctx.solved)return;if(inp.value.trim()===B.code){inp.classList.add('okI');inp.disabled=true;fb.className='fb ok';fb.innerHTML='✅ Freigeschaltet. Weiter geht’s!';solved(false,0)}
+    else{inp.classList.add('badI');fb.className='fb bad';fb.innerHTML='❌ Der Code stimmt nicht. Frag deine Lehrkraft.';shake(b)}};
+  ctx.auto=()=>{inp.value=B.code;b.click()};
+ },
+ // Partner-Etappe, Schritt 1: Gruppengröße, Rolle und Teamnummer (gespeichert je Etappe); Solo-Freigabe mit dem Lehrkraft-Code
+ rolle:(c,S,api)=>{const L=LEVELS[cur.li],P=L.partner,T=state.team[L._o]||{};let n=T.solo?2:(T.n||2),r=T.solo?null:(T.r||null);
+  c.insertAdjacentHTML('beforeend',`<div class="task">${P.intro?val(P.intro):'Ihr arbeitet zu zweit, jede Person an ihrem eigenen Gerät. Jedes Gerät zeigt <b>andere Informationen</b>. Lösen könnt ihr die Aufgaben nur gemeinsam: Erklärt euch eure Informationen im Gespräch, zeigt euch aber nicht die Bildschirme.'}</div>
+   <p class="rq"><b>1. Wie viele seid ihr?</b></p><div class="rsel"><button class="chip" data-n="2">Zu zweit</button><button class="chip" data-n="3">Zu dritt</button></div>
+   <p class="rq"><b>2. Deine Rolle</b> <span class="tip">(jede Rolle gibt es nur einmal im Team)</span></p><div class="stufen rrol"></div>
+   <p class="rq"><b>3. Teamnummer</b> <span class="tip">(alle im Team geben dieselbe Zahl ein, z. B. eure Tischnummer)</span></p>
+   <div class="crow"><span>Teamnummer:</span><input class="tnr" inputmode="numeric" maxlength="2" autocomplete="off" aria-label="Teamnummer" value="${T.nr&&!T.solo?T.nr:''}"></div>`);
+  const rr=$('.rrol',c),nr=$('.tnr',c);
+  const draw=()=>{$$('[data-n]',c).forEach(b=>b.classList.toggle('sel',+b.dataset.n===n));if(n===2&&r==='C')r=null;
+    rr.innerHTML=(n===3?['A','B','C']:['A','B']).map(k=>{const R=(P.rollen||{})[k]||{};return `<button class="stufe ${r===k?'on':''}" data-r="${k}"><b>Rolle ${k} · ${rolleName(L,k)}</b><span>${R.text||(k==='C'?'Du kontrollierst und sammelst die Teilcodes von A und B.':'')}</span></button>`}).join('')};
+  c.addEventListener('click',e=>{const a=e.target.closest('[data-n]'),b=e.target.closest('[data-r]');if(a){n=+a.dataset.n;draw()}if(b){r=b.dataset.r;draw()}});
+  const ok=addCheckBtn(c,'Los geht’s ✔');const fb=document.createElement('div');fb.className='fb';c.appendChild(fb);
+  const show=T2=>{fb.className='fb ok';fb.innerHTML=T2.solo?'✅ Solo-Freigabe: Du siehst alle Rollenkarten und löst alle Teile allein. Ohne Teilcodes und ohne Teambonus.'
+    :`✅ Du bist <b>Rolle ${T2.r} · ${rolleName(L,T2.r)}</b> in Team ${T2.nr}${T2.n===3?' (Dreiergruppe)':''}. Gebt euch eure Informationen im Gespräch weiter, nicht die Geräte.`};
+  const take=T2=>{const o=state.team[L._o],same=o&&o.r===T2.r&&o.n===T2.n&&o.nr===T2.nr&&!!o.solo===!!T2.solo;
+    state.team[L._o]=T2;if(!same)Object.keys(state.tp).forEach(k=>{if(+k.split('-')[0]===cur.li)delete state.tp[k]});save();show(T2);if(!ctx.solved)solved(false,0)};
+  ok.onclick=()=>{const v=parseInt(nr.value,10);if(!r){fb.className='fb info';fb.innerHTML='✏️ Wähle deine Rolle.';return}
+    if(!(v>=1&&v<=99)){fb.className='fb info';fb.innerHTML='✏️ Gib eure Teamnummer ein (1 bis 99).';return}take({n,r,nr:v})};
+  const so=document.createElement('details');so.className='given solo';
+  so.innerHTML=`<summary>Kein Partner da? Allein spielen</summary><div class="gb"><p class="tip" style="margin-top:0">Die Lehrkraft tippt hier ihren Code ein. Dann siehst du alle Rollenkarten und löst alle Teile allein.</p>
+   <div style="display:flex;gap:8px"><input class="name" type="password" placeholder="${state.teacher?'Lehrkraft-Modus: einfach OK':'Lehrkraft-Code'}" autocomplete="off" aria-label="Lehrkraft-Code für Solo"><button class="btn blue" data-solo>OK</button></div><div class="tip smsg"></div></div>`;
+  c.appendChild(so);
+  $('[data-solo]',so).onclick=()=>{const i=$('input',so);if(state.teacher||i.value.trim().toUpperCase()===CONFIG.code.toUpperCase()){i.value='';take({n:2,r:'A',nr:0,solo:true})}else{$('.smsg',so).textContent='Code falsch. Frag deine Lehrkraft.';shake(i)}};
+  draw();if(state.team[L._o])show(T);
+  ctx.auto=()=>{if(!r){r='A';draw()}if(!nr.value)nr.value='1';ok.click()};
+ },
+ // Partneraufgabe: Rollenkarte → eigener Teil → eigener Teilcode → Teilcodes der anderen → gemeinsame Aufgabe (beide geben ein)
+ team:(c,S,api)=>{const L=LEVELS[cur.li],T=state.team[L._o];if(!T)return noRole(c);
+  const solo=!!T.solo,me=T.r,tp=state.tp[ctx.key]||(state.tp[ctx.key]={});tp.own=tp.own||{};tp.codes=tp.codes||{};
+  const mine=solo?['A','B','C'].filter(r=>S[r]&&(r!=='C'||S.C.info||S.C.teil)):[me],parts=mine.filter(r=>S[r]&&S[r].teil),others=solo?[]:teamRoles(T).filter(r=>r!==me);
+  const sec=()=>{const e=document.createElement('div');c.appendChild(e);return e};
+  const sCard=sec(),sOwn=sec(),sCode=sec(),sIn=sec(),sJoint=sec();sJoint.className='tjoint';
+  sCard.innerHTML=mine.map(r=>rkarte(L,S,r)).join('');
+  const pa={};let jAuto=null;
+  const ownDone=()=>parts.every(r=>tp.own[r]),codesDone=()=>others.every(r=>tp.codes[r]),myCode=solo?'':teamCode(L,S._ti,me,T.nr);
+  parts.forEach(r=>{const P=variant(S[r].teil),box=document.createElement('div');box.className='tpart';sOwn.appendChild(box);
+    box.innerHTML=`<div class="kicker">${solo?`Teil von Rolle ${r}`:'Dein Teil'}${P.title?' · '+P.title:''}</div>${P.text?`<p>${val(P.text)}</p>`:''}${P.data?`<details class="given"><summary>${P.dataTitle||'📂 Gegebene Werte'}</summary><div class="gb">${val(P.data)}</div></details>`:''}${P.pre?P.pre():''}`;
+    if(tp.own[r]){box.insertAdjacentHTML('beforeend','<div class="fb ok">✅ Erledigt.</div>');return}
+    const sub=document.createElement('div');box.appendChild(sub);let wr=0;const prev=ctx.auto;ctx.auto=null;
+    W[P.type](sub,P,{card:sub,solved:()=>{if(tp.own[r])return;tp.own[r]=1;save();step()},
+      wrong:()=>{wr++;if(wr>=2&&!$('.prev',box)){const b=document.createElement('button');b.className='btn sec small revealbtn prev';b.textContent='👁 Lösung zeigen (dein Teil, ohne Abzug)';b.onclick=()=>{b.remove();pa[r]&&pa[r]()};box.appendChild(b)}},
+      setAuto:f=>{pa[r]=f}});
+    if(!pa[r])pa[r]=ctx.auto;ctx.auto=prev});
+  const inputs=()=>{sIn.innerHTML=`<p class="rq"><b>${others.length>1?'Teilcodes':'Teilcode'} von ${others.map(r=>'Rolle '+r).join(' und ')}</b></p>`;
+    others.forEach(r=>{const row=document.createElement('div');row.className='crow';row.innerHTML=`<span>Rolle ${r}:</span><input class="cin" data-r="${r}" maxlength="4" autocomplete="off" autocapitalize="characters" spellcheck="false" aria-label="Teilcode von Rolle ${r}">`;
+      const i=$('input',row);if(tp.codes[r]){i.value=teamCode(L,S._ti,r,T.nr);i.disabled=true;i.classList.add('okI')}sIn.appendChild(row)});
+    const b=addCheckBtn(sIn,'Codes prüfen ✔'),f=document.createElement('div');f.className='fb';sIn.appendChild(f);b.disabled=codesDone();
+    b.onclick=()=>{let miss=0,bad=0;$$('input.cin',sIn).forEach(i=>{if(i.disabled)return;const r=i.dataset.r,v=normCode(i.value);i.classList.remove('okI','badI');if(!v){miss++;return}
+        if(v===teamCode(L,S._ti,r,T.nr)){tp.codes[r]=1;i.disabled=true;i.classList.add('okI')}else{i.classList.add('badI');bad++}});save();
+      if(codesDone()){f.className='fb ok';f.innerHTML='✅ Die Codes stimmen. Jetzt löst ihr die Aufgabe gemeinsam.';b.disabled=true;step()}
+      else{f.className='fb '+(bad?'bad':'info');f.innerHTML=bad?'❌ Ein Code stimmt nicht. Prüft: dieselbe Teamnummer? Die richtige Rolle? (In den Codes gibt es kein 0, O, 1 oder I.)':'✏️ Es fehlt noch ein Code.';if(bad)shake(b)}}};
+  const joint=()=>{const J=variant(S.gemeinsam);
+    sJoint.innerHTML=`<div class="kicker">${G('🤝 ','')}Gemeinsam${J.title?' · '+J.title:''}</div>${J.text?`<p>${val(J.text)}</p>`:''}${J.data?`<details class="given"><summary>${J.dataTitle||'📂 Gegebene Werte'}</summary><div class="gb">${val(J.data)}</div></details>`:''}${J.pre?J.pre():''}
+     ${ctx.first?`<div class="hintbox first"><b>✏️ Erster Schritt:</b> ${ctx.first.html}</div>`:''}<p class="tip">${solo?'Nutze alle Rollenkarten.':'Besprecht den Weg, bevor ihr eingebt. Alle geben das Ergebnis auf dem eigenen Gerät ein.'}</p>`;
+    const sub=document.createElement('div');sJoint.appendChild(sub);ctx.auto=null;
+    W[J.type](sub,J,{card:sub,solved:()=>solved(),wrong:()=>{ctx.attempts++;tp.err=(tp.err||0)+1;save();updReveal()},setAuto:f=>{ctx.auto=f;ctx.reveal=J.noReveal?null:f}});
+    jAuto=ctx.auto;ctx.auto=full;
+    if(!api.quiet)setTimeout(()=>sJoint.scrollIntoView({behavior:'smooth',block:'start'}),250)};
+  // Fortschritt: eigener Code nach dem eigenen Teil (Rolle ohne Teil: nach den Codes der anderen); gemeinsam nach allen Codes
+  function step(){const od=ownDone();
+    sCode.innerHTML=!solo&&(parts.length?od:codesDone())?`<div class="tcode"><span>Dein Teilcode</span><b>${myCode}</b><small>Sag ihn ${others.length>1?'den anderen. Sie tippen':'deinem Partner. Er tippt'} ihn auf dem eigenen Gerät ein.</small></div>`:'';
+    if(!solo&&od&&!sIn.dataset.on){sIn.dataset.on=1;inputs()}
+    if((solo?od:od&&codesDone())&&!sJoint.dataset.on){sJoint.dataset.on=1;joint()}}
+  const full=()=>{parts.forEach(r=>{if(!tp.own[r]&&pa[r])pa[r]()});
+    if(!solo){$$('input.cin',sIn).forEach(i=>{if(!i.disabled)i.value=teamCode(L,S._ti,i.dataset.r,T.nr)});const b=$('.btn',sIn);if(b&&!b.disabled)b.click()}
+    if(jAuto)jAuto()};
+  ctx.partAuto=()=>parts.forEach(r=>{if(!tp.own[r]&&pa[r])pa[r]()});   // nur der eigene Teil (Test: zwei Geräte)
+  ctx.auto=full;api.quiet=1;step();api.quiet=0;
+ },
+ // Erklär-Duell: eine Person erklärt, die andere prüft mit einer Prüfkarte (nur auf ihrem Gerät) und gibt den Bestätigungscode; dann Tausch
+ duell:(c,S,api)=>{const L=LEVELS[cur.li],T=state.team[L._o];if(!T)return noRole(c);
+  const solo=!!T.solo,me=T.r,all=S.runden||[],R=all.filter(x=>x.erklaert!=='C'||(T.n===3&&!solo)),tp=state.tp[ctx.key]||(state.tp[ctx.key]={});tp.d=tp.d||{};
+  const box=document.createElement('div');c.appendChild(box);let au=null;
+  const draw=()=>{const k=R.findIndex((x,i)=>!tp.d[i]);
+    box.innerHTML=R.map((x,i)=>k<0||i<k?`<div class="dround done">✅ Runde ${i+1}: ${solo?'erklärt und geprüft':x.erklaert===me?'Du hast erklärt.':'Du hast geprüft.'}</div>`:'').join('');
+    if(k<0){au=null;if(!ctx.solved)api.solved();return}
+    const x=R[k],ri=all.indexOf(x),ex=!solo&&x.erklaert===me,cd=duellCode(L,S._ti,ri,T.nr),d=document.createElement('div');d.className='dround';box.appendChild(d);
+    d.innerHTML=`<div class="kicker">Runde ${k+1} von ${R.length} · ${solo?'Allein: erklären und selbst prüfen':ex?'Du erklärst':`Du prüfst · Rolle ${x.erklaert} erklärt`}</div>
+     <div class="plenum"><div class="pk">${ex||solo?'Deine Erklär-Frage':'Die Erklär-Frage'}</div><div class="pq">${x.frage}</div></div>`;
+    if(ex){d.insertAdjacentHTML('beforeend',`${x.tipp?`<p class="tip">${x.tipp}</p>`:''}<p>Erkläre es in eigenen Worten. Dein Partner hat eine <b>Prüfkarte</b>, die nur er sieht. Passt deine Erklärung, nennt er dir den <b>Bestätigungscode</b>.</p>
+       <div class="crow"><span>Bestätigungscode:</span><input class="cin" maxlength="4" autocomplete="off" autocapitalize="characters" spellcheck="false" aria-label="Bestätigungscode"></div>`);
+      const i=$('input',d),b=addCheckBtn(d,'Code prüfen ✔'),f=document.createElement('div');f.className='fb';d.appendChild(f);
+      b.onclick=()=>{if(normCode(i.value)===cd){tp.d[k]=1;save();draw()}else{api.wrong();i.classList.add('badI');f.className='fb bad';f.innerHTML='❌ Der Code stimmt nicht. Frag nach, was in deiner Erklärung noch fehlt.';shake(b)}};
+      au=()=>{i.value=cd;b.click()};return}
+    const min=x.min||Math.max(1,x.pruef.length-1);
+    d.insertAdjacentHTML('beforeend',`<p>${solo?'Erkläre es laut für dich oder schreib Stichworte auf. Hake dann ab, was deine Erklärung enthält.':'<b>Prüfkarte: Nur du siehst sie.</b> Hör zu und hake ab, was die Erklärung enthält. Fehlt etwas, frag gezielt nach.'}</p>`);
+    const ul=document.createElement('ul');ul.className='scheck pkarte';ul.innerHTML=x.pruef.map(t=>`<li><label><input type="checkbox"><span>${t}</span></label></li>`).join('');d.appendChild(ul);
+    const f=document.createElement('div');f.className='fb';d.appendChild(f);
+    const fin=()=>{tp.d[k]=1;save();draw()};
+    const upd=()=>{const n=$$('input',ul).filter(z=>z.checked).length;
+      if(n>=min){f.className='fb ok';f.innerHTML=`✅ ${n} von ${x.pruef.length} Punkten.`+(solo?'':` Nenne jetzt den Code:<div class="tcode"><span>Bestätigungscode</span><b>${cd}</b></div>`)+`<button class="btn blue small" style="width:100%;margin-top:8px" data-fin>Runde abschließen ▶</button>`;$('[data-fin]',f).onclick=fin;f.scrollIntoView({behavior:'smooth',block:'center'})}
+      else{f.className='fb info';f.innerHTML=`${n} von ${x.pruef.length} abgehakt. ${solo?'Abschließen':'Den Code gibt es'} ab ${min} Punkten.`}};
+    ul.onchange=upd;upd();
+    au=()=>{$$('input',ul).forEach(z=>z.checked=true);upd();fin()}};
+  draw();ctx.auto=()=>{for(let g=0;g<8&&au;g++)au()};
+ },
  kahoot:(c,S,api)=>{
-  const q=S.qd,n=QUIZ.length,Tm=30,shapes=['▲','◆','●','■'];let done=false;const t0=Date.now();
+  const q=S.qd,n=QUIZ.length,Tm=30,shapes=['▲','◆','●','■'],tim=timerOn();let done=false,t0=Date.now();
   c.style.background='transparent';c.style.boxShadow='none';c.style.padding='0';
-  c.innerHTML=`<div class="kq"><small>Frage ${S.qi+1} von ${n}${ctx.review?' · Übungsrunde':''}</small>${q.q}</div>${state.timer?`<div class="ktimer"><div class="tbar"><i></i></div><div class="tnum">${Tm}</div></div>`:''}<div class="kgrid"></div><div class="kres hidden"></div>`;
+  c.innerHTML=`<div class="kq"><small>Frage ${S.qi+1} von ${n}${q.transfer?' · Transferfrage':''}${ctx.review?' · Übungsrunde':''}</small>${q.q}</div>${tim?`<div class="ktimer"><div class="tbar"><i></i></div><div class="tnum">${Tm}</div></div>`:''}<div class="kgrid"></div>
+   ${ctx.review?'':`<div class="jokers"><button class="btn sec small" data-j="50">${G('🃏 ','')}50:50 · ${PREIS.j50} ⭐</button>${tim?`<button class="btn sec small" data-j="t">${G('⏳ ','')}+15 s · ${PREIS.jzeit} ⭐</button>`:''}</div>`}<div class="kres hidden"></div>`;
   const g=$('.kgrid',c),res=$('.kres',c),opts=shuffle(q.o);
   opts.forEach((o,k)=>{const b=document.createElement('button');b.className='kopt k'+k;b.innerHTML=`<span class="sh">${shapes[k]}</span><span>${o.t}</span>`;b._ok=!!o.ok;b.onclick=()=>fin(b);g.appendChild(b)});
-  const fin=btn=>{if(done)return;done=true;clearTimers();const rem=Math.max(0,Tm-(Date.now()-t0)/1000),ok=!!(btn&&btn._ok);
-    $$('.kopt',g).forEach(x=>{x.disabled=true;x.classList.add(x._ok?'right':'dim')});if(btn&&!ok)btn.classList.remove('dim');
-    const pts=ok?10+(state.timer?Math.round(10*rem/Tm):0):0;
+  // Joker: je Frage einmal 50:50 und einmal mehr Zeit
+  $$('.jokers button',c).forEach(j=>j.onclick=()=>{if(done)return;
+    if(j.dataset.j==='50'){if(!buy(PREIS.j50))return;shuffle($$('.kopt',g).filter(x=>!x._ok&&!x.disabled)).slice(0,2).forEach(x=>{x.disabled=true;x.classList.add('dim')})}
+    else{if(!buy(PREIS.jzeit))return;t0+=15000}
+    j.disabled=true});
+  const fin=btn=>{if(done)return;done=true;clearTimers();const rem=Math.max(0,Math.min(Tm,Tm-(Date.now()-t0)/1000)),ok=!!(btn&&btn._ok);
+    $$('.kopt',g).forEach(x=>{x.disabled=true;x.classList.add(x._ok?'right':'dim')});if(btn&&!ok)btn.classList.remove('dim');$$('.jokers button',c).forEach(x=>x.disabled=true);
+    const pts=ok?10+(tim?Math.round(10*rem/Tm):0):0;
     res.classList.remove('hidden');res.className='kres '+(ok?'ok':'bad');
     res.innerHTML=ok?`<div class="kp">✅ Richtig! ${ctx.review?'':'+'+pts+' ⭐'}</div>${q.why}`:`<div class="kp">${btn?'❌ Leider falsch':'⏰ Zeit abgelaufen'}</div>Richtig ist: <b>${q.o.find(o=>o.ok).t}</b><br>${q.why}`;
     if(!ctx.review&&state.quiz[ctx.key]==null)state.quiz[ctx.key]=ok?1:0;
     solved(false,ctx.review?0:pts)};
-  if(state.timer){const tb=$('.tbar i',c),tn=$('.tnum',c);timers.push(setInterval(()=>{const rem=Tm-(Date.now()-t0)/1000;tb.style.width=Math.max(0,rem/Tm*100)+'%';tn.textContent=Math.max(0,Math.ceil(rem));if(rem<=0)fin(null)},200))}
+  if(tim){const tb=$('.tbar i',c),tn=$('.tnum',c);timers.push(setInterval(()=>{const rem=Tm-(Date.now()-t0)/1000;tb.style.width=Math.max(0,Math.min(100,rem/Tm*100))+'%';tn.textContent=Math.max(0,Math.ceil(rem));if(rem<=0)fin(null)},200))}
   ctx.auto=()=>{const b=$$('.kopt',g).find(x=>x._ok);b&&b.click()};
  },
  quizEnd:(c,S,api)=>{const q=quizScore(),n=QUIZ.length;
@@ -802,339 +1453,257 @@ const W={
    <p>${q>=n*.65?'Stark – du beherrschst die Fachbegriffe!':'Gut gemacht! Schau dir die Etappen mit Fehlern nochmal an – du kannst alles wiederholen.'}</p></div>`;api.solved()}
 };
 
+/* ---------- Hilfen: 3 Stufen + optionaler Rückblick ---------- */
+function nHints(S){return hintPlan(S).length}
+// recap:[li,si] zeigt die gelöste Aufgabe aus einem früheren Level samt Lösung; recap:'html' einen eigenen Rückblick.
+function recapHTML(S){const r=S.recap;
+  if(typeof r==='string')return `<b>🔁 Rückblick:</b> ${r}`;
+  const L=S._rc?S._rc[0]:LEVELS[r[0]],si=S._rc?S._rc[1]:r[1],R=L&&L.steps[si];if(!R)return '<b>🔁 Rückblick:</b> –';const li=LEVELS.indexOf(L);
+  const tx=R.text?`<div class="m">${typeof R.text==='function'?R.text():R.text}</div>`:'';
+  return `<b>🔁 Rückblick auf ${L.title}:</b> So hast du es dort gelöst.${tx}<div class="sol">${solText(R)}</div><button class="btn sec small" data-recap="${li},${si}">Aufgabe dort nochmal ansehen</button>`;
+}
+document.addEventListener('click',e=>{const b=e.target.closest('[data-recap]');if(!b)return;const [li,si]=b.dataset.recap.split(',').map(Number);
+  const back={li:cur.li,si:cur.si};openLevel(li,si);
+  const r=document.createElement('button');r.className='btn blue small';r.style.cssText='width:100%;margin-bottom:10px';r.textContent=G('↩ Zurück zur Aufgabe beim Gegner','↩ Zurück zur Aufgabe');r.onclick=()=>openLevel(back.li,back.si);
+  $('#stepBox').prepend(r)});
+function showHint(){
+  const S=ctx.S,P=ctx.plan,n=ctx.hint;if(!P.length)return;if(n>=P.length){shake($('#hintArea'));return}
+  const L=LEVELS[cur.li],st=stufe(),boss=!!L.boss&&!ctx.review;
+  // Profi: nur der Denkanstoß ist frei, jede weitere Hilfe kostet Sterne.
+  if(st==='p'&&n>=1&&!ctx.review&&!buy(PREIS.hilfe))return;
+  const h=P[n],d=document.createElement('div');d.className='hintbox';
+  if(h.recap){d.className='hintbox recap';d.innerHTML=recapHTML(S)}else d.innerHTML=`<b>${h.lab}:</b> ${h.html}`;
+  $('#hintArea').appendChild(d);
+  ctx.hint++;if(!ctx.review){ctx.used++;state.hints++}
+  // Gegner: Standard – der Denkanstoß ist frei, danach sinken Punkte und Bonus. Profi – bezahlt, nur der Bonus sinkt. Einsteiger – alles frei.
+  if(boss&&n>=1&&st!=='e'){state.bossHints[cur.li]=(+state.bossHints[cur.li]||0)+1;if(st==='s')ctx.penal++}
+  save();$('#bHint').textContent=hintLabel();updReveal();d.scrollIntoView({behavior:'smooth',block:'nearest'});
+}
+
 /* ---------- Start ---------- */
 function buildQuizLevel(){
   const QL=LEVELS[LEVELS.length-1];QL.quiz=true;
-  QL.steps=[{type:'info',html:()=>person(`<p>Letzte Runde, ${nm()}! ${QUIZ.length} Fragen zu den wichtigsten Fachbegriffen. Für jede richtige Antwort gibt's <b>10 ⭐</b> – mit Countdown zusätzlich bis zu <b>10 ⭐ Tempo-Bonus</b>. Keine Hilfen, kein Zurück – wie bei Kahoot. 🎯</p>`,QL.host)+
-     `<div class="toggle"><span>⏱ Countdown (30 s pro Frage)</span><button id="tgT" class="${state.timer?'':'off'}">${state.timer?'AN':'AUS'}</button></div><p class="tip">Ohne Countdown gibt es keinen Tempo-Bonus, aber auch keinen Zeitdruck.</p>`,
-     mount:c=>{$('#tgT',c).onclick=e=>{state.timer=!state.timer;save();e.target.textContent=state.timer?'AN':'AUS';e.target.classList.toggle('off',!state.timer)}}}]
+  QL.steps=[{type:'info',html:()=>person(SACH?`<p>Zum Abschluss ${QUIZ.length} Fragen zu den wichtigsten Fachbegriffen. Jede richtige Antwort bringt 10 Punkte, mit Countdown zusätzlich bis zu 10 Punkte für Tempo. Hilfen gibt es hier nicht.</p>`
+       :`<p>Letzte Runde, ${nm()}! ${QUIZ.length} Fragen zu den wichtigsten Fachbegriffen. Für jede richtige Antwort gibt's <b>10 ⭐</b> – mit Countdown zusätzlich bis zu <b>10 ⭐ Tempo-Bonus</b>. Keine Hilfen, kein Zurück – wie bei Kahoot. 🎯</p>`,QL.host)+
+     `<div class="toggle"><span>⏱ Countdown (30 s pro Frage)</span><button id="tgT" class="${timerOn()?'':'off'}">${timerOn()?'AN':'AUS'}</button></div><p class="tip">Ohne Countdown gibt es keinen Tempo-Bonus, aber auch keinen Zeitdruck. Joker: 50:50 für ${PREIS.j50} ⭐, mit Countdown +15 s für ${PREIS.jzeit} ⭐.</p>`,
+     mount:c=>{$('#tgT',c).onclick=e=>{state.timer=!timerOn();save();e.target.textContent=timerOn()?'AN':'AUS';e.target.classList.toggle('off',!timerOn())}}}]
    .concat(QUIZ.map((q,i)=>({type:'kahoot',qi:i,qd:q,hints:[]})))
    .concat([{type:'quizEnd'}]);
 }
 function start(){
-  state=load();document.title=CONFIG.title;buildQuizLevel();calcInit();
+  state=load();SACH=CONFIG.stil==='sachlich';document.title=CONFIG.title;prepLevels();buildQuizLevel();calcInit();setBodyCls();sachInit();
   $('#bNext').onclick=()=>{const L=LEVELS[cur.li];if(cur.si<L.steps.length-1){cur.si++;renderStep()}else finishLevel()};
   $('#bBack').onclick=()=>{if(cur&&cur.si>0)goStep(cur.si-1)};
-  $('#bHint').onclick=()=>{const S=ctx.S;if(!S.hints||!S.hints.length)return;const n=ctx.hint;if(n>=S.hints.length){shake($('#hintArea'));return}
-    const lbl=['💡 Denkanstoß','📘 Wort-Hilfe','✏️ Erster Schritt'][n]||'💡 Tipp';
-    const d=document.createElement('div');d.className='hintbox';d.innerHTML=`<b>${lbl}:</b> ${S.hints[n]}`;$('#hintArea').appendChild(d);
-    ctx.hint++;state.hints++;if(LEVELS[cur.li].boss&&!ctx.review)state.bossHints[cur.li]=1;save();
-    $('#bHint').textContent=ctx.hint>=S.hints.length?'💡 Alle offen':`💡 Hilfe ${ctx.hint+1}/${S.hints.length}`;updReveal();d.scrollIntoView({behavior:'smooth',block:'nearest'})};
+  $('#bHint').onclick=showHint;
   $('#bHome').onclick=renderHome;$('#bCalc').onclick=toggleCalc;$('#bData').onclick=openData;
-  renderHome();if(!state.name)askName();
+  mapPort=(window.innerWidth||800)<700;renderHome();if(!state.name)askName();
 }
 /* =================== ENDE ENGINE =================== */
 
-/* ==== INHALT START: Exponentialterme lesen: Grundformen und Parameter (12NF, Woche 3) ==== */
+/* ==== INHALT START: Grundformen und Parameter von Exponentialfunktionen (12NF, Woche 3, 20 min, spielerisch) ==== */
 const CONFIG={
-  title:'Exponentialterme: Abkühlmodelle',
-  org:'Prüflabor Rheinblick · Auswertungs-Team',
-  mission:'Mission: Antwort an die Kundin',
-  missionText:'Eine Kundin hat zwei Abkühlmodelle geschickt. Sind sie gleichwertig? Schaffst du alle Etappen und besiegst die Gegner?',
-  person:{name:'Frau Kern',role:'Kundin, Wärmebehandlung',ava:'👩‍🔧'},
-  defaultName:'Prüfer', startEmoji:'🌡️📉', nameQuestion:'Du startest heute im Auswertungs-Team des Prüflabors Rheinblick. Wie heißt du?',
-  certTitle:'Prüfer-Ausweis', certSub:'Exponentialterme lesen · Antwort an die Kundin', certButton:'Meinen Prüfer-Ausweis zeigen',
-  nextTime:'Beim nächsten Mal arbeitest du weiter mit Exponentialfunktionen. 📈',
+  title:'Zwei Formeln, ein Vorgang?',
+  org:'Lumetra Prüftechnik · Auswertung',
+  mission:'Mission: Modellcheck MC-3',
+  missionText:'Eine Kundin hat zwei Formeln für denselben Abkühlvorgang bekommen. Finde heraus, ob beide dasselbe beschreiben, und überzeuge die Qualitätssicherung!',
+  person:{name:'Mehmet Arslan',role:'Leitung Auswertung',ava:'👨‍🔬'},
+  defaultName:'Praktikant', startEmoji:'🌡️🧪', nameQuestion:'Du startest heute in der Auswertung von Lumetra Prüftechnik. Wie heißt du?',
+  certTitle:'Labor-Ausweis', certSub:'Grundformen und Parameter · Modellcheck MC-3', certButton:'Meinen Labor-Ausweis zeigen',
+  nextTime:'Nächste Woche beschreibst du die Graphen solcher Funktionen genauer.',
+  minuten:20,
   key:'sim-expo-parameter-12nf-w03-v1', code:'EXPO12',
-  board:{wer:'Das Auswertungs-Team (eure Klasse) im Prüflabor Rheinblick: Wir prüfen Modelle für Kunden.',
-         ziel:'Eine Antwortnotiz an Frau Kern: Sind ihre zwei Abkühlmodelle gleichwertig? Dafür vergleichen wir Startwert, Faktor beziehungsweise Rate und Verschiebung.',
-         wie:'Modelle lesen → Faktorform und e-Form umrechnen → Restwert und Verschiebung deuten → Prozentänderung berechnen → Notiz schreiben.'},
-  ws:{fach:'Mathematik 12.1 · 12NF',untertitel:'Exponentialterme lesen: Grundformen und Parameter',dauer:'20 Minuten',fusszeile:'Mission Kundenantwort · Exponentialterme lesen'},
-  rankText:{1:'<br>Du darfst Modelle für das Team vergleichen.',2:'<br>Du prüfst Modelle auch mit Restwert.',3:'<br>Du schreibst die Antwort an die Kundin.'}
+  board:{wer:'Das Auswertungsteam von Lumetra Prüftechnik (eure Klasse).',
+         ziel:'Eine kurze, begründete Antwort an Frau Pohl: Beschreiben Modell A und Modell B denselben Abkühlvorgang?',
+         wie:'Zahlen in Modell A benennen → Starttemperatur berechnen → Modell A in die Schreibweise mit e umrechnen → vergleichen und antworten'},
+  karte:{vorlage:'labor',symbole:{0:'✉️',1:'🌡️',2:'🧐',3:'🎯'}},
+  ziele:[{t:'in einer Formel für Zu- oder Abnahme zeigen, wo Startwert, Faktor pro Zeitabschnitt und Restwert stehen, jeweils mit Einheit.',level:[1]},
+         {t:'zwei verschieden geschriebene Formeln für denselben Vorgang vergleichen und entscheiden, ob sie dasselbe beschreiben.',level:[1,2]}],
+  ws:{fach:'Mathematik 12.1 · 12NF',untertitel:'Grundformen und Parameter von Exponentialfunktionen',dauer:'20 min',fusszeile:'Modellcheck MC-3 · Woche 3: Grundformen und Parameter'},
+  rankText:{1:'<br>Du darfst Modellvergleiche selbst an Kunden schicken.'}
 };
-const RANKS=['Praktikant','Junior-Prüfer','Prüfer','Senior-Prüfer'];
+const RANKS=['Praktikant','Laborassistent'];
 
-/* ---------- Daten ---------- */
-const MOD={A:{N0:60,q:0.5,dt:10,c:20},B:{A:60,k:-0.0693,c:20},C:{A:60,k:-0.07,c:20}};
-const fA=t=>MOD.A.N0*Math.pow(MOD.A.q,t/MOD.A.dt)+MOD.A.c;
-const fB=t=>MOD.B.A*Math.exp(MOD.B.k*t)+MOD.B.c;
-const fC=t=>MOD.C.A*Math.exp(MOD.C.k*t)+MOD.C.c;
-const GRO={N0:40,q:1.2,dt:3};
-const ENT={A:45,k:-0.2,c:12};
-const fE=t=>ENT.A*Math.exp(ENT.k*t)+ENT.c;
-const curveSegs=(f,x0,x1,n,color)=>{const s=[];for(let i=0;i<n;i++){const a=x0+(x1-x0)*i/n,b=x0+(x1-x0)*(i+1)/n;s.push({x1:a,y1:f(a),x2:b,y2:f(b),color:color||'#17607a',w:4})}return s};
-const TA=()=>K('T_A(t)=60\\cdot 0{,}5^{t/10}+20');
-const TB=()=>K('T_B(t)=60\\,e^{-0{,}0693\\,t}+20');
-const TCc=()=>K('T_C(t)=60\\,e^{-0{,}07\\,t}+20');
-const TU=()=>K('U(t)=45\\,e^{-0{,}2\\,t}+12');
-const TN=()=>K('N(t)=40\\cdot 1{,}2^{t/3}');
+/* ---------- Daten (konstruiertes Unterrichtsbeispiel, mit Python nachgerechnet) ---------- */
+const MA={A:60,q:0.8,dt:5,c:20};                 // Modell A: T(t)=60 °C·0,8^(t/5 min)+20 °C
+const KB=-0.0446;                                 // Modell B: k gerundet in 1/min
+const KX=Math.log(MA.q)/MA.dt;                    // exakt ≈ −0,04463 1/min
+const TA=t=>MA.A*Math.pow(MA.q,t/MA.dt)+MA.c;
+const TB=t=>MA.A*Math.exp(KB*t)+MA.c;
+const TT=[0,5,10,15];                             // Tabelle: 80; 68; 58,4; 50,72 °C
+const MC={A:40,k:-0.2,c:15,dt:5};                 // Gegner: f(t)=40 °C·e^(−0,2t)+15 °C
+const MCq=Math.exp(MC.k*MC.dt);                   // ≈ 0,368
+const MCp=100*(MCq-1);                            // ≈ −63,2 %
 
 const GL={
-  faktor:['Faktorform','<b>N(t) = N₀ · q<sup>t/Δt</sup></b>: N₀ ist der Startwert, q der <b>Faktor pro Zeitspanne Δt</b>. Der Faktor sagt, womit der Wert nach jeder Zeitspanne Δt multipliziert wird.'],
-  wachstum:['Wachstum, Zerfall, Konstanz','<b>q &gt; 1:</b> Wachstum. <b>0 &lt; q &lt; 1:</b> Zerfall. <b>q = 1:</b> Konstanz (der Wert ändert sich nicht).'],
-  eform:['e-Form','<b>N(t) = N₀ · e<sup>kt</sup></b>. Sie beschreibt denselben Prozess wie die Faktorform, wenn <b>q = e<sup>k·Δt</sup></b> gilt.'],
-  rate:['Rate k','Der Parameter k in e<sup>kt</sup>. Umrechnung: <b>k = ln(q) : Δt</b>. Einheit: Kehrwert der Zeit, z. B. 1/min. <b>k &lt; 0</b> Zerfall, <b>k &gt; 0</b> Wachstum.'],
-  einheitlos:['kt einheitenlos','Im Exponenten steht <b>k · t</b>: (1/min) · min kürzt sich. Das Produkt hat keine Einheit, sonst könnte man e<sup>…</sup> nicht bilden.'],
-  startwert:['Startwert f(0)','Der Wert bei t = 0. Bei <b>f(t) = A·e<sup>kt</sup> + c</b> gilt <b>f(0) = A + c</b>, nicht nur A.'],
-  verschiebung:['Verschiebung c (Restwert)','Der Wert c wird zu A·e<sup>kt</sup> addiert. Hier ist c die Raumtemperatur, auf die der Körper zustrebt (die Asymptote). A ist der <b>Anfangsabstand</b> zu diesem Restwert.'],
-  prozent:['Prozentänderung','Je Zeitspanne Δt: <b>100 · (e<sup>kΔt</sup> − 1) %</b>. Bei Zerfall ist sie negativ.'],
-  gleichwertig:['gleichwertig','Zwei Terme beschreiben denselben Prozess, wenn Startwert, Verschiebung und der <b>Faktor je gleicher Zeitspanne</b> übereinstimmen.']
+  zeitspanne:['Zeitspanne Δt','Die Zeit, nach der immer derselbe Faktor wirkt. Bei Modell A sind das 5 Minuten.','„Alle 5 Minuten bleiben 80 % des Abstands übrig.“',{sg:'die Zeitspanne',pl:'die Zeitspannen'}],
+  versch:['Verschiebung c','Ein fester Wert, der zum Ganzen addiert wird. Die Kurve rutscht dadurch nach oben oder unten.','Der Prüfkörper kühlt nur bis zur Raumtemperatur von 20 °C ab.',{sg:'die Verschiebung',pl:'die Verschiebungen'}],
+  euler:['eulersche Zahl e','Eine feste Zahl, ungefähr 2,718. Der Taschenrechner hat dafür eine eigene Taste.','Wie π ist e eine feste Zahl mit eigenem Zeichen.',{sg:'die eulersche Zahl',pl:''}],
+  eform:['e-Form','Die Schreibweise mit e hoch k mal t. Sie beschreibt denselben Vorgang wie die Form mit dem Faktor q.','Modell B ist die e-Form von Modell A.',{art:'die',pl:'die e-Formen'}],
+  wk:['Wachstumskonstante k','Die Zahl vor dem t in der e-Form. Ist sie negativ, nimmt der Wert ab.','Modell B: k = −0,0446 pro Minute.',{sg:'die Wachstumskonstante',pl:'die Wachstumskonstanten'}]
 };
 
 /* ---------- Bausteine ---------- */
-const TAB=()=>`<table class="tb"><tr><th>Modell</th><th>Term</th><th>Parameter</th></tr>
-<tr><td>A <small>(Faktorform)</small></td><td>${TA()}</td><td>q = 0,5 je 10 min</td></tr>
-<tr><td>B <small>(e-Form)</small></td><td>${TB()}</td><td>k = −0,0693 min⁻¹</td></tr>
-<tr><td>C <small>(Gegenmodell)</small></td><td>${TCc()}</td><td>k = −0,07 min⁻¹</td></tr></table>`;
-function MAIL(){return `<div class="mail"><div class="mh"><b>Von:</b> Frau Kern, Wärmebehandlung<br><b>An:</b> Auswertungs-Team, Prüflabor Rheinblick<br><div class="subj">Zwei Abkühlmodelle: Sind sie gleichwertig?</div></div>
-<div class="mb"><p>Guten Tag,</p>
-<p>nach der Wärmebehandlung kühlt unser Prüfkörper ab. Ich habe zwei Modelle für denselben Prozess erhalten: <b>Modell A</b> mit einem Faktor, <b>Modell B</b> mit der Basis <b>e</b>. Bei beiden bleibt am Ende die <b>Raumtemperatur</b> als Restwert bestehen. Zusätzlich hat ein Kollege ein <b>Modell C</b> vorgeschlagen.</p>
-<p>Bitte schreibt mir eine kurze <b>Antwortnotiz</b>: Welche Parameter habt ihr verglichen, wie rechnet man Faktor und Rate ineinander um, und sind B und C gleichwertig zu A? Bitte formuliert vorsichtig. Es sind nur Modelle.</p>
-<p>Viele Grüße<br>Frau Kern</p>
-<span class="att">📎 Abkühlmodelle.pdf</span>${TAB()}
-<p class="tip" style="margin:8px 0 0">t = Zeit in min · T = Temperatur in °C</p></div></div>
-<p class="tip" style="margin:6px 0 0">Labor, Kundin, Prüfkörper und Zahlen sind für den Unterricht erfunden.</p>`}
-function DATA(){return `<h4 style="margin:4px 0">Die drei Modelle (t in min, T in °C)</h4>${TAB()}
- <p class="tip">Faktorform: ${K('N(t)=N_0\\,q^{t/\\Delta t}')} · e-Form: ${K('N(t)=N_0\\,e^{kt}')}</p>
- ${levelOpen(1)?`<h4 style="margin:12px 0 4px">Umrechnung</h4>${KD('q=e^{k\\Delta t}\\qquad k=\\dfrac{\\ln(q)}{\\Delta t}')}`:''}
- ${levelOpen(2)?`<h4 style="margin:12px 0 4px">Mit Verschiebung</h4>${KD('f(t)=A\\,e^{kt}+c\\qquad f(0)=A+c')}${KD('\\text{Prozentänderung je }\\Delta t:\\;100\\,(e^{k\\Delta t}-1)\\,\\%')}`:''}
- <details class="given"><summary>✉️ E-Mail nochmal lesen</summary><div class="gb">${MAIL()}</div></details>`}
-const BOSS1={name:'Herr Albrecht',role:'Qualitätssicherung',ava:'🧐'};
-const BOSS2={name:'Frau Demir',role:'Elektrotechnik-Labor',ava:'🤨'};
+const FA=()=>K('T(t)=60\\,^\\circ\\mathrm{C}\\cdot 0{,}8^{\\,t/(5\\,\\mathrm{min})}+20\\,^\\circ\\mathrm{C}');
+const FB=()=>K('T(t)=60\\,^\\circ\\mathrm{C}\\cdot e^{-0{,}0446\\,t}+20\\,^\\circ\\mathrm{C}');
+const FORM=()=>KD('N(t)=N_0\\cdot q^{\\,t/\\Delta t}')+KD('N(t)=N_0\\cdot e^{k t}\\quad\\text{mit}\\quad k=\\dfrac{\\ln(q)}{\\Delta t},\\;\\; q=e^{k\\,\\Delta t}')+KD('f(t)=A\\cdot e^{k t}+c,\\quad f(0)=A+c');
+function MAIL(){return `<div class="mail"><div class="mh"><b>Von:</b> Jana Pohl, Rheinkant Werkstofftechnik<br><b>An:</b> Auswertung Lumetra Prüftechnik (eure Klasse)<br><div class="subj">Zwei Formeln für unseren Abkühlversuch – welche stimmt?</div></div>
+<div class="mb"><p>Hallo zusammen,</p>
+<p>nach einer Wärmebehandlung kühlt unser Prüfkörper an der Luft ab. Zwei Dienstleister haben mir dafür je eine Formel geschickt (t in Minuten):</p>
+<p><b>Modell A:</b> ${FA()}<br><b>Modell B:</b> ${FB()}</p>
+<p>Bei beiden bleibt ein Restwert von 20 °C. Beschreiben die beiden Formeln denselben Abkühlvorgang, oder muss ich mich für eine entscheiden? Bitte schickt mir eine kurze, begründete Antwort.</p>
+<p>Viele Grüße<br>Jana Pohl</p></div></div>`}
+function tabA(){return `<table class="tb"><tr><th>t in min</th>${TT.map(t=>`<th class="n">${t}</th>`).join('')}</tr><tr><td>T(t) in °C (Modell A)</td>${TT.map(t=>`<td class="n">${fmt(TA(t),2).replace(',00','')}</td>`).join('')}</tr></table>`}
+function DATA(){return `<h4 style="margin:4px 0">Die beiden Modelle (t in min)</h4><p>Modell A: ${FA()}<br>Modell B: ${FB()}</p>${tabA()}
+ ${levelOpen(1)?`<h4 style="margin:12px 0 4px">Formeln</h4>${FORM()}`:''}
+ <details style="margin-top:8px"><summary>✉️ E-Mail von Frau Pohl</summary>${MAIL()}</details>`}
+const BOSS={name:'Herr Brandt',role:'Qualitätssicherung',ava:'🧐'};
 
-/* ---------- Simulationen ---------- */
-function simGrund(c,api){
-  const base={xmin:0,xmax:30,ymin:0,ymax:200,xgrid:5,xlab:10,ygrid:10,ylab:50,h:420,xt:'t in min',yt:'N in Einheiten'};
-  let q=1;const seen={lt:0,gt:0,eq:0};
-  const pl=makePlot(c,base);const ro=document.createElement('div');ro.className='readout';c.appendChild(ro);
-  const ck=checklist(['q kleiner als 1 eingestellt','q größer als 1 eingestellt','q = 1 eingestellt']);const q2=document.createElement('div');
-  const draw=()=>{const f=t=>40*Math.pow(q,t/10);
-    pl.draw({segs:curveSegs(f,0,30,60,'#17607a'),points:[{x:0,y:40,color:'#c2410c',r:7}]});
-    ro.innerHTML=`<span>Faktor je 10 min: <b>q = ${fmt(q,1)}</b></span><span>Startwert: <b>40</b></span>`;
-    if(q<1)seen.lt=1;if(q>1)seen.gt=1;if(Math.abs(q-1)<1e-9)seen.eq=1;ck.set(0,!!seen.lt);ck.set(1,!!seen.gt);ck.set(2,!!seen.eq);
-    if(seen.lt&&seen.gt&&seen.eq&&!q2.dataset.on){q2.dataset.on=1;
-      mcqW(q2,{q:`Was bedeutet ${K('q=1')} für den Wert ${K('N(t)=40\\cdot q^{t/10}')}?`,o:[
-        {t:'Der Wert bleibt konstant: Er wird in jeder Zeitspanne mit 1 multipliziert.',ok:1,fb:`Genau: ${T('wachstum')}. Bei q = 1 ändert sich nichts.`},
-        {t:'Der Wert fällt auf null.',fb:'Multiplikation mit 1 lässt den Wert unverändert. Null entsteht hier nie.'},
-        {t:'Der Wert wächst um 1 je Zeitspanne.',fb:'Der Faktor 1 bedeutet nicht „plus 1“. Es wird mit 1 multipliziert, also gar nichts verändert.'},
-        {t:'Der Wert halbiert sich.',fb:'Halbieren würde q = 0,5 bedeuten.'}]},api.solved,api.wrong)}};
-  const ctl=ctlRow({label:'Faktor q je Zeitspanne Δt = 10 min',min:0.3,max:1.7,step:.1,val:q,fmtV:v=>'q = '+fmt(v,1),onChange:v=>{q=Math.round(v*10)/10;draw()}});
+/* ---------- Simulation: Regler für den Faktor q ---------- */
+function curveSegs(q,col){const s=[];for(let t=0;t<20;t+=0.5){s.push({x1:t,y1:60*Math.pow(q,t/5)+20,x2:t+0.5,y2:60*Math.pow(q,(t+0.5)/5)+20,color:col})}return s}
+function simQ(c,api){
+  let q=0.8;const seen={lt:0,eq:0,gt:0};let m=null;
+  const pl=makePlot(c,{xmin:0,xmax:20,ymin:0,ymax:260,xgrid:5,xlab:5,ygrid:20,ylab:40,h:380,xt:'t in min',yt:'N(t)'});
+  const ro=document.createElement('div');ro.className='readout';c.appendChild(ro);
+  const ck=checklist(['einen Faktor kleiner als 1 eingestellt','den Faktor genau 1 eingestellt','einen Faktor größer als 1 eingestellt']);
+  const q2=document.createElement('div');
+  const draw=()=>{const col=q<1?'#17607a':q>1?'#c2410c':'#16233a';
+    pl.draw({segs:curveSegs(q,col),lines:[{m:0,b:20,color:'#5b3fc4',dash:1}],points:[{x:0,y:80,color:col,r:6}]});
+    const qt=fmt(q,2).replace(',','{,}');
+    ro.innerHTML=`<span>${K(`N(t)=60\\cdot ${qt}^{\\,t/5}+20`)}</span><span>${q<1?'📉 nimmt ab':q>1?'📈 nimmt zu':'➖ bleibt gleich'}</span>`;
+    if(q<1)seen.lt=1;if(Math.abs(q-1)<1e-9)seen.eq=1;if(q>1)seen.gt=1;ck.set(0,!!seen.lt);ck.set(1,!!seen.eq);ck.set(2,!!seen.gt);
+    if(seen.lt&&seen.eq&&seen.gt&&!q2.dataset.on){q2.dataset.on=1;m=mcqW(q2,{q:'Für welche Faktoren q wird der Abstand zur gestrichelten Linie mit der Zeit kleiner?',o:[
+      {t:K('0<q<1'),ok:1,fb:'Genau. Dann bleibt pro 5 Minuten nur ein Teil des Abstands übrig. Das ist Abnahme (Zerfall).'},
+      {t:K('q>1'),fb:'Bei q > 1 wird der Abstand pro 5 Minuten größer. Das ist Wachstum.'},
+      {t:K('q=1'),fb:'Bei q = 1 bleibt der Abstand immer gleich. Die Kurve ist waagerecht.'},
+      {t:K('q<0'),fb:'Ein negativer Faktor ist hier nicht erlaubt. In diesen Formeln gilt immer q > 0.'}]},api.solved,api.wrong)}};
+  const ctl=ctlRow({label:'Faktor q pro 5 min',min:0.6,max:1.4,step:0.05,val:q,fmtV:v=>`q = ${fmt(v,2)}`,onChange:v=>{q=v;draw()}});
   c.appendChild(ctl);c.appendChild(ck);c.appendChild(q2);draw();
-  api.setAuto(()=>{ctl.set(0.5);ctl.set(1.5);ctl.set(1)});
+  api.setAuto(()=>{ctl.set(1.2);ctl.set(1);ctl.set(0.8);if(m)m._auto()});
 }
-function simLabor(c,api){
-  const base={xmin:0,xmax:40,ymin:0,ymax:120,xgrid:5,xlab:10,ygrid:10,ylab:20,h:420,xt:'t in min',yt:'f in °C'};
-  let A=60,k=-0.07,cc=20;const mv={A:0,k:0,c:0};
-  const pl=makePlot(c,base);const ro=document.createElement('div');ro.className='readout';c.appendChild(ro);
-  const ck=checklist(['A verändert: der Startwert f(0) hat sich geändert','c verändert: der Startwert f(0) hat sich geändert','k verändert: der Startwert f(0) blieb gleich']);const q2=document.createElement('div');
-  const draw=()=>{const f=t=>A*Math.exp(k*t)+cc;
-    pl.draw({segs:curveSegs(f,0,40,80,'#17607a'),lines:[{m:0,b:cc,color:'#c2410c',dash:1,w:3}],points:[{x:0,y:A+cc,color:'#c2410c',r:7}]});
-    ro.innerHTML=`<span>f(0) = A + c = <b>${fmt(A+cc,0)} °C</b></span><span>k = <b>${fmt(k,2)} min⁻¹</b></span>`;
-    ck.set(0,!!mv.A);ck.set(1,!!mv.c);ck.set(2,!!mv.k);
-    if(mv.A&&mv.c&&mv.k&&!q2.dataset.on){q2.dataset.on=1;
-      mcqW(q2,{q:`Welcher Parameter von ${K('f(t)=A\\,e^{kt}+c')} verändert den Startwert ${K('f(0)')} <b>nicht</b>?`,o:[
-        {t:`Die Rate ${K('k')}: Bei ${K('t=0')} ist ${K('e^{0}=1')}.`,ok:1,fb:'Genau. Bei t = 0 ist e⁰ = 1, also f(0) = A + c. Die Rate k bestimmt nur, wie schnell sich der Wert danach ändert.'},
-        {t:`Die Verschiebung ${K('c')}`,fb:'Doch: c wird addiert und steckt in f(0) = A + c. Du hast es gerade gesehen.'},
-        {t:`Der Anfangsabstand ${K('A')}`,fb:'Doch: A steckt in f(0) = A + c.'},
-        {t:'Keiner: Alle drei beeinflussen f(0).',fb:'Probiere k nochmal: Der Punkt bei t = 0 bleibt stehen.'}]},api.solved,api.wrong)}};
-  const cA=ctlRow({label:'Anfangsabstand A (°C)',min:10,max:80,step:5,val:A,fmtV:v=>fmt(v,0)+' °C',onChange:v=>{if(v!==A)mv.A=1;A=v;draw()}});
-  const cK=ctlRow({label:'Rate k (1/min)',min:-0.15,max:-0.01,step:.01,val:k,fmtV:v=>fmt(v,2)+' min⁻¹',onChange:v=>{v=Math.round(v*100)/100;if(v!==k)mv.k=1;k=v;draw()}});
-  const cC=ctlRow({label:'Verschiebung c (°C)',min:0,max:40,step:5,val:cc,fmtV:v=>fmt(v,0)+' °C',onChange:v=>{if(v!==cc)mv.c=1;cc=v;draw()}});
-  c.appendChild(cA);c.appendChild(cK);c.appendChild(cC);c.appendChild(ck);c.appendChild(q2);draw();
-  api.setAuto(()=>{cA.set(40);cC.set(30);cK.set(-0.05)});
-}
-function termFig(){const bd=(x,n)=>`<circle cx="${x}" cy="30" r="17" fill="#c2410c" stroke="#fff" stroke-width="3"/><text x="${x}" y="36" text-anchor="middle" font-size="18" font-weight="800" fill="#fff">${n}</text>`;
-  return `<svg viewBox="0 0 600 130" xmlns="http://www.w3.org/2000/svg" font-family="-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif"><rect width="600" height="130" fill="#fff"/>
-  <g font-size="38" fill="#16233a" font-style="italic"><text x="18" y="100">T</text></g><g font-size="34" fill="#16233a"><text x="40" y="100">(t) =</text><text x="150" y="100" font-weight="800">60</text><text x="215" y="100"> · e</text><text x="270" y="72" font-size="26">−0,0693·t</text><text x="430" y="100">+ 20</text></g>
-  ${bd(172,1)}${bd(350,2)}${bd(480,3)}</svg>`}
+function formelNr(){const C=['#c2410c','#17607a','#1b7a47','#5b3fc4'],W=['60 °C','0,8','5 min','20 °C'];return `<div style="text-align:center;font-size:1.2em;margin:6px 0">${KD('T(t)={\\color{#c2410c}\\underbrace{60\\,^\\circ\\mathrm{C}}_{1}}\\cdot {\\color{#17607a}\\underbrace{0{,}8}_{2}}{}^{\\,t/({\\color{#1b7a47}5\\,\\mathrm{min}})}+{\\color{#5b3fc4}\\underbrace{20\\,^\\circ\\mathrm{C}}_{4}}')}</div>
+ <p style="text-align:center;font-weight:700">${W.map((w,j)=>`<span style="color:${C[j]};white-space:nowrap">Nr. ${j+1}: ${w}</span>`).join(' · ')}</p><p class="tip" style="text-align:center">Nr. 3 steht im Exponenten (grün).</p>`}
 
-/* ---------- Abschlussdokument ---------- */
-function briefDoc(){return `<div class="doc"><div class="stamp">Notiz</div><h4>Antwortnotiz an Frau Kern: Abkühlmodelle A, B und C</h4><dl>
-<dt>Verglichen</dt><dd>Startwert, Faktor beziehungsweise Rate und Verschiebung. Beide Modelle A und B starten bei ${K('T(0)=60+20=80')} °C und streben der Raumtemperatur ${K('c=20')} °C zu.</dd>
-<dt>Umrechnung</dt><dd>${K('k=\\dfrac{\\ln(0{,}5)}{10\\,\\text{min}}\\approx-0{,}0693\\,\\text{min}^{-1}')}; Probe: ${K('e^{-0{,}0693\\cdot 10}\\approx 0{,}5')}.</dd>
-<dt>Modell B</dt><dd>Gleichwertig zu A, bis auf die Rundung von ${K('k')}. Beispiel: ${K('T_A(30)=27{,}5')} °C, ${K('T_B(30)\\approx 27{,}5')} °C.</dd>
-<dt>Modell C</dt><dd>Nicht exakt gleichwertig: Der Faktor je 10 min ist ${K('e^{-0{,}7}\\approx 0{,}497')} statt 0,5. Die Abweichung ist klein (${K('T_C(30)\\approx 27{,}35')} °C).</dd>
-<dt>Hinweis</dt><dd>${esc(state.sim.hint||'—')}</dd>
-<dt>Erstellt von</dt><dd>${nm()} · Auswertungs-Team · ${new Date().toLocaleDateString('de-DE')}</dd></dl></div>`}
-function briefText(){return ['Antwortnotiz an Frau Kern: Abkühlmodelle A, B und C','',
-'Verglichen: Startwert, Faktor beziehungsweise Rate und Verschiebung. A und B starten bei T(0) = 60 + 20 = 80 °C und streben der Raumtemperatur c = 20 °C zu.',
-'Umrechnung: k = ln(0,5) / 10 min ≈ −0,0693 min⁻¹; Probe: e^(−0,693) ≈ 0,5.',
-'Modell B: gleichwertig zu A, bis auf die Rundung von k. T_A(30) = 27,5 °C, T_B(30) ≈ 27,5 °C.',
-'Modell C: nicht exakt gleichwertig; Faktor je 10 min ≈ 0,497 statt 0,5; T_C(30) ≈ 27,35 °C.',
-'Hinweis: '+(state.sim.hint||'—'),'Erstellt von: '+(state.name||CONFIG.defaultName)].join('\n')}
+/* ---------- Aufwärmen: 3 Fragen aus den Wochen 1 und 2 ---------- */
+const AUFWAERMEN=[
+ {woche:1,q:'Eine Spannung sinkt von 50 V auf 40 V. Welcher Faktor gehört dazu?',o:[
+   {t:'0,8',ok:1,fb:'Richtig: 40 V : 50 V = 0,8.'},{t:'−10 V',fb:'Das ist die Differenz, nicht der Faktor.'},
+   {t:'1,25',fb:'Vertauscht: Der Faktor ist neu durch alt, also 40 : 50.'},{t:'−0,2',fb:'Das ist die relative Änderung q − 1, nicht der Faktor selbst.'}]},
+ {woche:1,q:'Welche Einheit hat ein Faktor q = U_neu : U_alt?',o:[
+   {t:'keine, er ist einheitenlos',ok:1,fb:'Genau: Volt durch Volt kürzt sich weg.'},{t:'Volt',fb:'Volt durch Volt kürzt sich weg.'},
+   {t:'Volt pro Sekunde',fb:'Das wäre eine Änderung pro Zeit. Der Faktor vergleicht nur zwei Werte.'},{t:'Sekunde',fb:'Die Zeit steckt im Faktor nicht drin.'}]},
+ {woche:2,q:'Bei gleichen Zeitschritten sind die Quotienten benachbarter Messwerte immer gleich. Welches Modell liegt nahe?',o:[
+   {t:'exponentiell',ok:1,fb:'Richtig: gleicher Faktor pro Schritt bedeutet exponentiell.'},{t:'linear',fb:'Linear erkennt man an gleichen Differenzen, nicht an gleichen Quotienten.'},
+   {t:'beide gleich gut',fb:'Gleiche Quotienten passen nur zum exponentiellen Modell.'},{t:'keines, man braucht mehr Messpunkte',fb:'Mehr Punkte sind immer gut, aber das Muster spricht schon klar für exponentiell.'}]}
+];
 
-/* ---------- Etappen ---------- */
-const H1='20 Minuten';
+const H1='20 min';
 const LEVELS=[
-/* ===== Einstieg ===== */
-{title:'Einstieg: Die Kundenanfrage',tag:'Einstieg',sub:'Wer sind wir? Was ist das Ziel? Wie erreichen wir es?',badge:'🧭 Auftrag geklärt',num:'✉️',hour:H1,short:'Einstieg',roadH:'Start',steps:[
- {type:'info',html:()=>`<div class="newmail"><span class="dot"></span><b>1 neue Nachricht</b>&nbsp;· Frau Kern</div>${MAIL()}
-   <div class="task"><b>Dein Auftrag:</b> Lies die E-Mail genau. Danach klärst du: <b>Wer sind wir? Was ist das Ziel? Wie erreichen wir es?</b> Die Mail findest du jederzeit unter 📂.</div>`},
- {type:'mcq',title:'Frage 1: Wer sind wir?',dataTitle:'✉️ E-Mail anzeigen',data:()=>MAIL(),q:'In welcher Rolle arbeitet ihr in dieser Lerneinheit?',o:[
-   {t:'Wir sind das Auswertungs-Team im Prüflabor und prüfen Modelle für Kunden.',ok:1,fb:'Genau. Ihr seid weder die Kundin noch die Werkstatt. Ihr prüft Modelle sorgfältig.'},
-   {t:'Wir sind die Kunden und wollen ein günstiges Modell kaufen.',fb:'Frau Kern ist die Kundin. Schau, an wen ihre Mail gerichtet ist.'},
-   {t:'Wir sind die Werkstatt und kühlen den Prüfkörper selbst ab.',fb:'Gemessen wird nicht, ihr bekommt Modelle zum Prüfen.'},
-   {t:'Wir sind die Chefs und entscheiden, welches Modell gilt.',fb:'Ihr beratet mit einer Notiz. Die Entscheidung trifft die Kundin.'}],
-  hints:['Schau in die Zeile „An:“.','Ein Auswertungs-Team prüft und berät.','Frau Kern schreibt an das Auswertungs-Team des Prüflabors.']},
- {type:'mcq',title:'Frage 2: Was ist das Ziel?',dataTitle:'✉️ E-Mail anzeigen',data:()=>MAIL(),q:'Was sollt ihr am Ende abliefern?',o:[
-   {t:'Eine Antwortnotiz: Parameter verglichen, Umrechnung erklärt, Modelle B und C als gleichwertig oder nicht beurteilt.',ok:1,fb:'Richtig. Leitfrage: <b>Welche Parameter musst du vergleichen, bevor du die Modelle als gleichwertig akzeptierst?</b>'},
-   {t:'Eine Messreihe vom Prüfkörper.',fb:'Es wird nichts gemessen. Es geht um den Vergleich der gegebenen Modelle.'},
-   {t:'Ein neues Modell, das besser ist als A, B und C.',fb:'Die Kundin will wissen, ob die vorhandenen Modelle gleichwertig sind.'},
-   {t:'Den Beweis, dass der Prüfkörper in der Realität genauso abkühlt.',fb:'Das sind Modelle, keine Messung. Über die Realität sagt der Vergleich nichts aus.'}],
-  hints:['Lies den zweiten Absatz der Mail.','Gesucht: ein Vergleich, kein Neubau.','Die Notiz enthält Parameter, Umrechnung und Urteil.']},
- {type:'seq',title:'Frage 3: Wie erreichen wir das Ziel?',text:'Bringe die Arbeitsschritte in eine sinnvolle Reihenfolge. Geprüft wird erst, wenn alle Schritte eingeordnet sind.',items:[
-   'Modelle lesen: Startwert, Faktor oder Rate, Verschiebung','Faktorform und e-Form ineinander umrechnen','Restwert und Verschiebung deuten, Startwert berechnen','Prozentänderung je Zeitspanne bestimmen','Antwortnotiz an Frau Kern schreiben'],
-  okfb:'Das ist unser Fahrplan.',hints:['Erst lesen, dann umrechnen.','Die Notiz kommt zuletzt.','Die Prozentänderung braucht die Rate k.']},
- {type:'info',html:()=>person(`<p>Prima, ${nm()}! Hier ist euer Fahrplan. Unterwegs prüfen zwei Kollegen eure Ergebnisse. Überzeugt sie!</p>`)+
-   `<div class="mission" style="margin-top:6px"><h3>🧭 Unser Auftrag</h3><dl><dt>Wer?</dt><dd>${CONFIG.board.wer}</dd><dt>Ziel?</dt><dd>${CONFIG.board.ziel}</dd><dt>Wie?</dt><dd>${CONFIG.board.wie}</dd></dl></div>
-   <div class="task"><b>Ablauf (ca. 20 min):</b> Level 1 Faktor und Rate → ⚔️ Gleichwertigkeits-Check → Level 2 Verschiebung → ⚔️ Entladetest → 🏁 Antwortnotiz → 🎯 Quiz</div>
-   <div class="merke"><b>🎖 Dein Rang:</b> Du startest als <b>Praktikant</b>. Jeder besiegte Gegner bringt dich eine Stufe höher: Junior-Prüfer → Prüfer → Senior-Prüfer.</div>`}
+/* ===== Einstieg: Kundenanfrage + Mythos ===== */
+{title:'Einstieg: Zwei Formeln, ein Vorgang?',tag:'Einstieg',sub:'Anfrage lesen, abstimmen, Auftrag klären',badge:'🧭 Auftrag geklärt',num:'✉️',hour:H1,short:'Anfrage',steps:[
+ {type:'info',html:()=>`<div class="newmail"><span class="dot"></span><b>1 neue Nachricht</b>&nbsp;· Rheinkant Werkstofftechnik</div>${MAIL()}
+   <div class="task"><b>Dein Auftrag:</b> Lies die Mail. Gleich stimmst du ab, ohne zu rechnen.</div><p class="tip">Unterrichtsbeispiel: Firmen, Personen und Zahlen sind erfunden.</p>`},
+ {type:'vote',id:'m1',phase:'vor',title:'Abstimmung vorher',q:'„Zwei Formeln mit verschiedener Grundzahl (einmal 0,8, einmal e) beschreiben immer verschiedene Vorgänge.“ Stimmt das?'},
+ {type:'mcq',title:'Wer sind wir, was ist das Ziel?',q:'Worin besteht unser Auftrag?',
+  einfach:{q:'Frau Pohl hat zwei Formeln. Was sollen wir für sie tun?'},
+  o:[{t:'Wir prüfen als Auswertungsteam, ob Modell A und Modell B denselben Abkühlvorgang beschreiben, und antworten Frau Pohl begründet.',ok:1,fb:'Genau. Am Ende steht eine kurze, begründete Antwort an Frau Pohl.'},
+   {t:'Wir messen die Temperatur des Prüfkörpers selbst neu.',fb:'Messen ist nicht unser Auftrag. Wir vergleichen die beiden Formeln.'},
+   {t:'Wir suchen uns das Modell aus, das schöner aussieht.',fb:'Das Aussehen der Formel zählt nicht. Es geht darum, ob beide dieselben Werte liefern.'},
+   {t:'Wir erfinden ein drittes Modell.',fb:'Davon ist in der Mail keine Rede. Frau Pohl will wissen, ob A und B dasselbe beschreiben.'}],
+  hints:['Was fragt Frau Pohl am Ende ihrer Mail?','Wir sind das Auswertungsteam. Wir rechnen und vergleichen.','Gesucht ist eine begründete Antwort zu Modell A und B.']},
+ {type:'seq',title:'Wie gehen wir vor?',text:'Bringe die Schritte in eine sinnvolle Reihenfolge. Geprüft wird erst, wenn alle Schritte eingeordnet sind.',items:[
+   'Die Zahlen in Modell A benennen, jeweils mit Einheit','Die Temperatur zu Beginn berechnen','Modell A in die Schreibweise mit e umrechnen','Beide Modelle vergleichen und Frau Pohl antworten'],
+  okfb:'Das ist unser Fahrplan für die 20 Minuten. Unterwegs prüft Herr Brandt aus der Qualitätssicherung eure Antwort.',
+  hints:['Erst muss man wissen, was die Zahlen bedeuten.','Umrechnen kommt vor dem Vergleichen.','Die Antwort an Frau Pohl steht am Ende.']}
 ]},
 /* ===== Level 1 ===== */
-{title:'Level 1: Faktor und Rate',tag:'Lernabschnitt 1',sub:'Faktorform und e-Form',badge:'🔄 Umrechner',num:1,hour:H1,short:'Faktor/Rate',roadH:'Teil 1',steps:[
- {type:'info',html:()=>person(`<p>Hallo ${nm()}! Modell A arbeitet mit einem ${T('faktor')}, Modell B mit der ${T('eform')}. Wir klären, wie beide zusammenhängen.</p>`)+`<div class="task"><b>Ziel dieses Levels:</b> Du liest die Faktorform, rechnest in die e-Form um und umgekehrt.</div>`},
- {type:'sim',title:'Faktor ausprobieren',text:`${OP('Untersuche')} mit dem Regler, wie sich der Faktor ${K('q')} auswirkt. Stelle alle drei Fälle ein.`,run:simGrund,solution:'q < 1: Zerfall, q > 1: Wachstum, q = 1: Konstanz.',
-  hints:['Der Startwert ist immer 40. Schau, was nach 10 min passiert.','Probiere q = 0,5, q = 1,5 und q = 1,0.','q = 1,0 erreichst du mit den Plus- und Minus-Tasten.']},
- {type:'mcq',title:'Modell A lesen',pre:()=>`<div class="task">${TA()}, t in min, T in °C</div>`,q:'Welche Aussage über den e-Anteil von Modell A stimmt?',o:[
-   {t:'Zerfall: Der Wert wird alle 10 min mit 0,5 multipliziert.',ok:1,fb:'Genau: q = 0,5 liegt zwischen 0 und 1, die Zeitspanne ist Δt = 10 min.'},
-   {t:'Zerfall: Der Wert wird jede Minute mit 0,5 multipliziert.',fb:'Der Exponent ist t/10. Der Faktor gilt also je 10 min, nicht je Minute.'},
-   {t:'Wachstum, weil 60 positiv ist.',fb:'Wachstum oder Zerfall entscheidet der Faktor q, nicht der Startwert. Hier ist q < 1.'},
-   {t:'Konstanz, weil nach 10 min die Hälfte bleibt.',fb:'Konstanz wäre q = 1. Hier halbiert sich der Wert, das ist Zerfall.'}],
-  hints:['Wo steht Δt? Schau in den Exponenten.','Ist q größer oder kleiner als 1?','Der Faktor 0,5 gilt für 10 min.']},
- {type:'calc',title:'Von q zu k',text:`${OP('Berechne')} die Rate ${K('k')} aus ${K('q=0{,}5')} und ${K('\\Delta t=10\\,\\text{min}')}. Rechne mit ${K('k=\\dfrac{\\ln(q)}{\\Delta t}')} und nutze den Rechner (🧮).`,
-  data:()=>`<p>${K('q=0{,}5')}, ${K('\\Delta t=10\\,\\text{min}')}</p>${KD('k=\\dfrac{\\ln(q)}{\\Delta t}')}`,
-  rows:[{pre:K('\\ln(0{,}5)='),ans:-0.693,tol:.002,u:'',traps:[[0.693,'Vorzeichen! 0,5 ist kleiner als 1, also ist der Logarithmus negativ.']]},
-        {pre:K('k=\\dfrac{\\ln(0{,}5)}{10\\,\\text{min}}='),ans:-0.0693,tol:.0003,u:'min⁻¹',traps:[[-0.693,'Du hast nicht durch Δt = 10 min geteilt.'],[0.0693,'Das Minus fehlt: Zerfall gehört zu k < 0.'],[-6.93,'Du hast mit 10 multipliziert statt geteilt.']]},
-        {pre:K('e^{k\\cdot 10}=e^{-0{,}693}='),ans:0.5,tol:.002,u:'(Probe)',traps:[[2,'Der Wert muss wieder der Faktor q = 0,5 sein. Du hast den Kehrwert.'],[-0.5,'Eine Potenz von e ist nie negativ.']]}],
-  after:`${K('k\\approx-0{,}0693\\,\\text{min}^{-1}')}. Die Probe liefert wieder ${K('q=0{,}5')}.`,
-  hints:['Zuerst ln(0,5) mit dem Rechner.','Dann durch Δt = 10 min teilen.','Probe: e hoch (k mal 10).']},
- {type:'mcq',title:'Passt Modell B zu Modell A?',q:`Modell B hat ${K('k=-0{,}0693\\,\\text{min}^{-1}')}, Modell A hat ${K('q=0{,}5')} je 10 min. Sind die e-Anteile gleichwertig?`,o:[
-   {t:`Ja, bis auf Rundung: ${K('e^{-0{,}0693\\cdot 10}\\approx 0{,}5')}.`,ok:1,fb:`Genau: ${T('gleichwertig')} heißt gleicher Faktor je gleicher Zeitspanne. Das gerundete k liefert nur ungefähr 0,5.`},
-   {t:'Nein, weil −0,0693 und 0,5 verschiedene Zahlen sind.',fb:'k und q sind verschiedene Größen. Vergleichen musst du den Faktor je 10 min: e^(k·10).'},
-   {t:'Nein, weil k negativ ist und q positiv.',fb:'Negatives k gehört zu q < 1. Das passt zusammen.'},
-   {t:'Ja, weil k = q − 1 ist.',fb:'Die Umrechnung ist k = ln(q)/Δt, nicht q − 1.'}],
-  hints:['Vergleiche den Faktor je 10 min.','Berechne e^(k · 10).','Das Ergebnis ist etwa 0,5.']}
+{title:'Level 1: Faktor, e-Form und Verschiebung',tag:'Lernabschnitt 1',sub:'Parameter benennen und umrechnen',badge:'🌡️ Parameter-Profi',num:1,hour:H1,short:'Parameter',
+ halt:{frage:'Modell B nutzt k = −0,0446 statt des genauen Werts. Darf Frau Pohl die beiden Modelle trotzdem gleichwertig nennen? Wann könnte die Rundung stören?',
+   impulse:['Vergleicht beide Modelle nach 60 Minuten: etwa 24,12 °C (A) und 24,13 °C (B).','Was würde passieren, wenn man k auf −0,04 rundet?','Welche Genauigkeit braucht ein Prüflabor bei Temperaturen wirklich?'],
+   starters:['Ich finde,','Die Rundung stört erst, wenn','Für das Labor reicht'],
+   bonus:{type:'mcq',title:'Bonus: Eine wachsende Kultur',q:`Eine Schimmelkultur auf einer Prüfplatte wächst alle 4 h um den Faktor 1,5. Welche Wachstumskonstante gehört dazu?`,o:[
+     {t:'k ≈ 0,101 pro Stunde',ok:1,fb:'Genau: ln(1,5) : 4 h ≈ 0,101 pro Stunde.'},{t:'k ≈ 0,405 pro Stunde',fb:'Das ist nur ln(1,5). Du musst noch durch 4 h teilen.'},
+     {t:'k ≈ 1,62 pro Stunde',fb:'Du hast mit 4 multipliziert statt geteilt.'},{t:'k ≈ −0,101 pro Stunde',fb:'Die Kultur wächst, also ist k positiv.'}],
+     hints:['k = ln(q) : Δt.','q = 1,5 und Δt = 4 h.','ln(1,5) ≈ 0,405.']}},
+ steps:[
+ {type:'info',html:()=>person(`<p>Hallo ${nm()}! In Modell A steht ${K('0{,}8^{\\,t/(5\\,\\mathrm{min})}')}. Die 5 Minuten sind die ${T('zeitspanne')}: Nach jeweils 5 Minuten wird der Abstand zum Restwert mit dem Faktor 0,8 multipliziert.</p>`)+
+   `<div class="merke"><b>Merke:</b> ${KD('N(t)=N_0\\cdot q^{\\,t/\\Delta t}\\qquad N_0>0,\\;\\Delta t>0,\\;q>0')}</div><div class="task"><b>Ziel dieses Levels:</b> Du benennst die Zahlen in Modell A und rechnest es in die Schreibweise von Modell B um.</div>`},
+ {type:'sim',title:'Was macht der Faktor?',text:`${OP('Untersuche')} mit dem Regler, wie der Faktor q die Kurve verändert. Stelle nacheinander einen Faktor unter 1, genau 1 und über 1 ein.`,run:simQ,
+  einfach:{text:`${OP('Untersuche')} die Kurve. Schiebe den Regler. Probiere: q unter 1, q genau 1, q über 1.`},
+  solution:'0 < q < 1: Abnahme (Zerfall); q = 1: konstant; q > 1: Wachstum.',
+  hints:['Beobachte, ob die Kurve von links nach rechts steigt oder fällt.','Faktor heißt: Der Abstand wird pro 5 Minuten damit multipliziert.','Mal 0,8 macht etwas kleiner, mal 1,2 macht es größer.']},
+ {type:'place',title:'Modell A beschriften',text:`${OP('Ordne zu')}: Welche Bedeutung haben die nummerierten Zahlen in Modell A? Geprüft wird erst, wenn alle Felder belegt sind.`,svg:()=>formelNr(),
+  slots:['Abstand zum Restwert am Anfang (°C)','Faktor pro 5 min (ohne Einheit)','Zeitspanne, nach der der Faktor wirkt (min)','Restwert, bis zu dem abgekühlt wird (°C)'],
+  slotHint:['… Nr. 1','… Nr. 2','… Nr. 3','… Nr. 4'],
+  labels:['Abstand zum Restwert am Anfang (°C)','Faktor pro 5 min (ohne Einheit)','Zeitspanne, nach der der Faktor wirkt (min)','Restwert, bis zu dem abgekühlt wird (°C)','Temperatur zu Beginn (°C)','Abnahme in Prozent pro 5 min'],
+  fb:{'Temperatur zu Beginn (°C)':'Zu Beginn ist der Prüfkörper 60 °C + 20 °C = 80 °C warm. 60 °C ist nur der Abstand zum Restwert.','Abnahme in Prozent pro 5 min':'0,8 ist der Faktor: 80 % des Abstands bleiben übrig. Die Abnahme wären 20 %.'},
+  okfb:'Alle vier Zahlen sind richtig beschriftet.',
+  profi:{text:`${OP('Ordne zu')}: Bestimme die Bedeutung der Parameter ${K('N_0')}, ${K('q')}, ${K('\\Delta t')} und des additiven Summanden in Modell A.`},
+  hints:['Setze t = 0 ein: Was bleibt dann von der Formel übrig?','Der Exponent t/(5 min) zählt, wie viele 5-Minuten-Abschnitte vergangen sind.','Der Summand am Ende ändert sich nie. Er ist der Restwert.']},
+ {type:'calc',title:'Start und Abnahme',text:`Der Summand +20 °C am Ende heißt ${T('versch')}: Er hebt die ganze Kurve um 20 °C an. ${OP('Berechne')} die Temperatur zu Beginn und die Änderung des Abstands zum Restwert in Prozent pro 5 min.`,
+  data:()=>`<p>Modell A: ${FA()}</p>`,
+  einfach:{text:`Die +20 °C am Ende heißen ${T('versch')}. ${OP('Berechne')} die Temperatur bei t = 0. Berechne dann, um wie viel Prozent der Abstand pro 5 min kleiner wird.`},
+  rows:[{pre:K('T(0)='),ans:80,tol:.05,u:'°C',traps:[[60,'Du hast die Verschiebung vergessen. Bei t = 0 ist 0,8 hoch 0 gleich 1, also 60 °C + 20 °C.'],[20,'Das ist nur der Restwert. Der Abstand von 60 °C kommt noch dazu.'],[68,'Das ist die Temperatur nach 5 Minuten. Gefragt ist t = 0.']]},
+        {pre:'Änderung des Abstands pro 5 min:',ans:-20,tol:.05,u:'%',traps:[[20,'Vorzeichen: Der Abstand wird kleiner, also negativ.'],[80,'80 % bleiben übrig. Gefragt ist die Änderung.'],[-80,'80 % bleiben übrig, verloren gehen 20 %.'],[-0.2,'Das ist die Änderung als Dezimalzahl. Gib sie in Prozent an.']]}],
+  after:`${K('T(0)=60+20=80')} °C. Pro 5 min ändert sich der Abstand um ${K('100\\cdot(0{,}8-1)\\,\\%=-20\\,\\%')}. Achtung: Die −20 % gelten für den Abstand zu 20 °C, nicht für die ganze Temperatur.`,
+  hints:['Bei t = 0 ist der Exponent 0. Jede Zahl hoch 0 ergibt 1.','Prozentänderung = 100 · (q − 1) %.','T(0) = 60 · 1 + 20.'],
+  twin:{type:'calc',title:'Zwilling: Ein anderer Prüfkörper',text:`${OP('Berechne')} für ${K('T(t)=50\\,^\\circ\\mathrm{C}\\cdot 0{,}9^{\\,t/(2\\,\\mathrm{min})}+15\\,^\\circ\\mathrm{C}')} die Temperatur zu Beginn und die Änderung des Abstands pro 2 min.`,
+   rows:[{pre:K('T(0)='),ans:65,tol:.05,u:'°C',traps:[[50,'Die Verschiebung 15 °C fehlt.'],[15,'Das ist nur der Restwert.']]},{pre:'Änderung pro 2 min:',ans:-10,tol:.05,u:'%',traps:[[10,'Vorzeichen: Der Abstand nimmt ab.'],[90,'90 % bleiben übrig.']]}],
+   after:'65 °C; der Abstand zu 15 °C sinkt pro 2 min um 10 %.'}},
+ {type:'calc',title:'Umrechnen in die e-Form',text:`Modell B ist in der ${T('eform')} geschrieben: ${K('N(t)=N_0\\cdot e^{k t}')}. Darin ist e die ${T('euler')} (≈ 2,718) und k die ${T('wk')}. Es gilt ${K('k=\\dfrac{\\ln(q)}{\\Delta t}')}. ${OP('Berechne')} k für Modell A auf vier Nachkommastellen und mache die Probe.`,
+  data:()=>`<p>Modell A: ${FA()}</p><p>${K('q=0{,}8')}, ${K('\\Delta t=5\\,\\mathrm{min}')}</p>`,
+  einfach:{text:`Modell B nutzt die ${T('eform')} mit der ${T('euler')} (≈ 2,718). Die Zahl k heißt ${T('wk')}. Rechne: k = ln(0,8) : 5. Mache dann die Probe: e hoch (k · 5).`},
+  profi:{text:`${OP('Berechne')} die ${T('wk')} k der äquivalenten ${T('eform')} ${K('N_0\\, e^{k t}')} aus ${K('q=e^{k\\Delta t}')} und verifiziere ${K('e^{k\\Delta t}=q')}.`},
+  rows:[{pre:K('k=\\dfrac{\\ln(0{,}8)}{5\\,\\mathrm{min}}\\approx'),ans:-0.0446,tol:.0003,u:'1/min',w:5,traps:[[0.0446,'Vorzeichen: ln(0,8) ist negativ, weil 0,8 kleiner als 1 ist.'],[-0.2231,'Das ist nur ln(0,8). Teile noch durch 5 min.'],[-1.1157,'Du hast mal 5 gerechnet. Es muss geteilt werden.'],[-0.0194,'Du hast die Taste log genommen. Gesucht ist ln.'],[-0.04,'Zu grob gerundet. Gib vier Nachkommastellen an.']]},
+        {pre:K('\\text{Probe: } e^{k\\cdot 5}\\approx'),ans:0.8,tol:.002,u:'',traps:[[1.25,'Vorzeichen: Mit negativem k muss etwas kleiner als 1 herauskommen.'],[-0.223,'Das ist nur k · 5. Nimm davon noch e hoch.'],[2.718,'Das ist e selbst. Rechne e hoch (k · 5).']]}],
+  after:`${K('k\\approx-0{,}0446\\,\\tfrac{1}{\\mathrm{min}}')} und ${K('e^{-0{,}0446\\cdot 5}\\approx 0{,}8')}. Das ist genau das k aus Modell B. k hat die Einheit 1/min, damit ${K('k\\cdot t')} keine Einheit hat.`,
+  hints:['Die Formel steht im Text: k = ln(q) : Δt.','Nutze die Taste ln am Rechner (wiss.). ln(0,8) ≈ −0,2231.','k = −0,2231 : 5 = ?'],
+  twin:{type:'calc',title:'Zwilling: Faktor 0,9 pro 2 min',text:`${OP('Berechne')} k für ${K('q=0{,}9')} und ${K('\\Delta t=2\\,\\mathrm{min}')} und mache die Probe.`,
+   rows:[{pre:K('k\\approx'),ans:-0.0527,tol:.0003,u:'1/min',traps:[[0.0527,'Vorzeichen: ln(0,9) ist negativ.'],[-0.1054,'Das ist nur ln(0,9). Teile durch 2.']]},{pre:K('e^{k\\cdot 2}\\approx'),ans:0.9,tol:.002,u:'',traps:[[1.111,'Vorzeichen von k prüfen.']]}],
+   after:'k ≈ −0,0527 pro Minute, Probe: e hoch (−0,0527 · 2) ≈ 0,9.'}}
 ]},
-/* ===== Gegner 1 ===== */
-{title:'Gegner 1: Der Gleichwertigkeits-Check',tag:'Aufgabenblock 1',sub:'Faktor, Rate und Einheit verteidigen',badge:'🛡️ Albrecht überzeugt',hour:H1,short:'Albrecht',rankUp:'Junior-Prüfer',
- boss:{name:'Herr Albrecht',role:'Qualitätssicherung: „Ist die Umrechnung sauber?“',ava:'🧐',bar:'Skepsis',win:'Herr Albrecht ist überzeugt!'},steps:[
- {type:'info',html:()=>person(`<p>Bevor etwas an die Kundin geht, prüfe ich es. Vier Aufgaben. Überzeugt mich!</p>`,BOSS1)+
-   `<div class="merke"><b>So funktioniert ein Gegner:</b> Jede gelöste Aufgabe senkt seine Skepsis. Ohne Hilfe gibt es 15 ⭐ pro Aufgabe, mit Hilfe nur 5 ⭐. Besiegst du ihn ganz ohne Hilfe, gibt es zusätzlich 20 ⭐. Die Daten findest du unter „📂 Gegebene Werte“.</div>`},
- {type:'decide',title:'Wachstum, Zerfall oder Konstanz?',text:`${OP('Ordne')} jeden Term ein.`,actions:['📈 Wachstum','📉 Zerfall','➖ Konstanz'],cards:[
-   {title:K('8\\cdot 1{,}25^{t/4}'),ans:0,fb:[null,'q = 1,25 ist größer als 1. Der Wert wird größer.','Konstanz wäre q = 1.'],okfb:'Richtig: q > 1.'},
-   {title:K('50\\cdot 0{,}8^{t/2}'),ans:1,fb:['q = 0,8 ist kleiner als 1: Der Wert wird kleiner.',null,'Konstanz wäre q = 1.'],okfb:'Richtig: 0 < q < 1.'},
-   {title:K('30\\cdot 1^{t/6}'),ans:2,fb:['q = 1 vergrößert nichts.','q = 1 verkleinert nichts.'],okfb:'Richtig: q = 1, der Wert bleibt 30.'},
-   {title:K('5\\,e^{-0{,}4\\,t}'),ans:1,fb:['Negatives k bedeutet fallende Werte.',null,'Bei k = 0 wäre es konstant, hier ist k = −0,4.'],okfb:'Richtig: k < 0 gehört zu Zerfall.'}],
-  hints:['Faktorform: Ist q größer oder kleiner als 1?','e-Form: Schau auf das Vorzeichen von k.','q = 1 beziehungsweise k = 0 bedeutet Konstanz.']},
- {type:'calc',title:'Wachstum umrechnen',text:`Albrecht: „Ein Messarchiv wächst: ${TN()}, t in Tagen, N in GB.“ ${OP('Berechne')} Rate und Wert nach 9 Tagen.`,
-  data:()=>`<p>${TN()}, ${K('\\Delta t=3\\,\\text{d}')}, ${K('q=1{,}2')}</p>${KD('k=\\dfrac{\\ln(q)}{\\Delta t}')}`,
-  rows:[{pre:K('\\ln(1{,}2)='),ans:0.1823,tol:.0005,u:'',traps:[[-0.1823,'Vorzeichen: 1,2 ist größer als 1, also ist der Logarithmus positiv.']]},
-        {pre:K('k=\\dfrac{\\ln(1{,}2)}{3\\,\\text{d}}='),ans:0.0608,tol:.0003,u:'d⁻¹',traps:[[0.1823,'Du hast nicht durch Δt = 3 d geteilt.'],[-0.0608,'Wachstum gehört zu k > 0.'],[0.547,'Du hast mit 3 multipliziert statt geteilt.']]},
-        {pre:K('N(9)=40\\cdot 1{,}2^{9/3}='),ans:69.12,tol:.02,u:'GB',traps:[[206.4,'Der Exponent ist t/3 = 3, nicht t = 9.'],[48,'Du hast nur einmal mit 1,2 multipliziert. Der Exponent ist 9/3 = 3.']]}],
-  after:`${K('k\\approx 0{,}0608\\,\\text{d}^{-1}')} und ${K('N(9)=69{,}12\\,\\text{GB}')}.`,
-  hints:['Rate: ln(q) geteilt durch Δt.','Exponent: t geteilt durch Δt, hier 9 : 3.','1,2 hoch 3 ist 1,728.']},
- {type:'mcq',title:'Einheiten',text:`${OP('Begründe')}: Welche Einheit hat ${K('k')} im Modell aus der vorigen Aufgabe (t in Tagen)?`,q:`Was gilt für ${K('k')} und ${K('k\\cdot t')}?`,o:[
-   {t:`${K('k')} hat die Einheit 1/Tag, das Produkt ${K('k\\cdot t')} hat keine Einheit.`,ok:1,fb:`Genau: ${T('einheitlos')}. (1/d) · d kürzt sich.`},
-   {t:`${K('k')} hat die Einheit Tag.`,fb:'k ist der Kehrwert einer Zeit, nicht eine Zeit.'},
-   {t:`${K('k')} hat keine Einheit, ${K('k\\cdot t')} die Einheit Tag.`,fb:'Es ist umgekehrt: k trägt 1/Tag, k·t ist einheitenlos.'},
-   {t:`${K('k')} hat die Einheit GB.`,fb:'GB ist die Einheit von N, nicht von k.'}],
-  hints:['k = ln(q) : Δt. Welche Einheit hat Δt?','Der Exponent einer e-Funktion ist einheitenlos.','(1/Tag) mal Tag ergibt?']}
-]},
-/* ===== Level 2 ===== */
-{title:'Level 2: Restwert und Verschiebung',tag:'Lernabschnitt 2',sub:'Parameter von A·e^(kt) + c deuten',badge:'🌡️ Parameter-Profi',num:2,hour:H1,short:'Verschiebung',roadH:'Teil 2',steps:[
- {type:'info',html:()=>person(`<p>Bei beiden Modellen bleibt am Ende die Raumtemperatur. Dafür steht die ${T('verschiebung')} ${K('c')}. Wir klären, was ${K('A')}, ${K('k')} und ${K('c')} bedeuten.</p>`)+`<div class="task"><b>Ziel dieses Levels:</b> Du beschriftest Parameter, berechnest den ${T('startwert')} und die ${T('prozent')}.</div>`},
- {type:'sim',title:'Parameter-Labor',text:`${OP('Untersuche')}, wie ${K('A')}, ${K('k')} und ${K('c')} den Startwert beeinflussen. Verändere jeden Regler einmal.`,run:simLabor,solution:'f(0) = A + c. Die Rate k verändert f(0) nicht.',
-  hints:['Beobachte den orangen Punkt bei t = 0 und die Anzeige f(0).','Verschiebe nacheinander A, c und k.','Die gestrichelte Linie zeigt c.']},
- {type:'place',title:'Parameter beschriften',text:`Ordne die Beschreibungen den Nummern im Term ${TB()} zu. Geprüft wird erst, wenn alle Felder belegt sind.`,svg:()=>termFig(),
-  slots:['A = 60 °C: Anfangsabstand zur Raumtemperatur','k = −0,0693 min⁻¹: Rate','c = 20 °C: Verschiebung (Raumtemperatur)'],
-  slotHint:['… vor dem e','… im Exponenten','… am Ende addiert'],
-  labels:['A = 60 °C: Anfangsabstand zur Raumtemperatur','k = −0,0693 min⁻¹: Rate','c = 20 °C: Verschiebung (Raumtemperatur)','A = 80 °C: Starttemperatur','k = −0,0693 °C: Rate','c = 60 °C: Raumtemperatur'],
-  fb:{'A = 80 °C: Starttemperatur':'Die Starttemperatur ist A + c = 80 °C. A allein ist nur der Abstand zur Raumtemperatur.','k = −0,0693 °C: Rate':'k hat die Einheit 1/min, nicht °C.','c = 60 °C: Raumtemperatur':'60 ist der Anfangsabstand A. Die Verschiebung c ist 20 °C.'},
-  hints:['Die Zahl vor dem e ist der Anfangsabstand.','Im Exponenten steht die Rate, ihre Einheit ist 1/min.','Was wird am Ende addiert?']},
- {type:'calc',title:'Werte der Modelle',text:`${OP('Berechne')} die Temperaturen mit den Modellen A und B.`,
-  data:()=>TAB(),
-  rows:[{pre:K('T_A(0)=60\\cdot 0{,}5^{0}+20='),ans:80,tol:.01,u:'°C',traps:[[60,'Die Verschiebung c = 20 °C fehlt: f(0) = A + c.'],[20,'Bei t = 0 ist die Potenz 1, also 60 + 20.']]},
-        {pre:K('T_A(30)=60\\cdot 0{,}5^{3}+20='),ans:27.5,tol:.01,u:'°C',traps:[[7.5,'Die Verschiebung 20 °C fehlt.'],[20,'Der Exponent ist 30/10 = 3, nicht 30.']]},
-        {pre:K('T_B(30)=60\\,e^{-0{,}0693\\cdot 30}+20='),ans:27.5,tol:.05,u:'°C',traps:[[7.5,'Die Verschiebung 20 °C fehlt.'],[80,'Du hast t = 0 eingesetzt. Setze t = 30 ein.']]}],
-  after:'A und B liefern nach 30 min praktisch denselben Wert: Das passt zur Umrechnung.',
-  hints:['Setze t ein und rechne erst die Potenz, dann mal 60, dann plus 20.','Bei A ist der Exponent t/10.','Bei B ist der Exponent −0,0693 mal 30.']},
- {type:'mcq',title:'Ist Modell C gleichwertig?',pre:()=>`<div class="task">${TCc()}, ${K('e^{-0{,}07\\cdot 10}\\approx 0{,}497')}, ${K('T_C(30)\\approx 27{,}35\\,^\\circ\\text{C}')}</div>`,text:`${OP('Beurteile')} Modell C im Vergleich zu Modell A.`,q:'Welche Aussage trifft zu?',o:[
-   {t:'Nicht exakt gleichwertig: Der Faktor je 10 min ist 0,497 statt 0,5. Die Abweichung ist klein, aber vorhanden.',ok:1,fb:'Genau. Für „gleichwertig“ müssen die Faktoren übereinstimmen. Ob 0,15 °C Abweichung genügen, hängt von der geforderten Genauigkeit ab.'},
-   {t:'Gleichwertig, weil k fast gleich ist.',fb:'Fast gleich ist nicht gleichwertig. Der Faktor je 10 min unterscheidet sich.'},
-   {t:'Gleichwertig, weil beide dieselbe Verschiebung 20 °C haben.',fb:'Gleiche Verschiebung allein reicht nicht. Die Faktoren je Zeitspanne müssen übereinstimmen.'},
-   {t:'Völlig anders: Modell C beschreibt Wachstum.',fb:'k = −0,07 ist negativ, also Zerfall wie bei A.'}],
-  hints:['Vergleiche den Faktor je 10 min.','Rechne e^(−0,07·10) und vergleiche mit 0,5.','Die Abweichung ist klein, aber der Faktor ist nicht gleich.']}
-]},
-/* ===== Gegner 2 ===== */
-{title:'Gegner 2: Der Entladetest',tag:'Aufgabenblock 2',sub:'Parameter und Prozentänderung',badge:'🛡️ Demir überzeugt',hour:H1,short:'Demir',rankUp:'Prüfer',
- boss:{name:'Frau Demir',role:'Elektrotechnik-Labor: „Zeigt, dass ihr Parameter lesen könnt!“',ava:'🤨',bar:'Skepsis',win:'Frau Demir ist überzeugt!'},steps:[
- {type:'info',html:()=>person(`<p>Ein Bauteil entlädt sich: ${TU()} mit <b>t in ms</b> und <b>U in V</b>. Vier Aufgaben und eine Bonusfrage.</p>`,BOSS2)+
-   `<div class="merke"><b>Erinnerung:</b> Jede gelöste Aufgabe senkt die Skepsis von Frau Demir. Die Formeln findest du unter 📂.</div>`},
- {type:'cloze',title:'Parameter beschriften',text:`${OP('Beschrifte')} die Parameter von ${TU()}.`,parts:[
-   ['Anfangsabstand zum Restwert: ',[K('A=45\\,\\text{V}'),K('A=57\\,\\text{V}'),K('A=12\\,\\text{V}')],0,'.<br>'],
-   ['Rate: ',[K('k=-0{,}2\\,\\text{ms}^{-1}'),K('k=-0{,}2\\,\\text{V}'),K('k=0{,}2\\,\\text{ms}^{-1}')],0,'.<br>'],
-   ['Verschiebung (Restwert): ',[K('c=12\\,\\text{V}'),K('c=45\\,\\text{V}'),K('c=0\\,\\text{V}')],0,'.']],
-  hints:['A steht vor dem e.','k steht im Exponenten, Einheit 1/ms.','c wird am Ende addiert.']},
- {type:'calc',title:'Startwert und Wert nach 5 ms',text:`${OP('Berechne')} den Startwert und den Wert nach 5 ms.`,
-  data:()=>`<p>${TU()}</p>${KD('f(0)=A+c')}`,
-  rows:[{pre:K('U(0)='),ans:57,tol:.01,u:'V',traps:[[45,'Die Verschiebung c = 12 V fehlt: U(0) = A + c.'],[12,'Das ist nur die Verschiebung.']]},
-        {pre:K('U(5)=45\\,e^{-0{,}2\\cdot 5}+12='),ans:28.55,tol:.02,u:'V',traps:[[16.55,'Die Verschiebung 12 V fehlt.'],[48.84,'Du hast t = 1 statt t = 5 eingesetzt.']]}],
-  after:`${K('U(0)=57\\,\\text{V}')}, ${K('U(5)\\approx 28{,}55\\,\\text{V}')}.`,
-  hints:['U(0): e hoch 0 ist 1.','Exponent: −0,2 mal 5 = −1.','45 mal e^(−1) plus 12.']},
- {type:'calc',title:'Prozentänderung',text:`${OP('Berechne')} die Prozentänderung des Abstands zum Restwert (e-Anteil) je 1 ms und je 5 ms mit ${K('100\\,(e^{k\\Delta t}-1)\\,\\%')}.`,
-  data:()=>`${KD('100\\,(e^{k\\Delta t}-1)\\,\\%')}<p>${K('k=-0{,}2\\,\\text{ms}^{-1}')}</p>`,
-  rows:[{pre:K('\\Delta t=1\\,\\text{ms}:\\;100\\,(e^{-0{,}2}-1)='),ans:-18.13,tol:.05,u:'%',traps:[[-20,'Du hast 100·k gerechnet. Die Formel braucht e^{kΔt} − 1.'],[18.13,'Vorzeichen: Bei Zerfall ist die Änderung negativ.'],[-81.87,'Du hast 100·e^{kΔt} statt 100·(e^{kΔt} − 1) gerechnet.']]},
-        {pre:K('\\Delta t=5\\,\\text{ms}:\\;100\\,(e^{-1}-1)='),ans:-63.21,tol:.05,u:'%',traps:[[-100,'Du hast 100·k·Δt gerechnet.'],[-36.79,'Du hast 100·e^{−1} statt 100·(e^{−1} − 1) gerechnet.']]}],
-  after:'Je 5 ms bleiben nur etwa 37 % des Abstands zum Restwert übrig.',
-  hints:['Setze k mal Δt in den Exponenten ein.','Bei 1 ms: e^(−0,2), bei 5 ms: e^(−1).','Erst e^(…) minus 1, dann mal 100.']},
- {type:'mcq',title:'Deutung von k',text:`${OP('Nimm Stellung')}: Ein Kollege sagt: „${K('k=-0{,}2')} heißt: Die Spannung sinkt jede Millisekunde um 0,2 V.“`,q:'Was antwortest du?',o:[
-   {t:'Falsch: k ist eine Rate pro ms im Exponenten. Der Abstand zum Restwert sinkt je 1 ms um etwa 18 %, nicht um feste 0,2 V.',ok:1,fb:'Genau. k sagt nicht „minus 0,2 V“, sondern steuert den Faktor e^(kΔt).'},
-   {t:'Stimmt: k ist die Änderung pro ms in Volt.',fb:'k hat die Einheit 1/ms, nicht V. Die absolute Änderung hängt vom aktuellen Wert ab.'},
-   {t:'Falsch: Die Spannung sinkt um 20 % je ms.',fb:'−20 % wäre 100·k. Richtig ist 100·(e^(−0,2) − 1) ≈ −18,1 %.'},
-   {t:'Stimmt, weil k negativ ist.',fb:'Das Vorzeichen zeigt nur Zerfall. Den Betrag der Änderung liefert e^(kΔt) − 1.'}],
-  hints:['Welche Einheit hat k?','Absolute oder relative Änderung?','Die Prozentänderung hast du gerade berechnet.']},
- {type:'mcq',title:'Bonus: Wenn k = 0 ist',bonus:1,text:`${OP('Erläutere')}: Was passiert bei ${K('U(t)=45\\,e^{0\\cdot t}+12')}?`,q:'Welche Aussage stimmt?',o:[
-   {t:'Die Spannung ist konstant 57 V, denn e⁰ = 1.',ok:1,fb:'Genau: k = 0 bedeutet Konstanz, f(t) = A + c = 57 V.'},
-   {t:'Die Spannung ist 12 V.',fb:'Der e-Anteil verschwindet nicht, er ist konstant 45 V.'},
-   {t:'Die Spannung ist 0 V.',fb:'e⁰ ist 1, nicht 0.'},
-   {t:'Die Spannung wächst langsam.',fb:'Bei k = 0 ändert sich nichts.'}],
-  hints:['Was ist e hoch 0?','Der Exponent ist 0 für jedes t.','Dann bleibt 45 · 1 + 12.']}
-]},
-/* ===== Finale ===== */
-{title:'Finale: Antwort an Frau Kern',tag:'Handlungsprodukt',sub:'Antwortnotiz erstellen',badge:'🏁 Notiz-Profi',hour:H1,short:'Notiz',final:true,rankUp:'Senior-Prüfer',
- boss:{name:'Die Antwortnotiz',role:'Frau Kern wartet auf eure Notiz',ava:'📨',bar:'Offene Fragen',win:'Eure Antwortnotiz überzeugt Frau Kern!'},steps:[
- {type:'info',html:()=>person(`<p>Frau Kern wartet, ${nm()}! Jetzt bauen wir die <b>Antwortnotiz</b>. Jeder Abschnitt beantwortet eine ihrer Fragen.</p>`)},
- {type:'cloze',title:'Abschnitt 1: Parameter verglichen',text:`${OP('Vergleiche')} die Modelle A und B.`,data:()=>TAB(),parts:[
-   ['Beide Modelle starten bei ',[K('T(0)=80\\,^\\circ\\text{C}'),K('T(0)=60\\,^\\circ\\text{C}'),K('T(0)=20\\,^\\circ\\text{C}')],0,', weil '],
-   ['',[K('f(0)=A+c'),K('f(0)=A'),K('f(0)=c')],0,' gilt. Die Verschiebung ist '],
-   ['',[K('c=20\\,^\\circ\\text{C}'),K('c=60\\,^\\circ\\text{C}'),K('c=0{,}5')],0,' (Raumtemperatur). Modell A hat den Faktor '],
-   ['',[K('q=0{,}5'),K('q=0{,}0693'),K('q=10')],0,' je 10 min, Modell B die Rate '],
-   ['',[K('k=-0{,}0693\\,\\text{min}^{-1}'),K('k=-0{,}0693\\,^\\circ\\text{C}'),K('k=0{,}0693\\,\\text{min}^{-1}')],0,'.']],
-  hints:['f(0) = A + c.','Die Raumtemperatur ist die Verschiebung.','k hat die Einheit 1/min.']},
- {type:'cloze',title:'Abschnitt 2: Umrechnung und Urteil',text:`${OP('Beurteile')} die Modelle B und C.`,parts:[
-   ['Umrechnung: ',[K('k=\\dfrac{\\ln(q)}{\\Delta t}'),K('k=q-1'),K('k=q\\cdot\\Delta t')],0,'. Probe: '],
-   ['',[K('e^{k\\Delta t}\\approx 0{,}5'),K('e^{k\\Delta t}\\approx 2'),K('e^{k\\Delta t}\\approx 10')],0,'.<br>Modell B ist '],
-   ['',['gleichwertig zu A (bis auf Rundung von k)','nicht gleichwertig zu A'],0,'. Modell C ist '],
-   ['',['nicht exakt gleichwertig (Faktor ≈ 0,497 je 10 min)','exakt gleichwertig','ein Wachstumsmodell'],0,'.']],
-  hints:['Die Umrechnung steht unter 📂.','Die Probe liefert den Faktor je 10 min.','Bei C ist der Faktor 0,497 statt 0,5.']},
- {type:'write',title:'Abschnitt 3: Hinweis an die Kundin',text:`${OP('Nenne')} in einem eigenen Satz eine Grenze oder einen Hinweis, den Frau Kern beachten sollte.`,save:'hint',min:25,
-  keys:['rund','näherung','ungefähr','abweich','modell','konstru','real','messung','prüf','genau'],
-  placeholder:'z. B.: Das gerundete k liefert …',example:'Das gerundete k liefert nur ungefähr denselben Faktor; es sind konstruierte Modelle, die erst durch Messungen am Prüfkörper bestätigt werden müssten.',
-  okfb:'Guter Hinweis. Er steht jetzt in deiner Notiz.',missfb:'Ein Hinweis nennt z. B. die Rundung von k, dass es nur Modelle sind oder dass Messungen nötig wären. Möchtest du ergänzen?',
-  hints:['Was ist bei gerundeten Werten zu beachten?','Sind das gemessene Daten oder Modelle?','Satzanfang: „Das gerundete k …“']},
- {type:'selfcheck',title:'Deine Antwortnotiz',text:'Hier ist deine fertige Notiz. Prüfe sie mit der Checkliste.',doc:briefDoc,copy:briefText,checkTitle:'Endkontrolle',
-  items:['Startwert A + c, Verschiebung und Faktor beziehungsweise Rate verglichen','Umrechnung k = ln(q) : Δt mit Einheit genannt','Probe e^(kΔt) ≈ q genannt','Modell B beurteilt (gleichwertig bis auf Rundung)','Modell C beurteilt (nicht exakt gleichwertig)','Hinweis oder Grenze genannt'],
-  okfb:'Alles drin! Tippe auf „Gegner besiegen“.',hints:['Gehe die Notiz Zeile für Zeile durch.','Jeder Punkt entspricht einer Zeile.','Hake erst ab, wenn du die Zeile gefunden hast.']}
+/* ===== Gegner (letzte Aufgabe = Handlungsprodukt) ===== */
+{title:'Gegner: Der Qualitäts-Check',tag:'Aufgabenblock 1',sub:'Neues Modell, Mythos, Antwort an Frau Pohl',badge:'🧐 Qualitäts-Check',hour:H1,short:'Q-Check',rankUp:'Laborassistent',
+ boss:{name:'Herr Brandt',role:'Qualitätssicherung',ava:'🧐',bar:'Zweifel',win:'Herr Brandt gibt die Antwort an Frau Pohl frei!'},steps:[
+ {type:'info',html:()=>person(`<p>Bevor eine Antwort an eine Kundin rausgeht, prüfe ich sie. Ich habe drei Aufgaben für dich. Überzeug mich!</p>`,BOSS)+
+   `<div class="merke"><b>So funktioniert der Gegner:</b> Ohne Hilfe gibt es bis zu 15 ⭐ je Aufgabe. Der erste Denkanstoß ist frei, jede weitere Hilfe kostet 3 ⭐. Die 4. Hilfe 🔁 zeigt dir die passende Level-Aufgabe. Einen Fehlversuch kannst du für 8 ⭐ zurückkaufen. Im Quiz gibt es Joker: 50:50 für 10 ⭐, +15 s für 5 ⭐.</div>`},
+ {type:'calc',title:'Ein drittes Modell',text:`Ein weiterer Dienstleister schickt für einen anderen Prüfkörper ${K('f(t)=40\\,^\\circ\\mathrm{C}\\cdot e^{-0{,}2t}+15\\,^\\circ\\mathrm{C}')} (t in min). ${OP('Berechne')} die Temperatur zu Beginn, den Faktor pro 5 min und die Änderung des Abstands zu 15 °C pro 5 min.`,
+  data:()=>`<p>${K('f(t)=40\\,^\\circ\\mathrm{C}\\cdot e^{-0{,}2t}+15\\,^\\circ\\mathrm{C}')}, ${K('\\Delta t=5\\,\\mathrm{min}')}</p>${FORM()}`,
+  einfach:{text:`Neues Modell: ${K('f(t)=40\\,^\\circ\\mathrm{C}\\cdot e^{-0{,}2t}+15\\,^\\circ\\mathrm{C}')}. ${OP('Berechne')} 1. f(0). 2. den Faktor q = e hoch (k · 5). 3. die Änderung in Prozent: 100 · (q − 1).`},
+  rows:[{pre:K('f(0)='),ans:55,tol:.05,u:'°C',traps:[[40,'Die Verschiebung 15 °C fehlt.'],[15,'Das ist nur die Verschiebung.']]},
+        {pre:K('q=e^{-0{,}2\\cdot 5}\\approx'),ans:MCq,tol:.002,u:'',traps:[[-1,'Das ist nur k · 5. Nimm davon noch e hoch.'],[2.718,'Vorzeichen: e hoch −1, nicht e hoch 1.'],[0.819,'Das ist der Faktor pro Minute. Gefragt ist der Faktor pro 5 min.']]},
+        {pre:'Änderung pro 5 min:',ans:MCp,tol:.2,u:'%',traps:[[-MCp,'Vorzeichen: Der Abstand nimmt ab.'],[-36.8,'36,8 % bleiben übrig. Gefragt ist die Änderung.'],[-20,'−0,2 ist k, keine Prozentangabe.']]}],
+  after:`${K('f(0)=40+15=55')} °C, ${K('q=e^{-1}\\approx 0{,}368')}, Änderung ${K('\\approx -63{,}2\\,\\%')} pro 5 min (für den Abstand zu 15 °C).`,
+  hints:['Bei t = 0 ist e hoch 0 gleich 1.','Faktor pro Zeitspanne: q = e hoch (k · Δt).','−0,2 · 5 = −1, also q = e hoch −1.'],recap:[1,4],
+  twin:{type:'calc',title:'Zwilling: Noch ein Modell',text:`${OP('Berechne')} für ${K('f(t)=30\\,^\\circ\\mathrm{C}\\cdot e^{-0{,}1t}+10\\,^\\circ\\mathrm{C}')} die Temperatur zu Beginn, den Faktor pro 5 min und die Änderung pro 5 min.`,
+   rows:[{pre:K('f(0)='),ans:40,tol:.05,u:'°C',traps:[[30,'Die Verschiebung fehlt.']]},{pre:K('q\\approx'),ans:0.607,tol:.002,u:'',traps:[[-0.5,'Nimm noch e hoch.']]},{pre:'Änderung:',ans:-39.3,tol:.2,u:'%',traps:[[39.3,'Vorzeichen.']]}],
+   after:'40 °C, q ≈ 0,607, Änderung ≈ −39,3 % pro 5 min.'}},
+ {type:'vote',id:'m1',phase:'nach',title:'Abstimmung nachher',q:'„Zwei Formeln mit verschiedener Grundzahl (einmal 0,8, einmal e) beschreiben immer verschiedene Vorgänge.“ Stimmt das?',ok:1,
+  fix:'Das stimmt nicht. Jede Formel mit Faktor q pro Zeitspanne Δt lässt sich mit k = ln(q) : Δt in die e-Form umschreiben. Für Modell A ist k = ln(0,8) : 5 min ≈ −0,0446 pro Minute, genau das k von Modell B. Beide liefern bis auf die Rundung dieselben Temperaturen.'},
+ {type:'cloze',title:'Antwort an Frau Pohl',text:`${OP('Formuliere')} die Antwort an Frau Pohl, indem du die Lücken füllst.`,
+  einfach:{text:'Fülle die Lücken. So entsteht die Antwort an Frau Pohl.'},
+  parts:[
+   ['Beide Modelle starten bei ',['80 °C','60 °C','20 °C'],0,'. '],
+   ['Der Faktor 0,8 pro 5 min in Modell A entspricht der Wachstumskonstante ',[K('k\\approx-0{,}0446\\,\\tfrac{1}{\\mathrm{min}}'),K('k\\approx-0{,}2231\\,\\tfrac{1}{\\mathrm{min}}'),K('k\\approx 0{,}8\\,\\tfrac{1}{\\mathrm{min}}')],0,'. '],
+   ['Beide haben die Verschiebung ',['20 °C','80 °C','60 °C'],0,'. '],
+   ['Modell B ist deshalb ',['bis auf Rundung gleichwertig','ein schnellerer Vorgang','ein ganz anderer Vorgang'],0,' zu Modell A.']],
+  okfb:'Die Antwort an Frau Pohl ist fertig und begründet.',
+  hints:['Starttemperatur: T(0) = A + c.','k = ln(q) : Δt aus Level 1.','Gleiche Starttemperatur, gleiche Verschiebung, gleiches k bedeutet: derselbe Vorgang.'],recap:[1,4]}
 ]},
 /* ===== Quiz ===== */
-{title:'Abschlussquiz',tag:'Quiz',sub:'Fachbegriffe im Kahoot-Stil',badge:'🎯 Begriffs-Profi',num:'🎯',hour:H1,steps:[]}
+{title:'Abschlussquiz',tag:'Quiz',sub:'Begriffe und Anwendungen',badge:'🎯 Quiz',num:'🎯',hour:H1,short:'Quiz',steps:[]}
 ];
 const QUIZ=[
- {q:`In ${K('N_0\\,q^{t/\\Delta t}')} ist ${K('q')} …`,o:[{t:'der Faktor pro Zeitspanne Δt',ok:1},{t:'der Startwert'},{t:'die Rate in 1/min'},{t:'die Verschiebung'}],why:'q ist der Faktor, mit dem der Wert je Zeitspanne Δt multipliziert wird.'},
- {q:'Welches q gehört zu Zerfall?',o:[{t:'0 < q < 1',ok:1},{t:'q > 1'},{t:'q = 1'},{t:'q < 0'}],why:'Bei 0 < q < 1 wird der Wert je Zeitspanne kleiner.'},
- {q:'Welches q gehört zu Konstanz?',o:[{t:'q = 1',ok:1},{t:'q = 0'},{t:'q = 2'},{t:'q = −1'}],why:'Multiplikation mit 1 ändert nichts.'},
- {q:'Wie rechnet man q in k um?',o:[{t:K('k=\\dfrac{\\ln(q)}{\\Delta t}'),ok:1},{t:K('k=q-1')},{t:K('k=q\\cdot\\Delta t')},{t:K('k=e^{q}')}],why:'k = ln(q) : Δt, und umgekehrt q = e^{kΔt}.'},
- {q:`Welche Einheit hat ${K('k')} bei t in min?`,o:[{t:'1/min',ok:1},{t:'min'},{t:'°C'},{t:'keine'}],why:'k ist der Kehrwert der Zeiteinheit.'},
- {q:`Das Produkt ${K('k\\cdot t')} ist …`,o:[{t:'einheitenlos',ok:1},{t:'in min'},{t:'in 1/min'},{t:'in °C'}],why:'(1/min) · min kürzt sich.'},
- {q:`Was gilt für ${K('k<0')} in ${K('N_0e^{kt}')}?`,o:[{t:'Zerfall',ok:1},{t:'Wachstum'},{t:'Konstanz'},{t:'Verschiebung'}],why:'Negatives k gehört zu q < 1.'},
- {q:`Wie groß ist ${K('f(0)')} bei ${K('f(t)=A\\,e^{kt}+c')}?`,o:[{t:K('A+c'),ok:1},{t:K('A')},{t:K('c')},{t:K('A\\cdot c')}],why:'Bei t = 0 ist e⁰ = 1.'},
- {q:'Was beschreibt A in A·e^(kt) + c?',o:[{t:'den Anfangsabstand zum Restwert',ok:1},{t:'die Rate'},{t:'den Restwert'},{t:'die Zeitspanne'}],why:'A ist der Abstand zur Verschiebung c bei t = 0.'},
- {q:'Was beschreibt c in A·e^(kt) + c?',o:[{t:'die Verschiebung (Restwert)',ok:1},{t:'den Anfangsabstand'},{t:'die Rate'},{t:'den Faktor'}],why:'Der Wert c wird addiert; hier die Raumtemperatur.'},
- {q:'Prozentänderung je Zeitspanne Δt:',o:[{t:K('100\\,(e^{k\\Delta t}-1)\\,\\%'),ok:1},{t:K('100\\cdot k\\,\\%')},{t:K('100\\cdot e^{k\\Delta t}\\,\\%')},{t:K('k\\cdot\\Delta t\\,\\%')}],why:'Faktor e^{kΔt} minus 1, mal 100.'},
- {q:'Zwei Terme sind gleichwertig, wenn …',o:[{t:'Startwert, Verschiebung und Faktor je gleicher Zeitspanne übereinstimmen',ok:1},{t:'nur ihr k ähnlich aussieht'},{t:'beide fallen'},{t:'beide dieselbe Verschiebung haben'}],why:'Entscheidend ist der Faktor je gleicher Zeitspanne.'}
+ {q:'In N(t) = N₀ · q^(t/Δt) bedeutet 0 < q < 1 …',o:[{t:'Abnahme',ok:1},{t:'Wachstum'},{t:'konstanter Wert'},{t:'negativer Wert'}],why:'Pro Zeitspanne bleibt nur ein Teil übrig.'},
+ {q:'Welche Einheit hat k, wenn t in Minuten gemessen wird?',o:[{t:'1/min',ok:1},{t:'min'},{t:'°C'},{t:'keine'}],why:'k · t muss einheitenlos sein, also hat k die Einheit 1/min.'},
+ {q:'Bei f(t) = A · e^(kt) + c ist f(0) gleich …',o:[{t:'A + c',ok:1},{t:'A'},{t:'c'},{t:'A · c'}],why:'e hoch 0 ist 1, also f(0) = A + c.'},
+ {q:'Ein negatives k in der e-Form bedeutet …',o:[{t:'Abnahme',ok:1},{t:'Wachstum'},{t:'negativer Startwert'},{t:'einen Rechenfehler'}],why:'k < 0 gehört zu q = e^(kΔt) < 1.'},
+ {transfer:1,q:'Ein Kaffee kühlt ab: f(t) = 70 · e^(−0,05t) + 21 (in °C). Welche Zahl ist die Raumtemperatur?',o:[{t:'21 °C',ok:1},{t:'70 °C'},{t:'91 °C'},{t:'0,05 °C'}],why:'Die Verschiebung c = 21 °C ist der Restwert.'},
+ {transfer:1,q:'Ein Messsignal wächst alle 2 s mit dem Faktor 1,1. Welche Wachstumskonstante k gilt?',o:[{t:'≈ 0,048 1/s',ok:1},{t:'≈ 0,095 1/s'},{t:'≈ 0,55 1/s'},{t:'≈ −0,048 1/s'}],why:'k = ln(1,1) : 2 s ≈ 0,048 pro Sekunde.'}
 ];
 /* ==== INHALT ENDE ==== */
 
+CONFIG.ueben=[{"level": 1, "aufgaben": "Aufgabe a–e", "text": "Parameter Startwert, Asymptote, Faktor, Umrechnung in k"}, {"level": 2, "aufgaben": "Aufgabe f–g", "text": "Prozentänderung und Modellvergleich, linear oder exponentiell"}];
+CONFIG.code="12NF-YXR7";
 start();
 </script>
 </body>
