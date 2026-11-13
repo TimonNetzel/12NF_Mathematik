@@ -314,7 +314,7 @@ body.beamer .beamer-aus { display: inline-flex; position: fixed; top: 16px; righ
  "klasse": "12NF",
  "fach": "Mathematik",
  "schuljahr": "2026/27",
- "erzeugt": "2026-11-12",
+ "erzeugt": "2026-11-13",
  "wochen": [
   {
    "nr": 1,
@@ -420,17 +420,21 @@ body.beamer .beamer-aus { display: inline-flex; position: fixed; top: 16px; righ
  "materialien": [],
  "probeklausuren": [
   {
+   "html": "probeklausuren/probeklausur_etappen-1-2.html",
+   "pdf": "probeklausuren/probeklausur_etappen-1-2.pdf",
+   "titel": "Klausurübung Woche 1–2 · Klausurdesign",
+   "dauer": "90 Min.",
+   "wochen": "1–2"
+  },
+  {
    "html": "probeklausuren/probeklausur_etappen-3-4.html",
    "pdf": "probeklausuren/probeklausur_etappen-3-4.pdf",
+   "bogen": {
+    "pdf": "probeklausuren/probeklausur_etappen-3-4_uebungsbogen.pdf"
+   },
    "titel": "Probeklausur Etappen 3–4",
    "dauer": "90 Min.",
    "wochen": "3–4"
-  },
-  {
-   "html": "probeklausuren/q1-01.html",
-   "pdf": "probeklausuren/q1-01.pdf",
-   "titel": "Klausurübung Woche 1–2 · Klausurdesign",
-   "dauer": "90 Min."
   }
  ],
  "klausuren": [
@@ -506,6 +510,10 @@ body.beamer .beamer-aus { display: inline-flex; position: fixed; top: 16px; righ
         html += l.html
           ? '<a class="mat-neben" href="' + esc(l.html) + '">Lösung</a>'
           : '<a class="mat-neben" href="' + esc(l.pdf) + '" target="_blank" rel="noopener">Lösung</a>';
+      }
+      var b = satz.bogen;  // Übungsbogen zur Probeklausur (Antwortbogen zum Ausdrucken)
+      if (b && b.pdf) {
+        html += '<a class="mat-neben" href="' + esc(b.pdf) + '" target="_blank" rel="noopener">Antwortbogen</a>';
       }
       return html + "</div>";
     }
